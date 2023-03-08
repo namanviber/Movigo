@@ -10,6 +10,15 @@ class WatchlistScreen extends StatefulWidget {
 
 class _WatchlistScreenState extends State<WatchlistScreen> {
   int screen_index = 2;
+  int count = 3;
+  final List<String> imgLists = [
+    'assets/images/testimg1.png',
+    'assets/images/testimg3.png',
+    'assets/images/testimg4.png',
+    'assets/images/testimg5.png',
+    'assets/images/testimg6.png',
+    'assets/images/testimg7.png',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,127 +40,232 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
               prefixIconColor: Colors.white),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      InkWell(
-                        child: Text("Movies",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
-                                decorationColor: Color(0xFF00B5F3),
-                                decorationThickness: 2.0)),
-                        onTap: () {},
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      InkWell(
-                        child: Text(
-                          "Shows",
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    InkWell(
+                      child: Text("Movies",
                           style: TextStyle(
                               fontFamily: "Inter",
                               fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        onTap: () {},
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.search),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Icon(Icons.filter_list_outlined),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Icon(Icons.grid_view),
-                    ],
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    Container(
-                      height: 30,
-                      width: 150,
-                      alignment: Alignment.center,
-                      child: Text(
-                        "All Movies",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Inter",
-                            fontSize: 12),
-                        textAlign: TextAlign.center,
-                      ),
-                      decoration: BoxDecoration(
-                          color: Color(0xFF00B5F3),
-                        borderRadius: BorderRadius.circular(6)
-                      ),
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline,
+                              decorationColor: Color(0xFF00B5F3),
+                              decorationThickness: 2.0)),
+                      onTap: () {},
                     ),
                     const SizedBox(
-                      width: 10,
-                    ),Container(
-                      height: 30,
-                      width: 150,
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Unwatched Movies",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Inter",
-                            fontSize: 12),
-                        textAlign: TextAlign.center,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6)
-                      ),
+                      width: 20,
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),Container(
-                      height: 30,
-                      width: 150,
-                      alignment: Alignment.center,
+                    InkWell(
                       child: Text(
-                        "Watched Movies",
+                        "Shows",
                         style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
                             fontFamily: "Inter",
-                            fontSize: 12),
-                        textAlign: TextAlign.center,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
                       ),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6)
-                      ),
+                      onTap: () {},
                     ),
                   ],
                 ),
-              )
-            ],
-          ),
+                Row(
+                  children: [
+                    Icon(Icons.search),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Icon(Icons.filter_list_outlined),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Icon(Icons.grid_view),
+                  ],
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Container(
+                    height: 30,
+                    width: 150,
+                    alignment: Alignment.center,
+                    child: Text(
+                      "All Movies",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Inter",
+                          fontSize: 12),
+                      textAlign: TextAlign.center,
+                    ),
+                    decoration: BoxDecoration(
+                        color: Color(0xFF00B5F3),
+                        borderRadius: BorderRadius.circular(6)),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 30,
+                    width: 150,
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Unwatched Movies",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Inter",
+                          fontSize: 12),
+                      textAlign: TextAlign.center,
+                    ),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6)),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 30,
+                    width: 150,
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Watched Movies",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Inter",
+                          fontSize: 12),
+                      textAlign: TextAlign.center,
+                    ),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6)),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_upward,
+                      color: Color(0xFF00B5F3),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "Date Added",
+                      style: TextStyle(
+                          color: Color(0xFF00B5F3),
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Inter",
+                          fontSize: 12),
+                    )
+                  ],
+                ),
+                Text("$count items",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Inter",
+                        fontSize: 14))
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              height: 450,
+              width: 350,
+              child: ListView.builder(
+                itemCount: imgLists.length,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (BuildContext context, index) {
+                  return Container(
+                    height: 150,
+                    width: 350,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 130,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(imgLists[index]),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Puss in Boots: The Last Wish",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "Inter",
+                                  fontSize: 10),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                                "Animation, Adventure, Comedy, Family, Fantasy",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: "Inter",
+                                    fontSize: 8)),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Icon(Icons.calendar_month),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text("7 December, 2022",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: "Inter",
+                                        fontSize: 6)),
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    margin: EdgeInsets.symmetric(horizontal: 8),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
