@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:project2/screens/movielist_screen.dart';
+import 'package:project2/screens/recommender_screen.dart';
 import 'package:project2/screens/watchlist_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -322,6 +324,9 @@ class _HomeScreenState extends State<HomeScreen> {
             }
             else if (screen_index == 0){
               Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+            }
+            else if (screen_index == 1){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => RecommenderScreen()));
             }
           });
         },
