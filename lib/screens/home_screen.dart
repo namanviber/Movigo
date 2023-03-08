@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:project2/screens/movielist_screen.dart';
 import 'package:project2/screens/recommender_screen.dart';
 import 'package:project2/screens/watchlist_screen.dart';
+import 'package:project2/widgets/movie_row.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -219,27 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 250,
-                width: double.maxFinite,
-                child: ListView.builder(
-                  itemCount: imgLists.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, index) {
-                    return Container(
-                      height: 170,
-                      width: 160,
-                      margin: EdgeInsets.symmetric(horizontal: 8),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(imgLists[index]),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+              MovieRow(),
               const SizedBox(
                 height: 20,
               ),
@@ -254,27 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 250,
-                width: double.maxFinite,
-                child: ListView.builder(
-                  itemCount: imgLists.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, index) {
-                    return Container(
-                      height: 170,
-                      width: 160,
-                      margin: EdgeInsets.symmetric(horizontal: 8),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(imgLists[index]),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+              MovieRow(),
               const SizedBox(
                 height: 20,
               ),
@@ -289,27 +249,8 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 250,
-                width: double.maxFinite,
-                child: ListView.builder(
-                  itemCount: imgLists.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, index) {
-                    return Container(
-                      height: 170,
-                      width: 160,
-                      margin: EdgeInsets.symmetric(horizontal: 8),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(imgLists[index]),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+              MovieRow(),
+
             ],
           ),
         ),

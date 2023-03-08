@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project2/models/movie.dart';
-import 'movie_screen.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
+
   const MovieCard({
     Key? key,
     required this.movie,
@@ -14,7 +14,7 @@ class MovieCard extends StatelessWidget {
     final posterUrl = 'http://image.tmdb.org/t/p/w500${movie.posterPath}';
     final movieId = movie.id;
     return InkWell(
-      onTap: () => navigateDetailPage(context, movie),
+      onTap: () => {},
       child: Card(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,14 +76,5 @@ class MovieCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void navigateDetailPage(BuildContext context, Movie movie) {
-    final route = MaterialPageRoute(
-      builder: (context) {
-        return MovieScreen(movie: movie);
-      },
-    );
-    Navigator.push(context, route);
   }
 }

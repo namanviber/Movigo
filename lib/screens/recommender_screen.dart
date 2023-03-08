@@ -17,20 +17,8 @@ class _RecommenderScreenState extends State<RecommenderScreen> {
     return DefaultTabController(
       length: 1,
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Discover'),
-          bottom: const TabBar(
-            tabs: [
-              Tab(text: 'Movie'),
-              Tab(text: 'TV Shows'),
-            ],
-          ),
-        ),
-        body: const TabBarView(
-          children: [
-            MovieTab(),
-          ],
-        ),
+        appBar: AppBar(),
+        body: MovieTab(),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
