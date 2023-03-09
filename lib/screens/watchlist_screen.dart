@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project2/screens/recommender_screen.dart';
 import 'package:project2/screens/settings_screen.dart';
 import 'home_screen.dart';
 
@@ -51,7 +52,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                 Row(
                   children: [
                     InkWell(
-                      child: Text("Movies",
+                      child: const Text("Movies",
                           style: TextStyle(
                               fontFamily: "Inter",
                               fontSize: 20,
@@ -65,7 +66,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                       width: 20,
                     ),
                     InkWell(
-                      child: Text(
+                      child: const Text(
                         "Shows",
                         style: TextStyle(
                             fontFamily: "Inter",
@@ -102,7 +103,10 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                     height: 30,
                     width: 150,
                     alignment: Alignment.center,
-                    child: Text(
+                    decoration: BoxDecoration(
+                        color: const Color(0xFF00B5F3),
+                        borderRadius: BorderRadius.circular(6)),
+                    child: const Text(
                       "All Movies",
                       style: TextStyle(
                           color: Colors.black,
@@ -111,9 +115,6 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                           fontSize: 12),
                       textAlign: TextAlign.center,
                     ),
-                    decoration: BoxDecoration(
-                        color: Color(0xFF00B5F3),
-                        borderRadius: BorderRadius.circular(6)),
                   ),
                   const SizedBox(
                     width: 10,
@@ -122,7 +123,10 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                     height: 30,
                     width: 150,
                     alignment: Alignment.center,
-                    child: Text(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6)),
+                    child: const Text(
                       "Unwatched Movies",
                       style: TextStyle(
                           color: Colors.black,
@@ -131,9 +135,6 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                           fontSize: 12),
                       textAlign: TextAlign.center,
                     ),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6)),
                   ),
                   const SizedBox(
                     width: 10,
@@ -142,7 +143,10 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                     height: 30,
                     width: 150,
                     alignment: Alignment.center,
-                    child: Text(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6)),
+                    child: const Text(
                       "Watched Movies",
                       style: TextStyle(
                           color: Colors.black,
@@ -151,9 +155,6 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                           fontSize: 12),
                       textAlign: TextAlign.center,
                     ),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6)),
                   ),
                 ],
               ),
@@ -165,12 +166,12 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  children: [
+                  children: const [
                     Icon(
                       Icons.arrow_upward,
                       color: Color(0xFF00B5F3),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 5,
                     ),
                     Text(
@@ -184,7 +185,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                   ],
                 ),
                 Text("$count items",
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontFamily: "Inter",
@@ -204,6 +205,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                   return Container(
                     height: 150,
                     width: 350,
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -224,7 +226,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               "Puss in Boots: The Last Wish",
                               style: TextStyle(
                                   color: Colors.white,
@@ -235,7 +237,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                             const SizedBox(
                               height: 10,
                             ),
-                            Text(
+                            const Text(
                                 "Animation, Adventure, Comedy, Family, Fantasy",
                                 style: TextStyle(
                                     color: Colors.white,
@@ -245,9 +247,9 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                               height: 10,
                             ),
                             Row(
-                              children: [
+                              children: const [
                                 Icon(Icons.calendar_month),
-                                const SizedBox(
+                                SizedBox(
                                   width: 10,
                                 ),
                                 Text("7 December, 2022",
@@ -261,7 +263,6 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                         )
                       ],
                     ),
-                    margin: EdgeInsets.symmetric(horizontal: 8),
                   );
                 },
               ),
@@ -274,16 +275,17 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
         onTap: (index) {
           setState(() {
             screen_index = index;
-            if (screen_index == 2) {
+            if (screen_index == 2){
               Navigator.push(context, MaterialPageRoute(builder: (context) => const WatchlistScreen()));
             }
-
-            if (screen_index == 3) {
+            if (screen_index == 3){
               Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen()));
             }
-
-            else if (screen_index == 0) {
+            else if (screen_index == 0){
               Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+            }
+            else if (screen_index == 1){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const RecommenderScreen()));
             }
           });
         },

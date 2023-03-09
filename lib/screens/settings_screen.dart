@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
+import 'package:project2/screens/recommender_screen.dart';
 import 'package:project2/screens/watchlist_screen.dart';
 import 'home_screen.dart';
 
@@ -39,7 +39,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           children: [
             Container(
               decoration: BoxDecoration(
-                  color: Color(0xFF043E4F),
+                  color: const Color(0xFF043E4F),
                   borderRadius: BorderRadius.circular(10)),
               height: 80,
               width: 350,
@@ -444,20 +444,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
         onTap: (index) {
           setState(() {
             screen_index = index;
-            if (screen_index == 2) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const WatchlistScreen()));
+            if (screen_index == 2){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const WatchlistScreen()));
             }
-            if (screen_index == 3) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const SettingsScreen()));
-            } else if (screen_index == 0) {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()));
+            if (screen_index == 3){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen()));
+            }
+            else if (screen_index == 0){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+            }
+            else if (screen_index == 1){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const RecommenderScreen()));
             }
           });
         },

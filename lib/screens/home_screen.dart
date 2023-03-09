@@ -1,7 +1,17 @@
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:project2/screens/recommender_screen.dart';
 import 'package:project2/screens/settings_screen.dart';
 import 'package:project2/screens/watchlist_screen.dart';
+
+import '../widgets/movie_row.dart';
+// <<<<<<< HEAD
+// import 'package:project2/screens/settings_screen.dart';
+// =======
+// import 'package:project2/screens/recommender_screen.dart';
+// >>>>>>> dd9e608a7942af7d158e2354628546d146a6edd5
+// import 'package:project2/screens/watchlist_screen.dart';
+// import 'package:project2/widgets/movie_row.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -100,10 +110,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         onTap: () {},
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      Text("Grid")
+                      const Text("Grid")
                     ],
                   ),Column(
                     children: [
@@ -120,10 +130,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         onTap: () {},
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      Text("Favourites")
+                      const Text("Favourites")
                     ],
                   ),Column(
                     children: [
@@ -140,10 +150,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         onTap: () {},
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      Text("Language")
+                      const Text("Language")
                     ],
                   ),Column(
                     children: [
@@ -160,10 +170,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         onTap: () {},
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      Text("Watched")
+                      const Text("Watched")
                     ],
                   ),
                 ],
@@ -201,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   enlargeCenterPage: true,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               const SizedBox(
@@ -218,27 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 250,
-                width: double.maxFinite,
-                child: ListView.builder(
-                  itemCount: imgLists.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, index) {
-                    return Container(
-                      height: 170,
-                      width: 160,
-                      margin: EdgeInsets.symmetric(horizontal: 8),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(imgLists[index]),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+              const MovieRow(),
               const SizedBox(
                 height: 20,
               ),
@@ -253,27 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 250,
-                width: double.maxFinite,
-                child: ListView.builder(
-                  itemCount: imgLists.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, index) {
-                    return Container(
-                      height: 170,
-                      width: 160,
-                      margin: EdgeInsets.symmetric(horizontal: 8),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(imgLists[index]),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+              const MovieRow(),
               const SizedBox(
                 height: 20,
               ),
@@ -288,27 +258,8 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 250,
-                width: double.maxFinite,
-                child: ListView.builder(
-                  itemCount: imgLists.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, index) {
-                    return Container(
-                      height: 170,
-                      width: 160,
-                      margin: EdgeInsets.symmetric(horizontal: 8),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(imgLists[index]),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+              const MovieRow(),
+
             ],
           ),
         ),
@@ -326,6 +277,9 @@ class _HomeScreenState extends State<HomeScreen> {
             }
             else if (screen_index == 0){
               Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+            }
+            else if (screen_index == 1){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const RecommenderScreen()));
             }
           });
         },
