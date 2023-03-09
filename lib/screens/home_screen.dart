@@ -1,9 +1,10 @@
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:project2/screens/settings_screen.dart';
 import 'package:project2/screens/watchlist_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -318,10 +319,13 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() {
             screen_index = index;
             if (screen_index == 2){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => WatchlistScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const WatchlistScreen()));
+            }
+            if (screen_index == 3){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen()));
             }
             else if (screen_index == 0){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
             }
           });
         },
@@ -336,7 +340,7 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icon(Icons.settings_rounded), label: "Settings"),
         ],
         backgroundColor: const Color(0xFF09090F),
-        selectedItemColor: Color(0xFF00B5F3),
+        selectedItemColor: const Color(0xFF00B5F3),
         unselectedItemColor: Colors.white,
         // type: BottomNavigationBarType.shifting,
       ),

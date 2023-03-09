@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project2/screens/settings_screen.dart';
 import 'home_screen.dart';
 
 class WatchlistScreen extends StatefulWidget {
@@ -23,9 +24,9 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        toolbarHeight: 100,
+        automaticallyImplyLeading: false,toolbarHeight: 100,
         backgroundColor: const Color(0xFF09090F),
+
         title: TextField(
           decoration: InputDecoration(
               hintText: "Search for movies, TV shows etc...",
@@ -76,13 +77,13 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                   ],
                 ),
                 Row(
-                  children: [
+                  children: const [
                     Icon(Icons.search),
-                    const SizedBox(
+                    SizedBox(
                       width: 5,
                     ),
                     Icon(Icons.filter_list_outlined),
-                    const SizedBox(
+                    SizedBox(
                       width: 5,
                     ),
                     Icon(Icons.grid_view),
@@ -274,11 +275,15 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
           setState(() {
             screen_index = index;
             if (screen_index == 2) {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => WatchlistScreen()));
-            } else if (screen_index == 0) {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const WatchlistScreen()));
+            }
+
+            if (screen_index == 3) {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen()));
+            }
+
+            else if (screen_index == 0) {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
             }
           });
         },
