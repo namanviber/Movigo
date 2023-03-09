@@ -1,17 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:project2/screens/recommender_screen.dart';
-import 'package:project2/screens/settings_screen.dart';
-import 'package:project2/screens/watchlist_screen.dart';
-
+import 'package:project2/screens/login_screen.dart';
+import 'package:project2/widgets/bottom_bar.dart';
 import '../widgets/movie_row.dart';
-// <<<<<<< HEAD
-// import 'package:project2/screens/settings_screen.dart';
-// =======
-// import 'package:project2/screens/recommender_screen.dart';
-// >>>>>>> dd9e608a7942af7d158e2354628546d146a6edd5
-// import 'package:project2/screens/watchlist_screen.dart';
-// import 'package:project2/widgets/movie_row.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -39,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 100,
+        toolbarHeight: 80,
         backgroundColor: const Color(0xFF09090F),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,15 +38,21 @@ class _HomeScreenState extends State<HomeScreen> {
             Text("Hello $user",
                 style: const TextStyle(
                     fontFamily: "Inter", fontWeight: FontWeight.bold)),
-            Container(
-              child: CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  child: SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: ClipOval(
-                        child: Image.asset("assets/images/testimg2.png"),
-                      ))),
+            InkWell(
+              onTap: (){
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
+              },
+              child: Container(
+                child: CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    child: SizedBox(
+                        width: 60,
+                        height: 60,
+                        child: ClipOval(
+                          child: Image.asset("assets/images/testimg2.png"),
+                        ))),
+              ),
             ),
           ],
         ),
@@ -214,90 +211,15 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 30,
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: const Text("Movies for You",
-                    style: TextStyle(
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20)),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const MovieRow(),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: const Text("Trending",
-                    style: TextStyle(
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20)),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const MovieRow(),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: const Text("Top 10 in India",
-                    style: TextStyle(
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20)),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const MovieRow(),
+              MovieRow(heading: "Movies for You",),
+              MovieRow(heading: "Trending",),
+              MovieRow(heading: "Top 10 in India",),
 
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) {
-          setState(() {
-            screen_index = index;
-            if (screen_index == 2){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const WatchlistScreen()));
-            }
-            if (screen_index == 3){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen()));
-            }
-            else if (screen_index == 0){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-            }
-            else if (screen_index == 1){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const RecommenderScreen()));
-            }
-          });
-        },
-        currentIndex: screen_index,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.play_circle), label: "Recommender"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.library_add), label: "Watchlist"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings_rounded), label: "Settings"),
-        ],
-        backgroundColor: const Color(0xFF09090F),
-        selectedItemColor: const Color(0xFF00B5F3),
-        unselectedItemColor: Colors.white,
-        // type: BottomNavigationBarType.shifting,
-      ),
+      bottomNavigationBar: BottomNavigation(screen_index: 0,),
     );
   }
 }
