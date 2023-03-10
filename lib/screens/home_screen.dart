@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: const TextStyle(
                     fontFamily: "Inter", fontWeight: FontWeight.bold)),
             InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => LoginScreen()));
               },
@@ -62,29 +62,34 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: <Widget>[
-              TextField(
+              SizedBox(
+                width: 340,
+                height: 60,
+                child: TextField(
+                  textAlignVertical: TextAlignVertical.center,
                   decoration: InputDecoration(
-                      hintText: "Search for movies, TV shows etc...",
+                      hintText: "Search",
                       filled: true,
-                      fillColor: const Color(0xFF51535D),
+                      fillColor: const Color(0xFF131313),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(16.0),
                           borderSide: BorderSide.none),
                       prefixIcon: const Icon(Icons.search),
-                      suffixIcon: const Icon(Icons.mic),
+                      suffixIcon: const Icon(Icons.history_rounded),
                       suffixIconColor: Colors.white,
                       prefixIconColor: Colors.white),
+                ),
               ),
               const SizedBox(
                 height: 40,
               ),
               Container(
                 alignment: Alignment.topLeft,
-                child: const Text("Quick Access Panel",
+                child: const Text("Filters",
                     style: TextStyle(
                         fontFamily: "Inter",
                         fontWeight: FontWeight.bold,
-                        fontSize: 20)),
+                        fontSize: 17)),
               ),
               const SizedBox(
                 height: 20,
@@ -112,7 +117,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       const Text("Grid")
                     ],
-                  ),Column(
+                  ),
+                  Column(
                     children: [
                       InkWell(
                         child: Container(
@@ -132,7 +138,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       const Text("Favourites")
                     ],
-                  ),Column(
+                  ),
+                  Column(
                     children: [
                       InkWell(
                         child: Container(
@@ -152,7 +159,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       const Text("Language")
                     ],
-                  ),Column(
+                  ),
+                  Column(
                     children: [
                       InkWell(
                         child: Container(
@@ -184,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(
                         fontFamily: "Inter",
                         fontWeight: FontWeight.bold,
-                        fontSize: 20)),
+                        fontSize: 22)),
               ),
               const SizedBox(
                 height: 20,
@@ -193,16 +201,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 items: imgLists
                     .map((item) => Container(
                           child: Center(
-                            child: Image.asset(
-                              item,
-                              width: 200,
-                              fit: BoxFit.fill,
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  item,
+                                  width: 150,
+                                  height: 220,
+                                  fit: BoxFit.cover,
+                                ),
+                                const SizedBox(height: 20,),
+                                Text("Black Panther: Wakanda Forever", style: TextStyle(fontFamily: "Inter",fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white),)
+                              ],
                             ),
                           ),
                         ))
                     .toList(),
                 options: CarouselOptions(
-                  height: 270,
+                  height: 320,
                   autoPlay: true,
                   aspectRatio: 2.0,
                   enlargeCenterPage: true,
@@ -211,15 +226,22 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 30,
               ),
-              MovieRow(heading: "Movies for You",),
-              MovieRow(heading: "Trending",),
-              MovieRow(heading: "Top 10 in India",),
-
+              MovieRow(
+                heading: "Movies for You",
+              ),
+              MovieRow(
+                heading: "Trending",
+              ),
+              MovieRow(
+                heading: "Top 10 in India",
+              ),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigation(screen_index: 0,),
+      bottomNavigationBar: BottomNavigation(
+        screen_index: 0,
+      ),
     );
   }
 }
