@@ -51,9 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
         toolbarHeight: 80,
         backgroundColor: const Color(0xFF09090F),
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text("Hello $user",
+            Text("Hello $user                   ",
                 style: const TextStyle(
                     fontFamily: "Inter", fontWeight: FontWeight.bold)),
             InkWell(
@@ -101,142 +101,99 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 40,
               ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: const Text("Filters",
-                    style: TextStyle(
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17)),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Column(
-                    children: [
-                      InkWell(
-                        child: Container(
-                          height: 55.0,
-                          width: 55.0,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Color(0xff51535E),
-                          ),
-                          child: const Icon(Icons.grid_view_rounded,
-                              color: Colors.white, size: 40.0),
-                        ),
-                        onTap: () {},
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Text("Grid")
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      InkWell(
-                        child: Container(
-                          height: 55.0,
-                          width: 55.0,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Color(0xff51535E),
-                          ),
-                          child: const Icon(Icons.star,
-                              color: Colors.white, size: 40.0),
-                        ),
-                        onTap: () {},
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Text("Favourites")
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      InkWell(
-                        child: Container(
-                          height: 55.0,
-                          width: 55.0,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Color(0xff51535E),
-                          ),
-                          child: const Icon(Icons.language,
-                              color: Colors.white, size: 40.0),
-                        ),
-                        onTap: () {},
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Text("Language")
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      InkWell(
-                        child: Container(
-                          height: 55.0,
-                          width: 55.0,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Color(0xff51535E),
-                          ),
-                          child: const Icon(Icons.history_rounded,
-                              color: Colors.white, size: 40.0),
-                        ),
-                        onTap: () {},
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Text("Watched")
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: const Text("Now Showing",
-                    style: TextStyle(
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22)),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
               CarouselSlider(
                 items: imgLists
                     .map((item) => Container(
                           child: Center(
                             child: Column(
                               children: [
-                                Image.asset(
-                                  item,
-                                  width: 150,
-                                  height: 220,
-                                  fit: BoxFit.cover,
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(16),
+                                  child: Image.asset(
+                                    item,
+                                    width: 180,
+                                    height: 245,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                                 const SizedBox(
                                   height: 20,
                                 ),
                                 Text(
-                                  "Black Panther: Wakanda Forever",
+                                  "Black Panther",
                                   style: TextStyle(
                                       fontFamily: "Inter",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
                                       color: Colors.white),
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      height: 22,
+                                      width: 30,
+                                      decoration: BoxDecoration(
+                                          color: Color(0xff51535E),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        "18+",
+                                        style: TextStyle(
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13,
+                                            color: Colors.white),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      height: 22,
+                                      width: 50,
+                                      decoration: BoxDecoration(
+                                          color: Color(0xff51535E),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        "Action",
+                                        style: TextStyle(
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13,
+                                            color: Colors.white),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      height: 22,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                          color: Color(0xff51535E),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        "Eng",
+                                        style: TextStyle(
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13,
+                                            color: Colors.white),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
                                 )
                               ],
                             ),
@@ -244,37 +201,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         ))
                     .toList(),
                 options: CarouselOptions(
-                  height: 320,
+                  viewportFraction: 0.6,
+                  height: 415,
                   autoPlay: true,
-                  aspectRatio: 2.0,
+                  aspectRatio: 3.0,
                   enlargeCenterPage: true,
                 ),
               ),
-            TextHeading(heading: "Top 10 in India"),
-              Container(
-                height: 170,
-                width: double.maxFinite,
-                child: ListView.builder(
-                  itemCount: content.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, index) {
-                    final movie = content[index];
-                    return MovieRow(model: movie);
-                  },
-                ),
-              ),TextHeading(heading: "Trending Movies"),
-              Container(
-                height: 170,
-                width: double.maxFinite,
-                child: ListView.builder(
-                  itemCount: content.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, index) {
-                    final movie = content[index];
-                    return MovieRow(model: movie);
-                  },
-                ),
-              ),TextHeading(heading: "Suggested for you"),
+              TextHeading(heading: "Top 10 in India"),
               Container(
                 height: 170,
                 width: double.maxFinite,
@@ -287,6 +221,36 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ),
+              const SizedBox(height: 20,),
+              TextHeading(heading: "Trending Movies"),
+              Container(
+                height: 170,
+                width: double.maxFinite,
+                child: ListView.builder(
+                  itemCount: content.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, index) {
+                    final movie = content[index];
+                    return MovieRow(model: movie);
+                  },
+                ),
+              ),
+              const SizedBox(height: 20,),
+              TextHeading(heading: "Suggested for you"),
+              Container(
+                height: 170,
+                width: double.maxFinite,
+                child: ListView.builder(
+                  itemCount: content.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, index) {
+                    final movie = content[index];
+                    return MovieRow(model: movie);
+                  },
+                ),
+              ),
+              const SizedBox(height: 20,),
+
             ],
           ),
         ),

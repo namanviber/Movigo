@@ -10,16 +10,16 @@ class TextHeading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(
-          height: 30,
-        ),
-        Container(
-          alignment: Alignment.topLeft,
-          child: Text("$heading",
-              style: TextStyle(
-                  fontFamily: "Inter",
-                  fontWeight: FontWeight.bold,
-                  fontSize: fontsize)),
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Container(
+            alignment: Alignment.topLeft,
+            child: Text("$heading",
+                style: TextStyle(
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.bold,
+                    fontSize: fontsize)),
+          ),
         ),
         const SizedBox(
           height: 20,
