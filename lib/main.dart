@@ -25,18 +25,6 @@ class MoviHub extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: Check(),
-      // Scaffold(
-      //   appBar: AppBar(
-      //     title: Text("MoviHub"),
-      //   ),
-      //   body: Row(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: <Widget>[
-      //       ElevatedButton(onPressed: () {}, child: Text("Hi 1"),),
-      //       ElevatedButton(onPressed: () {}, child: Text("Hi 2")),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
