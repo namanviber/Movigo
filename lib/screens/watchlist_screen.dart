@@ -1,5 +1,8 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:project2/widgets/bottom_bar.dart';
+import '../widgets/movie_card.dart';
+import 'package:project2/models/movie_model.dart';
+import 'package:project2/service/api_call.dart';
 
 class WatchlistScreen extends StatefulWidget {
   const WatchlistScreen({Key? key}) : super(key: key);
@@ -19,6 +22,22 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
     'assets/images/testimg6.png',
     'assets/images/testimg7.png',
   ];
+
+  List<MovieModel> content = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchMovies();
+  }
+
+  Future<void> fetchMovies() async {
+    final response = await discoverMovies();
+    setState(() {
+      content = response;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -197,71 +216,11 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
               height: 450,
               width: 350,
               child: ListView.builder(
-                itemCount: imgLists.length,
+                itemCount: content.length,
                 scrollDirection: Axis.vertical,
                 itemBuilder: (BuildContext context, index) {
-                  return Container(
-                    height: 150,
-                    width: 350,
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 130,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(imgLists[index]),
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "Puss in Boots: The Last Wish",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: "Inter",
-                                  fontSize: 10),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            const Text(
-                                "Animation, Adventure, Comedy, Family, Fantasy",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "Inter",
-                                    fontSize: 8)),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: const [
-                                Icon(Icons.calendar_month),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text("7 December, 2022",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: "Inter",
-                                        fontSize: 6)),
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  );
+                  final movie = content[index];
+                  return MovieCard(movie: movie);
                 },
               ),
             ),

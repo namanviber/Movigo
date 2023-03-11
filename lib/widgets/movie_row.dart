@@ -17,7 +17,7 @@ class MovieRow extends StatelessWidget {
           margin: EdgeInsets.symmetric(horizontal: 8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            image:  DecorationImage(
+            image: DecorationImage(
               fit: BoxFit.cover,
               image: posterUrl != ''
                   ? NetworkImage(posterUrl)

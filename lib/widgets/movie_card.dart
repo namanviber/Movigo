@@ -11,69 +11,71 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final posterUrl = 'http://image.tmdb.org/t/p/w500${movie.posterPath}';
-    final movieId = movie.id;
-    return InkWell(
-      onTap: () => {},
-      child: Card(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: 100,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Hero(
-                  tag: 'poster-$movieId',
-                  child: Image.network(
-                    posterUrl,
-                    width: 100,
-                    height: 150,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      return Container(
-                        color: Colors.grey,
-                        child: child,
-                      );
-                    },
-                  ),
-                ),
+    final posterUrl =
+        'https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.posterPath}';
+    return Container(
+      height: 150,
+      width: 350,
+      margin: const EdgeInsets.symmetric(horizontal: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 130,
+            width: 100,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: posterUrl != ''
+                    ? NetworkImage(posterUrl)
+                    : AssetImage('assets/images/noimage.png') as ImageProvider,
               ),
             ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                movie.title != '' ? movie.title : "Untitled",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Inter",
+                    fontSize: 10),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                  movie.genreIds != '' ? movie.genreIds.toString() : "Untitled",
+                  style: TextStyle(
+                      color: Colors.white, fontFamily: "Inter", fontSize: 8)),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
                 children: [
-                  const SizedBox(height: 10),
-                  Hero(
-                    tag: 'title-$movieId',
-                    child: Text(
-                      movie.title,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        height: 1.3,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                  Icon(Icons.calendar_month),
+                  SizedBox(
+                    width: 10,
                   ),
-                  const SizedBox(height: 10),
-                  Hero(
-                    tag: 'description-$movieId',
-                    child: Text(
-                      movie.overview,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        height: 1.5,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
+                  Text(
+                      movie.releaseDate != ''
+                          ? movie.releaseDate.toString()
+                          : "Untitled",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: "Inter",
+                          fontSize: 6)),
                 ],
               ),
-            ),
-          ],
-        ),
+            ],
+          )
+        ],
       ),
     );
   }
