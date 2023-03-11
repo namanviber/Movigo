@@ -2,7 +2,10 @@ import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:project2/screens/login_screen.dart';
 import 'package:project2/widgets/bottom_bar.dart';
+import 'package:project2/widgets/heading_text.dart';
 import '../widgets/movie_row.dart';
+import 'package:project2/models/movie_model.dart';
+import 'package:project2/service/api_call.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,6 +15,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<MovieModel> content = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchMovies();
+  }
+
+  Future<void> fetchMovies() async {
+    final response = await discoverMovies();
+    setState(() {
+      content = response;
+    });
+  }
+
   String user = "Naman";
   int screen_index = 0;
   final List<String> imgLists = [
@@ -209,8 +227,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 220,
                                   fit: BoxFit.cover,
                                 ),
-                                const SizedBox(height: 20,),
-                                Text("Black Panther: Wakanda Forever", style: TextStyle(fontFamily: "Inter",fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white),)
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Text(
+                                  "Black Panther: Wakanda Forever",
+                                  style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                      color: Colors.white),
+                                )
                               ],
                             ),
                           ),
@@ -223,17 +250,42 @@ class _HomeScreenState extends State<HomeScreen> {
                   enlargeCenterPage: true,
                 ),
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              MovieRow(
-                heading: "Movies for You",
-              ),
-              MovieRow(
-                heading: "Trending",
-              ),
-              MovieRow(
-                heading: "Top 10 in India",
+            TextHeading(heading: "Top 10 in India"),
+              Container(
+                height: 170,
+                width: double.maxFinite,
+                child: ListView.builder(
+                  itemCount: content.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, index) {
+                    final movie = content[index];
+                    return MovieRow(model: movie);
+                  },
+                ),
+              ),TextHeading(heading: "Trending Movies"),
+              Container(
+                height: 170,
+                width: double.maxFinite,
+                child: ListView.builder(
+                  itemCount: content.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, index) {
+                    final movie = content[index];
+                    return MovieRow(model: movie);
+                  },
+                ),
+              ),TextHeading(heading: "Suggested for you"),
+              Container(
+                height: 170,
+                width: double.maxFinite,
+                child: ListView.builder(
+                  itemCount: content.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, index) {
+                    final movie = content[index];
+                    return MovieRow(model: movie);
+                  },
+                ),
               ),
             ],
           ),
