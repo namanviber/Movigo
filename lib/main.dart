@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:project2/screens/Check.dart';
 import 'package:project2/screens/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MoviHub());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MoviHub());
+}
+
 
 class MoviHub extends StatelessWidget {
   const MoviHub({Key? key}) : super(key: key);
@@ -16,7 +24,7 @@ class MoviHub extends StatelessWidget {
         brightness: Brightness.dark
       ),
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: Check(),
       // Scaffold(
       //   appBar: AppBar(
       //     title: Text("MoviHub"),

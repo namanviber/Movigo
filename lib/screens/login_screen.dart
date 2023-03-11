@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:blur/blur.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -9,7 +10,23 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  final _email = TextEditingController();
+  final _password = TextEditingController();
+
+
+  Future log_in () async{
+    FirebaseAuth.instance.signInWithEmailAndPassword(email: _email.text.trim(), password: _password.text.trim());
+  }
+
+
   @override
+
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -19,17 +36,17 @@ class _LoginScreenState extends State<LoginScreen> {
         body: Container(
       height: double.maxFinite,
       width: double.maxFinite,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/background_login.png"),
           fit: BoxFit.cover,
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-          TextFormField(
-            decoration: const InputDecoration(
+          TextFormField(controller: _email,
+            decoration: InputDecoration(
               hintText: "Enter username or email address",
               labelText: "Username / Email",
             ),
@@ -41,11 +58,11 @@ class _LoginScreenState extends State<LoginScreen> {
             },
             onChanged: (value) {},
           ),
-          const SizedBox(
+          SizedBox(
             height: 30,
           ),
-          TextFormField(
-            decoration: const InputDecoration(
+          TextFormField(controller: _password,
+            decoration: InputDecoration(
               hintText: "Enter Password",
               labelText: "Password",
             ),
@@ -78,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
             height: 20,
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: log_in,
             child: Container(
               height: 50,
               width: double.maxFinite,

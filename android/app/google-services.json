@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "267263290650",
+    "project_id": "movihub-5f69b",
+    "storage_bucket": "movihub-5f69b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267263290650:android:f36db806896fbb5c0210a3",
+        "android_client_info": {
+          "package_name": "com.example.project2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "267263290650-ksrffp6d81pen68b0aa36ag7am3aknp9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZ-O9akb_-uv82Za7NWlfIM8VNy10FunY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "267263290650-ksrffp6d81pen68b0aa36ag7am3aknp9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
