@@ -11,14 +11,27 @@ class TextHeading extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: Container(
-            alignment: Alignment.topLeft,
-            child: Text("$heading",
-                style: TextStyle(
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.bold,
-                    fontSize: fontsize)),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                child: Text("$heading",
+                    style: TextStyle(
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.bold,
+                        fontSize: fontsize)),
+              ),
+              InkWell(
+                onTap: (){},
+                child: Text("See all",
+                    style: TextStyle(
+                        fontFamily: "Inter",
+                        color: Color(0xFFA0A0A0),
+                        fontWeight: FontWeight.bold,
+                        fontSize: fontsize)),
+              ),
+            ],
           ),
         ),
         const SizedBox(

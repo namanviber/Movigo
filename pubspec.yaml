@@ -43,6 +43,7 @@ dependencies:
   firebase_auth: ^4.2.9
   firebase_core: ^2.7.0
   tmdb_api: ^2.1.4
+  scroll_app_bar: ^2.0.0
 
 dev_dependencies:
   flutter_test:

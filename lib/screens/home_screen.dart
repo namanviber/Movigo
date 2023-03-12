@@ -2,10 +2,12 @@ import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:project2/screens/login_screen.dart';
 import 'package:project2/widgets/bottom_bar.dart';
+import 'package:project2/widgets/filter_row.dart';
 import 'package:project2/widgets/heading_text.dart';
 import '../widgets/movie_row.dart';
 import 'package:project2/models/movie_model.dart';
 import 'package:project2/service/api_call.dart';
+import 'package:scroll_app_bar/scroll_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -42,11 +44,13 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
+  final scrollcontroller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: ScrollAppBar(
+        controller: scrollcontroller,
         automaticallyImplyLeading: false,
         toolbarHeight: 80,
         backgroundColor: const Color(0xFF09090F),
@@ -76,6 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: SingleChildScrollView(
+        controller: scrollcontroller,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -201,8 +206,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ))
                     .toList(),
                 options: CarouselOptions(
-                  viewportFraction: 0.6,
-                  height: 415,
+                  viewportFraction: 0.55,
+                  height: 450,
                   autoPlay: true,
                   aspectRatio: 3.0,
                   enlargeCenterPage: true,
@@ -221,7 +226,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               TextHeading(heading: "Trending Movies"),
               Container(
                 height: 170,
@@ -235,7 +242,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
+              TextHeading(heading: "Genere"),
+              FilterRow(count: 10, elements: [
+                "Action",
+                "Adventure",
+                "Drama",
+                "Comedy",
+                "Fantasy",
+                "Crime",
+                "K-Drama",
+                "Sports",
+                "Fiction",
+                "Romance"
+              ]),
+              const SizedBox(
+                height: 20,
+              ),
               TextHeading(heading: "Suggested for you"),
               Container(
                 height: 170,
@@ -249,8 +274,65 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ),
-              const SizedBox(height: 20,),
-
+              const SizedBox(
+                height: 20,
+              ),
+              TextHeading(heading: "90 's Hits"),
+              Container(
+                height: 170,
+                width: double.maxFinite,
+                child: ListView.builder(
+                  itemCount: content.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, index) {
+                    final movie = content[index];
+                    return MovieRow(model: movie);
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextHeading(heading: "Languages"),
+              FilterRow(count: 5, elements: [
+                "English",
+                "Hindi",
+                "Marathi",
+                "Japanses",
+                "French",
+              ]),
+              const SizedBox(
+                height: 20,
+              ),
+              TextHeading(heading: "You may also like"),
+              Container(
+                height: 170,
+                width: double.maxFinite,
+                child: ListView.builder(
+                  itemCount: content.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, index) {
+                    final movie = content[index];
+                    return MovieRow(model: movie);
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextHeading(heading: "Top Romantic Hits"),
+              Container(
+                height: 170,
+                width: double.maxFinite,
+                child: ListView.builder(
+                  itemCount: content.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, index) {
+                    final movie = content[index];
+                    return MovieRow(model: movie);
+                  },
+                ),
+              ),
             ],
           ),
         ),

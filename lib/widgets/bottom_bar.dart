@@ -21,8 +21,7 @@ class BottomNavigation extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => HomeScreen()));
         } else if (screen_index == 1) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => RecommenderScreen()));
+
         }else if (screen_index == 3) {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => SettingsScreen()));
@@ -30,7 +29,7 @@ class BottomNavigation extends StatelessWidget {
       },
       currentIndex: screen_index,
       items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+        BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
         BottomNavigationBarItem(
             icon: Icon(Icons.play_circle), label: "Recommender"),
         BottomNavigationBarItem(
@@ -39,8 +38,8 @@ class BottomNavigation extends StatelessWidget {
             icon: Icon(Icons.settings_rounded), label: "Settings"),
       ],
       backgroundColor: const Color(0xFF09090F),
-      selectedItemColor: Color(0xFF00B5F3),
-      unselectedItemColor: Colors.white,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Color(0xFFA0A0A0),
       // type: BottomNavigationBarType.shifting,
     );
   }
