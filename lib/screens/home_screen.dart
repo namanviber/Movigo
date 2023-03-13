@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(16.0),
                           borderSide: BorderSide.none),
                       prefixIcon: const Icon(Icons.search),
-                      suffixIcon: const Icon(Icons.history_rounded),
+                      suffixIcon: const Icon(Icons.filter_alt_outlined),
                       suffixIconColor: Colors.white,
                       prefixIconColor: Colors.white),
                 ),

@@ -2,7 +2,17 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:project2/models/movie_model.dart';
-import 'package:project2/service/api_config.dart';
+
+class ApiConfig {
+  static const _baseUrl = 'https://api.themoviedb.org/3/';
+  static const _apiKey = '60b574988af5f6b7e4f9fd74504d7bbe';
+
+  static Uri generateUrl(String path) {
+    final url = '$_baseUrl$path?api_key=$_apiKey';
+    final uri = Uri.parse(url);
+    return uri;
+  }
+}
 
 class ApiCall extends StatefulWidget {
   const ApiCall({Key? key}) : super(key: key);

@@ -46,12 +46,13 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
         backgroundColor: const Color(0xFF09090F),
 
         title: TextField(
+          textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
-              hintText: "Search for movies, TV shows etc...",
+              hintText: "Search",
               filled: true,
-              fillColor: const Color(0xFF51535D),
+              fillColor: const Color(0xFF131313),
               border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(16.0),
                   borderSide: BorderSide.none),
               prefixIcon: const Icon(Icons.search),
               suffixIcon: const Icon(Icons.history_rounded),

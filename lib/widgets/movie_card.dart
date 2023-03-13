@@ -45,7 +45,7 @@ class MovieCard extends StatelessWidget {
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontFamily: "Inter",
-                    fontSize: 10),
+                    fontSize: 14),
               ),
               const SizedBox(
                 height: 10,
@@ -55,7 +55,7 @@ class MovieCard extends StatelessWidget {
                   style: TextStyle(
                       color: Colors.white, fontFamily: "Inter", fontSize: 8)),
               const SizedBox(
-                height: 10,
+                height: 12,
               ),
               Row(
                 children: [
@@ -70,7 +70,7 @@ class MovieCard extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.white,
                           fontFamily: "Inter",
-                          fontSize: 6)),
+                          fontSize: 8)),
                 ],
               ),
             ],
