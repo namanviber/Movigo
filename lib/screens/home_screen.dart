@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:project2/screens/login_screen.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:project2/widgets/filter_row.dart';
 import 'package:project2/widgets/heading_text.dart';
@@ -8,6 +7,7 @@ import '../widgets/movie_row.dart';
 import 'package:project2/models/movie_model.dart';
 import 'package:project2/service/api_call.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -62,8 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontFamily: "Inter", fontWeight: FontWeight.bold)),
             InkWell(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()));
+                FirebaseAuth.instance.signOut();
               },
               child: Container(
                 child: CircleAvatar(
@@ -206,6 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ))
                     .toList(),
                 options: CarouselOptions(
+                  autoPlayInterval: Duration(seconds: 2),
                   viewportFraction: 0.55,
                   height: 450,
                   autoPlay: true,

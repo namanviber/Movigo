@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -9,6 +10,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   final _email = TextEditingController();
   final _password = TextEditingController();
@@ -129,10 +131,13 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  _googleSignIn.signIn();
+                  log_in();
+                },
                 child: Container(
                   child: CircleAvatar(
-                      backgroundColor: Colors.black,
+                      backgroundColor: Colors.white,
                       child: SizedBox(
                           width: 60,
                           height: 60,
@@ -148,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onTap: () {},
                 child: Container(
                   child: CircleAvatar(
-                      backgroundColor: Colors.black,
+                      backgroundColor: Colors.white,
                       child: SizedBox(
                           width: 60,
                           height: 60,
@@ -165,12 +170,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 onTap: () {},
                 child: Container(
                   child: CircleAvatar(
-                      backgroundColor: Colors.black,
+                      backgroundColor: Colors.white,
                       child: SizedBox(
                           width: 60,
                           height: 60,
                           child: ClipOval(
-                            child: Image.asset("assets/images/apple_logo.png"),
+                            child: Image.asset("assets/images/github_logo.png"),
                           ))),
                 ),
               ),
