@@ -112,7 +112,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     Container(
                       height: 60,
-                      width: 220,
+                      width: 240,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -162,7 +162,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     Container(
                       height: 60,
-                      width: 220,
+                      width: 240,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -211,7 +211,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     Container(
                       height: 60,
-                      width: 220,
+                      width: 240,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -324,7 +324,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     Container(
                       height: 60,
-                      width: 220,
+                      width: 240,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -378,7 +378,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       },
                       child: Container(
                         height: 60,
-                        width: 220,
+                        width: 240,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -429,7 +429,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     Container(
                       height: 60,
-                      width: 220,
+                      width: 240,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -469,7 +469,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     Container(
                       height: 60,
-                      width: 220,
+                      width: 240,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
