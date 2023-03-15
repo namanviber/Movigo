@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:project2/screens/Check.dart';
+import 'package:project2/authorization/Check.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MoviHub());
+  runApp(Movigo());
 }
 
 
-class MoviHub extends StatelessWidget {
-  const MoviHub({Key? key}) : super(key: key);
+class Movigo extends StatelessWidget {
+  const Movigo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

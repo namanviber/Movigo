@@ -15,8 +15,8 @@ class MovieCard extends StatelessWidget {
         'https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.posterPath}';
     return Container(
       height: 150,
-      width: 350,
-      margin: const EdgeInsets.symmetric(horizontal: 8),
+      width: double.maxFinite,
+      margin: const EdgeInsets.symmetric(horizontal: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +45,8 @@ class MovieCard extends StatelessWidget {
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontFamily: "Inter",
-                    fontSize: 14),
+                    fontSize: 11),
+                maxLines: 3,
               ),
               const SizedBox(
                 height: 10,
@@ -55,13 +56,13 @@ class MovieCard extends StatelessWidget {
                   style: TextStyle(
                       color: Colors.white, fontFamily: "Inter", fontSize: 8)),
               const SizedBox(
-                height: 12,
+                height: 8,
               ),
               Row(
                 children: [
                   Icon(Icons.calendar_month),
                   SizedBox(
-                    width: 10,
+                    width: 6,
                   ),
                   Text(
                       movie.releaseDate != ''

@@ -42,9 +42,9 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,toolbarHeight: 100,
+        automaticallyImplyLeading: false,
+        toolbarHeight: 100,
         backgroundColor: const Color(0xFF09090F),
-
         title: TextField(
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
@@ -60,176 +60,190 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
               prefixIconColor: Colors.white),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    InkWell(
-                      child: const Text("Movies",
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      InkWell(
+                        child: const Text("Movies",
+                            style: TextStyle(
+                                fontFamily: "Inter",
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline,
+                                decorationColor: Color(0xFF00B5F3),
+                                decorationThickness: 2.0)),
+                        onTap: () {},
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      InkWell(
+                        child: const Text(
+                          "Shows",
                           style: TextStyle(
                               fontFamily: "Inter",
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.underline,
-                              decorationColor: Color(0xFF00B5F3),
-                              decorationThickness: 2.0)),
-                      onTap: () {},
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    InkWell(
-                      child: const Text(
-                        "Shows",
-                        style: TextStyle(
-                            fontFamily: "Inter",
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: () {},
                       ),
-                      onTap: () {},
-                    ),
-                  ],
-                ),
-                Row(
-                  children: const [
-                    Icon(Icons.search),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Icon(Icons.filter_list_outlined),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Icon(Icons.grid_view),
-                  ],
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Container(
-                    height: 30,
-                    width: 150,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: const Color(0xFF00B5F3),
-                        borderRadius: BorderRadius.circular(6)),
-                    child: const Text(
-                      "All Movies",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "Inter",
-                          fontSize: 12),
-                      textAlign: TextAlign.center,
-                    ),
+                    ],
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    height: 30,
-                    width: 150,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6)),
-                    child: const Text(
-                      "Unwatched Movies",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "Inter",
-                          fontSize: 12),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    height: 30,
-                    width: 150,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6)),
-                    child: const Text(
-                      "Watched Movies",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "Inter",
-                          fontSize: 12),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
+                  Row(
+                    children: const [
+                      Icon(Icons.search),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(Icons.filter_list_outlined),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(Icons.grid_view),
+                    ],
+                  )
                 ],
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: const [
-                    Icon(
-                      Icons.arrow_upward,
-                      color: Color(0xFF00B5F3),
+              const SizedBox(
+                height: 20,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Container(
+                      height: 30,
+                      width: 150,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFF00B5F3),
+                          borderRadius: BorderRadius.circular(6)),
+                      child: const Text(
+                        "All Movies",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Inter",
+                            fontSize: 12),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                    SizedBox(
-                      width: 5,
+                    const SizedBox(
+                      width: 10,
                     ),
-                    Text(
-                      "Date Added",
-                      style: TextStyle(
-                          color: Color(0xFF00B5F3),
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "Inter",
-                          fontSize: 12),
-                    )
+                    Container(
+                      height: 30,
+                      width: 150,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(6)),
+                      child: const Text(
+                        "Unwatched Movies",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Inter",
+                            fontSize: 12),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      height: 30,
+                      width: 150,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(6)),
+                      child: const Text(
+                        "Watched Movies",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Inter",
+                            fontSize: 12),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ],
                 ),
-                Text("$count items",
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "Inter",
-                        fontSize: 14))
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              height: 450,
-              width: 350,
-              child: ListView.builder(
-                itemCount: content.length,
-                scrollDirection: Axis.vertical,
-                itemBuilder: (BuildContext context, index) {
-                  final movie = content[index];
-                  return MovieCard(movie: movie);
-                },
               ),
-            ),
-          ],
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: const [
+                      Icon(
+                        Icons.arrow_upward,
+                        color: Color(0xFF00B5F3),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "Date Added",
+                        style: TextStyle(
+                            color: Color(0xFF00B5F3),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Inter",
+                            fontSize: 12),
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(content.length.toString(),
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Inter",
+                              fontSize: 14)),
+                      Text(" items",
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Inter",
+                              fontSize: 14)),
+                    ],
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                height: 450,
+                width: double.maxFinite,
+                child: ListView.builder(
+                  itemCount: content.length,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (BuildContext context, index) {
+                    final movie = content[index];
+                    return MovieCard(movie: movie);
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-      bottomNavigationBar: BottomNavigation(screen_index: 2,),
-
+      bottomNavigationBar: BottomNavigation(
+        screen_index: 2,
+      ),
     );
   }
 }

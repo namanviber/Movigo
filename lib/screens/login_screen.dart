@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:project2/authorization/auth_google.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -10,7 +10,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   final _email = TextEditingController();
   final _password = TextEditingController();
@@ -132,8 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               InkWell(
                 onTap: () {
-                  _googleSignIn.signIn();
-                  log_in();
+                  Auth_Google().signInwithGoogle();
                 },
                 child: Container(
                   child: CircleAvatar(
