@@ -23,7 +23,7 @@ class TextHeading extends StatelessWidget {
                         fontSize: fontsize)),
               ),
               InkWell(
-                onTap: (){},
+                onTap: () {},
                 child: Text("See all",
                     style: TextStyle(
                         fontFamily: "Inter",

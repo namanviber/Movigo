@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FilterRow extends StatelessWidget {
-  FilterRow({required this.count, required this.elements ,Key? key}) : super(key: key);
+  FilterRow({required this.count, required this.elements, Key? key})
+      : super(key: key);
   int? count;
   List? elements;
 
@@ -13,7 +14,7 @@ class FilterRow extends StatelessWidget {
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: count,
-          itemBuilder: (BuildContext context, index){
+          itemBuilder: (BuildContext context, index) {
             return Container(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -24,16 +25,18 @@ class FilterRow extends StatelessWidget {
                   ),
                   width: 100,
                   alignment: Alignment.center,
-                  child: Text(elements![index],
-                      style: TextStyle(
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13), textAlign: TextAlign.center,),
+                  child: Text(
+                    elements![index],
+                    style: TextStyle(
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             );
-          }
-      ),
+          }),
     );
   }
 }

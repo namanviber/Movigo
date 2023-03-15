@@ -21,8 +21,7 @@ class BottomNavigation extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => HomeScreen()));
         } else if (screen_index == 1) {
-
-        }else if (screen_index == 3) {
+        } else if (screen_index == 3) {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => SettingsScreen()));
         }

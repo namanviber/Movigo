@@ -293,7 +293,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                       inactiveChild: const Icon(
                         Icons.dark_mode_outlined,
-                      color: Color(0xFFECECEC),
+                        color: Color(0xFFECECEC),
                       ),
                       activeColor: Color(0xFFECECEC),
                       inactiveColor: const Color(0xFF2F2F2F),
@@ -373,7 +373,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       width: 20,
                     ),
                     InkWell(
-                      onTap: (){
+                      onTap: () {
                         FirebaseAuth.instance.signOut();
                       },
                       child: Container(
@@ -421,7 +421,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       width: 10,
                     ),
                     const Icon(
-                      Icons.help_outline_outlined ,
+                      Icons.help_outline_outlined,
                       size: 34,
                     ),
                     const SizedBox(
@@ -495,10 +495,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigation(screen_index: 3,),
-
+      bottomNavigationBar: BottomNavigation(
+        screen_index: 3,
+      ),
     );
   }
 }
-
-

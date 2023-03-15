@@ -32,12 +32,12 @@ class _MovieRowState extends State<MovieRow> {
             ),
           ),
           child: IconButton(
-            onPressed: (){
+            onPressed: () {
               setState(() {
                 state = !state;
               });
             },
-            color: (state) ? Colors.white: Colors.blue,
+            color: (state) ? Colors.white : Colors.blue,
             icon: Icon(Icons.check_circle),
           ),
         ),

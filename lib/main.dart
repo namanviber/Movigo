@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:project2/authorization/Check.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(Movigo());
 }
-
 
 class Movigo extends StatelessWidget {
   const Movigo({Key? key}) : super(key: key);
@@ -17,10 +16,9 @@ class Movigo extends StatelessWidget {
     return MaterialApp(
       title: "MovieHub",
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+          primarySwatch: Colors.blue,
           scaffoldBackgroundColor: const Color(0xFF09090F),
-        brightness: Brightness.dark
-      ),
+          brightness: Brightness.dark),
       debugShowCheckedModeBanner: false,
       home: Check(),
     );

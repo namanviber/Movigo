@@ -18,7 +18,9 @@ class _RecommenderScreenState extends State<RecommenderScreen> {
         body: Container(
           child: Text("recommender screen"),
         ),
-        bottomNavigationBar: BottomNavigation(screen_index: 1,),
+        bottomNavigationBar: BottomNavigation(
+          screen_index: 1,
+        ),
       ),
     );
   }
