@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:project2/models/MovieDetailModel.dart';
 import 'package:project2/screens/movie_info_screen.dart';
 import 'package:project2/screens/sign_up_screen.dart';
 import 'package:project2/widgets/bottom_bar.dart';
@@ -18,18 +19,27 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<DiscoverMovieModel> content = [];
+  List<DiscoverMovieModel> _discoverMovie = [];
+  late MovieDetailModel _movieDetail;
 
   @override
   void initState() {
     super.initState();
     fetchMovies();
+    fetchMovieDetails(76600);
   }
-
+  
   Future<void> fetchMovies() async {
-    final response = await discoverMovies();
+    final response1 = await discoverMovies();
     setState(() {
-      content = response;
+      _discoverMovie = response1;
+    });
+  }
+  
+ Future<void> fetchMovieDetails(int movieid) async {
+    final response2 = await movieDetails(movieid);
+    setState(() {
+      _movieDetail = response2;
     });
   }
 
@@ -114,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MovieInfo(movieid: "603692")));
+                                    builder: (context) => MovieInfo(movieModel: _movieDetail,)));
                           },
                           child: Center(
                             child: Column(
@@ -226,10 +236,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 170,
                 width: double.maxFinite,
                 child: ListView.builder(
-                  itemCount: content.length,
+                  itemCount: _discoverMovie.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, index) {
-                    final movie = content[index];
+                    final movie = _discoverMovie[index];
                     return MovieRow(model: movie);
                   },
                 ),
@@ -242,10 +252,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 170,
                 width: double.maxFinite,
                 child: ListView.builder(
-                  itemCount: content.length,
+                  itemCount: _discoverMovie.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, index) {
-                    final movie = content[index];
+                    final movie = _discoverMovie[index];
                     return MovieRow(model: movie);
                   },
                 ),
@@ -274,10 +284,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 170,
                 width: double.maxFinite,
                 child: ListView.builder(
-                  itemCount: content.length,
+                  itemCount: _discoverMovie.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, index) {
-                    final movie = content[index];
+                    final movie = _discoverMovie[index];
                     return MovieRow(model: movie);
                   },
                 ),
@@ -290,10 +300,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 170,
                 width: double.maxFinite,
                 child: ListView.builder(
-                  itemCount: content.length,
+                  itemCount: _discoverMovie.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, index) {
-                    final movie = content[index];
+                    final movie = _discoverMovie[index];
                     return MovieRow(model: movie);
                   },
                 ),
@@ -317,10 +327,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 170,
                 width: double.maxFinite,
                 child: ListView.builder(
-                  itemCount: content.length,
+                  itemCount: _discoverMovie.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, index) {
-                    final movie = content[index];
+                    final movie = _discoverMovie[index];
                     return MovieRow(model: movie);
                   },
                 ),
@@ -333,10 +343,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 170,
                 width: double.maxFinite,
                 child: ListView.builder(
-                  itemCount: content.length,
+                  itemCount: _discoverMovie.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, index) {
-                    final movie = content[index];
+                    final movie = _discoverMovie[index];
                     return MovieRow(model: movie);
                   },
                 ),

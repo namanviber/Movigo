@@ -1,41 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project2/models/MovieDetailModel.dart';
-import 'package:project2/service/api_call.dart';
 
-class MovieInfo extends StatefulWidget {
-  String movieid;
-  MovieInfo({required this.movieid, Key? key}) : super(key: key);
-
-  @override
-  State<MovieInfo> createState() => _MovieInfoState();
-}
-
-class _MovieInfoState extends State<MovieInfo> {
-
-  final backdropposterUrl =
-      'https://image.tmdb.org/t/p/original/fSwYa5q2xRkBoOOjueLpkLf3N1m.jpg';
-  final posterUrl =
-      'https://image.tmdb.org/t/p/original/fSwYa5q2xRkBoOOjueLpkLf3N1m.jpg';
-  final genres = "Action, Thriller, Crime";
-  final original_title = "John Wick 4";
-  TextEditingController length = TextEditingController(text: "2 hr 20 min");
-  TextEditingController language = TextEditingController(text: "English");
-  TextEditingController rating = TextEditingController(text: "7.3");
-  final List<String> imgLists = [
-    'assets/images/testimg1.png',
-    'assets/images/testimg3.png',
-    'assets/images/testimg4.png',
-    'assets/images/testimg5.png',
-    'assets/images/testimg6.png',
-    'assets/images/testimg7.png',
-  ];
+class MovieInfo extends StatelessWidget {
+  final MovieDetailModel movieModel;
+  MovieInfo({required this.movieModel, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final backdropposterUrl =
+        'https://image.tmdb.org/t/p/original/${movieModel.backdropPath}';
+
+    final posterUrl =
+        'https://image.tmdb.org/t/p/original/${movieModel.posterPath}';
+
+    final genres = "${movieModel.genres.toString()}";
+
+    final original_title = "${movieModel.originalTitle}";
+
+    TextEditingController length = TextEditingController(text: "${movieModel.runtime} minutes");
+
+    TextEditingController language = TextEditingController(text: "${movieModel.originalLanguage}");
+
+    TextEditingController rating = TextEditingController(text: "${movieModel.voteAverage}");
+
+    final List<String> imgLists = [
+      'assets/images/testimg1.png',
+      'assets/images/testimg3.png',
+      'assets/images/testimg4.png',
+      'assets/images/testimg5.png',
+      'assets/images/testimg6.png',
+      'assets/images/testimg7.png',
+    ];
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(backgroundColor: Colors.transparent,),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Padding(
@@ -161,7 +162,7 @@ class _MovieInfoState extends State<MovieInfo> {
                       height: 20,
                     ),
                     Text(
-                      "With the price on his head ever increasing, John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.",
+                      "${movieModel.overview}",
                       style: TextStyle(
                         fontFamily: "Inter",
                         fontSize: 14,

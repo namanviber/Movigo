@@ -1,15 +1,3 @@
-// To parse this JSON data, do
-//
-//     final mongoDbModel = mongoDbModelFromJson(jsonString);
-
-import 'dart:convert';
-
-import 'package:mongo_dart/mongo_dart.dart';
-
-MongoDbModel mongoDbModelFromJson(String str) => MongoDbModel.fromJson(json.decode(str));
-
-String mongoDbModelToJson(MongoDbModel data) => json.encode(data.toJson());
-
 class MongoDbModel {
   MongoDbModel({
     this.username,

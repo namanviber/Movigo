@@ -1,9 +1,3 @@
-import 'dart:convert';
-
-MovieDetailModel mongoDbModelFromJson(String str) => MovieDetailModel.fromJson(json.decode(str));
-
-String mongoDbModelToJson(MovieDetailModel data) => json.encode(data.toJson());
-
 class MovieDetailModel {
   MovieDetailModel({
     required this.adult,

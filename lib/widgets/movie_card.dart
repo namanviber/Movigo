@@ -3,7 +3,6 @@ import 'package:project2/models/DiscoverMovieModel.dart';
 
 class MovieCard extends StatelessWidget {
   final DiscoverMovieModel movie;
-
   const MovieCard({
     Key? key,
     required this.movie,

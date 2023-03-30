@@ -31,7 +31,7 @@ Future<List<DiscoverMovieModel>> discoverMovies() async {
   return results.map((e) => DiscoverMovieModel.fromJson(e)).toList();
 }
 
-Future<MovieDetailModel> MovieDetails(int id) async {
+Future<MovieDetailModel> movieDetails(int id) async {
   final path = 'movie/$id';
   final uri = ApiConfig.generateUrl(path);
   final response = await http.get(uri);
