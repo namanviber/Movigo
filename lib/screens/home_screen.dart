@@ -1,13 +1,14 @@
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:project2/screens/movie_info_screen.dart';
+import 'package:project2/screens/sign_up_screen.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:project2/widgets/filter_row.dart';
 import 'package:project2/widgets/heading_text.dart';
 import '../widgets/movie_row.dart';
-import 'package:project2/models/movie_model.dart';
+import 'package:project2/models/DiscoverMovieModel.dart';
 import 'package:project2/service/api_call.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<MovieModel> content = [];
+  List<DiscoverMovieModel> content = [];
 
   @override
   void initState() {
@@ -62,7 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontFamily: "Inter", fontWeight: FontWeight.bold)),
             InkWell(
               onTap: () {
-                FirebaseAuth.instance.signOut();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SignUp()));
               },
               child: Container(
                 child: CircleAvatar(
@@ -107,7 +109,13 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               CarouselSlider(
                 items: imgLists
-                    .map((item) => Container(
+                    .map((item) => InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MovieInfo(movieid: "603692")));
+                          },
                           child: Center(
                             child: Column(
                               children: [

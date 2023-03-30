@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:project2/widgets/bottom_bar.dart';
 import '../widgets/movie_card.dart';
-import 'package:project2/models/movie_model.dart';
+import 'package:project2/models/DiscoverMovieModel.dart';
 import 'package:project2/service/api_call.dart';
 
 class WatchlistScreen extends StatefulWidget {
@@ -23,7 +23,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
     'assets/images/testimg7.png',
   ];
 
-  List<MovieModel> content = [];
+  List<DiscoverMovieModel> content = [];
 
   @override
   void initState() {

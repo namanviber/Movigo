@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:project2/models/movie_model.dart';
+import 'package:project2/models/DiscoverMovieModel.dart';
 
 class MovieRow extends StatefulWidget {
   MovieRow({required this.model, Key? key}) : super(key: key);
-  final MovieModel model;
+  final DiscoverMovieModel model;
 
   @override
   State<MovieRow> createState() => _MovieRowState();

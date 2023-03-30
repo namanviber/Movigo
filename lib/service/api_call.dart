@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:project2/models/movie_model.dart';
+import 'package:project2/models/DiscoverMovieModel.dart';
+import 'package:project2/models/MovieDetailModel.dart';
 
 class ApiConfig {
   static const _baseUrl = 'https://api.themoviedb.org/3/';
@@ -21,13 +22,21 @@ class ApiCall extends StatefulWidget {
   State<ApiCall> createState() => _ApiCallState();
 }
 
-Future<List<MovieModel>> discoverMovies() async {
+Future<List<DiscoverMovieModel>> discoverMovies() async {
   const path = 'discover/movie';
   final uri = ApiConfig.generateUrl(path);
   final response = await http.get(uri);
   final json = jsonDecode(response.body);
   final results = json['results'] as List<dynamic>;
-  return results.map((e) => MovieModel.fromJson(e)).toList();
+  return results.map((e) => DiscoverMovieModel.fromJson(e)).toList();
+}
+
+Future<MovieDetailModel> MovieDetails(int id) async {
+  final path = 'movie/$id';
+  final uri = ApiConfig.generateUrl(path);
+  final response = await http.get(uri);
+  final json = jsonDecode(response.body) as Map<String, dynamic>;
+  return MovieDetailModel.fromJson(json);
 }
 
 class _ApiCallState extends State<ApiCall> {

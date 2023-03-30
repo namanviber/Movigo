@@ -1,4 +1,4 @@
-class MovieModel {
+class DiscoverMovieModel {
   final bool adult;
   final String? backdropPath;
   final List<int> genreIds;
@@ -14,7 +14,7 @@ class MovieModel {
   final double voteAverage;
   final int voteCount;
 
-  MovieModel({
+  DiscoverMovieModel({
     required this.adult,
     required this.backdropPath,
     required this.genreIds,
@@ -31,8 +31,8 @@ class MovieModel {
     required this.voteCount,
   });
 
-  factory MovieModel.fromJson(Map<String, dynamic> json) {
-    return MovieModel(
+  factory DiscoverMovieModel.fromJson(Map<String, dynamic> json) {
+    return DiscoverMovieModel(
       adult: json["adult"],
       backdropPath: json["backdrop_path"],
       genreIds: List<int>.from(json["genre_ids"].map((x) => x)),

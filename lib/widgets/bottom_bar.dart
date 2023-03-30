@@ -3,6 +3,7 @@ import 'package:project2/screens/home_screen.dart';
 import 'package:project2/screens/watchlist_screen.dart';
 import 'package:project2/screens/recommender_screen.dart';
 import 'package:project2/screens/settings_screen.dart';
+import 'package:project2/service/api_call.dart';
 
 class BottomNavigation extends StatelessWidget {
   BottomNavigation({required this.screen_index, Key? key}) : super(key: key);
@@ -21,6 +22,8 @@ class BottomNavigation extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => HomeScreen()));
         } else if (screen_index == 1) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ApiCall()));
         } else if (screen_index == 3) {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => SettingsScreen()));
