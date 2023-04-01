@@ -1,42 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'item_grid.dart';
 
 class TextHeading extends StatelessWidget {
-  TextHeading({required this.heading, this.fontsize = 17, Key? key})
+  TextHeading({required this.heading, Key? key})
       : super(key: key);
   String? heading;
-  double? fontsize;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                child: Text("$heading",
-                    style: TextStyle(
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.bold,
-                        fontSize: fontsize)),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Text("See all",
-                    style: TextStyle(
-                        fontFamily: "Inter",
-                        color: Color(0xFFA0A0A0),
-                        fontWeight: FontWeight.bold,
-                        fontSize: fontsize)),
-              ),
-            ],
-          ),
+        Text(
+          "$heading",
+          style: GoogleFonts.montserrat(
+              fontSize: 17, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        Spacer(),
+        InkWell(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ItemGrid()));
+          },
+          child: Icon(Icons.arrow_forward_ios),
+        )
       ],
     );
   }

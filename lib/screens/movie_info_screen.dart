@@ -1,37 +1,87 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project2/models/DiscoverMovieModel.dart';
 import 'package:project2/models/MovieDetailModel.dart';
+import 'package:project2/models/MovieCastDetailsModel.dart';
+import 'package:project2/models/MovieCrewDetailsModel.dart';
+import 'package:project2/service/api_call.dart';
+import 'package:project2/widgets/item_grid.dart';
+import 'package:project2/widgets/movie_cast_row.dart';
+import 'package:project2/widgets/movie_crew_row.dart';
 
-class MovieInfo extends StatelessWidget {
-  final MovieDetailModel movieModel;
+class MovieInfo extends StatefulWidget {
+  final DiscoverMovieModel movieModel;
   MovieInfo({required this.movieModel, Key? key}) : super(key: key);
+
+  @override
+  State<MovieInfo> createState() => _MovieInfoState();
+}
+
+class _MovieInfoState extends State<MovieInfo> {
+  List<MovieCastDetailsModel> _movieCast = [];
+  List<MovieCrewDetailsModel> _movieCrew = [];
+  late MovieDetailModel movieDetail;
+  int moviecode = 76600;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchMovieDetails(moviecode);
+    fetchCreditDetails(moviecode);
+  }
+
+  Future<void> fetchMovieDetails(int movieid) async {
+    final response3 = await movieDetails(movieid);
+    setState(() {
+      movieDetail = response3;
+    });
+  }
+
+  Future<void> fetchCreditDetails(int movieid) async {
+    final response1 = await movieCastDetails(movieid);
+    final response2 = await movieCrewDetails(movieid);
+    setState(() {
+      _movieCast = response1;
+      _movieCrew = response2;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final backdropposterUrl =
-        'https://image.tmdb.org/t/p/original/${movieModel.backdropPath}';
+        'https://image.tmdb.org/t/p/original/${widget.movieModel.backdropPath}';
 
     final posterUrl =
-        'https://image.tmdb.org/t/p/original/${movieModel.posterPath}';
+        'https://image.tmdb.org/t/p/original/${widget.movieModel.posterPath}';
 
-    final genres = "${movieModel.genres.toString()}";
+    // final posterUrlbelongs =
+    //     'https://image.tmdb.org/t/p/original/${movieDetail.belongsToCollection.posterPath}';
 
-    final original_title = "${movieModel.originalTitle}";
+    final posterUrlbelongs =
+        'https://image.tmdb.org/t/p/original/${widget.movieModel.posterPath}';
 
-    TextEditingController length = TextEditingController(text: "${movieModel.runtime} minutes");
+    // final genres = "${movieDetail.genres.toString()}";
 
-    TextEditingController language = TextEditingController(text: "${movieModel.originalLanguage}");
+    final original_title = "${widget.movieModel.originalTitle}";
 
-    TextEditingController rating = TextEditingController(text: "${movieModel.voteAverage}");
+    // TextEditingController length =
+    //     TextEditingController(text: "${movieDetail.runtime} minutes");
 
-    final List<String> imgLists = [
-      'assets/images/testimg1.png',
-      'assets/images/testimg3.png',
-      'assets/images/testimg4.png',
-      'assets/images/testimg5.png',
-      'assets/images/testimg6.png',
-      'assets/images/testimg7.png',
-    ];
+    // TextEditingController language =
+    //     TextEditingController(text: "${movieDetail.originalLanguage}");
+
+    // TextEditingController rating =
+    //     TextEditingController(text: "${movieDetail.voteAverage}");
+
+    // TextEditingController budget =
+    //     TextEditingController(text: "${movieDetail.budget}");
+    //
+    // TextEditingController revenue =
+    //     TextEditingController(text: "${movieDetail.revenue}");
+
+    // TextEditingController release =
+    //     TextEditingController(text: "${movieDetail.releaseDate}");
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -73,7 +123,7 @@ class MovieInfo extends StatelessWidget {
                     Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        genres.toString(),
+                        "genres.toString()",
                         style: GoogleFonts.montserrat(fontSize: 11),
                       ),
                     ),
@@ -86,7 +136,7 @@ class MovieInfo extends StatelessWidget {
                         Container(
                           width: 100,
                           child: TextField(
-                            controller: length,
+                            // controller: length,
                             readOnly: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -97,7 +147,7 @@ class MovieInfo extends StatelessWidget {
                         Container(
                           width: 100,
                           child: TextField(
-                            controller: language,
+                            // controller: language,
                             readOnly: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -108,7 +158,7 @@ class MovieInfo extends StatelessWidget {
                         Container(
                           width: 50,
                           child: TextField(
-                            controller: rating,
+                            // controller: rating,
                             readOnly: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -162,7 +212,7 @@ class MovieInfo extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      "${movieModel.overview}",
+                      "${widget.movieModel.overview}",
                       style: TextStyle(
                         fontFamily: "Inter",
                         fontSize: 14,
@@ -191,7 +241,7 @@ class MovieInfo extends StatelessWidget {
                       height: 170,
                       width: double.maxFinite,
                       child: ListView.builder(
-                        itemCount: imgLists.length,
+                        itemCount: 10,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (BuildContext context, index) {
                           return Column(
@@ -233,32 +283,57 @@ class MovieInfo extends StatelessWidget {
                       height: 20,
                     ),
                     Container(
-                      height: 170,
+                      height: 400,
                       width: double.maxFinite,
-                      child: ListView.builder(
-                        itemCount: imgLists.length,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: posterUrl != ''
+                              ? NetworkImage(posterUrlbelongs)
+                              : AssetImage('assets/images/noimage.png')
+                                  as ImageProvider,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Cast",
+                          style: GoogleFonts.montserrat(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        Spacer(),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ItemGrid()));
+                          },
+                          child: Icon(Icons.arrow_forward_ios),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      height: 250,
+                      width: double.maxFinite,
+                      child: ListView.separated(
+                        itemCount: _movieCast.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (BuildContext context, index) {
-                          return Column(
-                            children: [
-                              Container(
-                                alignment: Alignment.topRight,
-                                height: 170,
-                                width: 125,
-                                margin: EdgeInsets.symmetric(horizontal: 8),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: posterUrl != ''
-                                        ? NetworkImage(posterUrl)
-                                        : AssetImage(
-                                                'assets/images/noimage.png')
-                                            as ImageProvider,
-                                  ),
-                                ),
-                              ),
-                            ],
+                          final cast = _movieCast[index];
+                          return MovieCastRow(model: cast);
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return SizedBox(
+                            width: 20,
                           );
                         },
                       ),
@@ -266,89 +341,36 @@ class MovieInfo extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Cast",
-                        style: GoogleFonts.montserrat(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
+                    Row(
+                      children: [
+                        Text(
+                          "Crew",
+                          style: GoogleFonts.montserrat(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        Spacer(),
+                        InkWell(
+                          onTap: () {},
+                          child: Icon(Icons.arrow_forward_ios),
+                        )
+                      ],
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     Container(
-                      height: 170,
+                      height: 250,
                       width: double.maxFinite,
-                      child: ListView.builder(
-                        itemCount: imgLists.length,
+                      child: ListView.separated(
+                        itemCount: _movieCrew.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (BuildContext context, index) {
-                          return Column(
-                            children: [
-                              Container(
-                                alignment: Alignment.topRight,
-                                height: 170,
-                                width: 125,
-                                margin: EdgeInsets.symmetric(horizontal: 8),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: posterUrl != ''
-                                        ? NetworkImage(posterUrl)
-                                        : AssetImage(
-                                                'assets/images/noimage.png')
-                                            as ImageProvider,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          );
+                          final crew = _movieCrew[index];
+                          return MovieCrewRow(model: crew);
                         },
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Crew",
-                        style: GoogleFonts.montserrat(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      height: 170,
-                      width: double.maxFinite,
-                      child: ListView.builder(
-                        itemCount: imgLists.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (BuildContext context, index) {
-                          return Column(
-                            children: [
-                              Container(
-                                alignment: Alignment.topRight,
-                                height: 170,
-                                width: 125,
-                                margin: EdgeInsets.symmetric(horizontal: 8),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: posterUrl != ''
-                                        ? NetworkImage(posterUrl)
-                                        : AssetImage(
-                                                'assets/images/noimage.png')
-                                            as ImageProvider,
-                                  ),
-                                ),
-                              ),
-                            ],
+                        separatorBuilder: (BuildContext context, int index) {
+                          return SizedBox(
+                            width: 20,
                           );
                         },
                       ),
@@ -363,6 +385,55 @@ class MovieInfo extends StatelessWidget {
                         style: GoogleFonts.montserrat(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Column(
+                      children: [
+                        TextField(
+                          // controller: budget,
+                          readOnly: true,
+                          decoration: InputDecoration(
+                              label: Text(
+                            "Budget",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 16,
+                            ),
+                          )),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextField(
+                          // controller: revenue,
+                          readOnly: true,
+                          decoration: InputDecoration(
+                              label: Text(
+                            "Revenue",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 16,
+                            ),
+                          )),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextField(
+                          // controller: release,
+                          readOnly: true,
+                          decoration: InputDecoration(
+                              label: Text(
+                            "Release Date",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 16,
+                            ),
+                          )),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 20,
@@ -382,7 +453,7 @@ class MovieInfo extends StatelessWidget {
                       height: 170,
                       width: double.maxFinite,
                       child: ListView.builder(
-                        itemCount: imgLists.length,
+                        itemCount: 10,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (BuildContext context, index) {
                           return Column(
