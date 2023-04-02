@@ -56,11 +56,14 @@ class _SignUpState extends State<SignUp> {
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
-        body: Stack(
-          children: [
-            SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(16, 200, 16, 16),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: 200,
+              ),
+              Container(
+                padding: EdgeInsets.all(16),
                 child: Form(
                   key: formKey,
                   child: Column(
@@ -150,10 +153,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 470),
-              child: Column(
+              Column(
                 children: [
                   Center(
                     child: ElevatedButton(
@@ -162,11 +162,10 @@ class _SignUpState extends State<SignUp> {
                         height: 50,
                         width: 300,
                         child: Center(
-                          child: Text(
-                              "SignUp",
+                          child: Text("SignUp",
                               textAlign: TextAlign.center,
-                              style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.bold)
-                          ),
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 14, fontWeight: FontWeight.bold)),
                         ),
                       ),
                     ),
@@ -175,29 +174,32 @@ class _SignUpState extends State<SignUp> {
                     height: 20,
                   ),
                   InkWell(
-                    onTap: (){
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => LoginScreen()));
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()));
                     },
                     child: RichText(
-                      text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: "Already have an account? ",
-                              style: GoogleFonts.montserrat(fontSize: 12),
-                            ),
-                            TextSpan(
-                              text: "Login",
-                              style: GoogleFonts.montserrat(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.blue),
-                            ),
-                          ]
-                      ),
+                      text: TextSpan(children: [
+                        TextSpan(
+                          text: "Already have an account? ",
+                          style: GoogleFonts.montserrat(fontSize: 12),
+                        ),
+                        TextSpan(
+                          text: "Login",
+                          style: GoogleFonts.montserrat(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue),
+                        ),
+                      ]),
                     ),
-                  ),
+                  )
                 ],
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
