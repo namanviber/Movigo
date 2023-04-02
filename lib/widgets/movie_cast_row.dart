@@ -42,6 +42,9 @@ class _MovieCastRowState extends State<MovieCastRow> {
               widget.model.name.toString(),
               style: GoogleFonts.montserrat(
                   fontSize: 14, fontWeight: FontWeight.w700),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              textAlign: TextAlign.left,
             ),
           ),
           Align(
@@ -49,6 +52,9 @@ class _MovieCastRowState extends State<MovieCastRow> {
             child: Text(
               widget.model.character.toString(),
               style: GoogleFonts.montserrat(fontSize: 10),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              textAlign: TextAlign.left,
             ),
           ),
         ],
