@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
+import 'package:project2/screens/genral_settings_screen.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -53,22 +54,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         backgroundColor: Colors.transparent,
                         child: Center(
                             child: SizedBox(
-                          width: 200,
-                          height: 200,
-                          child: ClipOval(
-                            child: Image.asset("assets/images/testimg2.png"),
-                          ),
-                        ))),
+                              width: 200,
+                              height: 200,
+                              child: ClipOval(
+                                child: Image.asset("assets/images/testimg2.png"),
+                              ),
+                            ))),
                     const SizedBox(
                       width: 20,
                     ),
                     Container(
+                      height: 60,
+                      width: 240,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
                           Text(
-                            "Sidharth Aggarwal",
+                            "NMJ",
                             style: TextStyle(
                                 fontFamily: "Inter",
                                 fontWeight: FontWeight.bold,
@@ -78,7 +81,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             height: 10,
                           ),
                           Text(
-                            "sidharthaggarwal@gmail.com",
+                            "namanviber@gmail.com",
                             style: TextStyle(
                                 fontFamily: "Inter",
                                 fontWeight: FontWeight.bold,
@@ -87,7 +90,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ],
                       ),
-                    )
+                    ),
+                    const Icon(Icons.edit),
                   ],
                 ),
               ),
@@ -97,7 +101,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               //#1
               Container(
                 height: 60,
-                width: 350,
+                width: 390,
                 child: Row(
                   children: [
                     const SizedBox(
@@ -106,13 +110,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     const Icon(
                       Icons.account_circle_outlined,
                       size: 34,
+                      color: Color(0xFF2196F3),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
                     Container(
                       height: 60,
-                      width: 240,
+                      width: 270,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -141,6 +146,61 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ),
               ),
+              Container(
+                height: 60,
+                width: double.maxFinite,
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Icon(
+                      Icons.settings_outlined,
+                      size: 34,
+                      color: Color(0xFF2196F3),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Container(
+                      height: 60,
+                      width: 270,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text(
+                            "General",
+                            style: TextStyle(
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14),
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            "Manage your General settings",
+                            style: TextStyle(
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12),
+                          ),
+                        ],
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => GeneralSettingsScreen()));
+                      },
+                      child: Icon(Icons.arrow_forward_ios),
+                    )
+                  ],
+                ),
+              ),
               const SizedBox(
                 height: 10,
               ),
@@ -154,21 +214,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       width: 10,
                     ),
                     const Icon(
-                      Icons.account_circle,
+                      Icons.rate_review,
                       size: 34,
+                      color: Color(0xFF2196F3),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
                     Container(
                       height: 60,
-                      width: 240,
+                      width: 270,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
                           Text(
-                            "My Lists",
+                            "Ratings and Reviews",
                             style: TextStyle(
                                 fontFamily: "Inter",
                                 fontWeight: FontWeight.bold,
@@ -178,7 +239,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             height: 4,
                           ),
                           Text(
-                            "Manage your saved lists",
+                            "Manage your ratings and reviews",
                             style: TextStyle(
                                 fontFamily: "Inter",
                                 fontWeight: FontWeight.bold,
@@ -205,13 +266,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     const Icon(
                       Icons.room_preferences,
                       size: 34,
+                      color: Color(0xFF2196F3),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
                     Container(
                       height: 60,
-                      width: 240,
+                      width: 270,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -240,119 +302,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
               //#3
-              Container(
-                height: 60,
-                width: double.maxFinite,
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Icon(
-                      Icons.ac_unit,
-                      size: 34,
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      height: 60,
-                      width: 200,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            "Theme",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Text(
-                            "Manage Light and Dark Theme",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ),
-                    AdvancedSwitch(
-                      activeChild: const Icon(
-                        Icons.light_mode_outlined,
-                        color: Color(0xFF2F2F2F),
-                      ),
-                      inactiveChild: const Icon(
-                        Icons.dark_mode_outlined,
-                        color: Color(0xFFECECEC),
-                      ),
-                      activeColor: Color(0xFFECECEC),
-                      inactiveColor: const Color(0xFF2F2F2F),
-                      width: 60,
-                      controller: _controller,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              //#4
-              Container(
-                height: 60,
-                width: double.maxFinite,
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Icon(
-                      Icons.settings_outlined,
-                      size: 34,
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      height: 60,
-                      width: 240,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            "Settings",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Text(
-                            "Manage your settings",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Icon(Icons.arrow_forward_ios_rounded)
-                  ],
-                ),
-              ),
+
               const SizedBox(
                 height: 10,
               ),
@@ -368,6 +319,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     const Icon(
                       Icons.exit_to_app_outlined,
                       size: 34,
+                      color: Color(0xFF2196F3),
                     ),
                     const SizedBox(
                       width: 20,
@@ -378,7 +330,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       },
                       child: Container(
                         height: 60,
-                        width: 240,
+                        width: 270,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -423,13 +375,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     const Icon(
                       Icons.help_outline_outlined,
                       size: 34,
+                      color: Color(0xFF2196F3),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
                     Container(
                       height: 60,
-                      width: 240,
+                      width: 270,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -463,13 +416,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     const Icon(
                       Icons.android_outlined,
                       size: 34,
+                      color: Color(0xFF2196F3),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
                     Container(
                       height: 60,
-                      width: 240,
+                      width: 270,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -501,3 +455,4 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 }
+

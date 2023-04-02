@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:project2/models/MovieDetailModel.dart';
-import 'package:project2/screens/movie_info_screen.dart';
+import 'package:project2/screens/login_screen.dart';
 import 'package:project2/screens/sign_up_screen.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:project2/widgets/filter_row.dart';
@@ -10,6 +10,7 @@ import '../widgets/movie_row.dart';
 import 'package:project2/models/DiscoverMovieModel.dart';
 import 'package:project2/service/api_call.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,39 +21,31 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<DiscoverMovieModel> _discoverMovie = [];
-  late MovieDetailModel _movieDetail;
+  List<DiscoverMovieModel> _popularMovie = [];
+  List<DiscoverMovieModel> _topScifiMovie = [];
+  List<DiscoverMovieModel> _popularKidsMovie = [];
 
   @override
   void initState() {
     super.initState();
     fetchMovies();
-    fetchMovieDetails(76600);
   }
-  
+
   Future<void> fetchMovies() async {
     final response1 = await discoverMovies();
+    final response2 = await popularMovies();
+    final response3 = await topSciFiMovies();
+    final response4 = await popularKidsMovies();
     setState(() {
       _discoverMovie = response1;
-    });
-  }
-  
- Future<void> fetchMovieDetails(int movieid) async {
-    final response2 = await movieDetails(movieid);
-    setState(() {
-      _movieDetail = response2;
+      _popularMovie = response2;
+      _topScifiMovie = response3;
+      _popularKidsMovie = response4;
     });
   }
 
   String user = "Naman";
   int screen_index = 0;
-  final List<String> imgLists = [
-    'assets/images/testimg1.png',
-    'assets/images/testimg3.png',
-    'assets/images/testimg4.png',
-    'assets/images/testimg5.png',
-    'assets/images/testimg6.png',
-    'assets/images/testimg7.png',
-  ];
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
   final scrollcontroller = ScrollController();
@@ -73,8 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontFamily: "Inter", fontWeight: FontWeight.bold)),
             InkWell(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SignUp()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => LoginScreen()));
               },
               child: Container(
                 child: CircleAvatar(
@@ -118,145 +111,150 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 40,
               ),
               CarouselSlider(
-                items: imgLists
+                items: _discoverMovie
                     .map((item) => InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MovieInfo(movieModel: _movieDetail,)));
-                          },
-                          child: Center(
-                            child: Column(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(16),
-                                  child: Image.asset(
-                                    item,
-                                    width: 180,
-                                    height: 245,
+                          onTap: () {},
+                          child: Column(
+                            children: [
+                              ClipRRect(
+                                  borderRadius: BorderRadius.circular(16.0),
+                                  child: Image.network(
+                                    "https://image.tmdb.org/t/p/original${item.posterPath}",
                                     fit: BoxFit.cover,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                Text(
-                                  "Black Panther",
-                                  style: TextStyle(
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16,
-                                      color: Colors.white),
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      height: 22,
-                                      width: 30,
-                                      decoration: BoxDecoration(
-                                          color: Color(0xff51535E),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      alignment: Alignment.center,
-                                      child: const Text(
+                                    height: 245,
+                                    width: 180,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Image.asset(
+                                        "assets/images/noimage.png",
+                                        fit: BoxFit.cover,
+                                      );
+                                    },
+                                  )),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "${item.originalTitle}",
+                                style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.bold),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    height: 20,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff51535E),
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: Center(
+                                      child: Text(
                                         "18+",
-                                        style: TextStyle(
-                                            fontFamily: "Inter",
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 13,
-                                            color: Colors.white),
-                                        textAlign: TextAlign.center,
+                                        style:
+                                            GoogleFonts.montserrat(fontSize: 13, fontWeight: FontWeight.w600),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Container(
-                                      height: 22,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                          color: Color(0xff51535E),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      alignment: Alignment.center,
-                                      child: const Text(
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Container(
+                                    height: 22,
+                                    width: 60,
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff51535E),
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: Center(
+                                      child: Text(
                                         "Action",
-                                        style: TextStyle(
-                                            fontFamily: "Inter",
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 13,
-                                            color: Colors.white),
-                                        textAlign: TextAlign.center,
+                                        style:
+                                        GoogleFonts.montserrat(fontSize: 13, fontWeight: FontWeight.w600),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Container(
-                                      height: 22,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                          color: Color(0xff51535E),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      alignment: Alignment.center,
-                                      child: const Text(
-                                        "Eng",
-                                        style: TextStyle(
-                                            fontFamily: "Inter",
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 13,
-                                            color: Colors.white),
-                                        textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Container(
+                                    height: 22,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff51535E),
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: Center(
+                                      child: Text(
+                                        "en",
+                                        style:
+                                        GoogleFonts.montserrat(fontSize: 13, fontWeight: FontWeight.w600),
                                       ),
                                     ),
-                                  ],
-                                )
-                              ],
-                            ),
+                                  ),
+                                ],
+                              )
+                            ],
                           ),
                         ))
                     .toList(),
                 options: CarouselOptions(
-                  autoPlayInterval: Duration(seconds: 2),
+                  autoPlayInterval: const Duration(seconds: 2),
                   viewportFraction: 0.55,
-                  height: 450,
+                  height: 405,
                   autoPlay: true,
-                  aspectRatio: 3.0,
+                  aspectRatio: 2.0,
                   enlargeCenterPage: true,
                 ),
               ),
-              TextHeading(heading: "Top 10 in India"),
+              TextHeading(heading: "Discover Movies"),
+              const SizedBox(
+                height: 20,
+              ),
               Container(
                 height: 170,
                 width: double.maxFinite,
-                child: ListView.builder(
+                child: ListView.separated(
                   itemCount: _discoverMovie.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, index) {
                     final movie = _discoverMovie[index];
-                    return MovieRow(model: movie);
+                    return MovieRow(
+                      model: movie,
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      width: 20,
+                    );
                   },
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              TextHeading(heading: "Trending Movies"),
+              TextHeading(heading: "Popular Movies"),
+              const SizedBox(
+                height: 20,
+              ),
               Container(
                 height: 170,
                 width: double.maxFinite,
-                child: ListView.builder(
-                  itemCount: _discoverMovie.length,
+                child: ListView.separated(
+                  itemCount: _popularMovie.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, index) {
-                    final movie = _discoverMovie[index];
-                    return MovieRow(model: movie);
+                    final movie = _popularMovie[index];
+                    return MovieRow(
+                      model: movie,
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      width: 20,
+                    );
                   },
                 ),
               ),
@@ -264,6 +262,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 20,
               ),
               TextHeading(heading: "Genere"),
+              const SizedBox(
+                height: 20,
+              ),
               FilterRow(count: 10, elements: [
                 "Action",
                 "Adventure",
@@ -280,31 +281,51 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 20,
               ),
               TextHeading(heading: "Suggested for you"),
+              const SizedBox(
+                height: 20,
+              ),
               Container(
                 height: 170,
                 width: double.maxFinite,
-                child: ListView.builder(
+                child: ListView.separated(
                   itemCount: _discoverMovie.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, index) {
                     final movie = _discoverMovie[index];
-                    return MovieRow(model: movie);
+                    return MovieRow(
+                      model: movie,
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      width: 20,
+                    );
                   },
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              TextHeading(heading: "90 's Hits"),
+              TextHeading(heading: "Based on your Recent Searches"),
+              const SizedBox(
+                height: 20,
+              ),
               Container(
                 height: 170,
                 width: double.maxFinite,
-                child: ListView.builder(
+                child: ListView.separated(
                   itemCount: _discoverMovie.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, index) {
                     final movie = _discoverMovie[index];
-                    return MovieRow(model: movie);
+                    return MovieRow(
+                      model: movie,
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      width: 20,
+                    );
                   },
                 ),
               ),
@@ -312,6 +333,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 20,
               ),
               TextHeading(heading: "Languages"),
+              const SizedBox(
+                height: 20,
+              ),
               FilterRow(count: 5, elements: [
                 "English",
                 "Hindi",
@@ -322,32 +346,52 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              TextHeading(heading: "You may also like"),
+              TextHeading(heading: "Top SciFi Movies"),
+              const SizedBox(
+                height: 20,
+              ),
               Container(
                 height: 170,
                 width: double.maxFinite,
-                child: ListView.builder(
-                  itemCount: _discoverMovie.length,
+                child: ListView.separated(
+                  itemCount: _topScifiMovie.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, index) {
-                    final movie = _discoverMovie[index];
-                    return MovieRow(model: movie);
+                    final movie = _topScifiMovie[index];
+                    return MovieRow(
+                      model: movie,
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      width: 20,
+                    );
                   },
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              TextHeading(heading: "Top Romantic Hits"),
+              TextHeading(heading: "Popular Kids Movies"),
+              const SizedBox(
+                height: 20,
+              ),
               Container(
                 height: 170,
                 width: double.maxFinite,
-                child: ListView.builder(
-                  itemCount: _discoverMovie.length,
+                child: ListView.separated(
+                  itemCount: _popularKidsMovie.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, index) {
-                    final movie = _discoverMovie[index];
-                    return MovieRow(model: movie);
+                    final movie = _popularKidsMovie[index];
+                    return MovieRow(
+                      model: movie,
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      width: 20,
+                    );
                   },
                 ),
               ),

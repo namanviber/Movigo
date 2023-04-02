@@ -16,7 +16,7 @@ class Movigo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "MovieHub",
+      title: "Moviego",
       theme: ThemeData(
           primarySwatch: Colors.blue,
           scaffoldBackgroundColor: const Color(0xFF09090F),

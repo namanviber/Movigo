@@ -14,14 +14,6 @@ class WatchlistScreen extends StatefulWidget {
 class _WatchlistScreenState extends State<WatchlistScreen> {
   int screen_index = 2;
   int count = 3;
-  final List<String> imgLists = [
-    'assets/images/testimg1.png',
-    'assets/images/testimg3.png',
-    'assets/images/testimg4.png',
-    'assets/images/testimg5.png',
-    'assets/images/testimg6.png',
-    'assets/images/testimg7.png',
-  ];
 
   List<DiscoverMovieModel> content = [];
 
@@ -225,7 +217,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
+              SizedBox(
                 height: 450,
                 width: double.maxFinite,
                 child: ListView.builder(

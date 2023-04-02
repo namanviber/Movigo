@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:project2/models/DiscoverMovieModel.dart';
 import 'package:project2/models/MovieDetailModel.dart';
+import 'package:project2/models/MovieCastDetailsModel.dart';
+import 'package:project2/models/MovieCrewDetailsModel.dart';
 
 class ApiConfig {
   static const _baseUrl = 'https://api.themoviedb.org/3/';
@@ -31,12 +33,57 @@ Future<List<DiscoverMovieModel>> discoverMovies() async {
   return results.map((e) => DiscoverMovieModel.fromJson(e)).toList();
 }
 
+Future<List<DiscoverMovieModel>> popularMovies() async {
+  const path = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=60b574988af5f6b7e4f9fd74504d7bbe';
+  final uri = Uri.parse(path);
+  final response = await http.get(uri);
+  final json = jsonDecode(response.body);
+  final results = json['results'] as List<dynamic>;
+  return results.map((e) => DiscoverMovieModel.fromJson(e)).toList();
+}
+//
+Future<List<DiscoverMovieModel>> topSciFiMovies() async {
+  const path = 'https://api.themoviedb.org/3/discover/movie?with_genres=878&sort_by=vote_average.desc&api_key=60b574988af5f6b7e4f9fd74504d7bbe';
+  final uri = Uri.parse(path);
+  final response = await http.get(uri);
+  final json = jsonDecode(response.body);
+  final results = json['results'] as List<dynamic>;
+  return results.map((e) => DiscoverMovieModel.fromJson(e)).toList();
+}
+
+Future<List<DiscoverMovieModel>> popularKidsMovies() async {
+  const path = 'https://api.themoviedb.org/3/discover/movie?certification.lte=G&sort_by=popularity.desc&api_key=60b574988af5f6b7e4f9fd74504d7bbe';
+  final uri = Uri.parse(path);
+  final response = await http.get(uri);
+  final json = jsonDecode(response.body);
+  final results = json['results'] as List<dynamic>;
+  return results.map((e) => DiscoverMovieModel.fromJson(e)).toList();
+}
+
 Future<MovieDetailModel> movieDetails(int id) async {
   final path = 'movie/$id';
   final uri = ApiConfig.generateUrl(path);
   final response = await http.get(uri);
   final json = jsonDecode(response.body) as Map<String, dynamic>;
   return MovieDetailModel.fromJson(json);
+}
+
+Future<List<MovieCastDetailsModel>> movieCastDetails(int id) async {
+  final path = 'movie/$id/credits';
+  final uri = ApiConfig.generateUrl(path);
+  final response = await http.get(uri);
+  final json = jsonDecode(response.body);
+  final results = json['cast'] as List<dynamic>;
+  return results.map((e) => MovieCastDetailsModel.fromJson(e)).toList();
+}
+
+Future<List<MovieCrewDetailsModel>> movieCrewDetails(int id) async {
+  final path = 'movie/$id/credits';
+  final uri = ApiConfig.generateUrl(path);
+  final response = await http.get(uri);
+  final json = jsonDecode(response.body);
+  final results = json['crew'] as List<dynamic>;
+  return results.map((e) => MovieCrewDetailsModel.fromJson(e)).toList();
 }
 
 class _ApiCallState extends State<ApiCall> {
