@@ -5,6 +5,7 @@ import 'package:project2/models/MovieDetailModel.dart';
 import 'package:project2/models/MovieCastDetailsModel.dart';
 import 'package:project2/models/MovieCrewDetailsModel.dart';
 import 'package:project2/service/api_call.dart';
+import 'package:project2/widgets/heading_text.dart';
 import 'package:project2/widgets/item_grid.dart';
 import 'package:project2/widgets/movie_cast_row.dart';
 import 'package:project2/widgets/movie_crew_row.dart';
@@ -90,7 +91,7 @@ class _MovieInfoState extends State<MovieInfo> {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 16),
+          padding: const EdgeInsets.symmetric(vertical: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -99,7 +100,7 @@ class _MovieInfoState extends State<MovieInfo> {
                     ? NetworkImage(
                         backdropposterUrl,
                       )
-                    : AssetImage('assets/images/noimage.png') as ImageProvider,
+                    : const AssetImage('assets/images/noimage.png') as ImageProvider,
                 height: 400,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
@@ -117,7 +118,7 @@ class _MovieInfoState extends State<MovieInfo> {
                             fontWeight: FontWeight.bold, fontSize: 24),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Align(
@@ -127,13 +128,13 @@ class _MovieInfoState extends State<MovieInfo> {
                         style: GoogleFonts.montserrat(fontSize: 11),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
+                        const SizedBox(
                           width: 100,
                           child: TextField(
                             // controller: length,
@@ -144,7 +145,7 @@ class _MovieInfoState extends State<MovieInfo> {
                             ),
                           ),
                         ),
-                        Container(
+                        const SizedBox(
                           width: 100,
                           child: TextField(
                             // controller: language,
@@ -155,7 +156,7 @@ class _MovieInfoState extends State<MovieInfo> {
                             ),
                           ),
                         ),
-                        Container(
+                        const SizedBox(
                           width: 50,
                           child: TextField(
                             // controller: rating,
@@ -168,7 +169,7 @@ class _MovieInfoState extends State<MovieInfo> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     InkWell(
@@ -176,7 +177,7 @@ class _MovieInfoState extends State<MovieInfo> {
                         child: Container(
                           height: 45,
                           width: double.maxFinite,
-                          child: Center(
+                          child: const Center(
                               child: Text(
                             "Already Watched",
                             style: TextStyle(fontWeight: FontWeight.bold),
@@ -185,45 +186,45 @@ class _MovieInfoState extends State<MovieInfo> {
                               color: Colors.blue,
                               borderRadius: BorderRadius.circular(10)),
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.bookmark,
                           semanticLabel: "Save",
                           size: 35,
                         ),
-                        Icon(
+                        const Icon(
                           Icons.star,
                           semanticLabel: "Rate this Movie",
                           size: 35,
                         ),
-                        Icon(
+                        const Icon(
                           Icons.ios_share_outlined,
                           semanticLabel: "Share",
                           size: 35,
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
                       "${widget.movieModel.overview}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: "Inter",
                         fontSize: 14,
                       ),
                       textAlign: TextAlign.left,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    Text(""),
-                    SizedBox(
+                    const Text(""),
+                    const SizedBox(
                       height: 20,
                     ),
                     Align(
@@ -237,7 +238,7 @@ class _MovieInfoState extends State<MovieInfo> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Container(
+                    SizedBox(
                       height: 170,
                       width: double.maxFinite,
                       child: ListView.builder(
@@ -250,14 +251,14 @@ class _MovieInfoState extends State<MovieInfo> {
                                 alignment: Alignment.topRight,
                                 height: 170,
                                 width: 125,
-                                margin: EdgeInsets.symmetric(horizontal: 8),
+                                margin: const EdgeInsets.symmetric(horizontal: 8),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
                                     image: posterUrl != ''
                                         ? NetworkImage(posterUrl)
-                                        : AssetImage(
+                                        : const AssetImage(
                                                 'assets/images/noimage.png')
                                             as ImageProvider,
                                   ),
@@ -268,7 +269,7 @@ class _MovieInfoState extends State<MovieInfo> {
                         },
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Align(
@@ -291,38 +292,20 @@ class _MovieInfoState extends State<MovieInfo> {
                           fit: BoxFit.fill,
                           image: posterUrl != ''
                               ? NetworkImage(posterUrlbelongs)
-                              : AssetImage('assets/images/noimage.png')
+                              : const AssetImage('assets/images/noimage.png')
                                   as ImageProvider,
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Cast",
-                          style: GoogleFonts.montserrat(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Spacer(),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ItemGrid()));
-                          },
-                          child: Icon(Icons.arrow_forward_ios),
-                        )
-                      ],
-                    ),
                     const SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      height: 250,
+                    TextHeading(heading: "Cast"),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    SizedBox(
+                      height: 215,
                       width: double.maxFinite,
                       child: ListView.separated(
                         itemCount: _movieCast.length,
@@ -332,34 +315,21 @@ class _MovieInfoState extends State<MovieInfo> {
                           return MovieCastRow(model: cast);
                         },
                         separatorBuilder: (BuildContext context, int index) {
-                          return SizedBox(
+                          return const SizedBox(
                             width: 20,
                           );
                         },
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Crew",
-                          style: GoogleFonts.montserrat(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Spacer(),
-                        InkWell(
-                          onTap: () {},
-                          child: Icon(Icons.arrow_forward_ios),
-                        )
-                      ],
-                    ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
-                    Container(
-                      height: 250,
+                    TextHeading(heading: "Crew"),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    SizedBox(
+                      height: 215,
                       width: double.maxFinite,
                       child: ListView.separated(
                         itemCount: _movieCrew.length,
@@ -369,13 +339,13 @@ class _MovieInfoState extends State<MovieInfo> {
                           return MovieCrewRow(model: crew);
                         },
                         separatorBuilder: (BuildContext context, int index) {
-                          return SizedBox(
+                          return const SizedBox(
                             width: 20,
                           );
                         },
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Align(
@@ -386,8 +356,8 @@ class _MovieInfoState extends State<MovieInfo> {
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
+                    const SizedBox(
+                      height: 10,
                     ),
                     Column(
                       children: [
@@ -402,7 +372,7 @@ class _MovieInfoState extends State<MovieInfo> {
                             ),
                           )),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         TextField(
@@ -416,7 +386,7 @@ class _MovieInfoState extends State<MovieInfo> {
                             ),
                           )),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         TextField(
@@ -430,12 +400,12 @@ class _MovieInfoState extends State<MovieInfo> {
                             ),
                           )),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Align(
@@ -449,7 +419,7 @@ class _MovieInfoState extends State<MovieInfo> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Container(
+                    SizedBox(
                       height: 170,
                       width: double.maxFinite,
                       child: ListView.builder(
@@ -462,14 +432,14 @@ class _MovieInfoState extends State<MovieInfo> {
                                 alignment: Alignment.topRight,
                                 height: 170,
                                 width: 125,
-                                margin: EdgeInsets.symmetric(horizontal: 8),
+                                margin: const EdgeInsets.symmetric(horizontal: 8),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
                                     image: posterUrl != ''
                                         ? NetworkImage(posterUrl)
-                                        : AssetImage(
+                                        : const AssetImage(
                                                 'assets/images/noimage.png')
                                             as ImageProvider,
                                   ),

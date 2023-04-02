@@ -20,27 +20,26 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<DiscoverMovieModel> _discoverMovie = [];
-  late MovieDetailModel _movieDetail;
-  int moviecode = 76600;
+  List<DiscoverMovieModel> _popularMovie = [];
+  List<DiscoverMovieModel> _topScifiMovie = [];
+  List<DiscoverMovieModel> _popularKidsMovie = [];
 
   @override
   void initState() {
     super.initState();
     fetchMovies();
-    fetchMovieDetails(moviecode);
   }
 
   Future<void> fetchMovies() async {
     final response1 = await discoverMovies();
+    final response2 = await popularMovies();
+    final response3 = await topSciFiMovies();
+    final response4 = await popularKidsMovies();
     setState(() {
       _discoverMovie = response1;
-    });
-  }
-
-  Future<void> fetchMovieDetails(int movieid) async {
-    final response2 = await movieDetails(movieid);
-    setState(() {
-      _movieDetail = response2;
+      _popularMovie = response2;
+      _topScifiMovie = response3;
+      _popularKidsMovie = response4;
     });
   }
 
@@ -131,22 +130,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                     },
                                   )),
                               const SizedBox(
-                                height: 20,
+                                height: 10,
                               ),
-                              Center(
-                                child: Text(
-                                  "${item.originalTitle}",
-                                  style: GoogleFonts.montserrat(fontSize: 17, fontWeight: FontWeight.bold),
-                                ),
+                              Text(
+                                "${item.originalTitle}",
+                                style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.bold),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                textAlign: TextAlign.center,
                               ),
                               const SizedBox(
-                                height: 20,
+                                height: 10,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                                    height: 22,
+                                    height: 20,
                                     width: 40,
                                     decoration: BoxDecoration(
                                         color: Color(0xff51535E),
@@ -202,9 +202,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 options: CarouselOptions(
                   autoPlayInterval: const Duration(seconds: 2),
                   viewportFraction: 0.55,
-                  height: 480,
+                  height: 405,
                   autoPlay: true,
-                  aspectRatio: 3.0,
+                  aspectRatio: 2.0,
                   enlargeCenterPage: true,
                 ),
               ),
@@ -234,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              TextHeading(heading: "Trending Movies"),
+              TextHeading(heading: "Popular Movies"),
               const SizedBox(
                 height: 20,
               ),
@@ -242,10 +242,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 170,
                 width: double.maxFinite,
                 child: ListView.separated(
-                  itemCount: _discoverMovie.length,
+                  itemCount: _popularMovie.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, index) {
-                    final movie = _discoverMovie[index];
+                    final movie = _popularMovie[index];
                     return MovieRow(
                       model: movie,
                     );
@@ -305,7 +305,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              TextHeading(heading: "90 's Hits"),
+              TextHeading(heading: "Based on your Recent Searches"),
               const SizedBox(
                 height: 20,
               ),
@@ -345,7 +345,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              TextHeading(heading: "You may also like"),
+              TextHeading(heading: "Top SciFi Movies"),
               const SizedBox(
                 height: 20,
               ),
@@ -353,10 +353,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 170,
                 width: double.maxFinite,
                 child: ListView.separated(
-                  itemCount: _discoverMovie.length,
+                  itemCount: _topScifiMovie.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, index) {
-                    final movie = _discoverMovie[index];
+                    final movie = _topScifiMovie[index];
                     return MovieRow(
                       model: movie,
                     );
@@ -371,7 +371,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              TextHeading(heading: "Top Romantic Hits"),
+              TextHeading(heading: "Popular Kids Movies"),
               const SizedBox(
                 height: 20,
               ),
@@ -379,10 +379,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 170,
                 width: double.maxFinite,
                 child: ListView.separated(
-                  itemCount: _discoverMovie.length,
+                  itemCount: _popularKidsMovie.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, index) {
-                    final movie = _discoverMovie[index];
+                    final movie = _popularKidsMovie[index];
                     return MovieRow(
                       model: movie,
                     );

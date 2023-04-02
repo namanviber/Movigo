@@ -42,6 +42,9 @@ class _MovieCrewRowState extends State<MovieCrewRow> {
               widget.model.name.toString(),
               style: GoogleFonts.montserrat(
                   fontSize: 14, fontWeight: FontWeight.w700),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              textAlign: TextAlign.left,
             ),
           ),
           Align(
@@ -49,6 +52,9 @@ class _MovieCrewRowState extends State<MovieCrewRow> {
             child: Text(
               widget.model.job.toString(),
               style: GoogleFonts.montserrat(fontSize: 10),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              textAlign: TextAlign.left,
             ),
           ),
         ],
