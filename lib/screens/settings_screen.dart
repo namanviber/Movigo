@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:project2/screens/genral_settings_screen.dart';
+import 'package:project2/screens/about_us_screen.dart';
+import 'package:project2/screens/privacy_policy_screen.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -12,7 +13,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  final _controller = ValueNotifier<bool>(false);
   int screen_index = 3;
 
   @override
@@ -194,7 +194,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => GeneralSettingsScreen()));
+                                builder: (context) => const GeneralSettingsScreen()));
                       },
                       child: Icon(Icons.arrow_forward_ios),
                     )
@@ -388,7 +388,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
                           Text(
-                            "Help & Support",
+                            "About Us",
                             style: TextStyle(
                                 fontFamily: "Inter",
                                 fontWeight: FontWeight.bold,
@@ -397,7 +397,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ],
                       ),
                     ),
-                    const Icon(Icons.arrow_forward_ios_rounded)
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AboutUsScreen()));
+                      },
+                      child: Icon(Icons.arrow_forward_ios),
+                    )
                   ],
                 ),
               ),
@@ -438,7 +446,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ],
                       ),
                     ),
-                    const Icon(Icons.arrow_forward_ios_rounded)
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const PrivacyPolicyScreen()));
+                      },
+                      child: Icon(Icons.arrow_forward_ios),
+                    ),
                   ],
                 ),
               ),
