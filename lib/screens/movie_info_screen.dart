@@ -6,7 +6,6 @@ import 'package:project2/models/MovieCastDetailsModel.dart';
 import 'package:project2/models/MovieCrewDetailsModel.dart';
 import 'package:project2/service/api_call.dart';
 import 'package:project2/widgets/heading_text.dart';
-import 'package:project2/widgets/item_grid.dart';
 import 'package:project2/widgets/movie_cast_row.dart';
 import 'package:project2/widgets/movie_crew_row.dart';
 

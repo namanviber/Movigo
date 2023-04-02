@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:project2/models/MovieDetailModel.dart';
+import 'package:project2/screens/login_screen.dart';
 import 'package:project2/screens/sign_up_screen.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:project2/widgets/filter_row.dart';
@@ -66,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
             InkWell(
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => SignUp()));
+                    context, MaterialPageRoute(builder: (context) => LoginScreen()));
               },
               child: Container(
                 child: CircleAvatar(

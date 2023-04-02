@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:project2/widgets/bottom_bar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class GeneralSettingsScreen extends StatefulWidget {
   const GeneralSettingsScreen({Key? key}) : super(key: key);

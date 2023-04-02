@@ -5,7 +5,7 @@ import 'item_grid.dart';
 class TextHeading extends StatelessWidget {
   TextHeading({required this.heading, Key? key})
       : super(key: key);
-  String? heading;
+  String heading;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class TextHeading extends StatelessWidget {
         InkWell(
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => ItemGrid()));
+                MaterialPageRoute(builder: (context) => ItemGrid(heading: heading,)));
           },
           child: Icon(Icons.arrow_forward_ios),
         )

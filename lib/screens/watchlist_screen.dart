@@ -217,7 +217,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
+              SizedBox(
                 height: 450,
                 width: double.maxFinite,
                 child: ListView.builder(
