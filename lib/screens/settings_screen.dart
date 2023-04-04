@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project2/screens/genral_settings_screen.dart';
+import 'package:project2/screens/general_settings_screen.dart';
 import 'package:project2/screens/about_us_screen.dart';
 import 'package:project2/screens/privacy_policy_screen.dart';
 import 'package:project2/widgets/bottom_bar.dart';
@@ -54,12 +54,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         backgroundColor: Colors.transparent,
                         child: Center(
                             child: SizedBox(
-                              width: 200,
-                              height: 200,
-                              child: ClipOval(
-                                child: Image.asset("assets/images/testimg2.png"),
-                              ),
-                            ))),
+                          width: 200,
+                          height: 200,
+                          child: ClipOval(
+                            child: Image.asset("assets/images/testimg2.png"),
+                          ),
+                        ))),
                     const SizedBox(
                       width: 20,
                     ),
@@ -146,59 +146,59 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ),
               ),
-              Container(
-                height: 60,
-                width: double.maxFinite,
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Icon(
-                      Icons.settings_outlined,
-                      size: 34,
-                      color: Color(0xFF2196F3),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      height: 60,
-                      width: 270,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            "General",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Text(
-                            "Manage your General settings",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
-                          ),
-                        ],
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const GeneralSettingsScreen()));
+                },
+                child: Container(
+                  height: 60,
+                  width: double.maxFinite,
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 10,
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const GeneralSettingsScreen()));
-                      },
-                      child: Icon(Icons.arrow_forward_ios),
-                    )
-                  ],
+                      const Icon(
+                        Icons.settings_outlined,
+                        size: 34,
+                        color: Color(0xFF2196F3),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Container(
+                        height: 60,
+                        width: 270,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text(
+                              "General",
+                              style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14),
+                            ),
+                            SizedBox(
+                              height: 4,
+                            ),
+                            Text(
+                              "Manage your General settings",
+                              style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Icon(Icons.arrow_forward_ios),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
@@ -364,98 +364,98 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 height: 10,
               ),
               //#6
-              Container(
-                height: 60,
-                width: double.maxFinite,
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Icon(
-                      Icons.help_outline_outlined,
-                      size: 34,
-                      color: Color(0xFF2196F3),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      height: 60,
-                      width: 270,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            "About Us",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
-                          ),
-                        ],
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AboutUsScreen()));
+                },
+                child: Container(
+                  height: 60,
+                  width: double.maxFinite,
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 10,
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const AboutUsScreen()));
-                      },
-                      child: Icon(Icons.arrow_forward_ios),
-                    )
-                  ],
+                      const Icon(
+                        Icons.help_outline_outlined,
+                        size: 34,
+                        color: Color(0xFF2196F3),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Container(
+                        height: 60,
+                        width: 270,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text(
+                              "About Us",
+                              style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Icon(Icons.arrow_forward_ios),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
                 height: 10,
               ),
               //#7
-              Container(
-                height: 60,
-                width: double.maxFinite,
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Icon(
-                      Icons.android_outlined,
-                      size: 34,
-                      color: Color(0xFF2196F3),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      height: 60,
-                      width: 270,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            "About App",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
-                          ),
-                        ],
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const PrivacyPolicyScreen()));
+                },
+                child: Container(
+                  height: 60,
+                  width: double.maxFinite,
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 10,
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const PrivacyPolicyScreen()));
-                      },
-                      child: Icon(Icons.arrow_forward_ios),
-                    ),
-                  ],
+                      const Icon(
+                        Icons.shield_outlined,
+                        size: 34,
+                        color: Color(0xFF2196F3),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Container(
+                        height: 60,
+                        width: 270,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text(
+                              "Privacy Policy",
+                              style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Icon(Icons.arrow_forward_ios),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
@@ -471,4 +471,3 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 }
-
