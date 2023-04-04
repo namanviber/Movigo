@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project2/models/DiscoverMovieModel.dart';
+import 'package:project2/models/GetMovieVideos.dart';
 import 'package:project2/models/MovieDetailModel.dart';
 import 'package:project2/models/MovieCastDetailsModel.dart';
 import 'package:project2/models/MovieCrewDetailsModel.dart';
@@ -8,6 +9,8 @@ import 'package:project2/service/api_call.dart';
 import 'package:project2/widgets/heading_text.dart';
 import 'package:project2/widgets/movie_cast_row.dart';
 import 'package:project2/widgets/movie_crew_row.dart';
+import 'package:project2/widgets/movie_video_row.dart';
+import 'package:project2/widgets/movie_row.dart';
 
 class MovieInfo extends StatefulWidget {
   final DiscoverMovieModel movieModel;
@@ -20,6 +23,7 @@ class MovieInfo extends StatefulWidget {
 class _MovieInfoState extends State<MovieInfo> {
   List<MovieCastDetailsModel> _movieCast = [];
   List<MovieCrewDetailsModel> _movieCrew = [];
+  List<MovieVideos> _movieVideos = [];
   late MovieDetailModel movieDetail;
   int moviecode = 76600;
 
@@ -40,9 +44,11 @@ class _MovieInfoState extends State<MovieInfo> {
   Future<void> fetchCreditDetails(int movieid) async {
     final response1 = await movieCastDetails(movieid);
     final response2 = await movieCrewDetails(movieid);
+    final response3 = await movieVideos(movieid);
     setState(() {
       _movieCast = response1;
       _movieCrew = response2;
+      _movieVideos = response3;
     });
   }
 
@@ -238,32 +244,18 @@ class _MovieInfoState extends State<MovieInfo> {
                       height: 20,
                     ),
                     SizedBox(
-                      height: 170,
+                      height: 215,
                       width: double.maxFinite,
-                      child: ListView.builder(
-                        itemCount: 10,
+                      child: ListView.separated(
+                        itemCount: _movieVideos.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (BuildContext context, index) {
-                          return Column(
-                            children: [
-                              Container(
-                                alignment: Alignment.topRight,
-                                height: 170,
-                                width: 125,
-                                margin: const EdgeInsets.symmetric(horizontal: 8),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: posterUrl != ''
-                                        ? NetworkImage(posterUrl)
-                                        : const AssetImage(
-                                                'assets/images/noimage.png')
-                                            as ImageProvider,
-                                  ),
-                                ),
-                              ),
-                            ],
+                          final video = _movieVideos[index];
+                          return MovieVideoRow(model: video);
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return const SizedBox(
+                            width: 20,
                           );
                         },
                       ),

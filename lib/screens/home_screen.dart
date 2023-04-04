@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:project2/models/MovieDetailModel.dart';
@@ -44,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  String user = "Naman";
+  final user = FirebaseAuth.instance.currentUser!;
   int screen_index = 0;
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
@@ -59,15 +60,25 @@ class _HomeScreenState extends State<HomeScreen> {
         toolbarHeight: 80,
         backgroundColor: const Color(0xFF09090F),
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Hello $user                   ",
-                style: const TextStyle(
-                    fontFamily: "Inter", fontWeight: FontWeight.bold)),
+            RichText(
+                text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "Hello ",
+                        style: GoogleFonts.montserrat(fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                        text: user.displayName!.toString(),
+                        style: GoogleFonts.montserrat(fontSize: 14,),
+                      ),
+                    ]
+                ),
+                ),
             InkWell(
               onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                FirebaseAuth.instance.signOut();
               },
               child: Container(
                 child: CircleAvatar(
@@ -76,7 +87,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 60,
                         height: 60,
                         child: ClipOval(
-                          child: Image.asset("assets/images/testimg2.png"),
+                          child: Image.network(
+                            user.photoURL!,
+                            fit: BoxFit.cover,
+                            height: 170,
+                            width: 125,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Image.asset(
+                                "assets/images/noimage.png",
+                                fit: BoxFit.cover,
+                              );
+                            },
+                          ),
                         ))),
               ),
             ),

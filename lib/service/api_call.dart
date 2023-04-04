@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:project2/models/DiscoverMovieModel.dart';
+import 'package:project2/models/GetMovieVideos.dart';
 import 'package:project2/models/MovieDetailModel.dart';
 import 'package:project2/models/MovieCastDetailsModel.dart';
 import 'package:project2/models/MovieCrewDetailsModel.dart';
@@ -75,6 +76,15 @@ Future<List<MovieCastDetailsModel>> movieCastDetails(int id) async {
   final json = jsonDecode(response.body);
   final results = json['cast'] as List<dynamic>;
   return results.map((e) => MovieCastDetailsModel.fromJson(e)).toList();
+}
+
+Future<List<MovieVideos>> movieVideos(int id) async {
+  final path = 'movie/$id/videos';
+  final uri = ApiConfig.generateUrl(path);
+  final response = await http.get(uri);
+  final json = jsonDecode(response.body);
+  final results = json as List<dynamic>;
+  return results.map((e) => MovieVideos.fromJson(e)).toList();
 }
 
 Future<List<MovieCrewDetailsModel>> movieCrewDetails(int id) async {

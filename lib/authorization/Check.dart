@@ -15,7 +15,6 @@ class Check extends StatelessWidget {
           if (snapshot.hasData) {
             return HomeScreen();
           } else {
-            // return HomeScreen();
             return LoginScreen();
           }
         },

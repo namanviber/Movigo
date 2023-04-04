@@ -31,8 +31,6 @@ class _SignUpState extends State<SignUp> {
   Future sign_up() async {
     final isvalid = formKey.currentState!.validate();
     if (isvalid) {
-      // showDialog(context: context, builder: (context) => Center(child: CircularProgressIndicator,))
-
       try {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: _email.toString().trim(),

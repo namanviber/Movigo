@@ -11,11 +11,13 @@ void main() async {
 }
 
 class Movigo extends StatelessWidget {
-  const Movigo({Key? key}) : super(key: key);
+  Movigo({Key? key}) : super(key: key);
+  final navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       title: "Moviego",
       theme: ThemeData(
           primarySwatch: Colors.blue,

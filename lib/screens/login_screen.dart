@@ -19,8 +19,13 @@ class _LoginScreenState extends State<LoginScreen> {
   bool showtext = true;
 
   Future log_in() async {
-    FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _email.text.trim(), password: _password.text.trim());
+    try {
+      FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _email.text.trim(), password: _password.text.trim());
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+
   }
 
   @override
@@ -45,7 +50,9 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         body: SingleChildScrollView(
           child: Column(children: [
-            Container(height: 200,),
+            Container(
+              height: 200,
+            ),
             Container(
               padding: EdgeInsets.all(16),
               child: Form(
@@ -97,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    const Align(
+                    Align(
                       alignment: Alignment.centerRight,
                       child: InkWell(
                         child: Text(
@@ -108,6 +115,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               color: Colors.white,
                               fontWeight: FontWeight.bold),
                         ),
+                        onTap: (){
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => SignUp()));
+                        },
                       ),
                     ),
                     const SizedBox(
