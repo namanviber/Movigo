@@ -1,9 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:project2/models/MovieDetailModel.dart';
-import 'package:project2/screens/login_screen.dart';
-import 'package:project2/screens/sign_up_screen.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:project2/widgets/filter_row.dart';
 import 'package:project2/widgets/heading_text.dart';
@@ -70,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: GoogleFonts.montserrat(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       TextSpan(
-                        text: user.displayName!.toString(),
+                        text: " Naman",
                         style: GoogleFonts.montserrat(fontSize: 14,),
                       ),
                     ]
@@ -88,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 60,
                         child: ClipOval(
                           child: Image.network(
-                            user.photoURL!,
+                            "",
                             fit: BoxFit.cover,
                             height: 170,
                             width: 125,
