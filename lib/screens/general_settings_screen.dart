@@ -298,47 +298,47 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                 height: 10,
               ),
               //#4
-        // #3
-        Container(
-          height: 60,
-          width: double.maxFinite,
-          child: Row(
-            children: [
-              const SizedBox(
-                width: 10,
-              ),
-              const Icon(
-                Icons.clear_all,
-                size: 34,
-              ),
-              const SizedBox(
-                width: 20,
-              ),
+              // #3
               Container(
                 height: 60,
-                width: 240,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      "Clear Cache Memory",
-                      style: TextStyle(
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14),
+                width: double.maxFinite,
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 10,
                     ),
-                    SizedBox(
-                      height: 4,
+                    const Icon(
+                      Icons.clear_all,
+                      size: 34,
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Container(
+                      height: 60,
+                      width: 240,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text(
+                            "Clear Cache Memory",
+                            style: TextStyle(
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14),
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+
+                        ],
+                      ),
                     ),
 
                   ],
                 ),
               ),
-
-            ],
-          ),
-        ),
 
             ],
           ),

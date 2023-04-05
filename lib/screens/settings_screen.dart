@@ -54,12 +54,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         backgroundColor: Colors.transparent,
                         child: Center(
                             child: SizedBox(
-                          width: 200,
-                          height: 200,
-                          child: ClipOval(
-                            child: Image.asset("assets/images/testimg2.png"),
-                          ),
-                        ))),
+                              width: 200,
+                              height: 200,
+                              child: ClipOval(
+                                child: Image.asset("assets/images/testimg2.png"),
+                              ),
+                            ))),
                     const SizedBox(
                       width: 20,
                     ),
@@ -146,7 +146,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ),
               ),
-<<<<<<< Updated upstream
               InkWell(
                 onTap: () {
                   Navigator.push(
@@ -161,49 +160,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     children: [
                       const SizedBox(
                         width: 10,
-=======
-              Container(
-                height: 60,
-                width: double.maxFinite,
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Icon(
-                      Icons.settings_outlined,
-                      size: 34,
-                      color: Color(0xFF2196F3),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      height: 60,
-                      width: 220,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            "General",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Text(
-                            "Manage your General settings",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
-                          ),
-                        ],
->>>>>>> Stashed changes
                       ),
                       const Icon(
                         Icons.settings_outlined,
@@ -374,7 +330,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       },
                       child: Container(
                         height: 60,
-                        width: 220,
+                        width: 270,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
