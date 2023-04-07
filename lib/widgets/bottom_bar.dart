@@ -16,17 +16,16 @@ class BottomNavigation extends StatelessWidget {
       onTap: (index) {
         screen_index = index;
         if (screen_index == 2) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => WatchlistScreen()));
+          Navigator.pushNamed(context, '/watch_list');
         } else if (screen_index == 0) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomeScreen()));
+          Navigator.pushNamed(context, '/home_screen');
+
         } else if (screen_index == 1) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ApiCall()));
+          Navigator.pushNamed(context, '/api_call');
+
         } else if (screen_index == 3) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => SettingsScreen()));
+          Navigator.pushNamed(context, '/setting_screen');
+
         }
       },
       currentIndex: screen_index,

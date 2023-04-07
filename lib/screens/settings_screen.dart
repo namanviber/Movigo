@@ -99,59 +99,61 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 height: 30,
               ),
               //#1
-              Container(
-                height: 60,
-                width: 390,
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Icon(
-                      Icons.account_circle_outlined,
-                      size: 34,
-                      color: Color(0xFF2196F3),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      height: 60,
-                      width: 270,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            "My Account",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Text(
-                            "Make changes to your account",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
-                          ),
-                        ],
+              InkWell(
+                onTap: (){
+                  Navigator.pushNamed(context, '/profile_edit');
+                },
+                child: Container(
+                  height: 60,
+                  width: 390,
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 10,
                       ),
-                    ),
-                    const Icon(Icons.arrow_forward_ios_rounded)
-                  ],
+                      const Icon(
+                        Icons.account_circle_outlined,
+                        size: 34,
+                        color: Color(0xFF2196F3),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Container(
+                        height: 60,
+                        width: 270,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text(
+                              "My Account",
+                              style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14),
+                            ),
+                            SizedBox(
+                              height: 4,
+                            ),
+                            Text(
+                              "Make changes to your account",
+                              style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Icon(Icons.arrow_forward_ios_rounded)
+                    ],
+                  ),
                 ),
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const GeneralSettingsScreen()));
+                  Navigator.pushNamed(context, '/general_setting');
                 },
                 child: Container(
                   height: 60,
@@ -327,6 +329,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     InkWell(
                       onTap: () {
                         FirebaseAuth.instance.signOut();
+                        Navigator.pushNamed(context, '/check');
                       },
                       child: Container(
                         height: 60,
@@ -366,10 +369,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               //#6
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const AboutUsScreen()));
+                  Navigator.pushNamed(context, '/about_us');
                 },
                 child: Container(
                   height: 60,
@@ -415,10 +415,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               //#7
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const PrivacyPolicyScreen()));
+                 Navigator.pushNamed(context, '/privacy_policy');
                 },
                 child: Container(
                   height: 60,

@@ -2,6 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:project2/authorization/Check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project2/authorization/mongodb.dart';
+import 'package:project2/screens/about_us_screen.dart';
+import 'package:project2/screens/general_settings_screen.dart';
+import 'package:project2/screens/home_screen.dart';
+import 'package:project2/screens/login_screen.dart';
+import 'package:project2/screens/privacy_policy_screen.dart';
+import 'package:project2/screens/profile_edit_screen.dart';
+import 'package:project2/screens/search_screen.dart';
+import 'package:project2/screens/settings_screen.dart';
+import 'package:project2/screens/watchlist_screen.dart';
+import 'package:project2/service/api_call.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +35,23 @@ class Movigo extends StatelessWidget {
           brightness: Brightness.dark),
       debugShowCheckedModeBanner: false,
       home: Check(),
+      initialRoute: '/',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        // '/': (context) => const Check(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/general_setting': (context) => const GeneralSettingsScreen(),
+        '/about_us':(context)=>const AboutUsScreen(),
+        '/privacy_policy':(context)=>const PrivacyPolicyScreen(),
+        '/watch_list':(context)=>const WatchlistScreen(),
+        '/home_screen':(context)=>const HomeScreen(),
+        '/api_call':(context)=>const ApiCall(),
+        '/setting_screen':(context)=>const SettingsScreen(),
+        '/check':(context)=>const Check(),
+        '/profile_edit':(context)=>ProfileEditPage(),
+        '/search_screen':(_)=>SearchScreen()
+
+      },
     );
   }
 }

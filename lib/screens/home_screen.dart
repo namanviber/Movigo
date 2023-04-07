@@ -18,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   List<DiscoverMovieModel> _discoverMovie = [];
   List<DiscoverMovieModel> _popularMovie = [];
   List<DiscoverMovieModel> _topScifiMovie = [];
@@ -109,9 +110,14 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: <Widget>[
               SizedBox(
+
                 width: 340,
                 height: 60,
                 child: TextField(
+                   readOnly: true,
+                  onTap: (){
+                    Navigator.pushNamed(context, '/search_screen');
+                  },
                   textAlignVertical: TextAlignVertical.center,
                   decoration: InputDecoration(
                       hintText: "Search",
