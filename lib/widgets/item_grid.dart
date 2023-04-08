@@ -70,26 +70,27 @@ class _ItemGridState extends State<ItemGrid> {
         ),
         body: SingleChildScrollView(
           child: (state)
-              ? SizedBox(
-                  child: Center(
-                    child: Container(
-                      padding: EdgeInsets.all(11),
-                      child: GridView.builder(gridDelegate:SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 110,
-                        mainAxisExtent: 150,
-                        mainAxisSpacing: 11,
-                        crossAxisSpacing: 11,
-                      ) ,itemBuilder: (context, index) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(image: AssetImage('assets/images/money.jpg'),fit: BoxFit.fill),
-                            borderRadius: BorderRadius.circular(7),
-                          ),
-                        );
-                      },),
-                    ),
-                  ),
-                )
+          ? Center(child: Text("Grid View"),)
+              // ? SizedBox(
+              //     child: Center(
+              //       child: Container(
+              //         padding: EdgeInsets.all(11),
+              //         child: GridView.builder(gridDelegate:SliverGridDelegateWithMaxCrossAxisExtent(
+              //           maxCrossAxisExtent: 110,
+              //           mainAxisExtent: 150,
+              //           mainAxisSpacing: 11,
+              //           crossAxisSpacing: 11,
+              //         ) ,itemBuilder: (context, index) {
+              //           return Container(
+              //             decoration: BoxDecoration(
+              //               image: DecorationImage(image: AssetImage('assets/images/money.jpg'),fit: BoxFit.fill),
+              //               borderRadius: BorderRadius.circular(7),
+              //             ),
+              //           );
+              //         },),
+              //       ),
+              //     ),
+              //   )
               : SizedBox(
                   height: 450,
                   width: double.maxFinite,

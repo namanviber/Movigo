@@ -3,6 +3,9 @@ import 'package:project2/widgets/bottom_bar.dart';
 import '../widgets/movie_card.dart';
 import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
 import 'package:project2/service/apiCall.dart';
+import 'package:project2/service/mongoDbCall.dart';
+import 'package:project2/widgets/movieList.dart';
+import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
 
 class WatchlistScreen extends StatefulWidget {
   const WatchlistScreen({Key? key}) : super(key: key);
@@ -15,19 +18,12 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
   int screen_index = 2;
   int count = 3;
 
-  List<DiscoverMovieModel> content = [];
+  var fetchmoviedb;
 
   @override
   void initState() {
+    fetchmoviedb = MongoDatabase.getMovies();
     super.initState();
-    fetchMovies();
-  }
-
-  Future<void> fetchMovies() async {
-    final response = await discoverMovies();
-    setState(() {
-      content = response;
-    });
   }
 
   @override
@@ -198,7 +194,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                   ),
                   Row(
                     children: [
-                      Text(content.length.toString(),
+                      Text("content.length.toString()",
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -217,17 +213,44 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
               const SizedBox(
                 height: 20,
               ),
-              SizedBox(
-                height: 450,
-                width: double.maxFinite,
-                child: ListView.builder(
-                  itemCount: content.length,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (BuildContext context, index) {
-                    final movie = content[index];
-                    return MovieCard(movie: movie);
-                  },
-                ),
+              FutureBuilder(
+                future: fetchmoviedb,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      height: 170,
+                      width: 125,
+                      child: const Center(child: CircularProgressIndicator()),
+                    );
+                  } else {
+                    if (snapshot.hasData) {
+                      return Container(
+                        height: 170,
+                        width: double.maxFinite,
+                        child: ListView.separated(
+                          itemCount: 10,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, index) {
+                            return MovieList(
+                                moviesModel: getMoviesModel
+                                    .fromJson(snapshot.data[index]));
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(
+                              width: 20,
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        height: 170,
+                        width: 125,
+                        child: const Center(child: Text("Unavailable Data")),
+                      );
+                    }
+                  }
+                },
               ),
             ],
           ),

@@ -19,6 +19,11 @@ class MongoDatabase {
     return movieData;
   }
 
+  static Future<List<Map<String,dynamic>>> getPopularMovies() async{
+    final movieData = await movieCollection.find(where.eq('language', 'en').limit(10)).toList();
+    return movieData;
+  }
+
   // static Future<String> insert(MongoDbModel data) async {
   //   try {
   //     var result = await movieCollection.insertOne(data.toJson());
