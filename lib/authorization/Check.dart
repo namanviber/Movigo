@@ -16,7 +16,7 @@ class Check extends StatelessWidget {
             return HomeScreen();
 
           } else {
-            return HomeScreen();
+            return LoginScreen();
           }
         },
       ),

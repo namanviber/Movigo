@@ -7,191 +7,88 @@ import 'package:project2/service/mongoDbCall.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:project2/screens/login_screen.dart';
+import 'package:project2/widgets/signup_widget.dart';
 
 class SignUp extends StatefulWidget {
-  final VoidCallback showLogin;
-  SignUp({required this.showLogin, Key? key}) : super(key: key);
+  const SignUp({Key? key}) : super(key: key);
 
   @override
   State<SignUp> createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
-  final _email = TextEditingController();
-  final _password = TextEditingController();
-  final _confirmpassword = TextEditingController();
-  bool showtext = true;
-  bool showtextconfirm = true;
-  final formKey = GlobalKey<FormState>();
+
 
   // Future<void> _insertData() async {
   //   final data = MongoDbModel(email: "namanviber@gmail.com", password: "Naman@123", name: "Naman Jain", phoneNumber: 8307607758, username: "namanviber", gender: "Male", age: 20);
   //   var result = await MongoDatabase.insert(data);
   // }
 
-  Future sign_up() async {
-    final isvalid = formKey.currentState!.validate();
-    if (isvalid) {
-      try {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: _email.toString().trim(),
-            password: _password.toString().trim());
-      } on FirebaseAuthException catch (e) {
-        print(e);
-      }
-    }
-  }
+
 
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('assets/images/background_login.png'),
-            fit: BoxFit.cover),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pushNamed(context, "/splash_screen"),
         ),
-        body: SingleChildScrollView(
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body:
+      Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background_login.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                height: 200,
+              const SizedBox(
+                height: 120,
               ),
               Container(
-                padding: EdgeInsets.all(16),
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        controller: _email,
-                        decoration: const InputDecoration(
-                          hintText: "Enter email address",
-                          labelText: "Email",
-                        ),
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        validator: (value) {
-                          if (value!.isEmpty &&
-                              !EmailValidator.validate(value)) {
-                            return "Enter valid email";
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextFormField(
-                        controller: _password,
-                        decoration: InputDecoration(
-                            hintText: "Enter Password",
-                            labelText: "Password",
-                            suffixIcon: InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    showtext = !showtext;
-                                  });
-                                },
-                                child: Icon(
-                                  Icons.remove_red_eye_outlined,
-                                  color:
-                                      (showtext) ? Colors.grey : Colors.white,
-                                ))),
-                        obscureText: showtext,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        validator: (value) {
-                          if (value!.isEmpty && value.length < 8) {
-                            return "Minimum 8 Characters Required";
-                          }
-                          return null;
-                        },
-                        onChanged: (value) {},
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextFormField(
-                        scrollPadding: EdgeInsets.only(
-                            bottom: MediaQuery.of(context).viewInsets.bottom),
-                        controller: _confirmpassword,
-                        decoration: InputDecoration(
-                          hintText: "Enter Password",
-                          labelText: "Confirm Password",
-                          suffixIcon: InkWell(
-                            onTap: () {
-                              setState(() {
-                                showtextconfirm = !showtextconfirm;
-                              });
-                            },
-                            child: Icon(
-                              Icons.remove_red_eye_outlined,
-                              color: (showtextconfirm)
-                                  ? Colors.grey
-                                  : Colors.white,
-                            ),
-                          ),
-                        ),
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        obscureText: showtextconfirm,
-                        validator: (value) {
-                          if (value!.isEmpty && _confirmpassword != _password) {
-                            return "Password donot match";
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    ],
+                padding: const EdgeInsets.all(24),
+                child: Column(children: const [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Let's get you signed up. ",
+                      style: TextStyle(
+                          fontFamily: "Inter",
+                          fontSize: 28,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
+                  SizedBox(
+                    height: 14,
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Welcome! ",
+                      style: TextStyle(
+                          height: 1.2,
+                          fontFamily: "Inter",
+                          fontSize: 26,
+                          color: Colors.white,
+                          fontWeight: FontWeight.normal),
+                    ),
+                  ),
+                ]),
               ),
-              Column(
-                children: [
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: sign_up,
-                      child: Container(
-                        height: 50,
-                        width: 300,
-                        child: Center(
-                          child: Text("SignUp",
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 14, fontWeight: FontWeight.bold)),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  InkWell(
-                    onTap: widget.showLogin,
-                    child: RichText(
-                      text: TextSpan(children: [
-                        TextSpan(
-                          text: "Already have an account? ",
-                          style: GoogleFonts.montserrat(fontSize: 12),
-                        ),
-                        TextSpan(
-                          text: "Login",
-                          style: GoogleFonts.montserrat(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue),
-                        ),
-                      ]),
-                    ),
-                  )
-                ],
-              )
+              StreamBuilder<User?>(
+                stream: FirebaseAuth.instance.authStateChanges(),
+                builder: (context, snapshot) {
+                  return SignupWidget();
+                },
+              ),
             ],
           ),
         ),
