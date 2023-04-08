@@ -31,14 +31,14 @@ class _RecommenderScreenState extends State<RecommenderScreen> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('assets/img.png'), fit: BoxFit.cover),
+            image: AssetImage('assets/images/img.png'), fit: BoxFit.cover),
       ),
       child: Container(
         child: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(height: 100,),
-              Image.asset('assets/09090F.png',fit: BoxFit.cover,),
+              Image.asset('assets/images/09090F.png',fit: BoxFit.cover,),
               Container(padding: EdgeInsets.fromLTRB(20,0,20,0),
                 child: Text("Choose Your Favourite Genres",textAlign: TextAlign.left,style: TextStyle(fontSize: 25,decoration: TextDecoration.none,color: Colors.white),),),
               SizedBox(height: 15,),

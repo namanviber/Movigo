@@ -29,13 +29,13 @@ class _HomeState extends State<Home> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('assets/img.png'), fit: BoxFit.cover),
+            image: AssetImage('assets/images/img.png'), fit: BoxFit.cover),
       ),
       child: SingleChildScrollView(
         child: Column(
           children: [
             const SizedBox(height: 100,),
-            Image.asset('assets/09090F.png',fit: BoxFit.cover,),
+            Image.asset('assets/images/09090F.png',fit: BoxFit.cover,),
             Container(padding: const EdgeInsets.fromLTRB(20,0,20,0),
               child: const Text("Here are some good suggestions for you",textAlign: TextAlign.left,style: TextStyle(fontSize: 25,decoration: TextDecoration.none,color: Colors.white),),),
             const SizedBox(height: 15,),
@@ -45,11 +45,11 @@ class _HomeState extends State<Home> {
                 ElevatedButton(
                   onPressed:(){setState(() {value=!value;});},
                   style: ElevatedButton.styleFrom(padding: const EdgeInsets.fromLTRB(0,0,0,0), backgroundColor: value?Colors.transparent:Colors.transparent, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),side: const BorderSide(width: 2.0,color: Colors.white),),
-                  child: Image.asset('assets/img_4.png',height: 250,width: 150,),),
+                  child: Image.asset('assets/images/img_4.png',height: 250,width: 150,),),
                 const SizedBox(width: 40,),
                 ElevatedButton(onPressed:(){setState(() {value1=!value1;});},
                   style: ElevatedButton.styleFrom(backgroundColor: value1?Colors.transparent:Colors.transparent, padding: const EdgeInsets.fromLTRB(0,0,0,0), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),side: const BorderSide(width: 2.0,color: Colors.white)),
-                  child: Image.asset('assets/img_2.png',height: 250,width: 150,),),
+                  child: Image.asset('assets/images/img_2.png',height: 250,width: 150,),),
               ],),
             const SizedBox(height: 40,),
             Row(
@@ -58,13 +58,13 @@ class _HomeState extends State<Home> {
                 ElevatedButton(
                   onPressed:(){setState(() {value2=!value2;});},
                   style: ElevatedButton.styleFrom(padding: const EdgeInsets.fromLTRB(0,0,0,0), backgroundColor: value2?Colors.transparent:Colors.transparent, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),side: const BorderSide(width: 2.0,color: Colors.white)),
-                  child: Image.asset('assets/img_5.png',height: 250,width: 150,),
+                  child: Image.asset('assets/images/img_5.png',height: 250,width: 150,),
                 ),
                 const SizedBox(width: 40,),
                 ElevatedButton(
                   onPressed:(){setState(() {value3=!value3;});},
                   style: ElevatedButton.styleFrom(padding: const EdgeInsets.fromLTRB(0,10,0,0), backgroundColor: value3?Colors.transparent:Colors.transparent,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),side: const BorderSide(width: 2.0,color: Colors.white)),
-                  child: Image.asset('assets/img_4.png',height: 250,width: 150,),
+                  child: Image.asset('assets/images/img_4.png',height: 250,width: 150,),
                 ),
               ],),
             const SizedBox(height: 40,),
