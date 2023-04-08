@@ -12,6 +12,7 @@ import 'package:project2/screens/search_screen.dart';
 import 'package:project2/screens/settings_screen.dart';
 import 'package:project2/screens/watchlist_screen.dart';
 import 'package:project2/service/apiCall.dart';
+import 'package:project2/screens/recommended_movies.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,7 +50,8 @@ class Movigo extends StatelessWidget {
         '/setting_screen':(context)=>const SettingsScreen(),
         '/check':(context)=>const Check(),
         '/profile_edit':(context)=>ProfileEditPage(),
-        '/search_screen':(_)=>SearchScreen()
+        '/search_screen':(_)=>SearchScreen(),
+        '/recommended_movies':(context)=>RecommendedMovies()
 
       },
     );
