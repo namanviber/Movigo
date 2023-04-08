@@ -14,6 +14,14 @@ class MovieList extends StatefulWidget {
 class _MovieListState extends State<MovieList> {
   MovieDetailModel? movieDetail;
 
+  var fetchdetails;
+  int? movieiD;
+  @override
+  void initState() {
+    fetchdetails = fetchMovieDetails(movieiD!);
+    super.initState();
+  }
+
   Future<void> fetchMovieDetails(int movieid) async {
     final response3 = await movieDetails(movieid);
     setState(() {
@@ -26,7 +34,7 @@ class _MovieListState extends State<MovieList> {
     final posterUrl =
         'https://image.tmdb.org/t/p/w600_and_h900_bestv2${widget.moviesModel.posterPath}';
     return FutureBuilder(
-      future: fetchMovieDetails(widget.moviesModel.tmdbId),
+      future: fetchdetails,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(
