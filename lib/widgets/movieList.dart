@@ -15,10 +15,10 @@ class _MovieListState extends State<MovieList> {
   MovieDetailModel? movieDetail;
 
   var fetchdetails;
-  int? movieiD;
+  // int? movieiD;
   @override
   void initState() {
-    fetchdetails = fetchMovieDetails(movieiD!);
+    // fetchdetails = fetchMovieDetails(movieiD!);
     super.initState();
   }
 

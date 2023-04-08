@@ -21,7 +21,7 @@ class BottomNavigation extends StatelessWidget {
           Navigator.pushNamed(context, '/home_screen');
 
         } else if (screen_index == 1) {
-          Navigator.pushNamed(context, '/api_call');
+          Navigator.pushNamed(context, '/recommender_screen');
 
         } else if (screen_index == 3) {
           Navigator.pushNamed(context, '/setting_screen');

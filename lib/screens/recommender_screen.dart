@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class RecommenderScreen extends StatefulWidget {
+  const RecommenderScreen({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<RecommenderScreen> createState() => _RecommenderScreenState();
 }
 bool value = false;
 bool value1 = false;
@@ -24,7 +24,7 @@ bool value14 = false;
 bool value15 = false;
 bool value16 = false;
 bool value17 = false;
-class _HomeState extends State<Home> {
+class _RecommenderScreenState extends State<RecommenderScreen> {
   @override
   Widget build(BuildContext context) {
 

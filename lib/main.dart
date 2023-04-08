@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project2/authorization/Check.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:project2/screens/recommender_screen.dart';
 import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/screens/about_us_screen.dart';
 import 'package:project2/screens/general_settings_screen.dart';
@@ -46,7 +47,7 @@ class Movigo extends StatelessWidget {
         '/privacy_policy':(context)=>const PrivacyPolicyScreen(),
         '/watch_list':(context)=>const WatchlistScreen(),
         '/home_screen':(context)=>const HomeScreen(),
-        '/api_call':(context)=>const ApiCall(),
+        '/recommender_screen':(context)=> RecommenderScreen(),
         '/setting_screen':(context)=>const SettingsScreen(),
         '/check':(context)=>const Check(),
         '/profile_edit':(context)=>ProfileEditPage(),
