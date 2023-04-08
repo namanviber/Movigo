@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project2/models/MovieCrewDetailsModel.dart';
+import 'package:project2/models/apiModels/MovieCrewDetailsModel.dart';
 
 class MovieCrewRow extends StatefulWidget {
   MovieCrewRow({required this.model, Key? key}) : super(key: key);

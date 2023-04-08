@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project2/models/DiscoverMovieModel.dart';
-import 'package:project2/models/GetMovieVideos.dart';
-import 'package:project2/models/MovieDetailModel.dart';
-import 'package:project2/models/MovieCastDetailsModel.dart';
-import 'package:project2/models/MovieCrewDetailsModel.dart';
-import 'package:project2/service/api_call.dart';
+import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
+import 'package:project2/models/apiModels/GetMovieVideos.dart';
+import 'package:project2/models/apiModels/MovieDetailModel.dart';
+import 'package:project2/models/apiModels/MovieCastDetailsModel.dart';
+import 'package:project2/models/apiModels/MovieCrewDetailsModel.dart';
+import 'package:project2/service/apiCall.dart';
 import 'package:project2/widgets/heading_text.dart';
 import 'package:project2/widgets/movie_cast_row.dart';
 import 'package:project2/widgets/movie_crew_row.dart';
@@ -13,7 +13,7 @@ import 'package:project2/widgets/movie_video_row.dart';
 import 'package:project2/widgets/movie_row.dart';
 
 class MovieInfo extends StatefulWidget {
-  final DiscoverMovieModel movieModel;
+  final MovieDetailModel movieModel;
   MovieInfo({required this.movieModel, Key? key}) : super(key: key);
 
   @override
@@ -23,32 +23,23 @@ class MovieInfo extends StatefulWidget {
 class _MovieInfoState extends State<MovieInfo> {
   List<MovieCastDetailsModel> _movieCast = [];
   List<MovieCrewDetailsModel> _movieCrew = [];
-  List<MovieVideos> _movieVideos = [];
-  late MovieDetailModel movieDetail;
+  // List<MovieVideos> _movieVideos = [];
   int moviecode = 76600;
 
   @override
   void initState() {
     super.initState();
-    fetchMovieDetails(moviecode);
     fetchCreditDetails(moviecode);
-  }
-
-  Future<void> fetchMovieDetails(int movieid) async {
-    final response3 = await movieDetails(movieid);
-    setState(() {
-      movieDetail = response3;
-    });
   }
 
   Future<void> fetchCreditDetails(int movieid) async {
     final response1 = await movieCastDetails(movieid);
     final response2 = await movieCrewDetails(movieid);
-    final response3 = await movieVideos(movieid);
+    // final response3 = await movieVideos(movieid);
     setState(() {
       _movieCast = response1;
       _movieCrew = response2;
-      _movieVideos = response3;
+      // _movieVideos = response3;
     });
   }
 
@@ -243,23 +234,23 @@ class _MovieInfoState extends State<MovieInfo> {
                     const SizedBox(
                       height: 20,
                     ),
-                    SizedBox(
-                      height: 215,
-                      width: double.maxFinite,
-                      child: ListView.separated(
-                        itemCount: _movieVideos.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (BuildContext context, index) {
-                          final video = _movieVideos[index];
-                          return MovieVideoRow(model: video);
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return const SizedBox(
-                            width: 20,
-                          );
-                        },
-                      ),
-                    ),
+                    // SizedBox(
+                    //   height: 215,
+                    //   width: double.maxFinite,
+                    //   child: ListView.separated(
+                    //     itemCount: _movieVideos.length,
+                    //     scrollDirection: Axis.horizontal,
+                    //     itemBuilder: (BuildContext context, index) {
+                    //       final video = _movieVideos[index];
+                    //       return MovieVideoRow(model: video);
+                    //     },
+                    //     separatorBuilder: (BuildContext context, int index) {
+                    //       return const SizedBox(
+                    //         width: 20,
+                    //       );
+                    //     },
+                    //   ),
+                    // ),
                     const SizedBox(
                       height: 20,
                     ),

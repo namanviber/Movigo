@@ -3,7 +3,7 @@ import 'package:project2/screens/home_screen.dart';
 import 'package:project2/screens/watchlist_screen.dart';
 import 'package:project2/screens/recommender_screen.dart';
 import 'package:project2/screens/settings_screen.dart';
-import 'package:project2/service/api_call.dart';
+import 'package:project2/service/apiCall.dart';
 
 class BottomNavigation extends StatelessWidget {
   BottomNavigation({required this.screen_index, Key? key}) : super(key: key);

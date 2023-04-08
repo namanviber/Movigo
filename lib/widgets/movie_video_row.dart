@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project2/models/GetMovieVideos.dart';
+import 'package:project2/models/apiModels/GetMovieVideos.dart';
 import 'package:project2/screens/movie_info_screen.dart';
 
 class MovieVideoRow extends StatefulWidget {

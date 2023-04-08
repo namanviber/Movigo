@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project2/models/DiscoverMovieModel.dart';
+import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
 
 class MovieCard extends StatelessWidget {
   final DiscoverMovieModel movie;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project2/models/MovieCastDetailsModel.dart';
-import 'package:project2/models/MovieCrewDetailsModel.dart';
-import 'package:project2/models/DiscoverMovieModel.dart';
-import 'package:project2/service/api_call.dart';
+import 'package:project2/models/apiModels/MovieCastDetailsModel.dart';
+import 'package:project2/models/apiModels/MovieCrewDetailsModel.dart';
+import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
+import 'package:project2/service/apiCall.dart';
 import 'package:project2/widgets/movie_card.dart';
 
 class ItemGrid extends StatefulWidget {

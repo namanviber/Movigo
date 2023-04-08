@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:project2/models/DiscoverMovieModel.dart';
-import 'package:project2/models/GetMovieVideos.dart';
-import 'package:project2/models/MovieDetailModel.dart';
-import 'package:project2/models/MovieCastDetailsModel.dart';
-import 'package:project2/models/MovieCrewDetailsModel.dart';
+import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
+import 'package:project2/models/apiModels/GetMovieVideos.dart';
+import 'package:project2/models/apiModels/MovieDetailModel.dart';
+import 'package:project2/models/apiModels/MovieCastDetailsModel.dart';
+import 'package:project2/models/apiModels/MovieCrewDetailsModel.dart';
 
 class ApiConfig {
   static const _baseUrl = 'https://api.themoviedb.org/3/';

@@ -2,14 +2,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project2/authorization/auth_google.dart';
 import 'package:mongo_dart/mongo_dart.dart' as mongo;
-import 'package:project2/models/MongoDbModel.dart';
-import 'package:project2/authorization/mongodb.dart';
+import 'package:project2/models/mongoDbModels/MongoDbModel.dart';
+import 'package:project2/service/mongoDbCall.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:project2/screens/login_screen.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+  final VoidCallback showLogin;
+  SignUp({required this.showLogin, Key? key}) : super(key: key);
 
   @override
   State<SignUp> createState() => _SignUpState();
@@ -172,12 +173,7 @@ class _SignUpState extends State<SignUp> {
                     height: 20,
                   ),
                   InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LoginScreen()));
-                    },
+                    onTap: widget.showLogin,
                     child: RichText(
                       text: TextSpan(children: [
                         TextSpan(

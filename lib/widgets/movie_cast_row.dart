@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project2/models/MovieCastDetailsModel.dart';
+import 'package:project2/models/apiModels/MovieCastDetailsModel.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MovieCastRow extends StatefulWidget {

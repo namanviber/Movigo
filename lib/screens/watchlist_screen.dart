@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:project2/widgets/bottom_bar.dart';
 import '../widgets/movie_card.dart';
-import 'package:project2/models/DiscoverMovieModel.dart';
-import 'package:project2/service/api_call.dart';
+import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
+import 'package:project2/service/apiCall.dart';
 
 class WatchlistScreen extends StatefulWidget {
   const WatchlistScreen({Key? key}) : super(key: key);

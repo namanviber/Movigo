@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project2/authorization/Check.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:project2/authorization/mongodb.dart';
+import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/screens/about_us_screen.dart';
 import 'package:project2/screens/general_settings_screen.dart';
 import 'package:project2/screens/home_screen.dart';
@@ -11,7 +11,7 @@ import 'package:project2/screens/profile_edit_screen.dart';
 import 'package:project2/screens/search_screen.dart';
 import 'package:project2/screens/settings_screen.dart';
 import 'package:project2/screens/watchlist_screen.dart';
-import 'package:project2/service/api_call.dart';
+import 'package:project2/service/apiCall.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

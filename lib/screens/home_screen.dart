@@ -1,12 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
+import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:project2/widgets/filter_row.dart';
 import 'package:project2/widgets/heading_text.dart';
+import 'package:project2/widgets/movieList.dart';
 import '../widgets/movie_row.dart';
-import 'package:project2/models/DiscoverMovieModel.dart';
-import 'package:project2/service/api_call.dart';
+import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
+import 'package:project2/service/apiCall.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,29 +21,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-  List<DiscoverMovieModel> _discoverMovie = [];
-  List<DiscoverMovieModel> _popularMovie = [];
-  List<DiscoverMovieModel> _topScifiMovie = [];
-  List<DiscoverMovieModel> _popularKidsMovie = [];
+  var fetchmoviedb;
 
   @override
   void initState() {
+    fetchmoviedb = MongoDatabase.getMovies();
     super.initState();
-    fetchMovies();
-  }
-
-  Future<void> fetchMovies() async {
-    final response1 = await discoverMovies();
-    final response2 = await popularMovies();
-    final response3 = await topSciFiMovies();
-    final response4 = await popularKidsMovies();
-    setState(() {
-      _discoverMovie = response1;
-      _popularMovie = response2;
-      _topScifiMovie = response3;
-      _popularKidsMovie = response4;
-    });
   }
 
   final user = FirebaseAuth.instance.currentUser!;
@@ -61,19 +47,20 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             RichText(
-                text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "Hello ",
-                        style: GoogleFonts.montserrat(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      TextSpan(
-                        text: " Naman",
-                        style: GoogleFonts.montserrat(fontSize: 14,),
-                      ),
-                    ]
+              text: TextSpan(children: [
+                TextSpan(
+                  text: "Hello ",
+                  style: GoogleFonts.montserrat(
+                      fontSize: 20, fontWeight: FontWeight.bold),
                 ),
+                TextSpan(
+                  text: " Naman",
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14,
+                  ),
                 ),
+              ]),
+            ),
             InkWell(
               onTap: () {
                 FirebaseAuth.instance.signOut();
@@ -110,12 +97,11 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: <Widget>[
               SizedBox(
-
                 width: 340,
                 height: 60,
                 child: TextField(
-                   readOnly: true,
-                  onTap: (){
+                  readOnly: true,
+                  onTap: () {
                     Navigator.pushNamed(context, '/search_screen');
                   },
                   textAlignVertical: TextAlignVertical.center,
@@ -135,127 +121,151 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 40,
               ),
-              CarouselSlider(
-                items: _discoverMovie
-                    .map((item) => InkWell(
-                          onTap: () {},
-                          child: Column(
-                            children: [
-                              ClipRRect(
-                                  borderRadius: BorderRadius.circular(16.0),
-                                  child: Image.network(
-                                    "https://image.tmdb.org/t/p/original${item.posterPath}",
-                                    fit: BoxFit.cover,
-                                    height: 245,
-                                    width: 180,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return Image.asset(
-                                        "assets/images/noimage.png",
-                                        fit: BoxFit.cover,
-                                      );
-                                    },
-                                  )),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                "${item.originalTitle}",
-                                style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.bold),
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                textAlign: TextAlign.center,
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    height: 20,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        color: Color(0xff51535E),
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: Center(
-                                      child: Text(
-                                        "18+",
-                                        style:
-                                            GoogleFonts.montserrat(fontSize: 13, fontWeight: FontWeight.w600),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                    height: 22,
-                                    width: 60,
-                                    decoration: BoxDecoration(
-                                        color: Color(0xff51535E),
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: Center(
-                                      child: Text(
-                                        "Action",
-                                        style:
-                                        GoogleFonts.montserrat(fontSize: 13, fontWeight: FontWeight.w600),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                    height: 22,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        color: Color(0xff51535E),
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: Center(
-                                      child: Text(
-                                        "en",
-                                        style:
-                                        GoogleFonts.montserrat(fontSize: 13, fontWeight: FontWeight.w600),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ))
-                    .toList(),
-                options: CarouselOptions(
-                  autoPlayInterval: const Duration(seconds: 2),
-                  viewportFraction: 0.55,
-                  height: 405,
-                  autoPlay: true,
-                  aspectRatio: 2.0,
-                  enlargeCenterPage: true,
-                ),
-              ),
+              // CarouselSlider(
+              //   items: _discoverMovie
+              //       .map((item) => InkWell(
+              //             onTap: () {},
+              //             child: Column(
+              //               children: [
+              //                 ClipRRect(
+              //                     borderRadius: BorderRadius.circular(16.0),
+              //                     child: Image.network(
+              //                       "https://image.tmdb.org/t/p/original${item.posterPath}",
+              //                       fit: BoxFit.cover,
+              //                       height: 245,
+              //                       width: 180,
+              //                       errorBuilder: (context, error, stackTrace) {
+              //                         return Image.asset(
+              //                           "assets/images/noimage.png",
+              //                           fit: BoxFit.cover,
+              //                         );
+              //                       },
+              //                     )),
+              //                 const SizedBox(
+              //                   height: 10,
+              //                 ),
+              //                 Text(
+              //                   "${item.originalTitle}",
+              //                   style: GoogleFonts.montserrat(
+              //                       fontSize: 14, fontWeight: FontWeight.bold),
+              //                   overflow: TextOverflow.ellipsis,
+              //                   maxLines: 1,
+              //                   textAlign: TextAlign.center,
+              //                 ),
+              //                 const SizedBox(
+              //                   height: 10,
+              //                 ),
+              //                 Row(
+              //                   mainAxisAlignment: MainAxisAlignment.center,
+              //                   children: [
+              //                     Container(
+              //                       height: 20,
+              //                       width: 40,
+              //                       decoration: BoxDecoration(
+              //                           color: const Color(0xff51535E),
+              //                           borderRadius: BorderRadius.circular(5)),
+              //                       child: Center(
+              //                         child: Text(
+              //                           "18+",
+              //                           style: GoogleFonts.montserrat(
+              //                               fontSize: 13,
+              //                               fontWeight: FontWeight.w600),
+              //                         ),
+              //                       ),
+              //                     ),
+              //                     const SizedBox(
+              //                       width: 10,
+              //                     ),
+              //                     Container(
+              //                       height: 22,
+              //                       width: 60,
+              //                       decoration: BoxDecoration(
+              //                           color: const Color(0xff51535E),
+              //                           borderRadius: BorderRadius.circular(5)),
+              //                       child: Center(
+              //                         child: Text(
+              //                           "Action",
+              //                           style: GoogleFonts.montserrat(
+              //                               fontSize: 13,
+              //                               fontWeight: FontWeight.w600),
+              //                         ),
+              //                       ),
+              //                     ),
+              //                     const SizedBox(
+              //                       width: 10,
+              //                     ),
+              //                     Container(
+              //                       height: 22,
+              //                       width: 40,
+              //                       decoration: BoxDecoration(
+              //                           color: const Color(0xff51535E),
+              //                           borderRadius: BorderRadius.circular(5)),
+              //                       child: Center(
+              //                         child: Text(
+              //                           "en",
+              //                           style: GoogleFonts.montserrat(
+              //                               fontSize: 13,
+              //                               fontWeight: FontWeight.w600),
+              //                         ),
+              //                       ),
+              //                     ),
+              //                   ],
+              //                 )
+              //               ],
+              //             ),
+              //           ))
+              //       .toList(),
+              //   options: CarouselOptions(
+              //     autoPlayInterval: const Duration(seconds: 2),
+              //     viewportFraction: 0.55,
+              //     height: 405,
+              //     autoPlay: true,
+              //     aspectRatio: 2.0,
+              //     enlargeCenterPage: true,
+              //   ),
+              // ),
               TextHeading(heading: "Discover Movies"),
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 170,
-                width: double.maxFinite,
-                child: ListView.separated(
-                  itemCount: _discoverMovie.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, index) {
-                    final movie = _discoverMovie[index];
-                    return MovieRow(
-                      model: movie,
+              FutureBuilder(
+                future: fetchmoviedb,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      height: 170,
+                      width: 125,
+                      child: const Center(child: CircularProgressIndicator()),
                     );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      width: 20,
-                    );
-                  },
-                ),
+                  } else {
+                    if (snapshot.hasData) {
+                      return Container(
+                        height: 170,
+                        width: double.maxFinite,
+                        child: ListView.separated(
+                          itemCount: 10,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, index) {
+                            return MovieList(
+                                moviesModel: getMoviesModel
+                                    .fromJson(snapshot.data[index]));
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(
+                              width: 20,
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        height: 170,
+                        width: 125,
+                        child: const Center(child: Text("Unavailable Data")),
+                      );
+                    }
+                  }
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -264,24 +274,44 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 170,
-                width: double.maxFinite,
-                child: ListView.separated(
-                  itemCount: _popularMovie.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, index) {
-                    final movie = _popularMovie[index];
-                    return MovieRow(
-                      model: movie,
+              FutureBuilder(
+                future: fetchmoviedb,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      height: 170,
+                      width: 125,
+                      child: const Center(child: CircularProgressIndicator()),
                     );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      width: 20,
-                    );
-                  },
-                ),
+                  } else {
+                    if (snapshot.hasData) {
+                      return Container(
+                        height: 170,
+                        width: double.maxFinite,
+                        child: ListView.separated(
+                          itemCount: 10,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, index) {
+                            return MovieList(
+                                moviesModel: getMoviesModel
+                                    .fromJson(snapshot.data[index]));
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(
+                              width: 20,
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        height: 170,
+                        width: 125,
+                        child: const Center(child: Text("Unavailable Data")),
+                      );
+                    }
+                  }
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -309,24 +339,44 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 170,
-                width: double.maxFinite,
-                child: ListView.separated(
-                  itemCount: _discoverMovie.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, index) {
-                    final movie = _discoverMovie[index];
-                    return MovieRow(
-                      model: movie,
+              FutureBuilder(
+                future: fetchmoviedb,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      height: 170,
+                      width: 125,
+                      child: const Center(child: CircularProgressIndicator()),
                     );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      width: 20,
-                    );
-                  },
-                ),
+                  } else {
+                    if (snapshot.hasData) {
+                      return Container(
+                        height: 170,
+                        width: double.maxFinite,
+                        child: ListView.separated(
+                          itemCount: 10,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, index) {
+                            return MovieList(
+                                moviesModel: getMoviesModel
+                                    .fromJson(snapshot.data[index]));
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(
+                              width: 20,
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        height: 170,
+                        width: 125,
+                        child: const Center(child: Text("Unavailable Data")),
+                      );
+                    }
+                  }
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -335,24 +385,44 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 170,
-                width: double.maxFinite,
-                child: ListView.separated(
-                  itemCount: _discoverMovie.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, index) {
-                    final movie = _discoverMovie[index];
-                    return MovieRow(
-                      model: movie,
+              FutureBuilder(
+                future: fetchmoviedb,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      height: 170,
+                      width: 125,
+                      child: const Center(child: CircularProgressIndicator()),
                     );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      width: 20,
-                    );
-                  },
-                ),
+                  } else {
+                    if (snapshot.hasData) {
+                      return Container(
+                        height: 170,
+                        width: double.maxFinite,
+                        child: ListView.separated(
+                          itemCount: 10,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, index) {
+                            return MovieList(
+                                moviesModel: getMoviesModel
+                                    .fromJson(snapshot.data[index]));
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(
+                              width: 20,
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        height: 170,
+                        width: 125,
+                        child: const Center(child: Text("Unavailable Data")),
+                      );
+                    }
+                  }
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -375,24 +445,44 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 170,
-                width: double.maxFinite,
-                child: ListView.separated(
-                  itemCount: _topScifiMovie.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, index) {
-                    final movie = _topScifiMovie[index];
-                    return MovieRow(
-                      model: movie,
+              FutureBuilder(
+                future: fetchmoviedb,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      height: 170,
+                      width: 125,
+                      child: const Center(child: CircularProgressIndicator()),
                     );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      width: 20,
-                    );
-                  },
-                ),
+                  } else {
+                    if (snapshot.hasData) {
+                      return Container(
+                        height: 170,
+                        width: double.maxFinite,
+                        child: ListView.separated(
+                          itemCount: 10,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, index) {
+                            return MovieList(
+                                moviesModel: getMoviesModel
+                                    .fromJson(snapshot.data[index]));
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(
+                              width: 20,
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        height: 170,
+                        width: 125,
+                        child: const Center(child: Text("Unavailable Data")),
+                      );
+                    }
+                  }
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -401,24 +491,44 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 170,
-                width: double.maxFinite,
-                child: ListView.separated(
-                  itemCount: _popularKidsMovie.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, index) {
-                    final movie = _popularKidsMovie[index];
-                    return MovieRow(
-                      model: movie,
+              FutureBuilder(
+                future: fetchmoviedb,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      height: 170,
+                      width: 125,
+                      child: const Center(child: CircularProgressIndicator()),
                     );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      width: 20,
-                    );
-                  },
-                ),
+                  } else {
+                    if (snapshot.hasData) {
+                      return Container(
+                        height: 170,
+                        width: double.maxFinite,
+                        child: ListView.separated(
+                          itemCount: 10,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, index) {
+                            return MovieList(
+                                moviesModel: getMoviesModel
+                                    .fromJson(snapshot.data[index]));
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(
+                              width: 20,
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        height: 170,
+                        width: 125,
+                        child: const Center(child: Text("Unavailable Data")),
+                      );
+                    }
+                  }
+                },
               ),
             ],
           ),

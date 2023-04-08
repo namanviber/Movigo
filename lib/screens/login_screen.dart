@@ -6,7 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project2/screens/sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  final VoidCallback showSignup;
+  LoginScreen({required this.showSignup,Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -118,8 +119,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontWeight: FontWeight.bold),
                         ),
                         onTap: (){
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => SignUp()));
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(builder: (context) => SignUp(showLogin: True,)));
                         },
                       ),
                     ),
@@ -218,10 +219,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 20,
                 ),
                 InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignUp()));
-                  },
+                  onTap: widget.showSignup,
                   child: RichText(
                     text: TextSpan(children: [
                       TextSpan(
