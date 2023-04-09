@@ -15,14 +15,34 @@ class MongoDatabase {
   }
 
   static Future<List<Map<String,dynamic>>> getMovies() async{
-    final movieData = await movieCollection.find(where.eq('language', 'en').limit(10)).toList();
+    final movieData = await movieCollection.find(where.eq('language', 'en').limit(50)).toList();
     return movieData;
   }
 
   static Future<List<Map<String,dynamic>>> getPopularMovies() async{
-    final movieData = await movieCollection.find(where.eq('language', 'en').limit(10)).toList();
+    final movieData = await movieCollection.find({}).sort({"popularity":-1}).limit(50).tolist();
     return movieData;
   }
+
+  static Future<List<Map<String,dynamic>>> getScifiMovies() async{
+    final movieData = await movieCollection.find(where.eq('popularity', 1)).limit(50).toList();
+    return movieData;
+  }
+
+  // static Future<List<Map<String,dynamic>>> getPopularMovies() async{
+  //   final movieData = await movieCollection.find(where.eq('language', 'en').limit(10)).toList();
+  //   return movieData;
+  // }
+  //
+  // static Future<List<Map<String,dynamic>>> getPopularMovies() async{
+  //   final movieData = await movieCollection.find(where.eq('language', 'en').limit(10)).toList();
+  //   return movieData;
+  // }
+  //
+  // static Future<List<Map<String,dynamic>>> getPopularMovies() async{
+  //   final movieData = await movieCollection.find(where.eq('language', 'en').limit(10)).toList();
+  //   return movieData;
+  // }
 
   // static Future<String> insert(MongoDbModel data) async {
   //   try {

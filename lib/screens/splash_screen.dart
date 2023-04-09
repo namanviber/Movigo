@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return AnimatedSplashScreen(
       splash: Image.asset('assets/images/09090F.png'),
       splashIconSize: 350,
-      nextScreen: LandingScreen(),
+      nextScreen: HomeScreen(),
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.leftToRight,
       backgroundColor: Color(0xff09090F),
