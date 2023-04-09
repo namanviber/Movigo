@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:project2/authorization/Check.dart';
 import 'package:project2/authorization/authPage.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:project2/screens/Splash_screen.dart';
+import 'package:project2/screens/landing_screen.dart';
 import 'package:project2/screens/recommender_screen.dart';
 import 'package:project2/screens/sign_up_screen.dart';
+import 'package:project2/screens/splash_screen.dart';
 import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/screens/about_us_screen.dart';
 import 'package:project2/screens/general_settings_screen.dart';
@@ -39,7 +40,7 @@ class Movigo extends StatelessWidget {
           scaffoldBackgroundColor: const Color(0xFF09090F),
           brightness: Brightness.dark),
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: SplashScreen(),
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
@@ -52,7 +53,7 @@ class Movigo extends StatelessWidget {
         '/home_screen':(context)=>const HomeScreen(),
         '/recommender_screen':(context)=> const RecommenderScreen(),
         '/setting_screen':(context)=>const SettingsScreen(),
-        '/splash_screen':(context)=>SplashScreen(),
+        '/splash_screen':(context)=>LandingScreen(),
         '/signup_screen':(context)=>SignUp(),
         '/login_screen':(context)=>LoginScreen(),
         '/check':(context)=>const Check(),

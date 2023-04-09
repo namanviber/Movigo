@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SplashScreen extends StatefulWidget {
-  SplashScreen({Key? key}) : super(key: key);
+class LandingScreen extends StatefulWidget {
+  LandingScreen({Key? key}) : super(key: key);
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<LandingScreen> createState() => _LandingScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _LandingScreenState extends State<LandingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
