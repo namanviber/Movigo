@@ -3,6 +3,7 @@ import 'package:project2/authorization/Check.dart';
 import 'package:project2/authorization/authPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project2/screens/landing_screen.dart';
+import 'package:project2/screens/new.dart';
 import 'package:project2/screens/recommender_screen.dart';
 import 'package:project2/screens/sign_up_screen.dart';
 import 'package:project2/screens/splash_screen.dart';
@@ -49,7 +50,7 @@ class Movigo extends StatelessWidget {
         '/general_setting': (context) => const GeneralSettingsScreen(),
         '/about_us':(context)=> AboutUsScreen(),
         '/privacy_policy':(context)=>const PrivacyPolicyScreen(),
-        '/watch_list':(context)=>const WatchlistScreen(),
+        '/watch_list':(context)=>const New(),
         '/home_screen':(context)=>const HomeScreen(),
         '/recommender_screen':(context)=> const RecommenderScreen(),
         '/setting_screen':(context)=>const SettingsScreen(),
