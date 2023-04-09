@@ -3,9 +3,6 @@ import 'package:project2/widgets/bottom_bar.dart';
 import '../widgets/movie_card.dart';
 import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
 import 'package:project2/service/apiCall.dart';
-import 'package:project2/service/mongoDbCall.dart';
-import 'package:project2/widgets/movieList.dart';
-import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
 
 class WatchlistScreen extends StatefulWidget {
   const WatchlistScreen({Key? key}) : super(key: key);
@@ -17,36 +14,47 @@ class WatchlistScreen extends StatefulWidget {
 class _WatchlistScreenState extends State<WatchlistScreen> {
   int screen_index = 2;
   int count = 3;
+  Viewtype _viewType = Viewtype.grid;
 
-  var fetchmoviedb;
+  List<DiscoverMovieModel> content = [];
 
   @override
   void initState() {
-    fetchmoviedb = MongoDatabase.getMovies();
     super.initState();
+    fetchMovies();
+  }
+
+  Future<void> fetchMovies() async {
+    final response = await discoverMovies();
+    setState(() {
+      content = response;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        toolbarHeight: 100,
         backgroundColor: const Color(0xFF09090F),
-        title: TextField(
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-              hintText: "Search",
-              filled: true,
-              fillColor: const Color(0xFF131313),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16.0),
-                  borderSide: BorderSide.none),
-              prefixIcon: const Icon(Icons.search),
-              suffixIcon: const Icon(Icons.history_rounded),
-              suffixIconColor: Colors.white,
-              prefixIconColor: Colors.white),
-        ),
+        title: Text('Saved'),
+        centerTitle: true,
+        // automaticallyImplyLeading: false,
+        // toolbarHeight: 100,
+
+        // title: TextField(
+        //   textAlignVertical: TextAlignVertical.center,
+        //   decoration: InputDecoration(
+        //       hintText: "Search",
+        //       filled: true,
+        //       fillColor: const Color(0xFF131313),
+        //       border: OutlineInputBorder(
+        //           borderRadius: BorderRadius.circular(16.0),
+        //           borderSide: BorderSide.none),
+        //       prefixIcon: const Icon(Icons.search),
+        //       suffixIcon: const Icon(Icons.history_rounded),
+        //       suffixIconColor: Colors.white,
+        //       prefixIconColor: Colors.white),
+        // ),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -73,20 +81,20 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                       const SizedBox(
                         width: 20,
                       ),
-                      InkWell(
-                        child: const Text(
-                          "Shows",
-                          style: TextStyle(
-                              fontFamily: "Inter",
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        onTap: () {},
-                      ),
+                      // InkWell(
+                      //   child: const Text(
+                      //     "Shows",
+                      //     style: TextStyle(
+                      //         fontFamily: "Inter",
+                      //         fontSize: 20,
+                      //         fontWeight: FontWeight.bold),
+                      //   ),
+                      //   onTap: () {},
+                      // ),
                     ],
                   ),
                   Row(
-                    children: const [
+                    children: [
                       Icon(Icons.search),
                       SizedBox(
                         width: 5,
@@ -95,7 +103,19 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                       SizedBox(
                         width: 5,
                       ),
-                      Icon(Icons.grid_view),
+                      IconButton(
+                        icon: Icon(_viewType == Viewtype.list
+                            ? Icons.grid_on
+                            : Icons.view_list),
+                        onPressed: () {
+                          if (_viewType == Viewtype.list) {
+                            _viewType = Viewtype.grid;
+                          } else {
+                            _viewType = Viewtype.list;
+                          }
+                          setState(() {});
+                        },
+                      )
                     ],
                   )
                 ],
@@ -194,7 +214,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                   ),
                   Row(
                     children: [
-                      Text("content.length.toString()",
+                      Text(content.length.toString(),
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -213,44 +233,58 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
               const SizedBox(
                 height: 20,
               ),
-              FutureBuilder(
-                future: fetchmoviedb,
-                builder: (context, AsyncSnapshot snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Container(
-                      height: 170,
-                      width: 125,
-                      child: const Center(child: CircularProgressIndicator()),
-                    );
-                  } else {
-                    if (snapshot.hasData) {
-                      return Container(
-                        height: 170,
-                        width: double.maxFinite,
-                        child: ListView.separated(
-                          itemCount: 10,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (BuildContext context, index) {
-                            return MovieList(
-                                moviesModel: getMoviesModel
-                                    .fromJson(snapshot.data[index]));
-                          },
-                          separatorBuilder: (BuildContext context, int index) {
-                            return const SizedBox(
-                              width: 20,
-                            );
-                          },
-                        ),
-                      );
-                    } else {
-                      return Container(
-                        height: 170,
-                        width: 125,
-                        child: const Center(child: Text("Unavailable Data")),
-                      );
-                    }
-                  }
-                },
+              SizedBox(
+                height: 450,
+                width: double.maxFinite,
+                child: ListView.builder(
+                  itemCount: content.length,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (BuildContext context, index) {
+                    final movie = content[index];
+                    return (_viewType == Viewtype.list)
+                        ? SizedBox(
+                      height: 450,
+                            child: Center(
+                              child: Container(
+                                padding: EdgeInsets.all(11),
+                                child: GridView.builder(
+                                  gridDelegate:
+                                      SliverGridDelegateWithMaxCrossAxisExtent(
+                                    maxCrossAxisExtent: 110,
+                                    mainAxisExtent: 150,
+                                    mainAxisSpacing: 11,
+                                    crossAxisSpacing: 11,
+                                  ),
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/images/img_3.png'),
+                                            fit: BoxFit.fill),
+                                        borderRadius:
+                                            BorderRadius.circular(7),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          )
+                        : SizedBox(
+                            height: 450,
+                            width: double.maxFinite,
+                            child: ListView.builder(
+                              itemCount: content.length,
+                              scrollDirection: Axis.vertical,
+                              itemBuilder: (BuildContext context, index) {
+                                final movie = content[index];
+                                return MovieCard(movie: movie);
+                              },
+                            ),
+                          );
+                  },
+                ),
               ),
             ],
           ),
@@ -262,3 +296,5 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
     );
   }
 }
+
+enum Viewtype { grid, list }
