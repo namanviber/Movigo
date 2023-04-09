@@ -12,7 +12,7 @@ class New extends StatefulWidget {
 }
 
 class _NewState extends State<New> {
-  int screen_index = 2;
+  int screen_index = 3;
   int count = 3;
   Viewtype _viewType = Viewtype.grid;
 

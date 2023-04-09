@@ -58,51 +58,37 @@ class _HomeScreenState extends State<HomeScreen> {
         automaticallyImplyLeading: false,
         toolbarHeight: 80,
         backgroundColor: const Color(0xFF09090F),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            RichText(
-              text: TextSpan(children: [
-                TextSpan(
-                  text: "Hello ",
-                  style: GoogleFonts.montserrat(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                TextSpan(
-                  text: " Naman",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 14,
+        title: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            children: [
+              RichText(
+                text: TextSpan(children: [
+                  TextSpan(
+                    text: "Hello ",
+                    style: GoogleFonts.montserrat(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                ),
-              ]),
-            ),
-            InkWell(
-              onTap: () {
-                FirebaseAuth.instance.signOut();
-              },
-              child: Container(
-                child: CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                    child: SizedBox(
-                        width: 60,
-                        height: 60,
-                        child: ClipOval(
-                          child: Image.network(
-                            "",
-                            fit: BoxFit.cover,
-                            height: 170,
-                            width: 125,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Image.asset(
-                                "assets/images/noimage.png",
-                                fit: BoxFit.cover,
-                              );
-                            },
-                          ),
-                        ))),
+                  TextSpan(
+                    text: " Naman",
+                    style: GoogleFonts.montserrat(
+                      fontSize: 14,
+                    ),
+                  ),
+                ]),
               ),
-            ),
-          ],
+              Spacer(),
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, '/profile_edit');
+                },
+                child: Container(
+                  child: CircleAvatar(
+                      backgroundColor: Colors.white, child: Text("N")),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -111,70 +97,81 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: <Widget>[
-              SizedBox(
-                width: 340,
-                height: 60,
-                child: TextField(
-                  readOnly: true,
-                  onTap: () {
-                    Navigator.pushNamed(context, '/search_screen');
-                  },
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                      hintText: "Search",
-                      filled: true,
-                      fillColor: const Color(0xFF131313),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16.0),
-                          borderSide: BorderSide.none),
-                      prefixIcon: const Icon(Icons.search),
-                      suffixIcon: const Icon(Icons.filter_alt_outlined),
-                      suffixIconColor: Colors.white,
-                      prefixIconColor: Colors.white),
+              // SizedBox(
+              //   width: 340,
+              //   height: 60,
+              //   child: TextField(
+              //     readOnly: true,
+              //     onTap: () {
+              //       Navigator.pushNamed(context, '/search_screen');
+              //     },
+              //     textAlignVertical: TextAlignVertical.center,
+              //     decoration: InputDecoration(
+              //         hintText: "Search",
+              //         filled: true,
+              //         fillColor: const Color(0xFF131313),
+              //         border: OutlineInputBorder(
+              //             borderRadius: BorderRadius.circular(16.0),
+              //             borderSide: BorderSide.none),
+              //         prefixIcon: const Icon(Icons.search),
+              //         suffixIcon: const Icon(Icons.filter_alt_outlined),
+              //         suffixIconColor: Colors.white,
+              //         prefixIconColor: Colors.white),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 40,
+              // ),
+              Center(
+                child: Text(
+                  "Latest Movies",
+                  style: GoogleFonts.montserrat(
+                      fontSize: 22, fontWeight: FontWeight.bold),
                 ),
               ),
-              const SizedBox(
-                height: 40,
+              SizedBox(
+                height: 20,
               ),
               CarouselSlider(
                 items: _discoverMovie
                     .map((item) => InkWell(
-                  onTap: () {},
-                  child: Column(
-                    children: [
-                      ClipRRect(
-                          borderRadius: BorderRadius.circular(16.0),
-                          child: Image.network(
-                            "https://image.tmdb.org/t/p/original${item.posterPath}",
-                            fit: BoxFit.cover,
-                            height: 245,
-                            width: 180,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Image.asset(
-                                "assets/images/noimage.png",
-                                fit: BoxFit.cover,
-                              );
-                            },
-                          )),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "${item.originalTitle}",
-                        style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.bold),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  ),
-                ))
+                          onTap: () {},
+                          child: Column(
+                            children: [
+                              ClipRRect(
+                                  borderRadius: BorderRadius.circular(16.0),
+                                  child: Image.network(
+                                    "https://image.tmdb.org/t/p/original${item.posterPath}",
+                                    fit: BoxFit.cover,
+                                    height: 245,
+                                    width: 180,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Image.asset(
+                                        "assets/images/noimage.png",
+                                        fit: BoxFit.cover,
+                                      );
+                                    },
+                                  )),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "${item.originalTitle}",
+                                style: GoogleFonts.montserrat(
+                                    fontSize: 14, fontWeight: FontWeight.bold),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
+                        ))
                     .toList(),
                 options: CarouselOptions(
-                  autoPlayInterval: const Duration(seconds: 2),
+                  autoPlayInterval: const Duration(seconds: 4),
                   viewportFraction: 0.55,
                   height: 375,
                   autoPlay: true,

@@ -12,7 +12,7 @@ class WatchlistScreen extends StatefulWidget {
 }
 
 class _WatchlistScreenState extends State<WatchlistScreen> {
-  int screen_index = 2;
+  int screen_index = 3;
   int count = 3;
   Viewtype _viewType = Viewtype.grid;
 

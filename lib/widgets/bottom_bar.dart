@@ -15,15 +15,16 @@ class BottomNavigation extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       onTap: (index) {
         screen_index = index;
-        if (screen_index == 2) {
+        if (screen_index == 3) {
           Navigator.pushNamed(context, '/watch_list');
         } else if (screen_index == 0) {
           Navigator.pushNamed(context, '/home_screen');
-
+        } else if (screen_index == 2) {
+                Navigator.pushNamed(context, '/search_screen');
         } else if (screen_index == 1) {
           Navigator.pushNamed(context, '/recommender_screen');
 
-        } else if (screen_index == 3) {
+        } else if (screen_index == 4) {
           Navigator.pushNamed(context, '/setting_screen');
 
         }
@@ -32,7 +33,9 @@ class BottomNavigation extends StatelessWidget {
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
         BottomNavigationBarItem(
-            icon: Icon(Icons.play_circle), label: "Recommender"),
+            icon: Icon(Icons.play_circle), label: "Find Movie"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.search_rounded), label: "Search"),
         BottomNavigationBarItem(
             icon: Icon(Icons.library_add), label: "Watchlist"),
         BottomNavigationBarItem(

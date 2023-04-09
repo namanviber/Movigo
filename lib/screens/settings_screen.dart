@@ -13,7 +13,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  int screen_index = 3;
+  int screen_index = 4;
 
   @override
   Widget build(BuildContext context) {
