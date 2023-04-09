@@ -39,14 +39,14 @@ class Movigo extends StatelessWidget {
           scaffoldBackgroundColor: const Color(0xFF09090F),
           brightness: Brightness.dark),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: HomeScreen(),
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
         // '/': (context) => const Check(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/general_setting': (context) => const GeneralSettingsScreen(),
-        '/about_us':(context)=>const AboutUsScreen(),
+        '/about_us':(context)=> AboutUsScreen(),
         '/privacy_policy':(context)=>const PrivacyPolicyScreen(),
         '/watch_list':(context)=>const WatchlistScreen(),
         '/home_screen':(context)=>const HomeScreen(),

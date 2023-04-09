@@ -15,355 +15,247 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
           toolbarHeight: 60,
           backgroundColor: const Color(0xFF09090F),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text("About Us",
-                  style: TextStyle(
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24)),
-            ],
-          ),
+          title: const Text("About Us",
+              style: TextStyle(
+                  fontFamily: "Inter",
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24)),
         ),
         body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(children: [
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                width: 360,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "This application is our course project for the PROJECT 2 course"
-                      "\n\nGroup Members",
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
+          child: Container(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const Text(
+                  'Our Story',
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10.0),
+                const Text(
+                  "This application is our course project for the PROJECT 2 course",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                const SizedBox(height: 20.0),
+                const Text(
+                  'Our Team',
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10.0),
+                Row(
+                  children: <Widget>[
+                    const CircleAvatar(
+                      backgroundImage:
+                          NetworkImage('https://example.com/team-member-1.jpg'),
+                      radius: 40.0,
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    const SizedBox(width: 10.0),
                     Column(
-                      children: [
-                        Container(
-                          height: 60,
-                          width: 390,
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              //1
-                              CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  child: Center(
-                                      child: SizedBox(
-                                    width: 200,
-                                    height: 200,
-                                    child: ClipOval(
-                                      child: Image.asset(
-                                          "assets/images/testimg2.png"),
-                                    ),
-                                  ))),
-                              const SizedBox(
-                                width: 30,
-                              ),
-                              Container(
-                                height: 60,
-                                width: 270,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Text(
-                                      "Naman Jain",
-                                      style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const <Widget>[
+                        Text(
+                          'Naman Jain',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Container(
-                          height: 60,
-                          width: 390,
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              //1
-                              CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  child: Center(
-                                      child: SizedBox(
-                                    width: 200,
-                                    height: 200,
-                                    child: ClipOval(
-                                      child: Image.asset(
-                                          "assets/images/testimg2.png"),
-                                    ),
-                                  ))),
-                              const SizedBox(
-                                width: 30,
-                              ),
-                              Container(
-                                height: 60,
-                                width: 270,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Text(
-                                      "Aryaman Sital",
-                                      style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 60,
-                          width: 390,
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              //1
-                              CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  child: Center(
-                                      child: SizedBox(
-                                    width: 200,
-                                    height: 200,
-                                    child: ClipOval(
-                                      child: Image.asset(
-                                          "assets/images/testimg2.png"),
-                                    ),
-                                  ))),
-                              const SizedBox(
-                                width: 30,
-                              ),
-                              Container(
-                                height: 60,
-                                width: 270,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Text(
-                                      "Dhaval Pathak",
-                                      style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 60,
-                          width: 390,
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              //1
-                              CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  child: Center(
-                                      child: SizedBox(
-                                    width: 200,
-                                    height: 200,
-                                    child: ClipOval(
-                                      child: Image.asset(
-                                          "assets/images/testimg2.png"),
-                                    ),
-                                  ))),
-                              const SizedBox(
-                                width: 30,
-                              ),
-                              Container(
-                                height: 60,
-                                width: 270,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Text(
-                                      "Naman Khandelwal",
-                                      style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 60,
-                          width: 390,
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              //1
-                              CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  child: Center(
-                                      child: SizedBox(
-                                    width: 200,
-                                    height: 200,
-                                    child: ClipOval(
-                                      child: Image.asset(
-                                          "assets/images/testimg2.png"),
-                                    ),
-                                  ))),
-                              const SizedBox(
-                                width: 30,
-                              ),
-                              Container(
-                                height: 60,
-                                width: 270,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Text(
-                                      "Priyansh Tyagi",
-                                      style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 60,
-                          width: 390,
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              //1
-                              CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  child: Center(
-                                      child: SizedBox(
-                                    width: 200,
-                                    height: 200,
-                                    child: ClipOval(
-                                      child: Image.asset(
-                                          "assets/images/testimg2.png"),
-                                    ),
-                                  ))),
-                              const SizedBox(
-                                width: 30,
-                              ),
-                              Container(
-                                height: 60,
-                                width: 270,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Text(
-                                      "Sidharth Aggarwal",
-                                      style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 60,
-                          width: 390,
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              //1
-                              CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  child: Center(
-                                      child: SizedBox(
-                                    width: 200,
-                                    height: 200,
-                                    child: ClipOval(
-                                      child: Image.asset(
-                                          "assets/images/testimg2.png"),
-                                    ),
-                                  ))),
-                              const SizedBox(
-                                width: 30,
-                              ),
-                              Container(
-                                height: 60,
-                                width: 270,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Text(
-                                      "Soum Nag",
-                                      style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                        Text(
+                          'Team Lead',
+                          style: TextStyle(
+                            fontSize: 16.0,
                           ),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
-              )
-            ]),
+                const SizedBox(height: 10.0),
+                Row(
+                  children: <Widget>[
+                    const CircleAvatar(
+                      backgroundImage:
+                          NetworkImage('https://example.com/team-member-2.jpg'),
+                      radius: 40.0,
+                    ),
+                    const SizedBox(width: 10.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const <Widget>[
+                        Text(
+                          'Aryaman Sital',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Front End Lead',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10.0),
+                Row(
+                  children: <Widget>[
+                    const CircleAvatar(
+                      backgroundImage:
+                          NetworkImage('https://example.com/team-member-2.jpg'),
+                      radius: 40.0,
+                    ),
+                    const SizedBox(width: 10.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const <Widget>[
+                        Text(
+                          'Dhaval Pathak',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Front End Lead',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10.0),
+                Row(
+                  children: <Widget>[
+                    const CircleAvatar(
+                      backgroundImage:
+                          NetworkImage('https://example.com/team-member-2.jpg'),
+                      radius: 40.0,
+                    ),
+                    const SizedBox(width: 10.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const <Widget>[
+                        Text(
+                          'Sidharth Aggarwal',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Front End Lead',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10.0),
+                Row(
+                  children: <Widget>[
+                    const CircleAvatar(
+                      backgroundImage:
+                          NetworkImage('https://example.com/team-member-2.jpg'),
+                      radius: 40.0,
+                    ),
+                    const SizedBox(width: 10.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const <Widget>[
+                        Text(
+                          'Priyansh Tyagi',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Front End Lead',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10.0),
+                Row(
+                  children: <Widget>[
+                    const CircleAvatar(
+                      backgroundImage:
+                          NetworkImage('https://example.com/team-member-2.jpg'),
+                      radius: 40.0,
+                    ),
+                    const SizedBox(width: 10.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const <Widget>[
+                        Text(
+                          'Naman Khandelwal',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Front End Lead',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10.0),
+                Row(
+                  children: <Widget>[
+                    const CircleAvatar(
+                      backgroundImage:
+                          NetworkImage('https://example.com/team-member-2.jpg'),
+                      radius: 40.0,
+                    ),
+                    const SizedBox(width: 10.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const <Widget>[
+                        Text(
+                          'Soum Nag',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Front End Lead',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
         bottomNavigationBar: BottomNavigation(
