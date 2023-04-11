@@ -33,18 +33,23 @@ class MongoDatabase {
     final movieData = await movieCollection.find(where.eq("genres", "Children").sortBy('popularity',descending: true).limit(50)).toList();
     return movieData;
   }
+  static Future<List<Map<String,dynamic>>> searchMovies(String query) async{
+    final movieData = await movieCollection.find(where.match('title',query,caseInsensitive: true)).toList();
+    return movieData;
+  }
 
-  // static Future<String> insert(MongoDbModel data) async {
-  //   try {
-  //     var result = await movieCollection.insertOne(data.toJson());
-  //     if (result.isSuccess) {
-  //       return "Data Inserted";
-  //     } else {
-  //       return "Something Went Wrong";
-  //     }
-  //   } catch (e) {
-  //     print(e.toString());
-  //     return e.toString();
-  //   }
-  // }
+
+// static Future<String> insert(MongoDbModel data) async {
+//   try {
+//     var result = await movieCollection.insertOne(data.toJson());
+//     if (result.isSuccess) {
+//       return "Data Inserted";
+//     } else {
+//       return "Something Went Wrong";
+//     }
+//   } catch (e) {
+//     print(e.toString());
+//     return e.toString();
+//   }
+// }
 }

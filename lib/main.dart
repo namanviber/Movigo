@@ -59,7 +59,7 @@ class Movigo extends StatelessWidget {
         '/login_screen':(context)=>LoginScreen(),
         '/check':(context)=>const Check(),
         '/profile_edit':(context)=>ProfileEditPage(),
-        '/search_screen':(_)=>const SearchScreen(),
+        '/search_screen':(_)=>SearchScreen(),
         '/recommended_movies':(context)=>RecommendedMovies()
 
       },

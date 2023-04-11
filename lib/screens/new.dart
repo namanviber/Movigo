@@ -73,7 +73,8 @@ class _NewState extends State<New> {
               SizedBox(
                 height: 450,
                 width: double.maxFinite,
-                child: ListView.builder(
+                child:
+                ListView.builder(
                   itemCount: content.length,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (BuildContext context, index) {
