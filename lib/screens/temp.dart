@@ -226,10 +226,36 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   }
 
-  Future<Widget> _buildPopularMoviesListView() async {
-    // Fetch popular movies data from an API or database
-    // Replace this with your actual implementation to fetch popular movies
-    final List<Map<String, dynamic>> popularMovies = await MongoDatabase.getPopularMovies();
+
+  Widget _buildPopularMoviesListView() {
+    return FutureBuilder<List<Map<String, dynamic>>>(
+      future: MongoDatabase.getPopularMovies(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else {
+          final popularMovies = snapshot.data;
+          if (popularMovies == null || popularMovies.isEmpty) {
+            return Center(child: Text('No popular movies found'));
+          } else {
+            return ListView.builder(
+              itemCount: popularMovies.length,
+              itemBuilder: (context, index) {
+                // Build each popular movie item
+                return _buildPopularMovieItem(popularMovies[index]);
+              },
+            );
+          }
+        }
+      },
+    );
+  }
+
+  Widget _buildPopularMovieItem(Map<String, dynamic> popularMovies) {
+    // Build each popular movie item
+    // Your code here
 
     return ListView.builder(
       itemCount: popularMovies.length,
@@ -296,9 +322,10 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
+
+  @override
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Movie Search'),
@@ -321,15 +348,15 @@ class _SearchScreenState extends State<SearchScreen> {
               prefixIcon: Icon(Icons.search),
             ),
           ),
-
           Expanded(
-            child: FutureBuilder<List<Map<String,dynamic>>>(
-              future: _performSearch(_searchQuery),
+            child: FutureBuilder<List<Map<String, dynamic>>>(
+              future:_buildPopularMoviesListView()
+              :_performSearch(String query),
+              ,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
-
                   return Center(child: Text('Error: ${snapshot.error}'));
                 } else {
                   final searchResults = snapshot.data;
@@ -340,11 +367,12 @@ class _SearchScreenState extends State<SearchScreen> {
                       itemCount: searchResults.length,
                       itemBuilder: (context, index) {
                         final movie = searchResults[index];
-                        final List<dynamic>genreList=movie['genres'];
+                        final List<dynamic> genreList = movie['genres'];
                         print(movie['poster_path']);
                         return Card(
                           elevation: 4,
-                          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          margin:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                           color: Color(0xFF09090F),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
@@ -362,8 +390,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                     borderRadius: BorderRadius.circular(8),
                                     image: DecorationImage(
                                       fit: BoxFit.cover,
-                                      image: NetworkImage('https://image.tmdb.org/t/p/original${movie['poster_path']}'),
-
+                                      image: NetworkImage(
+                                          'https://image.tmdb.org/t/p/original${movie['poster_path']}'),
                                     ),
                                   ),
                                 ),
@@ -394,10 +422,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
                                           ),
-
                                         ],
                                       ),
-
                                     ],
                                   ),
                                 ),
@@ -407,15 +433,26 @@ class _SearchScreenState extends State<SearchScreen> {
                         );
                       },
                     );
-
-              }
+                  }
                 }
               },
             ),
           ),
+          // SizedBox(height: 16),
+          // Text(
+          //   'Popular Movies',
+          //   style: TextStyle(
+          //     fontSize: 18,
+          //     fontWeight: FontWeight.bold,
+          //     color: Colors.white,
+          //   ),
+          // ),
+          // SizedBox(height: 8),
+          // _buildPopularMoviesListView(), // Call the function here
         ],
       ),
     );
   }
+
 }
 

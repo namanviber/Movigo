@@ -12,6 +12,10 @@ class MongoDatabase {
     await db.open();
     inspect(db);
     movieCollection = db.collection(Collection_Name);
+    // await db.close();
+    if(db.isConnected!){
+      await db.open();
+    }
   }
 
   static Future<List<Map<String,dynamic>>> getMovies() async{
