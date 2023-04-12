@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  final user = FirebaseAuth.instance.currentUser!;
+  // final user = FirebaseAuth.instance.currentUser!;
   int screen_index = 0;
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
