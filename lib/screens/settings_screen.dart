@@ -462,9 +462,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigation(
-        screen_index: 3,
-      ),
+      // bottomNavigationBar: BottomNavigation(
+      //   screen_index: 3,
+      // ),
     );
   }
 }

@@ -489,9 +489,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigation(
-        screen_index: 0,
-      ),
+      // bottomNavigationBar: BottomNavigation(
+      //   screen_index: 0,
+      // ),
     );
   }
 }
