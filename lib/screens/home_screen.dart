@@ -26,6 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
   var fetchpopularmovie;
   var fetchscifimovie;
   var fetchkidsmovie;
+  var topRatedmovie;
+  var horrorComedymovie;
 
   @override
   void initState() {
@@ -34,6 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
     fetchpopularmovie = MongoDatabase.getPopularMovies();
     fetchscifimovie = MongoDatabase.getScifiMovies();
     fetchkidsmovie = MongoDatabase.getKidsMovies();
+    topRatedmovie = MongoDatabase.getTopRated();
+    horrorComedymovie = MongoDatabase.getHorrorComedy();
     super.initState();
   }
 
@@ -448,6 +452,186 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               FutureBuilder(
                 future: fetchkidsmovie,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      height: 170,
+                      width: 125,
+                      child: const Center(child: CircularProgressIndicator()),
+                    );
+                  } else {
+                    if (snapshot.hasData) {
+                      return Container(
+                        height: 170,
+                        width: double.maxFinite,
+                        child: ListView.separated(
+                          itemCount: 10,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, index) {
+                            return MovieList(
+                                moviesModel: getMoviesModel
+                                    .fromJson(snapshot.data[index]));
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(
+                              width: 20,
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        height: 170,
+                        width: 125,
+                        child: const Center(child: Text("Unavailable Data")),
+                      );
+                    }
+                  }
+                },
+              ),const SizedBox(
+                height: 20,
+              ),
+              TextHeading(heading: "Based on your Recent Searches"),
+              const SizedBox(
+                height: 20,
+              ),
+              FutureBuilder(
+                future: fetchkidsmovie,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      height: 170,
+                      width: 125,
+                      child: const Center(child: CircularProgressIndicator()),
+                    );
+                  } else {
+                    if (snapshot.hasData) {
+                      return Container(
+                        height: 170,
+                        width: double.maxFinite,
+                        child: ListView.separated(
+                          itemCount: 10,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, index) {
+                            return MovieList(
+                                moviesModel: getMoviesModel
+                                    .fromJson(snapshot.data[index]));
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(
+                              width: 20,
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        height: 170,
+                        width: 125,
+                        child: const Center(child: Text("Unavailable Data")),
+                      );
+                    }
+                  }
+                },
+              ),const SizedBox(
+                height: 20,
+              ),
+              TextHeading(heading: "Suggested For You"),
+              const SizedBox(
+                height: 20,
+              ),
+              FutureBuilder(
+                future: fetchkidsmovie,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      height: 170,
+                      width: 125,
+                      child: const Center(child: CircularProgressIndicator()),
+                    );
+                  } else {
+                    if (snapshot.hasData) {
+                      return Container(
+                        height: 170,
+                        width: double.maxFinite,
+                        child: ListView.separated(
+                          itemCount: 10,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, index) {
+                            return MovieList(
+                                moviesModel: getMoviesModel
+                                    .fromJson(snapshot.data[index]));
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(
+                              width: 20,
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        height: 170,
+                        width: 125,
+                        child: const Center(child: Text("Unavailable Data")),
+                      );
+                    }
+                  }
+                },
+              ),const SizedBox(
+                height: 20,
+              ),
+              TextHeading(heading: "Top Rated Movies"),
+              const SizedBox(
+                height: 20,
+              ),
+              FutureBuilder(
+                future: topRatedmovie,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      height: 170,
+                      width: 125,
+                      child: const Center(child: CircularProgressIndicator()),
+                    );
+                  } else {
+                    if (snapshot.hasData) {
+                      return Container(
+                        height: 170,
+                        width: double.maxFinite,
+                        child: ListView.separated(
+                          itemCount: 10,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, index) {
+                            return MovieList(
+                                moviesModel: getMoviesModel
+                                    .fromJson(snapshot.data[index]));
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(
+                              width: 20,
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        height: 170,
+                        width: 125,
+                        child: const Center(child: Text("Unavailable Data")),
+                      );
+                    }
+                  }
+                },
+              ),const SizedBox(
+                height: 20,
+              ),
+              TextHeading(heading: "Mix of Horror and Comedy "),
+              const SizedBox(
+                height: 20,
+              ),
+              FutureBuilder(
+                future: horrorComedymovie,
                 builder: (context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Container(

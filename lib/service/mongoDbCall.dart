@@ -12,31 +12,42 @@ class MongoDatabase {
     await db.open();
     inspect(db);
     movieCollection = db.collection(Collection_Name);
-    // await db.close();
     if(db.isConnected!){
       await db.open();
     }
   }
 
   static Future<List<Map<String,dynamic>>> getMovies() async{
-    final movieData = await movieCollection.find(where.eq('language', 'en').limit(50)).toList();
+    final movieData = await movieCollection.find(where.eq('language', 'en').limit(30)).toList();
     return movieData;
   }
 
   static Future<List<Map<String,dynamic>>> getPopularMovies() async{
-    final movieData = await movieCollection.find(where.limit(50).sortBy('popularity',descending: true)).toList();
+    final movieData = await movieCollection.find(where.limit(30).sortBy('popularity',descending: true)).toList();
     return movieData;
   }
 
   static Future<List<Map<String,dynamic>>> getScifiMovies() async{
-    final movieData = await movieCollection.find(where.eq("genres", "Sci-Fi").gt('vote_average', 8).limit(50)).toList();
+    final movieData = await movieCollection.find(where.eq("genres", "Sci-Fi").gt('vote_average', 8).limit(30)).toList();
     return movieData;
   }
 
   static Future<List<Map<String,dynamic>>> getKidsMovies() async{
-    final movieData = await movieCollection.find(where.eq("genres", "Children").sortBy('popularity',descending: true).limit(50)).toList();
+    final movieData = await movieCollection.find(where.eq("genres", "Children").sortBy('popularity',descending: true).limit(30)).toList();
     return movieData;
   }
+
+  static Future<List<Map<String,dynamic>>> getTopRated() async{
+    final movieData = await movieCollection.find(where.sortBy('vote_average',descending: true).gt('vote_count', 50).limit(30)).toList();
+    return movieData;
+  }
+
+  static Future<List<Map<String,dynamic>>> getHorrorComedy() async{
+    final movieData = await movieCollection.find(where.eq("genres", "Horror").eq("genres", "Comedy").limit(30)).toList();
+    return movieData;
+  }
+
+  //Searching Movies Function
   static Future<List<Map<String,dynamic>>> searchMovies(String query) async{
     final movieData = await movieCollection.find(where.match('title',query,caseInsensitive: true)).toList();
     return movieData;
