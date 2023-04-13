@@ -78,25 +78,25 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
               SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 2),
                   child: Column(
                     children: <Widget>[
-                      const SizedBox(
-                        height: 20,
-                      ),
+
                   (_viewType == Viewtype.grid)
                       ?
                   ConstrainedBox(
-                    constraints: BoxConstraints(maxHeight: 500, minHeight: 56.0),
+                    constraints: const BoxConstraints(maxHeight: 550, minHeight: 50.0),
                     child: ListView.builder(
+
                       itemCount: content.length,
                       itemBuilder: (context, index) {
                         return Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5),
+                          padding: EdgeInsets.symmetric(vertical: 1,horizontal: 10),
                           child: Row(
                             children: [
                               Container(
-                                height: 100,
+                                // color: Colors.white,
+                                height: 180,
                                 width: 100,
                                 child: Image.network('https://image.tmdb.org/t/p/w600_and_h900_bestv2${content[index].posterPath}'), // Assuming movie poster URL is available in Movie object
                               ),
@@ -122,18 +122,21 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
 
 
                         : ConstrainedBox(
-                    constraints: BoxConstraints(maxHeight: 500, minHeight: 56.0),
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      itemCount: content.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10.0,
-                        mainAxisSpacing: 10.0,
+                    constraints: BoxConstraints(maxHeight: 550, minHeight: 56.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: GridView.builder(
+                        // shrinkWrap: true,
+                        itemCount: content.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10.0,
+                          mainAxisSpacing: 10.0,
+                        ),
+                        itemBuilder: (context, index) {
+                          return MovieCard(movie: content[index]);
+                        },
                       ),
-                      itemBuilder: (context, index) {
-                        return MovieCard(movie: content[index]);
-                      },
                     ),
                   ),
                     ],
