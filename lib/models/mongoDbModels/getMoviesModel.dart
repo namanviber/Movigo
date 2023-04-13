@@ -1,7 +1,9 @@
+// To parse this JSON data, do
+//
+//     final mongoDbModel = mongoDbModelFromJson(jsonString);
+
 import 'package:meta/meta.dart';
 import 'dart:convert';
-
-import 'package:mongo_dart/mongo_dart.dart';
 
 getMoviesModel mongoDbModelFromJson(String str) => getMoviesModel.fromJson(json.decode(str));
 
@@ -18,9 +20,11 @@ class getMoviesModel {
     required this.voteAverage,
     required this.voteCount,
     required this.posterPath,
+    required this.releaseDate,
+    required this.verdict,
   });
 
-  ObjectId id;
+  Object id;
   String title;
   List<String> genres;
   int tmdbId;
@@ -29,6 +33,8 @@ class getMoviesModel {
   double voteAverage;
   int voteCount;
   String posterPath;
+  DateTime releaseDate;
+  String verdict;
 
   factory getMoviesModel.fromJson(Map<String, dynamic> json) => getMoviesModel(
     id: json["_id"],
@@ -40,6 +46,8 @@ class getMoviesModel {
     voteAverage: json["vote_average"]?.toDouble(),
     voteCount: json["vote_count"],
     posterPath: json["poster_path"],
+    releaseDate: DateTime.parse(json["release_date"]),
+    verdict: json["verdict"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -52,5 +60,7 @@ class getMoviesModel {
     "vote_average": voteAverage,
     "vote_count": voteCount,
     "poster_path": posterPath,
+    "release_date": "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
+    "verdict": verdict,
   };
 }

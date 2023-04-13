@@ -28,11 +28,16 @@ class _MovieListState extends State<MovieList> {
       movieDetail = response3;
     });
   }
+  String posterUrl ="";
 
   @override
   Widget build(BuildContext context) {
-    final posterUrl =
-        'https://image.tmdb.org/t/p/w600_and_h900_bestv2${widget.moviesModel.posterPath}';
+    if (widget.moviesModel.posterPath != Null){
+      posterUrl =
+          'https://image.tmdb.org/t/p/w600_and_h900_bestv2${widget.moviesModel.posterPath}';
+    } else {
+      posterUrl  = "";
+    }
     return FutureBuilder(
       future: fetchdetails,
       builder: (context, snapshot) {

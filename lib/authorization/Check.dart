@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project2/screens/home_screen.dart';
+import 'package:project2/screens/landing_screen.dart';
 import 'package:project2/screens/login_screen.dart';
 
 class Check extends StatelessWidget {
@@ -16,7 +17,7 @@ class Check extends StatelessWidget {
             return HomeScreen();
 
           } else {
-            return LoginScreen();
+            return LandingScreen();
           }
         },
       ),
