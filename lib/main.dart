@@ -42,7 +42,7 @@ class Movigo extends StatelessWidget {
           scaffoldBackgroundColor: const Color(0xFF09090F),
           brightness: Brightness.dark),
       debugShowCheckedModeBanner: false,
-      home: Check(),
+      home: SplashScreen(),
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
@@ -103,7 +103,7 @@ color: Color(0xff303034),
             index = selctedIndex;
           });
         },
-        height: 55,
+        height: 53,
         backgroundColor: Colors.transparent,
         animationDuration: const Duration(milliseconds: 300),
         // animationCurve: ,
