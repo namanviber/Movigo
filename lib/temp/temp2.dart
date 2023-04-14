@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'item_grid.dart';
+import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
+import 'temp1.dart';
 
-class TextHeading extends StatelessWidget {
-  TextHeading({required this.heading, Key? key})
+class Heading extends StatelessWidget {
+  Heading({required this.heading, required this.moviesModel, Key? key})
       : super(key: key);
   String heading;
+  List<dynamic> moviesModel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +21,8 @@ class TextHeading extends StatelessWidget {
         Spacer(),
         InkWell(
           onTap: () {
-            // Navigator.push(context,
-                // MaterialPageRoute(builder: (context) => ItemGrid(heading: heading,)));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ItemGrid(heading: heading, moviesModel: moviesModel,)));
           },
           child: Icon(Icons.arrow_forward_ios),
         )

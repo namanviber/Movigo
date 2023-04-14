@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:project2/temp/temp2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
@@ -195,14 +195,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                       fit: BoxFit.fitWidth,
                                       height: 200,
                                       width: 250,
-                                      errorBuilder: (context, error, stackTrace) {
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
                                         return Image.asset(
                                           "assets/images/noimage.png",
                                           fit: BoxFit.cover,
                                         );
                                       },
-                                    )
-                                ),
+                                    )),
                                 // const SizedBox(
                                 //   height: 10,
                                 // ),
@@ -242,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Container(
-                          height: 170,
+                          height: 190,
                           width: 125,
                           child:
                               const Center(child: CircularProgressIndicator()),
@@ -250,7 +250,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       } else {
                         if (snapshot.hasData) {
                           return Container(
-                            height: 170,
+                            height: 190,
                             width: double.maxFinite,
                             child: ListView.separated(
                               itemCount: 10,
@@ -263,17 +263,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               separatorBuilder:
                                   (BuildContext context, int index) {
                                 return const SizedBox(
-                                  width: 20,
+                                  width: 10,
                                 );
                               },
                             ),
                           );
                         } else {
                           return Container(
-                            height: 170,
+                            height: 190,
                             width: 125,
                             child:
-                                const Center(child: Text("Unavailable Data")),
+                                const Center(child: Text("Some Error Occured")),
                           );
                         }
                       }
@@ -282,16 +282,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  TextHeading(heading: "You may also like"),
+                  TextHeading(heading: "You May also Like"),
                   const SizedBox(
                     height: 20,
                   ),
                   FutureBuilder(
-                    future: fetchkidsmovie,
+                    future: fetchmoviedb,
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Container(
-                          height: 170,
+                          height: 190,
                           width: 125,
                           child:
                               const Center(child: CircularProgressIndicator()),
@@ -299,18 +299,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       } else {
                         if (snapshot.hasData) {
                           return Container(
-                            height: 170,
-                            width: double.maxFinite,
+                            height: 190,
+                            width: 125,
                             child: const Center(
-                                child: Text(
-                                    "Machine Learning Model Yet to Build")),
+                                child: Text("Ml Model Not Implemented Yet")),
                           );
                         } else {
                           return Container(
-                            height: 170,
+                            height: 190,
                             width: 125,
                             child:
-                                const Center(child: Text("Unavailable Data")),
+                                const Center(child: Text("Some Error Occured")),
                           );
                         }
                       }
@@ -319,16 +318,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  TextHeading(heading: "Suggested For You"),
+                  TextHeading(heading: "For You"),
                   const SizedBox(
                     height: 20,
                   ),
                   FutureBuilder(
-                    future: fetchkidsmovie,
+                    future: fetchmoviedb,
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Container(
-                          height: 170,
+                          height: 190,
                           width: 125,
                           child:
                               const Center(child: CircularProgressIndicator()),
@@ -336,22 +335,83 @@ class _HomeScreenState extends State<HomeScreen> {
                       } else {
                         if (snapshot.hasData) {
                           return Container(
-                            height: 170,
-                            width: double.maxFinite,
+                            height: 190,
+                            width: 125,
                             child: const Center(
-                                child: Text(
-                                    "Machine Learning Model Yet to Build")),
+                                child: Text("Ml Model Not Implemented Yet")),
                           );
                         } else {
                           return Container(
-                            height: 170,
+                            height: 190,
                             width: 125,
                             child:
-                                const Center(child: Text("Unavailable Data")),
+                                const Center(child: Text("Some Error Occured")),
                           );
                         }
                       }
                     },
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: double.maxFinite,
+                    height: 190,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: LinearGradient(
+                        colors: [Colors.purple, Colors.blue],
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.topRight,
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 200,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Find More What You Like",
+                                      style: GoogleFonts.montserrat(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                        "Find movies based on your current mood"),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                  height: 80,
+                                  width: 120,
+                                  child: Image.asset(
+                                    'assets/images/img_deck.png',
+                                    fit: BoxFit.cover,
+                                  ))
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 50,
+                          width: 290,
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/watch_list');
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.white),
+                            ),
+                            child: Text("Try it Now"),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
@@ -365,7 +425,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Container(
-                          height: 170,
+                          height: 190,
                           width: 125,
                           child:
                               const Center(child: CircularProgressIndicator()),
@@ -373,7 +433,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       } else {
                         if (snapshot.hasData) {
                           return Container(
-                            height: 170,
+                            height: 190,
                             width: double.maxFinite,
                             child: ListView.separated(
                               itemCount: 10,
@@ -386,38 +446,22 @@ class _HomeScreenState extends State<HomeScreen> {
                               separatorBuilder:
                                   (BuildContext context, int index) {
                                 return const SizedBox(
-                                  width: 20,
+                                  width: 10,
                                 );
                               },
                             ),
                           );
                         } else {
                           return Container(
-                            height: 170,
+                            height: 190,
                             width: 125,
                             child:
-                                const Center(child: Text("Unavailable Data")),
+                                const Center(child: Text("Some Error Occured")),
                           );
                         }
                       }
                     },
                   ),
-                  // FilterRow(count: 10, elements: [
-                  //   "Action",
-                  //   "Adventure",
-                  //   "Drama",
-                  //   "Comedy",
-                  //   "Fantasy",
-                  //   "Crime",
-                  //   "K-Drama",
-                  //   "Sports",
-                  //   "Fiction",
-                  //   "Romance"
-                  // ]),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextHeading(heading: "Top SciFi Movies"),
                   const SizedBox(
                     height: 20,
                   ),
@@ -426,43 +470,84 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Container(
-                          height: 170,
+                          height: 190,
                           width: 125,
                           child:
                               const Center(child: CircularProgressIndicator()),
                         );
                       } else {
                         if (snapshot.hasData) {
-                          return Container(
-                            height: 170,
-                            width: double.maxFinite,
-                            child: ListView.separated(
-                              itemCount: 10,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, index) {
-                                return MovieList(
-                                    moviesModel: getMoviesModel
-                                        .fromJson(snapshot.data[index]));
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return const SizedBox(
-                                  width: 20,
-                                );
-                              },
-                            ),
+                          return Column(
+                            children: [
+                              Heading(heading: "Top SciFi movies", moviesModel: snapshot.data,),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              SizedBox(
+                                height: 190,
+                                width: double.maxFinite,
+                                child: ListView.separated(
+                                  itemCount: 10,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (BuildContext context, index) {
+                                    return MovieList(
+                                        moviesModel: getMoviesModel
+                                            .fromJson(snapshot.data[index]));
+                                  },
+                                  separatorBuilder:
+                                      (BuildContext context, int index) {
+                                    return const SizedBox(
+                                      width: 10,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
                           );
                         } else {
                           return Container(
-                            height: 170,
+                            height: 190,
                             width: 125,
                             child:
-                                const Center(child: Text("Unavailable Data")),
+                                const Center(child: Text("Some Error Occured")),
                           );
                         }
                       }
                     },
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text("Top Genres",
+                        style: GoogleFonts.montserrat(
+                            fontSize: 17, fontWeight: FontWeight.bold)),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  // FilterRow(count: 19, elements: [
+                  //   "Action",
+                  //   "Adventure",
+                  //   "Animation",
+                  //   "Children",
+                  //   "Thriller",
+                  //   "Horror",
+                  //   "Mystery",
+                  //   "SciFi",
+                  //   "IMAX",
+                  //   "Documentry",
+                  //   "War",
+                  //   "Musical",
+                  //   "Western",
+                  //   "Film_Noir",
+                  //   "Drama",
+                  //   "Comedy",
+                  //   "Fantasy",
+                  //   "Crime",
+                  //   "Romance"
+                  // ]),
                   const SizedBox(
                     height: 20,
                   ),
@@ -475,7 +560,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Container(
-                          height: 170,
+                          height: 190,
                           width: 125,
                           child:
                               const Center(child: CircularProgressIndicator()),
@@ -483,7 +568,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       } else {
                         if (snapshot.hasData) {
                           return Container(
-                            height: 170,
+                            height: 190,
                             width: double.maxFinite,
                             child: ListView.separated(
                               itemCount: 10,
@@ -496,17 +581,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               separatorBuilder:
                                   (BuildContext context, int index) {
                                 return const SizedBox(
-                                  width: 20,
+                                  width: 10,
                                 );
                               },
                             ),
                           );
                         } else {
                           return Container(
-                            height: 170,
+                            height: 190,
                             width: 125,
                             child:
-                                const Center(child: Text("Unavailable Data")),
+                                const Center(child: Text("Some Error Occured")),
                           );
                         }
                       }
@@ -524,7 +609,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Container(
-                          height: 170,
+                          height: 190,
                           width: 125,
                           child:
                               const Center(child: CircularProgressIndicator()),
@@ -532,7 +617,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       } else {
                         if (snapshot.hasData) {
                           return Container(
-                            height: 170,
+                            height: 190,
                             width: double.maxFinite,
                             child: ListView.separated(
                               itemCount: 10,
@@ -545,17 +630,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               separatorBuilder:
                                   (BuildContext context, int index) {
                                 return const SizedBox(
-                                  width: 20,
+                                  width: 10,
                                 );
                               },
                             ),
                           );
                         } else {
                           return Container(
-                            height: 170,
+                            height: 190,
                             width: 125,
                             child:
-                                const Center(child: Text("Unavailable Data")),
+                                const Center(child: Text("Some Error Occured")),
                           );
                         }
                       }
@@ -564,7 +649,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  TextHeading(heading: "Mix of Horror and Comedy "),
+                  TextHeading(heading: "Mix of Horror & Comedy"),
                   const SizedBox(
                     height: 20,
                   ),
@@ -573,7 +658,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Container(
-                          height: 170,
+                          height: 190,
                           width: 125,
                           child:
                               const Center(child: CircularProgressIndicator()),
@@ -581,7 +666,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       } else {
                         if (snapshot.hasData) {
                           return Container(
-                            height: 170,
+                            height: 190,
                             width: double.maxFinite,
                             child: ListView.separated(
                               itemCount: 10,
@@ -594,21 +679,24 @@ class _HomeScreenState extends State<HomeScreen> {
                               separatorBuilder:
                                   (BuildContext context, int index) {
                                 return const SizedBox(
-                                  width: 20,
+                                  width: 10,
                                 );
                               },
                             ),
                           );
                         } else {
                           return Container(
-                            height: 170,
+                            height: 190,
                             width: 125,
                             child:
-                                const Center(child: Text("Unavailable Data")),
+                                const Center(child: Text("Some Error Occured")),
                           );
                         }
                       }
                     },
+                  ),
+                  const SizedBox(
+                    height: 20,
                   ),
                 ],
               ),

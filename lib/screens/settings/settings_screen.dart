@@ -89,44 +89,38 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Navigator.pushNamed(context, '/profile_edit');
                 },
                 child: Container(
-                  height: 60,
-                  width: 390,
+                  height: 70,
+                  width: double.maxFinite,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const SizedBox(
-                        width: 10,
-                      ),
                       const Icon(
                         Icons.account_circle_outlined,
                         size: 34,
                         color: Color(0xFF2196F3),
                       ),
-                      const SizedBox(
-                        width: 20,
-                      ),
+                      // const SizedBox(
+                      //   width: 20,
+                      // ),
                       Container(
                         height: 60,
-                        width: 270,
+                        width: 220,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             Text(
                               "My Account",
-                              style: TextStyle(
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold, fontSize: 14),
                             ),
                             SizedBox(
                               height: 4,
                             ),
                             Text(
                               "Make changes to your account",
-                              style: TextStyle(
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12),
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold, fontSize: 12),
                             ),
                           ],
                         ),
@@ -141,307 +135,215 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Navigator.pushNamed(context, '/general_setting');
                 },
                 child: Container(
-                  height: 60,
+                  height: 70,
                   width: double.maxFinite,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const SizedBox(
-                        width: 10,
-                      ),
                       const Icon(
                         Icons.settings_outlined,
                         size: 34,
                         color: Color(0xFF2196F3),
                       ),
-                      const SizedBox(
-                        width: 20,
-                      ),
+                      // const SizedBox(
+                      //   width: 20,
+                      // ),
                       Container(
                         height: 60,
-                        width: 270,
+                        width: 220,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             Text(
-                              "General",
-                              style: TextStyle(
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
+                              "General Settings",
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold, fontSize: 14),
                             ),
                             SizedBox(
                               height: 4,
                             ),
                             Text(
-                              "Manage your General settings",
-                              style: TextStyle(
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12),
+                              "Maknage your General Settings",
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold, fontSize: 12),
                             ),
                           ],
                         ),
                       ),
-                      const Icon(Icons.arrow_forward_ios),
+                      const Icon(Icons.arrow_forward_ios_rounded)
                     ],
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              //#2
-              Container(
-                height: 60,
-                width: double.maxFinite,
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Icon(
-                      Icons.rate_review,
-                      size: 34,
-                      color: Color(0xFF2196F3),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      height: 60,
-                      width: 270,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            "Ratings and Reviews",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Text(
-                            "Manage your ratings and reviews",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
-                          ),
-                        ],
+              InkWell(
+                onTap: () {
+                  // Navigator.pushNamed(context, '/Set Your Preferences');
+                },
+                child: Container(
+                  height: 70,
+                  width: double.maxFinite,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const Icon(
+                        Icons.room_preferences,
+                        size: 34,
+                        color: Color(0xFF2196F3),
                       ),
-                    ),
-                    const Icon(Icons.arrow_forward_ios_rounded)
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: 60,
-                width: double.maxFinite,
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Icon(
-                      Icons.room_preferences,
-                      size: 34,
-                      color: Color(0xFF2196F3),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      height: 60,
-                      width: 270,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            "Set your Preferences",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Text(
-                            "Setup your preferences again",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Icon(Icons.arrow_forward_ios_rounded)
-                  ],
-                ),
-              ),
-              //#3
-
-              const SizedBox(
-                height: 10,
-              ),
-              //#5
-              Container(
-                height: 60,
-                width: double.maxFinite,
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Icon(
-                      Icons.exit_to_app_outlined,
-                      size: 34,
-                      color: Color(0xFF2196F3),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        FirebaseAuth.instance.signOut();
-                        Navigator.pushNamed(context, '/check');
-                      },
-                      child: Container(
+                      // const SizedBox(
+                      //   width: 20,
+                      // ),
+                      Container(
                         height: 60,
-                        width: 270,
+                        width: 220,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             Text(
-                              "Log Out",
-                              style: TextStyle(
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
+                              "Set Your Preferences",
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold, fontSize: 14),
                             ),
                             SizedBox(
                               height: 4,
                             ),
                             Text(
-                              "Log out of your account",
-                              style: TextStyle(
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12),
+                              "Setup your preferences again",
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold, fontSize: 12),
                             ),
                           ],
                         ),
                       ),
-                    ),
-                    const Icon(Icons.arrow_forward_ios_rounded)
-                  ],
+                      const Icon(Icons.arrow_forward_ios_rounded)
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
+              InkWell(
+                onTap: () {
+                  FirebaseAuth.instance.signOut();
+                  Navigator.pushNamed(context, '/check');
+                },
+                child: Container(
+                  height: 70,
+                  width: double.maxFinite,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const Icon(
+                        Icons.exit_to_app_outlined,
+                        size: 34,
+                        color: Color(0xFF2196F3),
+                      ),
+                      // const SizedBox(
+                      //   width: 20,
+                      // ),
+                      Container(
+                        height: 60,
+                        width: 220,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Sign Out",
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold, fontSize: 14),
+                            ),
+                            SizedBox(
+                              height: 4,
+                            ),
+                            Text(
+                              "Sign Out from your account",
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Icon(Icons.arrow_forward_ios_rounded)
+                    ],
+                  ),
+                ),
               ),
-              //#6
               InkWell(
                 onTap: () {
                   Navigator.pushNamed(context, '/about_us');
                 },
                 child: Container(
-                  height: 60,
+                  height: 70,
                   width: double.maxFinite,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const SizedBox(
-                        width: 10,
-                      ),
                       const Icon(
                         Icons.help_outline_outlined,
                         size: 34,
                         color: Color(0xFF2196F3),
                       ),
-                      const SizedBox(
-                        width: 20,
-                      ),
+                      // const SizedBox(
+                      //   width: 20,
+                      // ),
                       Container(
                         height: 60,
-                        width: 270,
+                        width: 220,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             Text(
                               "About Us",
-                              style: TextStyle(
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold, fontSize: 14),
                             ),
                           ],
                         ),
                       ),
-                      const Icon(Icons.arrow_forward_ios),
+                      const Icon(Icons.arrow_forward_ios_rounded)
                     ],
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              //#7
               InkWell(
                 onTap: () {
                   Navigator.pushNamed(context, '/privacy_policy');
                 },
                 child: Container(
-                  height: 60,
+                  height: 70,
                   width: double.maxFinite,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const SizedBox(
-                        width: 10,
-                      ),
                       const Icon(
                         Icons.shield_outlined,
                         size: 34,
                         color: Color(0xFF2196F3),
                       ),
-                      const SizedBox(
-                        width: 20,
-                      ),
+                      // const SizedBox(
+                      //   width: 20,
+                      // ),
                       Container(
                         height: 60,
-                        width: 270,
+                        width: 220,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             Text(
                               "Privacy Policy",
-                              style: TextStyle(
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold, fontSize: 14),
                             ),
                           ],
                         ),
                       ),
-                      const Icon(Icons.arrow_forward_ios),
+                      const Icon(Icons.arrow_forward_ios_rounded)
                     ],
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 10,
               ),
             ],
           ),

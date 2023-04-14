@@ -43,8 +43,8 @@ class _MovieListState extends State<MovieList> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(
-            height: 170,
-            width: 125,
+            height: 190,
+            width: 145,
             child: Center(child: CircularProgressIndicator()),
           );
         } else {
@@ -62,8 +62,8 @@ class _MovieListState extends State<MovieList> {
                 child: Image.network(
                   posterUrl,
                   fit: BoxFit.cover,
-                  height: 170,
-                  width: 125,
+                  height: 190,
+                  width: 145,
                   errorBuilder: (context, error, stackTrace) {
                     return Image.asset(
                       "assets/images/noimage.png",

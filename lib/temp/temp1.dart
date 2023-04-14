@@ -1,50 +1,69 @@
 import 'package:flutter/material.dart';
-import 'package:project2/screens/home/home_screen.dart';
-import 'package:project2/screens/home/watchlist_screen.dart';
-import 'package:project2/screens/findMovie/findMovie.dart';
-import 'package:project2/screens/settings/settings_screen.dart';
-import 'package:project2/service/apiCall.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:project2/widgets/movie_card.dart';
+import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
 
-class BottomNavigation extends StatelessWidget {
-  BottomNavigation({required this.screen_index, Key? key}) : super(key: key);
-  int screen_index;
+class ItemGrid extends StatefulWidget {
+  String heading;
+  List<dynamic> moviesModel;
+  ItemGrid({required this.heading, required this.moviesModel, Key? key})
+      : super(key: key);
+
+  @override
+  State<ItemGrid> createState() => _ItemGridState();
+}
+
+class _ItemGridState extends State<ItemGrid> {
+  bool state = true;
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      onTap: (index) {
-        screen_index = index;
-        if (screen_index == 3) {
-          Navigator.pushNamed(context, '/watch_list');
-        } else if (screen_index == 0) {
-          Navigator.pushNamed(context, '/home_screen');
-        } else if (screen_index == 2) {
-          Navigator.pushNamed(context, '/search_screen');
-        } else if (screen_index == 1) {
-          Navigator.pushNamed(context, '/recommender_screen');
-
-        } else if (screen_index == 4) {
-          Navigator.pushNamed(context, '/setting_screen');
-
-        }
-      },
-      currentIndex: screen_index,
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.play_circle), label: "Find Movie"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.search_rounded), label: "Search"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.library_add), label: "Watchlist"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.settings_rounded), label: "Settings"),
-      ],
-      backgroundColor: const Color(0xFF09090F),
-      selectedItemColor: Colors.white,
-      unselectedItemColor: Color(0xFFA0A0A0),
-      // type: BottomNavigationBarType.shifting,
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: Row(
+            children: [
+              Spacer(),
+              Text(
+                '${widget.heading}',
+                style: GoogleFonts.montserrat(
+                    fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              Spacer(),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    state = !state;
+                  });
+                },
+                child: Container(
+                  margin: EdgeInsets.only(left: 60),
+                  child: (state)
+                      ? Icon(
+                          Icons.table_rows,
+                        )
+                      : Icon(
+                          Icons.grid_view_rounded,
+                        ),
+                ),
+              ),
+            ],
+          ),
+          backgroundColor: Color(0xff00000C),
+        ),
+        body: SingleChildScrollView(
+          child: SizedBox(
+            height: 500,
+            width: double.maxFinite,
+            child: ListView.builder(
+              itemCount: widget.moviesModel.length,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (BuildContext context, index) {
+                final movie =
+                    getMoviesModel.fromJson(widget.moviesModel[index]);
+                return MovieCard(movie: movie);
+              },
+            ),
+          ),
+        ));
   }
 }

@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
+import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
 
 class MovieCard extends StatelessWidget {
-  final DiscoverMovieModel movie;
-
+  final getMoviesModel movie;
   const MovieCard({
     Key? key,
     required this.movie,
   }) : super(key: key);
 
   @override
-
   Widget build(BuildContext context) {
-    // final posterUrl =
-    final posterUrl = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.posterPath}';
-
-    // final posterUrl = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.posterPath}';
+    final posterUrl =
+        'https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.posterPath}';
 
     return Card(
       elevation: 3.0,
@@ -26,8 +22,10 @@ class MovieCard extends StatelessWidget {
             child: Image.network(
               posterUrl, // Use the posterUrl variable here
               fit: BoxFit.cover,
-              height: double.infinity, // Ensure the image takes up the entire height of the card
-              width: double.infinity, // Ensure the image takes up the entire width of the card
+              height: double
+                  .infinity, // Ensure the image takes up the entire height of the card
+              width: double
+                  .infinity, // Ensure the image takes up the entire width of the card
             ),
           ),
           Positioned(
@@ -52,7 +50,10 @@ class MovieCard extends StatelessWidget {
               padding: EdgeInsets.all(10.0),
               child: Text(
                 movie.title,
-                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
