@@ -50,8 +50,6 @@ class _MovieListState extends State<MovieList> {
         } else {
           return InkWell(
             onTap: () {
-              print("===========================================");
-              print(movieDetail);
               // Navigator.push(
               //     context,
               //     MaterialPageRoute(

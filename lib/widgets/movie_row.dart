@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
 import 'package:project2/models/apiModels/MovieDetailModel.dart';
-import 'package:project2/screens/movie_info_screen.dart';
+import 'package:project2/screens/home/movie_info_screen.dart';
 import 'package:project2/service/apiCall.dart';
 
 class MovieRow extends StatefulWidget {

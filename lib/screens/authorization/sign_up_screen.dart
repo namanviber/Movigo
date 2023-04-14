@@ -6,7 +6,7 @@ import 'package:project2/models/mongoDbModels/MongoDbModel.dart';
 import 'package:project2/service/mongoDbCall.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:project2/screens/login_screen.dart';
+import 'package:project2/screens/authorization/login_screen.dart';
 import 'package:project2/widgets/signup_widget.dart';
 
 class SignUp extends StatefulWidget {

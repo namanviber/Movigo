@@ -196,7 +196,7 @@
 // }
 import 'package:flutter/material.dart';
 
-import '../service/mongoDbCall.dart';
+import '../../service/mongoDbCall.dart';
 
 class SearchScreen extends StatefulWidget {
   @override

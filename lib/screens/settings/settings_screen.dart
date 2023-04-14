@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project2/screens/general_settings_screen.dart';
-import 'package:project2/screens/about_us_screen.dart';
-import 'package:project2/screens/privacy_policy_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:project2/screens/settings/general_settings_screen.dart';
+import 'package:project2/screens/settings/about_us_screen.dart';
+import 'package:project2/screens/settings/privacy_policy_screen.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -43,25 +44,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 decoration: BoxDecoration(
                     color: const Color(0xFF043E4F),
                     borderRadius: BorderRadius.circular(10)),
-                height: 80,
+                height: 100,
                 width: double.maxFinite,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
                     CircleAvatar(
-                        backgroundColor: Colors.transparent,
-                        child: Center(
-                            child: SizedBox(
-                              width: 200,
-                              height: 200,
-                              child: ClipOval(
-                                child: Image.asset("assets/images/testimg2.png"),
-                              ),
-                            ))),
-                    const SizedBox(
-                      width: 20,
+                      backgroundColor: Colors.white,
+                      child: Text("N"),
+                      radius: 28,
                     ),
                     Container(
                       height: 60,
@@ -69,29 +60,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text(
-                            "NMJ",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
+                            "Naman Jain",
+                            style: GoogleFonts.montserrat(
+                                fontSize: 14, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
                             "namanviber@gmail.com",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 13,
-                                letterSpacing: 0.8),
+                            style: GoogleFonts.montserrat(
+                                fontSize: 14, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
                     ),
-                    const Icon(Icons.edit),
                   ],
                 ),
               ),
@@ -100,7 +85,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               //#1
               InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.pushNamed(context, '/profile_edit');
                 },
                 child: Container(
@@ -415,7 +400,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               //#7
               InkWell(
                 onTap: () {
-                 Navigator.pushNamed(context, '/privacy_policy');
+                  Navigator.pushNamed(context, '/privacy_policy');
                 },
                 child: Container(
                   height: 60,
@@ -462,9 +447,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
       ),
-      // bottomNavigationBar: BottomNavigation(
-      //   screen_index: 3,
-      // ),
+      bottomNavigationBar: BottomNavigation(
+        screen_index: 3,
+      ),
     );
   }
 }

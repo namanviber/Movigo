@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project2/authorization/auth_google.dart';
-import 'package:project2/screens/forget_password_screen.dart';
-import 'package:project2/screens/sign_up_screen.dart';
-import 'package:project2/screens/general_settings_screen.dart';
+import 'package:project2/screens/authorization/forget_password_screen.dart';
+import 'package:project2/screens/authorization/sign_up_screen.dart';
+import 'package:project2/screens/settings/general_settings_screen.dart';
 
 class SignupWidget extends StatefulWidget {
   @override
