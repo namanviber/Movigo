@@ -3,80 +3,135 @@ import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
 
 class MovieCard extends StatelessWidget {
   final DiscoverMovieModel movie;
+
   const MovieCard({
     Key? key,
     required this.movie,
   }) : super(key: key);
 
   @override
+
   Widget build(BuildContext context) {
-    final posterUrl =
-        'https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.posterPath}';
-    return Container(
-      height: 150,
-      width: double.maxFinite,
-      margin: const EdgeInsets.symmetric(horizontal: 5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+    // final posterUrl =
+    final posterUrl = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.posterPath}';
+
+    // final posterUrl = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.posterPath}';
+
+    return Card(
+      elevation: 3.0,
+      child: Stack(
         children: [
-          Container(
-            height: 130,
-            width: 100,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: posterUrl != ''
-                    ? NetworkImage(posterUrl)
-                    : AssetImage('assets/images/noimage.png') as ImageProvider,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: Image.network(
+              posterUrl, // Use the posterUrl variable here
+              fit: BoxFit.cover,
+              height: double.infinity, // Ensure the image takes up the entire height of the card
+              width: double.infinity, // Ensure the image takes up the entire width of the card
+            ),
+          ),
+          Positioned(
+            bottom: 0, // Place the movie title at the bottom of the card
+            left: 0,
+            right: 0,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10.0),
+                  bottomRight: Radius.circular(10.0),
+                ),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    Colors.black.withOpacity(0.7),
+                  ],
+                ),
+              ),
+              padding: EdgeInsets.all(10.0),
+              child: Text(
+                movie.title,
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.white),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
               ),
             ),
           ),
-          const SizedBox(
-            width: 20,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                movie.title != '' ? movie.title : "Untitled",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Inter",
-                    fontSize: 11),
-                maxLines: 3,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                  movie.genreIds != '' ? movie.genreIds.toString() : "Untitled",
-                  style: TextStyle(
-                      color: Colors.white, fontFamily: "Inter", fontSize: 8)),
-              const SizedBox(
-                height: 8,
-              ),
-              Row(
-                children: [
-                  Icon(Icons.calendar_month),
-                  SizedBox(
-                    width: 6,
-                  ),
-                  Text(
-                      movie.releaseDate != ''
-                          ? movie.releaseDate.toString()
-                          : "Untitled",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: "Inter",
-                          fontSize: 8)),
-                ],
-              ),
-            ],
-          )
         ],
       ),
     );
   }
 }
+//
+//   Widget build(BuildContext context) {
+//     final posterUrl =
+//         'https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.posterPath}';
+//     return Container(
+//       height: 150,
+//       width: double.maxFinite,
+//       margin: const EdgeInsets.symmetric(horizontal: 5),
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.start,
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Container(
+//             height: 130,
+//             width: 100,
+//             decoration: BoxDecoration(
+//               image: DecorationImage(
+//                 fit: BoxFit.cover,
+//                 image: posterUrl != ''
+//                     ? NetworkImage(posterUrl)
+//                     : AssetImage('assets/images/noimage.png') as ImageProvider,
+//               ),
+//             ),
+//           ),
+//           const SizedBox(
+//             width: 20,
+//           ),
+//           Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Text(
+//                 movie.title != '' ? movie.title : "Untitled",
+//                 style: TextStyle(
+//                     color: Colors.white,
+//                     fontWeight: FontWeight.bold,
+//                     fontFamily: "Inter",
+//                     fontSize: 11),
+//                 maxLines: 3,
+//               ),
+//               const SizedBox(
+//                 height: 10,
+//               ),
+//               Text(
+//                   movie.genreIds != '' ? movie.genreIds.toString() : "Untitled",
+//                   style: TextStyle(
+//                       color: Colors.white, fontFamily: "Inter", fontSize: 8)),
+//               const SizedBox(
+//                 height: 8,
+//               ),
+//               Row(
+//                 children: [
+//                   Icon(Icons.calendar_month),
+//                   SizedBox(
+//                     width: 6,
+//                   ),
+//                   Text(
+//                       movie.releaseDate != ''
+//                           ? movie.releaseDate.toString()
+//                           : "Untitled",
+//                       style: TextStyle(
+//                           color: Colors.white,
+//                           fontFamily: "Inter",
+//                           fontSize: 8)),
+//                 ],
+//               ),
+//             ],
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
