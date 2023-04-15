@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
+import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
 
 class MovieCard extends StatelessWidget {
-  final getMoviesModel movie;
+  final DiscoverMovieModel movie;
+  // final getMoviesModel movie;
   const MovieCard({
     Key? key,
     required this.movie,

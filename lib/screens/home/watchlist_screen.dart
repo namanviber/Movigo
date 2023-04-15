@@ -135,8 +135,8 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                 mainAxisSpacing: 10.0,
                               ),
                               itemBuilder: (context, index) {
-                                return Center();
-                                // return MovieCard(movie: content[index]);
+                                // return Center();
+                                return MovieCard(movie: content[index]);
                               },
                             ),
                           ),

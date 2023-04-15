@@ -162,6 +162,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             fit: BoxFit.cover,
                           ),
                         ),
+                        BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+                          child: Container(
+                            height: 300,
+                            color: Colors.transparent,
+                          ),
+                        ),
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: Text(
@@ -432,9 +439,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         if (snapshot.hasData) {
                           return Column(
                             children: [
-                              Heading(
+                              TextHeading(
                                 heading: "Top SciFi movies",
-                                moviesModel: snapshot.data,
                               ),
                               const SizedBox(
                                 height: 20,
