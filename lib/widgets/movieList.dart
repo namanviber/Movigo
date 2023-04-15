@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project2/models/apiModels/MovieDetailModel.dart';
 import 'package:project2/service/apiCall.dart';
 import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
+import 'package:project2/screens/home/movie_info_screen.dart';
 
 class MovieList extends StatefulWidget {
   final getMoviesModel moviesModel;
@@ -12,68 +13,50 @@ class MovieList extends StatefulWidget {
 }
 
 class _MovieListState extends State<MovieList> {
-  MovieDetailModel? movieDetail;
-
-  var fetchdetails;
-  // int? movieiD;
-  @override
-  void initState() {
-    // fetchdetails = fetchMovieDetails(movieiD!);
-    super.initState();
-  }
+  late MovieDetailModel movieDetail;
 
   Future<void> fetchMovieDetails(int movieid) async {
     final response3 = await movieDetails(movieid);
     setState(() {
       movieDetail = response3;
+      print(movieDetail);
     });
   }
-  String posterUrl ="";
+
+  String posterUrl = "";
 
   @override
   Widget build(BuildContext context) {
-    if (widget.moviesModel.posterPath != Null){
+    if (widget.moviesModel.posterPath != Null) {
       posterUrl =
           'https://image.tmdb.org/t/p/w600_and_h900_bestv2${widget.moviesModel.posterPath}';
     } else {
-      posterUrl  = "";
+      posterUrl = "";
     }
-    return FutureBuilder(
-      future: fetchdetails,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Container(
+    return InkWell(
+      onTap: () {
+        fetchMovieDetails(widget.moviesModel.tmdbId);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => MovieInfo(
+                      movieModel: movieDetail,
+                    )));
+      },
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
+          child: Image.network(
+            posterUrl,
+            fit: BoxFit.cover,
             height: 190,
             width: 145,
-            child: Center(child: CircularProgressIndicator()),
-          );
-        } else {
-          return InkWell(
-            onTap: () {
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (context) => MovieInfo(
-              //               movieModel: movieDetail!,
-              //             )));
+            errorBuilder: (context, error, stackTrace) {
+              return Image.asset(
+                "assets/images/noimage.png",
+                fit: BoxFit.cover,
+              );
             },
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: Image.network(
-                  posterUrl,
-                  fit: BoxFit.cover,
-                  height: 190,
-                  width: 145,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Image.asset(
-                      "assets/images/noimage.png",
-                      fit: BoxFit.cover,
-                    );
-                  },
-                )),
-          );
-        }
-      },
+          )),
     );
   }
 }

@@ -13,6 +13,7 @@ class MongoDatabase {
     inspect(db);
     movieCollection = db.collection(Collection_Name);
     if(db.isConnected!){
+      await db.close();
       await db.open();
     }
   }

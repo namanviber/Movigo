@@ -27,31 +27,31 @@ class MovieDetailModel {
     required this.voteCount,
   });
 
-  bool adult;
-  String backdropPath;
+  bool? adult;
+  String? backdropPath;
   BelongsToCollection belongsToCollection;
-  int budget;
+  int? budget;
   List<Genre> genres;
-  String homepage;
-  int id;
-  String imdbId;
-  String originalLanguage;
-  String originalTitle;
-  String overview;
-  double popularity;
-  String posterPath;
+  String? homepage;
+  int? id;
+  String? imdbId;
+  String? originalLanguage;
+  String? originalTitle;
+  String? overview;
+  double? popularity;
+  String? posterPath;
   List<ProductionCompany> productionCompanies;
   List<ProductionCountry> productionCountries;
   DateTime releaseDate;
-  int revenue;
-  int runtime;
+  int? revenue;
+  int? runtime;
   List<SpokenLanguage> spokenLanguages;
-  String status;
-  String tagline;
-  String title;
-  bool video;
-  double voteAverage;
-  int voteCount;
+  String? status;
+  String? tagline;
+  String? title;
+  bool? video;
+  double? voteAverage;
+  int? voteCount;
 
   factory MovieDetailModel.fromJson(Map<String, dynamic> json) => MovieDetailModel(
     adult: json["adult"],
