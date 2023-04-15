@@ -62,39 +62,34 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         elevation: 0.0,
         // scrolledUnderElevation: true,
-        leading: Builder(
-          builder: (BuildContext context) {
-            return Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Row(
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Scaffold.of(context).openDrawer();
-                      },
-                      icon: Icon(Icons.person)),
-                ],
-              ),
-            );
-          },
-        ),
         backgroundColor: Colors.transparent,
         // excludeHeaderSemantics: true,
         title: Padding(
           padding: const EdgeInsets.only(right: 8.0),
           child: Row(
             children: [
+              SizedBox(
+                width: 70,
+                height: 70,
+                child: Image.asset(
+                  'assets/images/moviegologo.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
               Spacer(),
               IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/search_screen');
-                  },
-                  icon: Icon(Icons.search_rounded)),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/search_screen');
+                },
+                icon: Icon(
+                  Icons.search_rounded,
+                  size: 30,
+                ),
+              ),
             ],
           ),
         ),
       ),
-      drawer: Drawer(),
       extendBodyBehindAppBar: true,
       // appBar: ScrollAppBar(
       //   controller: scrollcontroller,
@@ -144,87 +139,44 @@ class _HomeScreenState extends State<HomeScreen> {
         controller: scrollcontroller,
         child: Column(
           children: [
-            Stack(
-              children: [
-                Image.network(
-                  "https://image.tmdb.org/t/p/original/i8dshLvq4LE3s0v8PrkDdUyb1ae.jpg",
-                  fit: BoxFit.cover,
-                  height: 400,
-                  width: double.maxFinite,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Image.asset(
-                      "assets/images/noimage.png",
-                      fit: BoxFit.cover,
+            CarouselSlider(
+              options: CarouselOptions(
+                height: 500,
+                viewportFraction: 1,
+                enableInfiniteScroll: true,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 4),
+                scrollDirection: Axis.horizontal,
+              ),
+              items: _discoverMovie.map((i) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Stack(
+                      children: [
+                        SizedBox(
+                          width: double.maxFinite,
+                          height: 500,
+                          child: Image.network(
+                            "https://image.tmdb.org/t/p/original${i.posterPath}",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Text(
+                            "${i.originalTitle}",
+                            style: GoogleFonts.montserrat(
+                                fontSize: 27, fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
                     );
                   },
-                ),
-                BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
-                  child: Container(
-                    height: 300,
-                    color: Colors.transparent,
-                  ),
-                ),
-                CarouselSlider(
-                  options: CarouselOptions(
-                    height: 400,
-                    aspectRatio: 16 / 9,
-                    viewportFraction: 0.8,
-                    enableInfiniteScroll: true,
-                    autoPlay: true,
-                    autoPlayInterval: Duration(seconds: 3),
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    enlargeCenterPage: true,
-                    enlargeFactor: 0.3,
-                    scrollDirection: Axis.horizontal,
-                  ),
-                  items: _discoverMovie.map((i) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return InkWell(
-                          onTap: () {},
-                          child: Container(
-                            padding: EdgeInsets.only(top: 80),
-                            child: Column(
-                              children: [
-                                ClipRRect(
-                                    borderRadius: BorderRadius.circular(16.0),
-                                    child: Image.network(
-                                      "https://image.tmdb.org/t/p/original${i.posterPath}",
-                                      fit: BoxFit.fitWidth,
-                                      height: 200,
-                                      width: 250,
-                                      errorBuilder:
-                                          (context, error, stackTrace) {
-                                        return Image.asset(
-                                          "assets/images/noimage.png",
-                                          fit: BoxFit.cover,
-                                        );
-                                      },
-                                    )),
-                                // const SizedBox(
-                                //   height: 10,
-                                // ),
-                                // Text(
-                                //   "${i.originalTitle}",
-                                //   style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.bold),
-                                //   overflow: TextOverflow.ellipsis,
-                                //   maxLines: 1,
-                                //   textAlign: TextAlign.center,
-                                // ),
-                                // const SizedBox(
-                                //   height: 10,
-                                // ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  }).toList(),
-                ),
-              ],
+                );
+              }).toList(),
             ),
             Padding(
               padding: const EdgeInsets.all(16),
@@ -479,7 +431,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         if (snapshot.hasData) {
                           return Column(
                             children: [
-                              Heading(heading: "Top SciFi movies", moviesModel: snapshot.data,),
+                              Heading(
+                                heading: "Top SciFi movies",
+                                moviesModel: snapshot.data,
+                              ),
                               const SizedBox(
                                 height: 20,
                               ),
@@ -527,27 +482,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  // FilterRow(count: 19, elements: [
-                  //   "Action",
-                  //   "Adventure",
-                  //   "Animation",
-                  //   "Children",
-                  //   "Thriller",
-                  //   "Horror",
-                  //   "Mystery",
-                  //   "SciFi",
-                  //   "IMAX",
-                  //   "Documentry",
-                  //   "War",
-                  //   "Musical",
-                  //   "Western",
-                  //   "Film_Noir",
-                  //   "Drama",
-                  //   "Comedy",
-                  //   "Fantasy",
-                  //   "Crime",
-                  //   "Romance"
-                  // ]),
+                  FilterRow(count: 10, elements: [
+                    "Action",
+                    "Adventure",
+                    "Thriller",
+                    "Horror",
+                    "SciFi",
+                    "Documentry",
+                    "Drama",
+                    "Comedy",
+                    "Crime",
+                    "Romance"
+                  ]),
                   const SizedBox(
                     height: 20,
                   ),
