@@ -13,13 +13,18 @@ class MovieList extends StatefulWidget {
 }
 
 class _MovieListState extends State<MovieList> {
-  late MovieDetailModel movieDetail;
 
   Future<void> fetchMovieDetails(int movieid) async {
+    print(movieid);
     final response3 = await movieDetails(movieid);
     setState(() {
-      movieDetail = response3;
-      print(movieDetail);
+      MovieDetailModel movieDetail = response3;
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MovieInfo(
+                movieModel: movieDetail,
+              )));
     });
   }
 
@@ -35,13 +40,9 @@ class _MovieListState extends State<MovieList> {
     }
     return InkWell(
       onTap: () {
-        fetchMovieDetails(widget.moviesModel.tmdbId);
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => MovieInfo(
-                      movieModel: movieDetail,
-                    )));
+        setState(() {
+          fetchMovieDetails(widget.moviesModel.tmdbId);
+        });
       },
       child: ClipRRect(
           borderRadius: BorderRadius.circular(10.0),
