@@ -167,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Text(
                             "${i.originalTitle}",
                             style: GoogleFonts.montserrat(
-                                fontSize: 27, fontWeight: FontWeight.bold),
+                                fontSize: 20, fontWeight: FontWeight.bold),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             textAlign: TextAlign.center,
@@ -325,7 +325,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Row(
                             children: [
                               SizedBox(
-                                width: 200,
+                                width: 170,
                                 child: Column(
                                   children: [
                                     Text(
