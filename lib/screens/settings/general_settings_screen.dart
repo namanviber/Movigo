@@ -50,7 +50,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                 height: 10,
               ),
               //#1
-              Container(
+              SizedBox(
                 height: 60,
                 width: 390,
                 child: Row(
@@ -65,7 +65,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     const SizedBox(
                       width: 20,
                     ),
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: 220,
                       child: Column(
@@ -113,7 +113,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                 height: 10,
               ),
               //#2
-              Container(
+              SizedBox(
                 height: 60,
                 width: double.maxFinite,
                 child: Row(
@@ -128,7 +128,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     const SizedBox(
                       width: 20,
                     ),
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: 220,
                       child: Column(
@@ -184,7 +184,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
               const SizedBox(
                 height: 10,
               ),
-              Container(
+              SizedBox(
                 height: 60,
                 width: double.maxFinite,
                 child: Row(
@@ -199,7 +199,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     const SizedBox(
                       width: 20,
                     ),
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: 240,
                       child: Column(
@@ -235,7 +235,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                 height: 10,
               ),
               //#3
-              Container(
+              SizedBox(
                 height: 60,
                 width: double.maxFinite,
                 child: Row(
@@ -250,7 +250,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     const SizedBox(
                       width: 20,
                     ),
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: 220,
                       child: Column(
@@ -299,7 +299,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
               ),
               //#4
               // #3
-              Container(
+              SizedBox(
                 height: 60,
                 width: double.maxFinite,
                 child: Row(
@@ -314,7 +314,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     const SizedBox(
                       width: 20,
                     ),
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: 240,
                       child: Column(

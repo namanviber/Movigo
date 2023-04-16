@@ -1,13 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:project2/authorization/auth_google.dart';
-import 'package:mongo_dart/mongo_dart.dart' as mongo;
-import 'package:project2/models/mongoDbModels/MongoDbModel.dart';
 import 'package:project2/screens/home/home_screen.dart';
-import 'package:project2/service/mongoDbCall.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:project2/screens/authorization/login_screen.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -44,8 +39,7 @@ class _SignUpState extends State<SignUp> {
   //   var result = await MongoDatabase.insert(data);
   // }
 
-
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,

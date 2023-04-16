@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LandingScreen extends StatefulWidget {
-  LandingScreen({Key? key}) : super(key: key);
+  const LandingScreen({Key? key}) : super(key: key);
 
   @override
   State<LandingScreen> createState() => _LandingScreenState();
@@ -52,7 +52,7 @@ class _LandingScreenState extends State<LandingScreen> {
               const SizedBox(
                 height: 30,
               ),
-              Container(
+              SizedBox(
                 width: 230,
                 child: const Text(
                     "Get personalised movie recommendations based on your tastes and preferences.",
@@ -75,10 +75,9 @@ class _LandingScreenState extends State<LandingScreen> {
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 40.0, vertical: 15.0),
+                          horizontal: 40.0, vertical: 15.0), backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0)),
-                      primary: Colors.white,
                     ),
                     child: Center(
                       child: Text("Sign In",

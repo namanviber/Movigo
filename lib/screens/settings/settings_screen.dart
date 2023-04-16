@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project2/screens/settings/general_settings_screen.dart';
-import 'package:project2/screens/settings/about_us_screen.dart';
-import 'package:project2/screens/settings/privacy_policy_screen.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -51,10 +48,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   children: [
                     CircleAvatar(
                       backgroundColor: Colors.white,
-                      child: Text("N"),
                       radius: 28,
+                      child: Text("N"),
                     ),
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: 240,
                       child: Column(
@@ -88,7 +85,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onTap: () {
                   Navigator.pushNamed(context, '/profile_edit');
                 },
-                child: Container(
+                child: SizedBox(
                   height: 70,
                   width: double.maxFinite,
                   child: Row(
@@ -102,7 +99,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       // const SizedBox(
                       //   width: 20,
                       // ),
-                      Container(
+                      SizedBox(
                         height: 60,
                         width: 220,
                         child: Column(
@@ -134,7 +131,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onTap: () {
                   Navigator.pushNamed(context, '/general_setting');
                 },
-                child: Container(
+                child: SizedBox(
                   height: 70,
                   width: double.maxFinite,
                   child: Row(
@@ -148,7 +145,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       // const SizedBox(
                       //   width: 20,
                       // ),
-                      Container(
+                      SizedBox(
                         height: 60,
                         width: 220,
                         child: Column(
@@ -180,7 +177,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onTap: () {
                   // Navigator.pushNamed(context, '/Set Your Preferences');
                 },
-                child: Container(
+                child: SizedBox(
                   height: 70,
                   width: double.maxFinite,
                   child: Row(
@@ -194,7 +191,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       // const SizedBox(
                       //   width: 20,
                       // ),
-                      Container(
+                      SizedBox(
                         height: 60,
                         width: 220,
                         child: Column(
@@ -227,7 +224,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   FirebaseAuth.instance.signOut();
                   Navigator.pushNamed(context, '/check');
                 },
-                child: Container(
+                child: SizedBox(
                   height: 70,
                   width: double.maxFinite,
                   child: Row(
@@ -241,7 +238,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       // const SizedBox(
                       //   width: 20,
                       // ),
-                      Container(
+                      SizedBox(
                         height: 60,
                         width: 220,
                         child: Column(
@@ -273,7 +270,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onTap: () {
                   Navigator.pushNamed(context, '/about_us');
                 },
-                child: Container(
+                child: SizedBox(
                   height: 70,
                   width: double.maxFinite,
                   child: Row(
@@ -287,7 +284,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       // const SizedBox(
                       //   width: 20,
                       // ),
-                      Container(
+                      SizedBox(
                         height: 60,
                         width: 220,
                         child: Column(
@@ -311,7 +308,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onTap: () {
                   Navigator.pushNamed(context, '/privacy_policy');
                 },
-                child: Container(
+                child: SizedBox(
                   height: 70,
                   width: double.maxFinite,
                   child: Row(
@@ -325,7 +322,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       // const SizedBox(
                       //   width: 20,
                       // ),
-                      Container(
+                      SizedBox(
                         height: 60,
                         width: 220,
                         child: Column(
