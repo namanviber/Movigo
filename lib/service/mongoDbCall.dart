@@ -77,6 +77,13 @@ class MongoDatabase {
     return movieData;
   }
 
+  static Future<List<Map<String, dynamic>>> userWatchedMovies(int query) async {
+    final movieData = await movieCollection
+        .find(where.eq('id', query))
+        .toList();
+    return movieData;
+  }
+
   static Future<List<Map<String, dynamic>>> searchGenre(String query) async {
     final movieData = await movieCollection
         .find(where.match('genres', query, caseInsensitive: true))

@@ -10,7 +10,7 @@ getMoviesModel mongoDbModelFromJson(String str) => getMoviesModel.fromJson(json.
 String mongoDbModelToJson(getMoviesModel data) => json.encode(data.toJson());
 
 class getMoviesModel {
-  getMoviesModel({
+  getMoviesModel( {
     required this.id,
     required this.title,
     required this.genres,

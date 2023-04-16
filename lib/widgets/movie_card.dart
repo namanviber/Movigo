@@ -1,3 +1,4 @@
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
 import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
@@ -22,16 +23,26 @@ class MovieCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
             child: Image.network(
-              posterUrl, // Use the posterUrl variable here
+              posterUrl,
               fit: BoxFit.cover,
-              height: double
-                  .infinity, // Ensure the image takes up the entire height of the card
-              width: double
-                  .infinity, // Ensure the image takes up the entire width of the card
+              height: double.infinity,
+              width: double.infinity,
             ),
           ),
           Positioned(
-            bottom: 0, // Place the movie title at the bottom of the card
+            top: 0,
+            right: 0,
+            child: IconButton(
+              icon: Icon(
+                Icons.bookmark,
+                size: 28,
+                color: Color(0xFF6280CC),
+              ),
+              onPressed: () {},
+            ),
+          ),
+          Positioned(
+            bottom: 0,
             left: 0,
             right: 0,
             child: Container(
@@ -64,6 +75,7 @@ class MovieCard extends StatelessWidget {
         ],
       ),
     );
+
   }
 }
 //
