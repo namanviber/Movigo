@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileEditPage extends StatefulWidget {
+  const ProfileEditPage({super.key});
+
   @override
   _ProfileEditPageState createState() => _ProfileEditPageState();
 }
 
 class _ProfileEditPageState extends State<ProfileEditPage> {
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
   // late String _selectedGender;
 
-  final _phoneRegex = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)');
+  final _phoneRegex = RegExp(r'(^(?:[+0]9)?\d{10,12}$)');
 
   final List<String> _genderOptions = ['Male', 'Female', 'Other'];
 
@@ -48,8 +49,8 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
           children: [
             CircleAvatar(
               backgroundColor: Colors.white,
-              child: Text("N"),
               radius: 60,
+              child: Text("N"),
             ),
             SizedBox(height: 20),
             Text(
@@ -200,11 +201,11 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF075D7A), fixedSize: Size(150, 50)),
               child: Text(
                 'Save Changes',
               ),
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF075D7A), fixedSize: Size(150, 50)),
             ),
           ],
         ),

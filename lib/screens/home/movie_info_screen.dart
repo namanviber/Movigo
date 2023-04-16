@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
-import 'package:project2/models/apiModels/GetMovieVideos.dart';
 import 'package:project2/models/apiModels/MovieDetailModel.dart';
 import 'package:project2/models/apiModels/MovieCastDetailsModel.dart';
 import 'package:project2/models/apiModels/MovieCrewDetailsModel.dart';
@@ -9,12 +7,11 @@ import 'package:project2/service/apiCall.dart';
 import 'package:project2/widgets/heading_text.dart';
 import 'package:project2/widgets/movie_cast_row.dart';
 import 'package:project2/widgets/movie_crew_row.dart';
-import 'package:project2/widgets/movie_video_row.dart';
-import 'package:project2/widgets/movie_row.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MovieInfo extends StatefulWidget {
   final MovieDetailModel movieModel;
-  MovieInfo({required this.movieModel, Key? key}) : super(key: key);
+  const MovieInfo({required this.movieModel, Key? key}) : super(key: key);
 
   @override
   State<MovieInfo> createState() => _MovieInfoState();
@@ -24,13 +21,6 @@ class _MovieInfoState extends State<MovieInfo> {
   List<MovieCastDetailsModel> _movieCast = [];
   List<MovieCrewDetailsModel> _movieCrew = [];
   // List<MovieVideos> _movieVideos = [];
-  int moviecode = 76600;
-
-  @override
-  void initState() {
-    super.initState();
-    fetchCreditDetails(moviecode);
-  }
 
   Future<void> fetchCreditDetails(int movieid) async {
     final response1 = await movieCastDetails(movieid);
@@ -52,32 +42,32 @@ class _MovieInfoState extends State<MovieInfo> {
         'https://image.tmdb.org/t/p/original/${widget.movieModel.posterPath}';
 
     // final posterUrlbelongs =
-    //     'https://image.tmdb.org/t/p/original/${movieDetail.belongsToCollection.posterPath}';
+    //     'https://image.tmdb.org/t/p/original/${widget.movieModel.belongsToCollection.posterPath}';
 
     final posterUrlbelongs =
         'https://image.tmdb.org/t/p/original/${widget.movieModel.posterPath}';
 
     // final genres = "${movieDetail.genres.toString()}";
 
-    final original_title = "${widget.movieModel.originalTitle}";
+    final originalTitle = "${widget.movieModel.originalTitle}";
 
-    // TextEditingController length =
-    //     TextEditingController(text: "${movieDetail.runtime} minutes");
+    TextEditingController length =
+        TextEditingController(text: "${widget.movieModel.runtime} minutes");
 
-    // TextEditingController language =
-    //     TextEditingController(text: "${movieDetail.originalLanguage}");
+    TextEditingController language =
+        TextEditingController(text: "${widget.movieModel.originalLanguage}");
 
-    // TextEditingController rating =
-    //     TextEditingController(text: "${movieDetail.voteAverage}");
+    TextEditingController rating =
+        TextEditingController(text: "${widget.movieModel.voteAverage}");
 
-    // TextEditingController budget =
-    //     TextEditingController(text: "${movieDetail.budget}");
-    //
-    // TextEditingController revenue =
-    //     TextEditingController(text: "${movieDetail.revenue}");
+    TextEditingController budget =
+        TextEditingController(text: "${widget.movieModel.budget}");
 
-    // TextEditingController release =
-    //     TextEditingController(text: "${movieDetail.releaseDate}");
+    TextEditingController revenue =
+        TextEditingController(text: "${widget.movieModel.revenue}");
+
+    TextEditingController release =
+        TextEditingController(text: "${widget.movieModel.releaseDate}");
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -96,7 +86,8 @@ class _MovieInfoState extends State<MovieInfo> {
                     ? NetworkImage(
                         backdropposterUrl,
                       )
-                    : const AssetImage('assets/images/noimage.png') as ImageProvider,
+                    : const AssetImage('assets/images/noimage.png')
+                        as ImageProvider,
                 height: 400,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
@@ -109,7 +100,7 @@ class _MovieInfoState extends State<MovieInfo> {
                     Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        original_title,
+                        originalTitle,
                         style: GoogleFonts.montserrat(
                             fontWeight: FontWeight.bold, fontSize: 24),
                       ),
@@ -120,7 +111,7 @@ class _MovieInfoState extends State<MovieInfo> {
                     Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        "genres.toString()",
+                        widget.movieModel.genres.toString(),
                         style: GoogleFonts.montserrat(fontSize: 11),
                       ),
                     ),
@@ -130,10 +121,10 @@ class _MovieInfoState extends State<MovieInfo> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const SizedBox(
+                        SizedBox(
                           width: 100,
                           child: TextField(
-                            // controller: length,
+                            controller: length,
                             readOnly: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -141,10 +132,10 @@ class _MovieInfoState extends State<MovieInfo> {
                             ),
                           ),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           width: 100,
                           child: TextField(
-                            // controller: language,
+                            controller: language,
                             readOnly: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -152,10 +143,10 @@ class _MovieInfoState extends State<MovieInfo> {
                             ),
                           ),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           width: 50,
                           child: TextField(
-                            // controller: rating,
+                            controller: rating,
                             readOnly: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -173,14 +164,14 @@ class _MovieInfoState extends State<MovieInfo> {
                         child: Container(
                           height: 45,
                           width: double.maxFinite,
+                          decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(10)),
                           child: const Center(
                               child: Text(
                             "Already Watched",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )),
-                          decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(10)),
                         )),
                     const SizedBox(
                       height: 20,
@@ -188,21 +179,21 @@ class _MovieInfoState extends State<MovieInfo> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Icon(
-                          Icons.bookmark,
-                          semanticLabel: "Save",
-                          size: 35,
+                        IconButton(
+                          onPressed: () {},
+                          icon: FaIcon(
+                            FontAwesomeIcons.bookmark,
+                          ),
+                          selectedIcon: FaIcon(
+                            FontAwesomeIcons.solidBookmark,
+                          ),
                         ),
-                        const Icon(
-                          Icons.star,
-                          semanticLabel: "Rate this Movie",
-                          size: 35,
-                        ),
-                        const Icon(
-                          Icons.ios_share_outlined,
-                          semanticLabel: "Share",
-                          size: 35,
-                        ),
+                        IconButton(
+                            onPressed: () {},
+                            icon: FaIcon(FontAwesomeIcons.star)),
+                        IconButton(
+                            onPressed: () {},
+                            icon: FaIcon(FontAwesomeIcons.share)),
                       ],
                     ),
                     const SizedBox(
@@ -282,50 +273,80 @@ class _MovieInfoState extends State<MovieInfo> {
                     const SizedBox(
                       height: 20,
                     ),
-                    TextHeading(heading: "Cast"),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    SizedBox(
-                      height: 215,
-                      width: double.maxFinite,
-                      child: ListView.separated(
-                        itemCount: _movieCast.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (BuildContext context, index) {
-                          final cast = _movieCast[index];
-                          return MovieCastRow(model: cast);
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return const SizedBox(
-                            width: 20,
+                    FutureBuilder(
+                      future: fetchCreditDetails(widget.movieModel.id),
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return SizedBox(
+                            height: 190,
+                            width: 125,
+                            child: const Center(
+                                child: CircularProgressIndicator()),
                           );
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextHeading(heading: "Crew"),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    SizedBox(
-                      height: 215,
-                      width: double.maxFinite,
-                      child: ListView.separated(
-                        itemCount: _movieCrew.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (BuildContext context, index) {
-                          final crew = _movieCrew[index];
-                          return MovieCrewRow(model: crew);
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return const SizedBox(
-                            width: 20,
-                          );
-                        },
-                      ),
+                        } else {
+                          if (snapshot.hasData) {
+                            return Column(
+                              children: [
+                                TextHeading(heading: "Cast"),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                SizedBox(
+                                  height: 215,
+                                  width: double.maxFinite,
+                                  child: ListView.separated(
+                                    itemCount: _movieCast.length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (BuildContext context, index) {
+                                      final cast = _movieCast[index];
+                                      return MovieCastRow(model: cast);
+                                    },
+                                    separatorBuilder:
+                                        (BuildContext context, int index) {
+                                      return const SizedBox(
+                                        width: 20,
+                                      );
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                TextHeading(heading: "Crew"),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                SizedBox(
+                                  height: 215,
+                                  width: double.maxFinite,
+                                  child: ListView.separated(
+                                    itemCount: _movieCrew.length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (BuildContext context, index) {
+                                      final crew = _movieCrew[index];
+                                      return MovieCrewRow(model: crew);
+                                    },
+                                    separatorBuilder:
+                                        (BuildContext context, int index) {
+                                      return const SizedBox(
+                                        width: 20,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            );
+                          } else {
+                            return SizedBox(
+                              height: 190,
+                              width: 125,
+                              child: const Center(
+                                  child: Text("Some Error Occured")),
+                            );
+                          }
+                        }
+                      },
                     ),
                     const SizedBox(
                       height: 20,
@@ -344,7 +365,7 @@ class _MovieInfoState extends State<MovieInfo> {
                     Column(
                       children: [
                         TextField(
-                          // controller: budget,
+                          controller: budget,
                           readOnly: true,
                           decoration: InputDecoration(
                               label: Text(
@@ -358,7 +379,7 @@ class _MovieInfoState extends State<MovieInfo> {
                           height: 10,
                         ),
                         TextField(
-                          // controller: revenue,
+                          controller: revenue,
                           readOnly: true,
                           decoration: InputDecoration(
                               label: Text(
@@ -372,7 +393,7 @@ class _MovieInfoState extends State<MovieInfo> {
                           height: 10,
                         ),
                         TextField(
-                          // controller: release,
+                          controller: release,
                           readOnly: true,
                           decoration: InputDecoration(
                               label: Text(
@@ -414,7 +435,8 @@ class _MovieInfoState extends State<MovieInfo> {
                                 alignment: Alignment.topRight,
                                 height: 170,
                                 width: 125,
-                                margin: const EdgeInsets.symmetric(horizontal: 8),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 8),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   image: DecorationImage(

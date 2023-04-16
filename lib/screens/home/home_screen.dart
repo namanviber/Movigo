@@ -1,6 +1,3 @@
-  import 'dart:ui';
-import 'package:project2/temp/temp2.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
@@ -9,10 +6,8 @@ import 'package:project2/widgets/bottom_bar.dart';
 import 'package:project2/widgets/filter_row.dart';
 import 'package:project2/widgets/heading_text.dart';
 import 'package:project2/widgets/movieList.dart';
-import '../../widgets/movie_row.dart';
 import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
 import 'package:project2/service/apiCall.dart';
-import 'package:scroll_app_bar/scroll_app_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -91,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      extendBodyBehindAppBar: true,
+      // extendBodyBehindAppBar: true,
       // appBar: ScrollAppBar(
       //   controller: scrollcontroller,
       //   automaticallyImplyLeading: false,
@@ -141,58 +136,57 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             CarouselSlider(
+              items: _discoverMovie
+                  .map((item) => InkWell(
+                        onTap: () {},
+                        child: SizedBox(
+                          height: 280,
+                          child: Column(
+                            children: [
+                              ClipRRect(
+                                  borderRadius: BorderRadius.circular(16.0),
+                                  child: Image.network(
+                                    "https://image.tmdb.org/t/p/original${item.posterPath}",
+                                    fit: BoxFit.cover,
+                                    height: 245,
+                                    width: 180,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Image.asset(
+                                        "assets/images/noimage.png",
+                                        fit: BoxFit.cover,
+                                      );
+                                    },
+                                  )),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                item.originalTitle,
+                                style: GoogleFonts.montserrat(
+                                    fontSize: 14, fontWeight: FontWeight.bold),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ))
+                  .toList(),
               options: CarouselOptions(
-                height: 500,
-                viewportFraction: 1,
+                height: 350,
+                viewportFraction: 0.6,
                 enableInfiniteScroll: true,
                 autoPlay: true,
                 autoPlayInterval: Duration(seconds: 4),
                 scrollDirection: Axis.horizontal,
+                enlargeCenterPage: true,
               ),
-              items: _discoverMovie.map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Stack(
-                      children: [
-                        SizedBox(
-                          width: double.maxFinite,
-                          height: 500,
-                          child: Image.network(
-                            "https://image.tmdb.org/t/p/original${i.posterPath}",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
-                          child: Container(
-                            height: 300,
-                            color: Colors.transparent,
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Text(
-                            "${i.originalTitle}",
-                            style: GoogleFonts.montserrat(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              }).toList(),
             ),
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: <Widget>[
-                  const SizedBox(
-                    height: 20,
-                  ),
                   TextHeading(heading: "Discover Movies"),
                   const SizedBox(
                     height: 20,
@@ -201,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     future: fetchmoviedb,
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Container(
+                        return SizedBox(
                           height: 190,
                           width: 125,
                           child:
@@ -209,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       } else {
                         if (snapshot.hasData) {
-                          return Container(
+                          return SizedBox(
                             height: 190,
                             width: double.maxFinite,
                             child: ListView.separated(
@@ -229,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         } else {
-                          return Container(
+                          return SizedBox(
                             height: 190,
                             width: 125,
                             child:
@@ -250,7 +244,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     future: fetchmoviedb,
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Container(
+                        return SizedBox(
                           height: 190,
                           width: 125,
                           child:
@@ -258,14 +252,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       } else {
                         if (snapshot.hasData) {
-                          return Container(
+                          return SizedBox(
                             height: 190,
                             width: 125,
                             child: const Center(
                                 child: Text("Ml Model Not Implemented Yet")),
                           );
                         } else {
-                          return Container(
+                          return SizedBox(
                             height: 190,
                             width: 125,
                             child:
@@ -286,7 +280,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     future: fetchmoviedb,
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Container(
+                        return SizedBox(
                           height: 190,
                           width: 125,
                           child:
@@ -294,14 +288,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       } else {
                         if (snapshot.hasData) {
-                          return Container(
+                          return SizedBox(
                             height: 190,
                             width: 125,
                             child: const Center(
                                 child: Text("Ml Model Not Implemented Yet")),
                           );
                         } else {
-                          return Container(
+                          return SizedBox(
                             height: 190,
                             width: 125,
                             child:
@@ -320,7 +314,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       gradient: LinearGradient(
-                        colors: [Colors.purple, Colors.blue],
+                        colors: const [Colors.purple, Colors.blue],
                         begin: Alignment.bottomLeft,
                         end: Alignment.topRight,
                       ),
@@ -384,7 +378,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     future: fetchpopularmovie,
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Container(
+                        return SizedBox(
                           height: 190,
                           width: 125,
                           child:
@@ -392,7 +386,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       } else {
                         if (snapshot.hasData) {
-                          return Container(
+                          return SizedBox(
                             height: 190,
                             width: double.maxFinite,
                             child: ListView.separated(
@@ -412,7 +406,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         } else {
-                          return Container(
+                          return SizedBox(
                             height: 190,
                             width: 125,
                             child:
@@ -429,7 +423,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     future: fetchscifimovie,
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Container(
+                        return SizedBox(
                           height: 190,
                           width: 125,
                           child:
@@ -467,7 +461,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           );
                         } else {
-                          return Container(
+                          return SizedBox(
                             height: 190,
                             width: 125,
                             child:
@@ -489,7 +483,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  FilterRow(count: 10, elements: [
+                  FilterRow(count: 10, elements: const [
                     "Action",
                     "Adventure",
                     "Thriller",
@@ -512,7 +506,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     future: fetchkidsmovie,
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Container(
+                        return SizedBox(
                           height: 190,
                           width: 125,
                           child:
@@ -520,7 +514,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       } else {
                         if (snapshot.hasData) {
-                          return Container(
+                          return SizedBox(
                             height: 190,
                             width: double.maxFinite,
                             child: ListView.separated(
@@ -540,7 +534,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         } else {
-                          return Container(
+                          return SizedBox(
                             height: 190,
                             width: 125,
                             child:
@@ -561,7 +555,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     future: topRatedmovie,
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Container(
+                        return SizedBox(
                           height: 190,
                           width: 125,
                           child:
@@ -569,7 +563,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       } else {
                         if (snapshot.hasData) {
-                          return Container(
+                          return SizedBox(
                             height: 190,
                             width: double.maxFinite,
                             child: ListView.separated(
@@ -589,7 +583,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         } else {
-                          return Container(
+                          return SizedBox(
                             height: 190,
                             width: 125,
                             child:
@@ -610,7 +604,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     future: horrorComedymovie,
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Container(
+                        return SizedBox(
                           height: 190,
                           width: 125,
                           child:
@@ -618,7 +612,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       } else {
                         if (snapshot.hasData) {
-                          return Container(
+                          return SizedBox(
                             height: 190,
                             width: double.maxFinite,
                             child: ListView.separated(
@@ -638,7 +632,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         } else {
-                          return Container(
+                          return SizedBox(
                             height: 190,
                             width: 125,
                             child:

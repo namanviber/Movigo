@@ -37,20 +37,19 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
               const SizedBox(
                 height: 10,
               ),
-              Container(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                    Text(
-                      "No personal data collected in this application is used for any purpose other than the scope of our coursework. This data will not be shared in any way and will be deleted after the duration of this course.",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    ),
-                  ])),
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                Text(
+                  "No personal data collected in this application is used for any purpose other than the scope of our coursework. This data will not be shared in any way and will be deleted after the duration of this course.",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                ),
+              ]),
             ]),
           ),
         ),
