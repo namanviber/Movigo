@@ -1,4 +1,4 @@
-import 'package:blur/blur.dart';
+// import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
 import 'package:project2/models/apiModels/DiscoverMovieModel.dart';

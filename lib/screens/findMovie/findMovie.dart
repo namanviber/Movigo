@@ -40,7 +40,7 @@ class _RecommenderScreenState extends State<RecommenderScreen> {
           child: Column(
             children: [
               SizedBox(
-                height: 100,
+                height: 50,
               ),
               Image.asset(
                 'assets/images/09090F.png',
@@ -49,7 +49,7 @@ class _RecommenderScreenState extends State<RecommenderScreen> {
               Container(
                 padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                 child: Text(
-                  "Choose Your Favourite Genres",
+                  "Choose Your Favourite Genres:",
                   textAlign: TextAlign.left,
                   style: TextStyle(
                       fontSize: 25,
@@ -58,7 +58,7 @@ class _RecommenderScreenState extends State<RecommenderScreen> {
                 ),
               ),
               SizedBox(
-                height: 15,
+                height: 5,
               ),
               Row(
                 children: [
@@ -122,7 +122,7 @@ class _RecommenderScreenState extends State<RecommenderScreen> {
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Row(
                 children: [
@@ -186,7 +186,7 @@ class _RecommenderScreenState extends State<RecommenderScreen> {
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Row(
                 children: [
@@ -244,7 +244,7 @@ class _RecommenderScreenState extends State<RecommenderScreen> {
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Row(
                 children: [
@@ -308,7 +308,7 @@ class _RecommenderScreenState extends State<RecommenderScreen> {
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Row(
                 children: [
@@ -370,7 +370,7 @@ class _RecommenderScreenState extends State<RecommenderScreen> {
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Row(
                 children: [
@@ -456,7 +456,7 @@ class _RecommenderScreenState extends State<RecommenderScreen> {
                 ],
               ),
               SizedBox(
-                height: 40,
+                height: 10,
               ),
             ],
           ),
