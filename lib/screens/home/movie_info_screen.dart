@@ -71,6 +71,7 @@ class _MovieInfoState extends State<MovieInfo> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -79,30 +80,36 @@ class _MovieInfoState extends State<MovieInfo> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                foregroundDecoration: BoxDecoration(
-                  //3
-                  gradient: LinearGradient(
-                    //4
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFF09090F).withOpacity(0.3),
-                      Theme.of(context).primaryColor,
-                    ],
+              Stack(
+                children: [
+                  SizedBox(height: 600,),
+                  Image(
+                    image: backdropposterUrl != ''
+                        ? NetworkImage(
+                            backdropposterUrl,
+                          )
+                        : const AssetImage('assets/images/noimage.png')
+                            as ImageProvider,
+                    height: 400,
+                    width: double.maxFinite,
+                    fit: BoxFit.cover,
                   ),
-                ),
-                child: Image(
-                  image: backdropposterUrl != ''
-                      ? NetworkImage(
-                          backdropposterUrl,
-                        )
-                      : const AssetImage('assets/images/noimage.png')
-                          as ImageProvider,
-                  height: 400,
-                  width: double.maxFinite,
-                  fit: BoxFit.cover,
-                ),
+                  Positioned(
+                    left: 16,
+                    top: 300,
+                    child: Image(
+                      image: posterUrl != ''
+                          ? NetworkImage(
+                              posterUrl,
+                            )
+                          : const AssetImage('assets/images/noimage.png')
+                              as ImageProvider,
+                      height: 180,
+                      width: 125,
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                ],
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),

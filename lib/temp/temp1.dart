@@ -51,18 +51,27 @@ class _MovieInfoState extends State<MovieInfo> {
     final originalTitle = "${widget.movieModel.originalTitle}";
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text("SlidingUpPanelExample"),
+        backgroundColor: Colors.transparent,
       ),
       body: SlidingUpPanel(
-        panel: Center(
-          child: Text("This is the sliding Widget"),
-        ),
-        body: Center(
-          child: Text("This is the Widget behind the sliding panel"),
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(50), topRight: Radius.circular(50)),
+        minHeight: MediaQuery.of(context).size.height * 0.6,
+        maxHeight: MediaQuery.of(context).size.height * 0.85,
+        panel: Container(child: Text("This is the sliding Widget")),
+        body: Image(
+          image: backdropposterUrl != ''
+              ? NetworkImage(
+                  backdropposterUrl,
+                )
+              : const AssetImage('assets/images/noimage.png') as ImageProvider,
+          height: 400,
+          width: double.maxFinite,
+          fit: BoxFit.cover,
         ),
       ),
     );
-
   }
 }
