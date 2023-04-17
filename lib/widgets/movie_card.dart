@@ -26,7 +26,7 @@ class MovieCard extends StatelessWidget {
               posterUrl,
               fit: BoxFit.cover,
               height: double.infinity,
-              width: double.infinity,
+              width: MediaQuery.of(context).size.width,
             ),
           ),
           Positioned(

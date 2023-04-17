@@ -18,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // Movie models
   List<DiscoverMovieModel> _discoverMovie = [];
   var fetchmoviedb;
   var fetchpopularmovie;
@@ -45,11 +46,10 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  // final user = FirebaseAuth.instance.currentUser!;
+  //Local Variables
   int screen_index = 0;
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
-  final scrollcontroller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0.0,
-        // scrolledUnderElevation: true,
         backgroundColor: Colors.transparent,
-        // excludeHeaderSemantics: true,
         title: Padding(
           padding: const EdgeInsets.only(right: 8.0),
           child: Row(
@@ -86,53 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      // extendBodyBehindAppBar: true,
-      // appBar: ScrollAppBar(
-      //   controller: scrollcontroller,
-      //   automaticallyImplyLeading: false,
-      //   toolbarHeight: 80,
-      //   backgroundColor: const Color(0xFF09090F),
-      //   title: Padding(
-      //     padding: const EdgeInsets.all(16.0),
-      //     child: Row(
-      //       children: [
-      //         Spacer(),
-      //         Icon(Icons.search_rounded)
-      //       ],
-      //     ),
-      //     // child: Row(
-      //     //   children: [
-      //     //     RichText(
-      //     //       text: TextSpan(children: [
-      //     //         TextSpan(
-      //     //           text: "Hello ",
-      //     //           style: GoogleFonts.montserrat(
-      //     //               fontSize: 20, fontWeight: FontWeight.bold),
-      //     //         ),
-      //     //         TextSpan(
-      //     //           text: " Naman",
-      //     //           style: GoogleFonts.montserrat(
-      //     //             fontSize: 14,
-      //     //           ),
-      //     //         ),
-      //     //       ]),
-      //     //     ),
-      //     //     Spacer(),
-      //     //     InkWell(
-      //     //       onTap: () {
-      //     //         Navigator.pushNamed(context, '/profile_edit');
-      //     //       },
-      //     //       child: Container(
-      //     //         child: CircleAvatar(
-      //     //             backgroundColor: Colors.white, child: Text("N")),
-      //     //       ),
-      //     //     ),
-      //     //   ],
-      //     // ),
-      //   ),
-      // ),
       body: SingleChildScrollView(
-        controller: scrollcontroller,
         child: Column(
           children: [
             CarouselSlider(
@@ -162,8 +114,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               Text(
                                 item.originalTitle,
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 14, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .color,
+                                ),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 textAlign: TextAlign.center,
@@ -205,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         if (snapshot.hasData) {
                           return SizedBox(
                             height: 190,
-                            width: double.maxFinite,
+                            width: MediaQuery.of(context).size.width,
                             child: ListView.separated(
                               itemCount: 10,
                               scrollDirection: Axis.horizontal,
@@ -309,7 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 20,
                   ),
                   Container(
-                    width: double.maxFinite,
+                    width: MediaQuery.of(context).size.width,
                     height: 190,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -331,12 +289,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                   children: [
                                     Text(
                                       "Find More What You Like",
-                                      style: GoogleFonts.montserrat(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge!
+                                            .color,
+                                      ),
                                     ),
                                     Text(
-                                        "Find movies based on your current mood"),
+                                      "Find movies based on your current mood",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge!
+                                            .color,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -388,7 +359,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         if (snapshot.hasData) {
                           return SizedBox(
                             height: 190,
-                            width: double.maxFinite,
+                            width: MediaQuery.of(context).size.width,
                             child: ListView.separated(
                               itemCount: 10,
                               scrollDirection: Axis.horizontal,
@@ -441,7 +412,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               SizedBox(
                                 height: 190,
-                                width: double.maxFinite,
+                                width: MediaQuery.of(context).size.width,
                                 child: ListView.separated(
                                   itemCount: 10,
                                   scrollDirection: Axis.horizontal,
@@ -476,9 +447,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Align(
                     alignment: Alignment.topLeft,
-                    child: Text("Top Genres",
-                        style: GoogleFonts.montserrat(
-                            fontSize: 17, fontWeight: FontWeight.bold)),
+                    child: Text(
+                      "Top Genres",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).textTheme.titleLarge!.color,
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
@@ -489,7 +465,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     "Thriller",
                     "Horror",
                     "SciFi",
-                    "Documentry",
+                    "Documentary",
                     "Drama",
                     "Comedy",
                     "Crime",
@@ -516,7 +492,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         if (snapshot.hasData) {
                           return SizedBox(
                             height: 190,
-                            width: double.maxFinite,
+                            width: MediaQuery.of(context).size.width,
                             child: ListView.separated(
                               itemCount: 10,
                               scrollDirection: Axis.horizontal,
@@ -565,7 +541,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         if (snapshot.hasData) {
                           return SizedBox(
                             height: 190,
-                            width: double.maxFinite,
+                            width: MediaQuery.of(context).size.width,
                             child: ListView.separated(
                               itemCount: 10,
                               scrollDirection: Axis.horizontal,
@@ -614,7 +590,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         if (snapshot.hasData) {
                           return SizedBox(
                             height: 190,
-                            width: double.maxFinite,
+                            width: MediaQuery.of(context).size.width,
                             child: ListView.separated(
                               itemCount: 10,
                               scrollDirection: Axis.horizontal,

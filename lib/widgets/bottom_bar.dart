@@ -36,11 +36,11 @@ class BottomNavigation extends StatelessWidget {
             title: const Text('Watchlist'),
             icon: const Icon(Icons.bookmark)),
         SalomonBottomBarItem(
-            selectedColor: Colors.blueAccent,
+            selectedColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
             title: const Text('Settings'),
             icon: const Icon(Icons.person)),
       ],
-      backgroundColor: const Color(0xFF09090F),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       unselectedItemColor: Color(0xFFA0A0A0),
       // type: BottomNavigationBarType.shifting,
     );

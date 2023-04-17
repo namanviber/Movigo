@@ -13,16 +13,19 @@ class TextHeading extends StatelessWidget {
       children: [
         Text(
           "$heading",
-          style: GoogleFonts.montserrat(
-              fontSize: 17, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).textTheme.titleLarge!.color,
+          ),
         ),
         Spacer(),
-        InkWell(
-          onTap: () {
+        IconButton(
+          onPressed: () {
             // Navigator.push(context,
                 // MaterialPageRoute(builder: (context) => ItemGrid(heading: heading,)));
           },
-          child: Icon(Icons.arrow_forward_ios),
+          icon: Icon(Icons.arrow_forward_ios, color: Theme.of(context).textTheme.titleLarge!.color,),
         )
       ],
     );

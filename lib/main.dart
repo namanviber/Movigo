@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project2/authorization/Check.dart';
-import 'package:project2/authorization/authPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project2/screens/authorization/landing_screen.dart';
 import 'package:project2/screens/findMovie/findMovie.dart';
@@ -16,8 +15,8 @@ import 'package:project2/screens/settings/profile_edit_screen.dart';
 import 'package:project2/screens/home/search_screen.dart';
 import 'package:project2/screens/settings/settings_screen.dart';
 import 'package:project2/screens/home/watchlist_screen.dart';
-import 'package:project2/service/apiCall.dart';
 import 'package:project2/screens/findMovie/movieSelection.dart';
+import 'package:project2/utilities/themedata.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,17 +27,14 @@ void main() async {
 
 class Movigo extends StatelessWidget {
   Movigo({Key? key}) : super(key: key);
-  final navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      navigatorKey: navigatorKey,
       title: "Moviego",
-      theme: ThemeData(
-          primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: const Color(0xFF09090F),
-          brightness: Brightness.dark),
+      theme: ThemeClass.lightTheme,
+      darkTheme: ThemeClass.darkTheme,
+      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
       initialRoute: '/',
