@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project2/models/apiModels/MovieDetailModel.dart';
 import 'package:project2/service/apiCall.dart';
 import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
-import 'package:project2/screens/home/movieDatail.dart';
+import 'package:project2/screens/home/movieDetail.dart';
 
 class MovieList extends StatefulWidget {
   final getMoviesModel moviesModel;

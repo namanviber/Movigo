@@ -70,7 +70,7 @@ class _MovieInfoState extends State<MovieInfo> {
                       )
                     : const AssetImage('assets/images/noimage.png')
                         as ImageProvider,
-                height: MediaQuery.of(context).size.height*0.5,
+                height: MediaQuery.of(context).size.height * 0.5,
                 width: MediaQuery.of(context).size.width,
                 fit: BoxFit.cover,
               ),
@@ -245,9 +245,9 @@ class _MovieInfoState extends State<MovieInfo> {
                         ),
                         SizedBox(
                           height: 215,
-                          width: double.maxFinite,
+                          width: MediaQuery.of(context).size.width,
                           child: ListView.separated(
-                            itemCount: 10,
+                            itemCount: _movieCast.length,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (BuildContext context, index) {
                               final cast = _movieCast[index];
@@ -270,9 +270,9 @@ class _MovieInfoState extends State<MovieInfo> {
                         ),
                         SizedBox(
                           height: 215,
-                          width: double.maxFinite,
+                          width: MediaQuery.of(context).size.width,
                           child: ListView.separated(
-                            itemCount: 10,
+                            itemCount: _movieCrew.length,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (BuildContext context, index) {
                               final crew = _movieCrew[index];

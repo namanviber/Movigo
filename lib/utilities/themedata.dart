@@ -51,7 +51,7 @@ class ThemeClass{
       backgroundColor: Color(0xFF16171C),
     ),
 
-    iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(foregroundColor: Colors.blueAccent)),
+    iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(foregroundColor: Colors.blueAccent, backgroundColor: Colors.white)),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: Colors.blueAccent),
   );
