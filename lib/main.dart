@@ -40,7 +40,7 @@ class Movigo extends StatelessWidget {
           scaffoldBackgroundColor: const Color(0xFF09090F),
           brightness: Brightness.dark),
       debugShowCheckedModeBanner: false,
-      home: WatchlistScreen(),
+      home: Check(),
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.

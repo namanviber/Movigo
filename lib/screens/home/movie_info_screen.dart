@@ -20,16 +20,13 @@ class MovieInfo extends StatefulWidget {
 class _MovieInfoState extends State<MovieInfo> {
   List<MovieCastDetailsModel> _movieCast = [];
   List<MovieCrewDetailsModel> _movieCrew = [];
-  // List<MovieVideos> _movieVideos = [];
 
   Future<void> fetchCreditDetails(int movieid) async {
     final response1 = await movieCastDetails(movieid);
     final response2 = await movieCrewDetails(movieid);
-    // final response3 = await movieVideos(movieid);
     setState(() {
       _movieCast = response1;
       _movieCrew = response2;
-      // _movieVideos = response3;
     });
   }
 
@@ -47,7 +44,8 @@ class _MovieInfoState extends State<MovieInfo> {
     final posterUrlbelongs =
         'https://image.tmdb.org/t/p/original/${widget.movieModel.posterPath}';
 
-    // final genres = "${movieDetail.genres.toString()}";
+    // final b = widget.movieModel.genres.single.name;
+    // print(b);
 
     final originalTitle = "${widget.movieModel.originalTitle}";
 
@@ -81,16 +79,30 @@ class _MovieInfoState extends State<MovieInfo> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image(
-                image: backdropposterUrl != ''
-                    ? NetworkImage(
-                        backdropposterUrl,
-                      )
-                    : const AssetImage('assets/images/noimage.png')
-                        as ImageProvider,
-                height: 400,
-                width: double.maxFinite,
-                fit: BoxFit.cover,
+              Container(
+                foregroundDecoration: BoxDecoration(
+                  //3
+                  gradient: LinearGradient(
+                    //4
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xFF09090F).withOpacity(0.3),
+                      Theme.of(context).primaryColor,
+                    ],
+                  ),
+                ),
+                child: Image(
+                  image: backdropposterUrl != ''
+                      ? NetworkImage(
+                          backdropposterUrl,
+                        )
+                      : const AssetImage('assets/images/noimage.png')
+                          as ImageProvider,
+                  height: 400,
+                  width: double.maxFinite,
+                  fit: BoxFit.cover,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -111,7 +123,7 @@ class _MovieInfoState extends State<MovieInfo> {
                     Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        widget.movieModel.genres.toString(),
+                        "genres",
                         style: GoogleFonts.montserrat(fontSize: 11),
                       ),
                     ),
