@@ -26,6 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
   var fetchkidsmovie;
   var topRatedmovie;
   var horrorComedymovie;
+  // var itemrecommendation;
+  // var userrecommendation;
 
   @override
   void initState() {
@@ -147,85 +149,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   futureMovieList(
                       heading: "Discover Movies", movies: fetchmoviedb),
-                  Text("You may also like"),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  FutureBuilder(
-                    future: fetchmoviedb,
-                    builder: (context, AsyncSnapshot snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return SizedBox(
-                          height: 190,
-                          width: 125,
-                          child:
-                              const Center(child: CircularProgressIndicator()),
-                        );
-                      } else {
-                        if (snapshot.hasData) {
-                          return SizedBox(
-                            height: 190,
-                            width: 125,
-                            child: const Center(
-                                child: Text("Ml Model Not Implemented Yet")),
-                          );
-                        } else {
-                          return SizedBox(
-                            height: 190,
-                            width: 125,
-                            child:
-                                const Center(child: Text("Some Error Occured")),
-                          );
-                        }
-                      }
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text("For You"),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  FutureBuilder(
-                    future: fetchmoviedb,
-                    builder: (context, AsyncSnapshot snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return SizedBox(
-                          height: 190,
-                          width: 125,
-                          child:
-                              const Center(child: CircularProgressIndicator()),
-                        );
-                      } else {
-                        if (snapshot.hasData) {
-                          return SizedBox(
-                            height: 190,
-                            width: 125,
-                            child: const Center(
-                                child: Text("Ml Model Not Implemented Yet")),
-                          );
-                        } else {
-                          return SizedBox(
-                            height: 190,
-                            width: 125,
-                            child:
-                                const Center(child: Text("Some Error Occured")),
-                          );
-                        }
-                      }
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  // futureMovieList(
+                  //     heading: "You May also Like", movies: itemrecommendation),
+                  // futureMovieList(
+                  //     heading: "For You", movies: userrecommendation),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: 190,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       gradient: LinearGradient(
-                        colors: const [Colors.purple, Colors.blue],
+                        colors: const [Colors.black12, Colors.blueAccent],
                         begin: Alignment.bottomLeft,
                         end: Alignment.topRight,
                       ),
@@ -239,6 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               SizedBox(
                                 width: 170,
                                 child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
                                       "Find More What You Like",
@@ -268,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 80,
                                   width: 120,
                                   child: Image.asset(
-                                    'assets/images/img_deck.png',
+                                    'assets/images/cardimg1.png',
                                     fit: BoxFit.cover,
                                   ))
                             ],
@@ -279,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 290,
                           child: TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/watch_list');
+                              Navigator.pushNamed(context, '/recommender_screen');
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
@@ -325,6 +260,79 @@ class _HomeScreenState extends State<HomeScreen> {
                       heading: "Popular Kids Moves", movies: fetchkidsmovie),
                   futureMovieList(
                       heading: "Top Rated Movies", movies: topRatedmovie),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 190,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: LinearGradient(
+                        colors: const [Colors.blue, Colors.white],
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.topRight,
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 170,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Check out your favourite lists",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge!
+                                            .color,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Get a look at your saved movies",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge!
+                                            .color,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                  height: 80,
+                                  width: 120,
+                                  child: Image.asset(
+                                    'assets/images/cardimg2.png',
+                                    fit: BoxFit.cover,
+                                  ))
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 50,
+                          width: 290,
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/watch_list');
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.white),
+                            ),
+                            child: Text("Try it Now"),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                   futureMovieList(
                       heading: "Mix of Horror and Comedy",
                       movies: horrorComedymovie),
