@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project2/models/apiModels/MovieDetailModel.dart';
-import 'package:project2/models/apiModels/MovieCastDetailsModel.dart';
-import 'package:project2/models/apiModels/MovieCrewDetailsModel.dart';
+import 'package:project2/models/MovieDetailModel.dart';
+import 'package:project2/models/MovieCastDetailsModel.dart';
+import 'package:project2/models/MovieCrewDetailsModel.dart';
 import 'package:project2/service/apiCall.dart';
 import 'package:project2/widgets/heading_text.dart';
 import 'package:project2/widgets/movie_cast_row.dart';
@@ -30,7 +30,13 @@ class _MovieInfoState extends State<MovieInfo> {
   }
 
   @override
+  void initState() {
+    fetchCreditDetails(widget.movieModel.id);
+    super.initState();
+  }
+  
   Widget build(BuildContext context) {
+    
     final backdropposterUrl =
         'https://image.tmdb.org/t/p/original/${widget.movieModel.backdropPath}';
 

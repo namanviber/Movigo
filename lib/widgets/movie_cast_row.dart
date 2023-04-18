@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project2/models/apiModels/MovieCastDetailsModel.dart';
+import 'package:project2/models/MovieCastDetailsModel.dart';
 
 class MovieCastRow extends StatefulWidget {
   MovieCastRow({required this.model, Key? key}) : super(key: key);

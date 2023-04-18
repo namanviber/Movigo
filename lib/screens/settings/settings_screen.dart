@@ -20,15 +20,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
         automaticallyImplyLeading: false,
         toolbarHeight: 60,
         backgroundColor: const Color(0xFF09090F),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text("Settings",
-                style: TextStyle(
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24)),
-          ],
+        title: Text(
+          "Settings",
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).textTheme.titleLarge!.color,
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -60,16 +58,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         children: [
                           Text(
                             "Naman Jain",
-                            style: GoogleFonts.montserrat(
-                                fontSize: 14, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
                             "namanviber@gmail.com",
-                            style: GoogleFonts.montserrat(
-                                fontSize: 14, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
                           ),
                         ],
                       ),
@@ -108,16 +114,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           children: [
                             Text(
                               "My Account",
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.bold, fontSize: 14),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .color,
+                              ),
                             ),
                             SizedBox(
                               height: 4,
                             ),
                             Text(
                               "Make changes to your account",
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.bold, fontSize: 12),
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .color,
+                              ),
                             ),
                           ],
                         ),
@@ -154,16 +172,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           children: [
                             Text(
                               "General Settings",
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.bold, fontSize: 14),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .color,
+                              ),
                             ),
                             SizedBox(
                               height: 4,
                             ),
                             Text(
                               "Maknage your General Settings",
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.bold, fontSize: 12),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .color,
+                              ),
                             ),
                           ],
                         ),
@@ -200,16 +230,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           children: [
                             Text(
                               "Set Your Preferences",
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.bold, fontSize: 14),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .color,
+                              ),
                             ),
                             SizedBox(
                               height: 4,
                             ),
                             Text(
                               "Setup your preferences again",
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.bold, fontSize: 12),
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .color,
+                              ),
                             ),
                           ],
                         ),
@@ -247,16 +289,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           children: [
                             Text(
                               "Sign Out",
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.bold, fontSize: 14),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .color,
+                              ),
                             ),
                             SizedBox(
                               height: 4,
                             ),
                             Text(
                               "Sign Out from your account",
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.bold, fontSize: 12),
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .color,
+                              ),
                             ),
                           ],
                         ),
@@ -293,8 +347,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           children: [
                             Text(
                               "About Us",
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.bold, fontSize: 14),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .color,
+                              ),
                             ),
                           ],
                         ),
@@ -331,8 +391,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           children: [
                             Text(
                               "Privacy Policy",
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.bold, fontSize: 14),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .color,
+                              ),
                             ),
                           ],
                         ),

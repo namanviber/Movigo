@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project2/authorization/Check.dart';
+import 'package:project2/utilities/Check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project2/screens/authorization/landing_screen.dart';
 import 'package:project2/screens/findMovie/findMovie.dart';

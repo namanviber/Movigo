@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
-import 'package:project2/models/apiModels/MovieDetailModel.dart';
+import 'package:project2/models/getMoviesModel.dart';
+import 'package:project2/models/MovieDetailModel.dart';
 import 'package:project2/screens/home/movieDetail.dart';
 import 'package:project2/service/apiCall.dart';
 
