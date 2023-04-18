@@ -8,7 +8,7 @@ import 'package:project2/widgets/heading_text.dart';
 import 'package:project2/widgets/movieList.dart';
 import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
 import 'package:project2/service/apiCall.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:project2/widgets/futureMovieList.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -145,55 +145,8 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: <Widget>[
-                  TextHeading(heading: "Discover Movies"),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  FutureBuilder(
-                    future: fetchmoviedb,
-                    builder: (context, AsyncSnapshot snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return SizedBox(
-                          height: 190,
-                          width: 125,
-                          child:
-                              const Center(child: CircularProgressIndicator()),
-                        );
-                      } else {
-                        if (snapshot.hasData) {
-                          return SizedBox(
-                            height: 190,
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView.separated(
-                              itemCount: 10,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, index) {
-                                return MovieList(
-                                    moviesModel: getMoviesModel
-                                        .fromJson(snapshot.data[index]));
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return const SizedBox(
-                                  width: 10,
-                                );
-                              },
-                            ),
-                          );
-                        } else {
-                          return SizedBox(
-                            height: 190,
-                            width: 125,
-                            child:
-                                const Center(child: Text("Some Error Occured")),
-                          );
-                        }
-                      }
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  futureMovieList(
+                      heading: "Discover Movies", movies: fetchmoviedb),
                   TextHeading(heading: "You May also Like"),
                   const SizedBox(
                     height: 20,
@@ -338,113 +291,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextHeading(heading: "Popular Movies"),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  FutureBuilder(
-                    future: fetchpopularmovie,
-                    builder: (context, AsyncSnapshot snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return SizedBox(
-                          height: 190,
-                          width: 125,
-                          child:
-                              const Center(child: CircularProgressIndicator()),
-                        );
-                      } else {
-                        if (snapshot.hasData) {
-                          return SizedBox(
-                            height: 190,
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView.separated(
-                              itemCount: 10,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, index) {
-                                return MovieList(
-                                    moviesModel: getMoviesModel
-                                        .fromJson(snapshot.data[index]));
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return const SizedBox(
-                                  width: 10,
-                                );
-                              },
-                            ),
-                          );
-                        } else {
-                          return SizedBox(
-                            height: 190,
-                            width: 125,
-                            child:
-                                const Center(child: Text("Some Error Occured")),
-                          );
-                        }
-                      }
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  FutureBuilder(
-                    future: fetchscifimovie,
-                    builder: (context, AsyncSnapshot snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return SizedBox(
-                          height: 190,
-                          width: 125,
-                          child:
-                              const Center(child: CircularProgressIndicator()),
-                        );
-                      } else {
-                        if (snapshot.hasData) {
-                          return Column(
-                            children: [
-                              TextHeading(
-                                heading: "Top SciFi movies",
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              SizedBox(
-                                height: 190,
-                                width: MediaQuery.of(context).size.width,
-                                child: ListView.separated(
-                                  itemCount: 10,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (BuildContext context, index) {
-                                    return MovieList(
-                                        moviesModel: getMoviesModel
-                                            .fromJson(snapshot.data[index]));
-                                  },
-                                  separatorBuilder:
-                                      (BuildContext context, int index) {
-                                    return const SizedBox(
-                                      width: 10,
-                                    );
-                                  },
-                                ),
-                              ),
-                            ],
-                          );
-                        } else {
-                          return SizedBox(
-                            height: 190,
-                            width: 125,
-                            child:
-                                const Center(child: Text("Some Error Occured")),
-                          );
-                        }
-                      }
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  futureMovieList(
+                      heading: "Popular Movies", movies: fetchpopularmovie),
+                  futureMovieList(
+                      heading: "Top SciFi Movies", movies: fetchscifimovie),
                   Align(
                     alignment: Alignment.topLeft,
                     child: Text(
@@ -471,156 +321,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     "Crime",
                     "Romance"
                   ]),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextHeading(heading: "Popular Kids Movies"),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  FutureBuilder(
-                    future: fetchkidsmovie,
-                    builder: (context, AsyncSnapshot snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return SizedBox(
-                          height: 190,
-                          width: 125,
-                          child:
-                              const Center(child: CircularProgressIndicator()),
-                        );
-                      } else {
-                        if (snapshot.hasData) {
-                          return SizedBox(
-                            height: 190,
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView.separated(
-                              itemCount: 10,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, index) {
-                                return MovieList(
-                                    moviesModel: getMoviesModel
-                                        .fromJson(snapshot.data[index]));
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return const SizedBox(
-                                  width: 10,
-                                );
-                              },
-                            ),
-                          );
-                        } else {
-                          return SizedBox(
-                            height: 190,
-                            width: 125,
-                            child:
-                                const Center(child: Text("Some Error Occured")),
-                          );
-                        }
-                      }
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextHeading(heading: "Top Rated Movies"),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  FutureBuilder(
-                    future: topRatedmovie,
-                    builder: (context, AsyncSnapshot snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return SizedBox(
-                          height: 190,
-                          width: 125,
-                          child:
-                              const Center(child: CircularProgressIndicator()),
-                        );
-                      } else {
-                        if (snapshot.hasData) {
-                          return SizedBox(
-                            height: 190,
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView.separated(
-                              itemCount: 10,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, index) {
-                                return MovieList(
-                                    moviesModel: getMoviesModel
-                                        .fromJson(snapshot.data[index]));
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return const SizedBox(
-                                  width: 10,
-                                );
-                              },
-                            ),
-                          );
-                        } else {
-                          return SizedBox(
-                            height: 190,
-                            width: 125,
-                            child:
-                                const Center(child: Text("Some Error Occured")),
-                          );
-                        }
-                      }
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextHeading(heading: "Mix of Horror & Comedy"),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  FutureBuilder(
-                    future: horrorComedymovie,
-                    builder: (context, AsyncSnapshot snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return SizedBox(
-                          height: 190,
-                          width: 125,
-                          child:
-                              const Center(child: CircularProgressIndicator()),
-                        );
-                      } else {
-                        if (snapshot.hasData) {
-                          return SizedBox(
-                            height: 190,
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView.separated(
-                              itemCount: 10,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, index) {
-                                return MovieList(
-                                    moviesModel: getMoviesModel
-                                        .fromJson(snapshot.data[index]));
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return const SizedBox(
-                                  width: 10,
-                                );
-                              },
-                            ),
-                          );
-                        } else {
-                          return SizedBox(
-                            height: 190,
-                            width: 125,
-                            child:
-                                const Center(child: Text("Some Error Occured")),
-                          );
-                        }
-                      }
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  futureMovieList(
+                      heading: "Popular Kids Moves", movies: fetchkidsmovie),
+                  futureMovieList(
+                      heading: "Top Rated Movies", movies: topRatedmovie),
+                  futureMovieList(
+                      heading: "Mix of Horror and Comedy",
+                      movies: horrorComedymovie),
                 ],
               ),
             ),
