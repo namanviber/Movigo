@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:mongo_dart/mongo_dart.dart';
-import 'package:project2/models/MongoDbModel.dart';
+import 'package:project2/models/getUserDetails.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 const Mongo_URL =
@@ -97,7 +97,7 @@ class MongoDatabase {
   }
 
   // Adding Userdata
-  static Future<String> addUserData(MongoDbModel data) async {
+  static Future<String> addUserData(getUserDetails data) async {
     try {
       var result = await userCollection.insertOne(data.toJson());
       if (result.isSuccess) {

@@ -1,14 +1,3 @@
-// To parse this JSON data, do
-//
-//     final mongoDbModel = mongoDbModelFromJson(jsonString);
-
-import 'package:meta/meta.dart';
-import 'dart:convert';
-
-getMoviesModel mongoDbModelFromJson(String str) => getMoviesModel.fromJson(json.decode(str));
-
-String mongoDbModelToJson(getMoviesModel data) => json.encode(data.toJson());
-
 class getMoviesModel {
   getMoviesModel( {
     required this.id,
