@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:mongo_dart/mongo_dart.dart';
-import 'package:project2/models/mongoDbModels/MongoDbModel.dart';
+import 'package:project2/models/MongoDbModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 const Mongo_URL =

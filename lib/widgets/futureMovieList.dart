@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project2/widgets/heading_text.dart';
 import 'package:project2/widgets/movieList.dart';
-import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
+import 'package:project2/models/getMoviesModel.dart';
 
 class futureMovieList extends StatelessWidget {
   String heading;

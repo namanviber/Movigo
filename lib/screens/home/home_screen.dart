@@ -1,12 +1,12 @@
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
+import 'package:project2/models/getMoviesModel.dart';
 import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:project2/widgets/filter_row.dart';
 import 'package:project2/widgets/heading_text.dart';
 import 'package:project2/widgets/movieList.dart';
-import 'package:project2/models/apiModels/DiscoverMovieModel.dart';
+import 'package:project2/models/DiscoverMovieModel.dart';
 import 'package:project2/service/apiCall.dart';
 import 'package:project2/widgets/futureMovieList.dart';
 

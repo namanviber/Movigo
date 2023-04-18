@@ -30,6 +30,8 @@ class ThemeClass{
 
     scaffoldBackgroundColor: Color(0xFF000000),
 
+    highlightColor: Colors.grey,
+
     canvasColor: Colors.white,
 
     filledButtonTheme: FilledButtonThemeData(
