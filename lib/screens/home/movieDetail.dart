@@ -34,9 +34,8 @@ class _MovieInfoState extends State<MovieInfo> {
     fetchCreditDetails(widget.movieModel.id);
     super.initState();
   }
-  
+
   Widget build(BuildContext context) {
-    
     final backdropposterUrl =
         'https://image.tmdb.org/t/p/original/${widget.movieModel.backdropPath}';
 
@@ -245,7 +244,15 @@ class _MovieInfoState extends State<MovieInfo> {
                     ),
                     Column(
                       children: [
-                        TextHeading(heading: "Cast"),
+                        Text(
+                          "Cast",
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color:
+                                Theme.of(context).textTheme.titleLarge!.color,
+                          ),
+                        ),
                         const SizedBox(
                           height: 15,
                         ),
@@ -270,8 +277,15 @@ class _MovieInfoState extends State<MovieInfo> {
                         const SizedBox(
                           height: 10,
                         ),
-                        TextHeading(heading: "Crew"),
-                        const SizedBox(
+                        Text(
+                          "Crew",
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color:
+                            Theme.of(context).textTheme.titleLarge!.color,
+                          ),
+                        ),                        const SizedBox(
                           height: 15,
                         ),
                         SizedBox(

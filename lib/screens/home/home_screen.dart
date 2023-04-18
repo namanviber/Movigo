@@ -147,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   futureMovieList(
                       heading: "Discover Movies", movies: fetchmoviedb),
-                  TextHeading(heading: "You May also Like"),
+                  Text("You may also like"),
                   const SizedBox(
                     height: 20,
                   ),
@@ -183,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  TextHeading(heading: "For You"),
+                  Text("For You"),
                   const SizedBox(
                     height: 20,
                   ),

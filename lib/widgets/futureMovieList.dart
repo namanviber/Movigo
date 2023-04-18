@@ -15,7 +15,7 @@ class futureMovieList extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        TextHeading(heading: heading),
+        TextHeading(heading: heading, movies: movies,),
         const SizedBox(
           height: 20,
         ),

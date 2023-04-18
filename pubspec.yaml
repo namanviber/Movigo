@@ -54,6 +54,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   sliding_up_panel: ^2.0.0+1
   scaled_list: ^2.0.0
+  flutter_smartlook: 4.1.1
 
 
 dev_dependencies:
