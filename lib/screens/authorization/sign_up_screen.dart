@@ -27,16 +27,14 @@ class _SignUpState extends State<SignUp> {
     if (isvalid) {
       try {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: _email.text.trim(),
-            password: _password.text.trim());
+            email: _email.text.trim(), password: _password.text.trim());
       } on FirebaseAuthException catch (e) {
         print(e);
       }
     }
   }
 
-  signupconfirm() async
-  {
+  signupconfirm() async {
     await sign_up();
     setState(() {
       sign = true;
@@ -79,7 +77,6 @@ class _SignUpState extends State<SignUp> {
                     child: Text(
                       "Let's get you signed up. ",
                       style: TextStyle(
-                          fontFamily: "Inter",
                           fontSize: 28,
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
@@ -94,7 +91,6 @@ class _SignUpState extends State<SignUp> {
                       "Welcome! ",
                       style: TextStyle(
                           height: 1.2,
-                          fontFamily: "Inter",
                           fontSize: 26,
                           color: Colors.white,
                           fontWeight: FontWeight.normal),
@@ -114,13 +110,15 @@ class _SignUpState extends State<SignUp> {
                           contentPadding: const EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 10.0),
                           hintText: "Enter Email address",
-                          hintStyle: const TextStyle(fontFamily: "Inter", fontSize: 14),
+                          hintStyle: const TextStyle(
+                              fontSize: 14, color: Colors.white),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15)),
                         ),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) {
-                          if (value!.isEmpty && !EmailValidator.validate(value)) {
+                          if (value!.isEmpty &&
+                              !EmailValidator.validate(value)) {
                             return "Enter valid email";
                           }
                           return null;
@@ -135,8 +133,8 @@ class _SignUpState extends State<SignUp> {
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 12.0, horizontal: 10.0),
                             hintText: "Enter Password",
-                            hintStyle:
-                            const TextStyle(fontFamily: "Inter", fontSize: 14),
+                            hintStyle: const TextStyle(
+                                fontSize: 14, color: Colors.white),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15)),
                             suffixIcon: InkWell(
@@ -147,7 +145,8 @@ class _SignUpState extends State<SignUp> {
                                 },
                                 child: Icon(
                                   Icons.remove_red_eye_outlined,
-                                  color: (showtext) ? Colors.grey : Colors.white,
+                                  color:
+                                      (showtext) ? Colors.grey : Colors.white,
                                 ))),
                         obscureText: showtext,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -158,7 +157,8 @@ class _SignUpState extends State<SignUp> {
                           return null;
                         },
                         onChanged: (value) {},
-                      ),const SizedBox(
+                      ),
+                      const SizedBox(
                         height: 15,
                       ),
                       TextFormField(
@@ -169,8 +169,8 @@ class _SignUpState extends State<SignUp> {
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 12.0, horizontal: 10.0),
                             hintText: "Confirm Password",
-                            hintStyle:
-                            const TextStyle(fontFamily: "Inter", fontSize: 14),
+                            hintStyle: const TextStyle(
+                                fontSize: 14, color: Colors.white),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15)),
                             suffixIcon: InkWell(
@@ -181,7 +181,9 @@ class _SignUpState extends State<SignUp> {
                                 },
                                 child: Icon(
                                   Icons.remove_red_eye_outlined,
-                                  color: (showtextconfirm) ? Colors.grey : Colors.white,
+                                  color: (showtextconfirm)
+                                      ? Colors.grey
+                                      : Colors.white,
                                 ))),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         obscureText: showtextconfirm,
@@ -193,7 +195,6 @@ class _SignUpState extends State<SignUp> {
                           }
                         },
                       ),
-
                       const SizedBox(
                         height: 120,
                       ),
@@ -212,7 +213,9 @@ class _SignUpState extends State<SignUp> {
                               child: Text("Sign Up",
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.montserrat(
-                                      fontSize: 16, fontWeight: FontWeight.bold,color: Colors.black)),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black)),
                             ),
                           ),
                         ],

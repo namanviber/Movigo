@@ -55,15 +55,14 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Container(
                 padding: const EdgeInsets.all(24),
-                child: Column(children: const [
+                child: Column(children: [
                   Align(
                     alignment: Alignment.topLeft,
                     child: Text(
                       "Let's get you signed in. ",
                       style: TextStyle(
-                          fontFamily: "Inter",
                           fontSize: 28,
-                          color: Colors.white,
+                          color: Theme.of(context).textTheme.titleLarge!.color,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -76,9 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       "Welcome Back.\nYou've been missed! ",
                       style: TextStyle(
                           height: 1.2,
-                          fontFamily: "Inter",
                           fontSize: 26,
-                          color: Colors.white,
+                          color: Theme.of(context).textTheme.titleLarge!.color,
                           fontWeight: FontWeight.normal),
                     ),
                   ),
@@ -92,17 +90,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(children: [
                       TextFormField(
                         controller: _email,
+                        style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 10.0),
                           hintText: "Enter Email address",
-                          hintStyle: const TextStyle(fontFamily: "Inter", fontSize: 14),
+                          hintStyle: const TextStyle(fontSize: 14, color: Colors.white),
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15)),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                         ),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) {
-                          if (value!.isEmpty && !EmailValidator.validate(value)) {
+                          if (value!.isEmpty &&
+                              !EmailValidator.validate(value)) {
                             return "Enter valid email";
                           }
                           return null;
@@ -117,8 +118,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 12.0, horizontal: 10.0),
                             hintText: "Enter Password",
-                            hintStyle:
-                            const TextStyle(fontFamily: "Inter", fontSize: 14),
+                            hintStyle: const TextStyle(fontSize: 14, color: Colors.white),
+
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15)),
                             suffixIcon: InkWell(
@@ -129,7 +130,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 },
                                 child: Icon(
                                   Icons.remove_red_eye_outlined,
-                                  color: (showtext) ? Colors.grey : Colors.white,
+                                  color:
+                                      (showtext) ? Colors.grey : Colors.white,
                                 ))),
                         obscureText: showtext,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -160,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                    const GeneralSettingsScreen()));
+                                        const GeneralSettingsScreen()));
                           },
                         ),
                       ),
@@ -182,7 +184,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text("Sign in",
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.montserrat(
-                                      fontSize: 16, fontWeight: FontWeight.bold,color: Colors.black)),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black)),
                             ),
                           ),
                           const SizedBox(
@@ -205,7 +209,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text("Continue with Google",
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.montserrat(
-                                      fontSize: 16, fontWeight: FontWeight.bold)),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold)),
                             ),
                           ),
                         ],

@@ -60,5 +60,8 @@ class ThemeClass{
     iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(foregroundColor: Colors.blueAccent, backgroundColor: Colors.white)),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: Colors.blueAccent),
+
+    inputDecorationTheme: InputDecorationTheme(
+    )
   );
 }
