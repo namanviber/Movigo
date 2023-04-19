@@ -1,27 +1,27 @@
 class getUserDetails {
   getUserDetails({
-    required this.firebaseId,
-    required this.name,
-    required this.age,
-    required this.gender,
-    required this.region,
-    required this.emailId,
-    required this.phone,
-    required this.ratings,
-    required this.watchlist,
-    required this.watched,
+    this.firebaseId,
+    this.name,
+    this.age,
+    this.gender,
+    this.region,
+    this.emailId,
+    this.phone,
+    this.ratings,
+    this.watchlist,
+    this.watched,
   });
 
-  String firebaseId;
-  String name;
-  int age;
-  String gender;
-  String region;
-  String emailId;
-  int phone;
-  List<Rating> ratings;
-  List<int> watchlist;
-  List<int> watched;
+  String? firebaseId;
+  String? name;
+  int? age;
+  String? gender;
+  String? region;
+  String? emailId;
+  int? phone;
+  List<Rating>? ratings;
+  List<int>? watchlist;
+  List<int>? watched;
 
   factory getUserDetails.fromJson(Map<String, dynamic> json) => getUserDetails(
     firebaseId: json["firebase_id"],
@@ -31,9 +31,9 @@ class getUserDetails {
     region: json["region"],
     emailId: json["email_id"],
     phone: json["phone"],
-    ratings: List<Rating>.from(json["ratings"].map((x) => Rating.fromJson(x))),
-    watchlist: List<int>.from(json["watchlist"].map((x) => x)),
-    watched: List<int>.from(json["watched"].map((x) => x)),
+    ratings: json["ratings"] == null ? [] : List<Rating>.from(json["ratings"]!.map((x) => Rating.fromJson(x))),
+    watchlist: json["watchlist"] == null ? [] : List<int>.from(json["watchlist"]!.map((x) => x)),
+    watched: json["watched"] == null ? [] : List<int>.from(json["watched"]!.map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
@@ -44,20 +44,20 @@ class getUserDetails {
     "region": region,
     "email_id": emailId,
     "phone": phone,
-    "ratings": List<dynamic>.from(ratings.map((x) => x.toJson())),
-    "watchlist": List<dynamic>.from(watchlist.map((x) => x)),
-    "watched": List<dynamic>.from(watched.map((x) => x)),
+    "ratings": ratings == null ? [] : List<dynamic>.from(ratings!.map((x) => x.toJson())),
+    "watchlist": watchlist == null ? [] : List<dynamic>.from(watchlist!.map((x) => x)),
+    "watched": watched == null ? [] : List<dynamic>.from(watched!.map((x) => x)),
   };
 }
 
 class Rating {
   Rating({
-    required this.tmdbid,
-    required this.rating,
+    this.tmdbid,
+    this.rating,
   });
 
-  int tmdbid;
-  double rating;
+  int? tmdbid;
+  double? rating;
 
   factory Rating.fromJson(Map<String, dynamic> json) => Rating(
     tmdbid: json["tmdbid"],

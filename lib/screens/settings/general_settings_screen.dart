@@ -54,6 +54,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     ),
                     const Icon(
                       Icons.access_alarm,
+                      color: Colors.white,
                       size: 34,
                     ),
                     const SizedBox(
@@ -119,6 +120,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     ),
                     const Icon(
                       Icons.language_outlined,
+                      color: Colors.white,
                       size: 34,
                     ),
                     const SizedBox(
@@ -194,6 +196,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     ),
                     const Icon(
                       Icons.location_city,
+                      color: Colors.white,
                       size: 34,
                     ),
                     const SizedBox(
@@ -246,6 +249,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     ),
                     const Icon(
                       Icons.ac_unit,
+                      color: Colors.white,
                       size: 34,
                     ),
                     const SizedBox(
@@ -312,6 +316,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     ),
                     const Icon(
                       Icons.clear_all,
+                      color: Colors.white,
                       size: 34,
                     ),
                     const SizedBox(

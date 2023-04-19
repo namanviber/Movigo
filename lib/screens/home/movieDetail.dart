@@ -35,12 +35,11 @@ class _MovieInfoState extends State<MovieInfo> {
     super.initState();
   }
 
+  bool watched = false;
+
   Widget build(BuildContext context) {
     final backdropposterUrl =
         'https://image.tmdb.org/t/p/original/${widget.movieModel.backdropPath}';
-
-    final posterUrl =
-        'https://image.tmdb.org/t/p/original/${widget.movieModel.posterPath}';
 
     final originalTitle = "${widget.movieModel.originalTitle}";
 
@@ -52,8 +51,6 @@ class _MovieInfoState extends State<MovieInfo> {
 
     TextEditingController rating =
         TextEditingController(text: "${widget.movieModel.voteAverage}");
-
-    bool watched = false;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -68,16 +65,25 @@ class _MovieInfoState extends State<MovieInfo> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image(
-                image: backdropposterUrl != ''
-                    ? NetworkImage(
-                        backdropposterUrl,
-                      )
-                    : const AssetImage('assets/images/noimage.png')
-                        as ImageProvider,
-                height: MediaQuery.of(context).size.height * 0.5,
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.cover,
+              Stack(
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 20,
+                    child: Text("7.6"),
+                  ),
+                  Image(
+                    image: backdropposterUrl != ''
+                        ? NetworkImage(
+                            backdropposterUrl,
+                          )
+                        : const AssetImage('assets/images/noimage.png')
+                            as ImageProvider,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    width: MediaQuery.of(context).size.width,
+                    fit: BoxFit.cover,
+                  ),
+                ],
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -121,7 +127,15 @@ class _MovieInfoState extends State<MovieInfo> {
                             readOnly: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              label: Text("Length"),
+                              label: Text(
+                                "Length",
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .color,
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -132,7 +146,13 @@ class _MovieInfoState extends State<MovieInfo> {
                             readOnly: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              label: Text("Language"),
+                              label: Text("Language",
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .color,
+                                ),),
                             ),
                           ),
                         ),
@@ -143,7 +163,13 @@ class _MovieInfoState extends State<MovieInfo> {
                             readOnly: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              label: Text("Rating"),
+                              label: Text("Rating",
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .color,
+                                ),),
                             ),
                           ),
                         ),
@@ -152,11 +178,11 @@ class _MovieInfoState extends State<MovieInfo> {
                     const SizedBox(
                       height: 20,
                     ),
-                    FilledButton(
+                    TextButton(
                       style: Theme.of(context).filledButtonTheme.style,
                       onPressed: () {
                         setState(() {
-                          watched = true;
+                          watched = !watched;
                         });
                       },
                       child: Container(
@@ -222,10 +248,14 @@ class _MovieInfoState extends State<MovieInfo> {
                         ),
                         IconButton(
                             onPressed: () {},
-                            icon: FaIcon(FontAwesomeIcons.star)),
+                            icon: FaIcon(FontAwesomeIcons.star,
+                              color: Colors.white,
+                            )),
                         IconButton(
                             onPressed: () {},
-                            icon: FaIcon(FontAwesomeIcons.share)),
+                            icon: FaIcon(FontAwesomeIcons.share,
+                              color: Colors.white,
+                            )),
                       ],
                     ),
                     const SizedBox(
@@ -283,9 +313,10 @@ class _MovieInfoState extends State<MovieInfo> {
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
                             color:
-                            Theme.of(context).textTheme.titleLarge!.color,
+                                Theme.of(context).textTheme.titleLarge!.color,
                           ),
-                        ),                        const SizedBox(
+                        ),
+                        const SizedBox(
                           height: 15,
                         ),
                         SizedBox(

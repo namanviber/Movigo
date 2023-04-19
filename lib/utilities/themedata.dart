@@ -16,6 +16,8 @@ class ThemeClass{
       titleSmall: TextStyle(color: Color(0xffDE6077)),
     ),
 
+    iconTheme: IconThemeData(color: Colors.black12),
+
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.white,),
 
@@ -52,6 +54,8 @@ class ThemeClass{
     appBarTheme: AppBarTheme(
       backgroundColor: Color(0xFF16171C),
     ),
+
+    iconTheme: IconThemeData(color: Colors.blueAccent),
 
     iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(foregroundColor: Colors.blueAccent, backgroundColor: Colors.white)),
 
