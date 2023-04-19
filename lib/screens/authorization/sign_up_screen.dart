@@ -9,8 +9,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:project2/screens/authorization/login_screen.dart';
 
+bool sign = false;
+
 class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+  final VoidCallback showLogin;
+  const SignUp({Key? key, required this.showLogin}) : super(key: key);
 
   @override
   State<SignUp> createState() => _SignUpState();
@@ -35,31 +38,33 @@ class _SignUpState extends State<SignUp> {
         print(e);
       }
     }
-
-    return const HomeScreen();
   }
 
+  signupconfirm() async
+  {
+    await sign_up();
+    setState(() {
+      sign = true;
+    });
+  }
   // Future<void> _insertData() async {
   //   final data = MongoDbModel(email: "namanviber@gmail.com", password: "Naman@123", name: "Naman Jain", phoneNumber: 8307607758, username: "namanviber", gender: "Male", age: 20);
   //   var result = await MongoDatabase.insert(data);
   // }
 
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    _confirmpassword.dispose();
+    super.dispose();
+  }
 
 
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pushNamed(context, "/splash_screen"),
-        ),
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body:
-      Container(
+      body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/background_login.png'),
@@ -201,7 +206,7 @@ class _SignUpState extends State<SignUp> {
                       Column(
                         children: [
                           ElevatedButton(
-                            onPressed: sign_up,
+                            onPressed: signupconfirm,
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 30.0, vertical: 15.0),
@@ -222,7 +227,7 @@ class _SignUpState extends State<SignUp> {
                         height: 20,
                       ),
                       InkWell(
-                        onTap: () {Navigator.pushNamed(context, '/login_screen');},
+                        onTap: widget.showLogin,
                         child: RichText(
                           text: TextSpan(children: [
                             TextSpan(

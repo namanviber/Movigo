@@ -3,13 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project2/authorization/auth_google.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project2/authorization/auth_google.dart';
 import 'package:project2/screens/authorization/forget_password_screen.dart';
 import 'package:project2/screens/authorization/sign_up_screen.dart';
 import 'package:project2/screens/settings/general_settings_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  final VoidCallback showSignup;
+  const LoginScreen({Key? key, required this.showSignup}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -40,15 +40,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pushNamed(context, "/splash_screen"),
-        ),
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -223,7 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 20,
                       ),
                       InkWell(
-                        onTap: () {Navigator.pushNamed(context, '/signup_screen');},
+                        onTap: widget.showSignup,
                         child: RichText(
                           text: TextSpan(children: [
                             TextSpan(
