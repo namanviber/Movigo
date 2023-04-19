@@ -1,37 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.white,
-        // primarySwatch:Colors.black54,
-      ),
-      home: ProfileEditPage(),
-    );
-  }
-}
+import 'package:google_fonts/google_fonts.dart';
 
 class ProfileEditPage extends StatefulWidget {
+  const ProfileEditPage({super.key});
+
   @override
   _ProfileEditPageState createState() => _ProfileEditPageState();
 }
 
 class _ProfileEditPageState extends State<ProfileEditPage> {
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
   // late String _selectedGender;
 
-  final _phoneRegex = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)');
+  final _phoneRegex = RegExp(r'(^(?:[+0]9)?\d{10,12}$)');
 
   final List<String> _genderOptions = ['Male', 'Female', 'Other'];
 
@@ -52,20 +36,11 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         centerTitle: true,
-        title:Text("Account",
+        title: Text("Account",
             style: TextStyle(
                 fontFamily: "Inter",
                 fontWeight: FontWeight.bold,
                 fontSize: 24)),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-        ),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
@@ -73,58 +48,36 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage('assets/images/profile_photo.jpg'),
+              backgroundColor: Colors.white,
+              radius: 60,
+              child: Text("N"),
             ),
             SizedBox(height: 20),
             Text(
-              'Sidharth Aggarwal',
-              style: TextStyle(
-                  fontFamily: 'inter',
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+              "Naman Jain",
+              style: GoogleFonts.montserrat(
+                  fontSize: 14, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 3),
-            Text('sidharth@gmail.com',
-                style: TextStyle(
-                    fontFamily: 'inter',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 10,
-                    color: Colors.grey)),
-            SizedBox(height: 16,),
+            SizedBox(
+              height: 3,
+            ),
+            Text(
+              "namanviber@gmail.com",
+              style: GoogleFonts.montserrat(
+                  fontSize: 10, fontWeight: FontWeight.bold, color: Colors.grey),
+            ),
             TextFormField(
               style: TextStyle(color: Colors.white),
               cursorColor: Colors.white,
               controller: _usernameController,
               decoration: InputDecoration(
-                labelText: 'Username',
+                labelText: 'Name',
                 labelStyle: TextStyle(color: Colors.white),
                 hintText: 'Enter your username',
                 prefixIcon: Icon(
                   Icons.person,
                   color: Colors.white,
                 ),
-                enabledBorder: UnderlineInputBorder(
-                    borderRadius: BorderRadius.circular(14),
-                    borderSide: BorderSide(color: Colors.white)),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(14),
-                    borderSide: BorderSide(color: Colors.white, width: 1.1)),
-              ),
-            ),
-            SizedBox(height: 18),
-            TextFormField(
-              controller: _emailController,
-              style: TextStyle(color: Colors.white),
-              cursorColor: Colors.white,
-              decoration: InputDecoration(
-                labelText: 'Email',
-                hintText: 'Enter your email',
-                prefixIcon: Icon(
-                  Icons.email,
-                  color: Colors.white,
-                ),
-                labelStyle: TextStyle(color: Colors.white),
                 enabledBorder: UnderlineInputBorder(
                     borderRadius: BorderRadius.circular(14),
                     borderSide: BorderSide(color: Colors.white)),
@@ -229,7 +182,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                         focusedBorder: UnderlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide:
-                            BorderSide(color: Colors.white, width: 1.1)),
+                                BorderSide(color: Colors.white, width: 1.1)),
                         labelText: 'Age',
                         prefixIcon: Icon(Icons.calendar_today),
                         prefixIconColor: Colors.white),
@@ -237,23 +190,21 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                       _selectDate(context);
                     },
                     controller: TextEditingController(
-                      // text: _selectedDate == null
-                      //     ? ''
-                      // : DateFormat('dd/MM/yyyy').format(_selectedDate),
-                    ),
+                        // text: _selectedDate == null
+                        //     ? ''
+                        // : DateFormat('dd/MM/yyyy').format(_selectedDate),
+                        ),
                   ),
                 ),
               ],
             ),
             SizedBox(height: 20),
             ElevatedButton(
-
               onPressed: () {},
-              child: Text('Save Changes',),
-
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF075D7A),
-                  fixedSize: Size(150, 50)
+                  backgroundColor: Color(0xFF075D7A), fixedSize: Size(150, 50)),
+              child: Text(
+                'Save Changes',
               ),
             ),
           ],
@@ -279,11 +230,11 @@ Widget buildTextField(String label, bool isPassTextField) {
             borderSide: BorderSide(color: Colors.white, width: 1.1)),
         suffixIcon: isPassTextField
             ? IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.remove_red_eye,
-              color: Colors.white,
-            ))
+                onPressed: () {},
+                icon: Icon(
+                  Icons.remove_red_eye,
+                  color: Colors.white,
+                ))
             : null,
         prefixIcon: Icon(
           Icons.lock,

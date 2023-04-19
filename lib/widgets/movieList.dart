@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project2/models/apiModels/MovieDetailModel.dart';
+import 'package:project2/models/MovieDetailModel.dart';
 import 'package:project2/service/apiCall.dart';
-import 'package:project2/models/mongoDbModels/getMoviesModel.dart';
-import 'package:project2/screens/home/movie_info_screen.dart';
+import 'package:project2/models/getMoviesModel.dart';
+import 'package:project2/screens/home/movieDetail.dart';
 
 class MovieList extends StatefulWidget {
   final getMoviesModel moviesModel;
@@ -14,6 +14,7 @@ class MovieList extends StatefulWidget {
 
 class _MovieListState extends State<MovieList> {
 
+  //Fetch Movie Details from API
   Future<void> fetchMovieDetails(int movieid) async {
     print(movieid);
     final response3 = await movieDetails(movieid);

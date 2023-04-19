@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project2/models/apiModels/MovieCastDetailsModel.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:project2/models/MovieCastDetailsModel.dart';
 
 class MovieCastRow extends StatefulWidget {
   MovieCastRow({required this.model, Key? key}) : super(key: key);
@@ -40,8 +39,11 @@ class _MovieCastRowState extends State<MovieCastRow> {
             alignment: Alignment.topLeft,
             child: Text(
               widget.model.name.toString(),
-              style: GoogleFonts.montserrat(
-                  fontSize: 14, fontWeight: FontWeight.w700),
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: Theme.of(context).textTheme.titleSmall!.color,
+              ),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               textAlign: TextAlign.left,
@@ -51,7 +53,10 @@ class _MovieCastRowState extends State<MovieCastRow> {
             alignment: Alignment.topLeft,
             child: Text(
               widget.model.character.toString(),
-              style: GoogleFonts.montserrat(fontSize: 10),
+              style: TextStyle(
+                fontSize: 10,
+                color: Theme.of(context).textTheme.titleSmall!.color,
+              ),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               textAlign: TextAlign.left,

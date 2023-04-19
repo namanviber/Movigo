@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project2/screens/home/home_screen.dart';
-import 'package:project2/screens/home/watchlist_screen.dart';
-import 'package:project2/screens/findMovie/findMovie.dart';
-import 'package:project2/screens/settings/settings_screen.dart';
-import 'package:project2/service/apiCall.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomNavigation extends StatelessWidget {
   BottomNavigation({required this.screen_index, Key? key}) : super(key: key);
@@ -16,13 +12,13 @@ class BottomNavigation extends StatelessWidget {
       onTap: (index) {
         screen_index = index;
         if (screen_index == 0) {
-          Navigator.pushNamed(context, '/home_screen');
+          Navigator.pushReplacementNamed(context, '/home_screen');
         } else if (screen_index == 1) {
-          Navigator.pushNamed(context, '/recommender_screen');
+          Navigator.pushReplacementNamed(context, '/recommender_screen');
         } else if (screen_index == 2) {
-          Navigator.pushNamed(context, '/watch_list');
+          Navigator.pushReplacementNamed(context, '/watch_list');
         } else if (screen_index == 3) {
-          Navigator.pushNamed(context, '/setting_screen');
+          Navigator.pushReplacementNamed(context, '/setting_screen');
         }
       },
       currentIndex: screen_index,
@@ -40,11 +36,11 @@ class BottomNavigation extends StatelessWidget {
             title: const Text('Watchlist'),
             icon: const Icon(Icons.bookmark)),
         SalomonBottomBarItem(
-            selectedColor: Colors.blueAccent,
+            selectedColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
             title: const Text('Settings'),
             icon: const Icon(Icons.person)),
       ],
-      backgroundColor: const Color(0xFF09090F),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       unselectedItemColor: Color(0xFFA0A0A0),
       // type: BottomNavigationBarType.shifting,
     );

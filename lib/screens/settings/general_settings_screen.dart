@@ -16,10 +16,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
   String dropdownvalue = 'Always';
 
   // List of items in our dropdown menu
-  var items = [
-    'Always',
-    'Never'
-  ];
+  var items = ['Always', 'Never'];
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +25,13 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
         automaticallyImplyLeading: false,
         toolbarHeight: 60,
         backgroundColor: const Color(0xFF09090F),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text("General",
-                style: TextStyle(
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24)),
-          ],
+        title: Text(
+          "General",
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).textTheme.titleLarge!.color,
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -45,12 +40,11 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
           padding: const EdgeInsets.all(12),
           child: Column(
             children: [
-
               const SizedBox(
                 height: 10,
               ),
               //#1
-              Container(
+              SizedBox(
                 height: 60,
                 width: 390,
                 child: Row(
@@ -60,24 +54,27 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     ),
                     const Icon(
                       Icons.access_alarm,
+                      color: Colors.white,
                       size: 34,
                     ),
                     const SizedBox(
                       width: 20,
                     ),
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: 220,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text(
                             "Push Notifications",
                             style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
                           ),
                           SizedBox(
                             height: 4,
@@ -113,7 +110,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                 height: 10,
               ),
               //#2
-              Container(
+              SizedBox(
                 height: 60,
                 width: double.maxFinite,
                 child: Row(
@@ -123,24 +120,27 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     ),
                     const Icon(
                       Icons.language_outlined,
+                      color: Colors.white,
                       size: 34,
                     ),
                     const SizedBox(
                       width: 20,
                     ),
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: 220,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text(
                             "Language",
                             style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
                           ),
                           SizedBox(
                             height: 4,
@@ -148,9 +148,11 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                           Text(
                             "English ( United States )",
                             style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
                           ),
                         ],
                       ),
@@ -184,7 +186,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
               const SizedBox(
                 height: 10,
               ),
-              Container(
+              SizedBox(
                 height: 60,
                 width: double.maxFinite,
                 child: Row(
@@ -194,24 +196,27 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     ),
                     const Icon(
                       Icons.location_city,
+                      color: Colors.white,
                       size: 34,
                     ),
                     const SizedBox(
                       width: 20,
                     ),
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: 240,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text(
                             "Region",
                             style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
                           ),
                           SizedBox(
                             height: 4,
@@ -227,7 +232,6 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                       ),
                     ),
                     // const Icon(Icons.arrow_drop_down)
-
                   ],
                 ),
               ),
@@ -235,7 +239,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                 height: 10,
               ),
               //#3
-              Container(
+              SizedBox(
                 height: 60,
                 width: double.maxFinite,
                 child: Row(
@@ -245,24 +249,27 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     ),
                     const Icon(
                       Icons.ac_unit,
+                      color: Colors.white,
                       size: 34,
                     ),
                     const SizedBox(
                       width: 20,
                     ),
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: 220,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text(
                             "Theme",
                             style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
                           ),
                           SizedBox(
                             height: 4,
@@ -299,7 +306,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
               ),
               //#4
               // #3
-              Container(
+              SizedBox(
                 height: 60,
                 width: double.maxFinite,
                 child: Row(
@@ -309,37 +316,37 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     ),
                     const Icon(
                       Icons.clear_all,
+                      color: Colors.white,
                       size: 34,
                     ),
                     const SizedBox(
                       width: 20,
                     ),
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: 240,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text(
                             "Clear Cache Memory",
                             style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
                           ),
                           SizedBox(
                             height: 4,
                           ),
-
                         ],
                       ),
                     ),
-
                   ],
                 ),
               ),
-
             ],
           ),
         ),

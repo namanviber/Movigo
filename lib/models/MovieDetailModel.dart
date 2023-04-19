@@ -6,7 +6,7 @@ class MovieDetailModel {
     this.budget,
     this.genres,
     this.homepage,
-    this.id,
+    required this.id,
     this.imdbId,
     this.originalLanguage,
     this.originalTitle,
@@ -33,7 +33,7 @@ class MovieDetailModel {
   int? budget;
   List<Genre>? genres;
   String? homepage;
-  int? id;
+  int id;
   String? imdbId;
   String? originalLanguage;
   String? originalTitle;

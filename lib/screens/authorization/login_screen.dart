@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:project2/authorization/auth_google.dart';
+import 'package:project2/utilities/auth_google.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project2/screens/authorization/forget_password_screen.dart';
