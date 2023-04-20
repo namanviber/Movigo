@@ -9,7 +9,6 @@ const movieDatabase = "movieData";
 const userDatabase = "userData";
 final userInfo = FirebaseAuth.instance.currentUser!;
 
-
 class MongoDatabase {
   static var db, movieCollection, userCollection;
 
@@ -21,6 +20,14 @@ class MongoDatabase {
     userCollection = db.collection(userDatabase);
   }
 
+  // User Specific Functions
+  static Future<getUserDetails> getUserData() async {
+    final result =
+        await userCollection.findOne(where.eq("firebase_id", userInfo.uid));
+    return getUserDetails.fromJson(result);
+  }
+
+  // Movie Specific Functions
   static Future<List<Map<String, dynamic>>> getMovies() async {
     final movieData = await movieCollection
         .find(where.eq('language', 'en').limit(30))
@@ -77,17 +84,16 @@ class MongoDatabase {
     return movieData;
   }
 
-  static Future<List<Map<String, dynamic>>> userWatchedMovies(List<int> query) async {
+  static Future<List<Map<String, dynamic>>> userWatchedMovies(
+      List<int> query) async {
     List<Map<String, dynamic>> movieDataList = [];
     for (int i = 0; i < query.length; i++) {
-      final movieData = await movieCollection
-          .find(where.eq('tmdbId', query[i]))
-          .toList();
+      final movieData =
+          await movieCollection.find(where.eq('tmdbId', query[i])).toList();
       movieDataList.addAll(movieData);
     }
     return movieDataList;
   }
-
 
   static Future<List<Map<String, dynamic>>> searchGenre(String query) async {
     final movieData = await movieCollection
@@ -109,5 +115,4 @@ class MongoDatabase {
       return e.toString();
     }
   }
-
 }

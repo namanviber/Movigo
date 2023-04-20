@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -12,6 +12,8 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   int screen_index = 4;
+  final _controller = ValueNotifier<bool>(false);
+  final _controller1 = ValueNotifier<bool>(false);
 
   @override
   Widget build(BuildContext context) {
@@ -29,35 +31,214 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    color: const Color(0xFF043E4F),
-                    borderRadius: BorderRadius.circular(10)),
-                height: 100,
-                width: double.maxFinite,
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  color: Theme.of(context).cardColor,
+                  borderRadius: BorderRadius.circular(10)),
+              height: 100,
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Theme.of(context).iconTheme.color,
+                    radius: 28,
+                    child: Text("N"),
+                  ),
+                  SizedBox(
+                    height: 60,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Naman Jain",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .color),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "namanviber@gmail.com",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .color),
+                        ),
+                      ],
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/profile_edit');
+                      },
+                      icon: Icon(
+                        Icons.edit,
+                        color: Theme.of(context).iconTheme.color,
+                      ))
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              height: 60,
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const Icon(
+                    Icons.access_alarm,
+                    color: Colors.white,
+                    size: 34,
+                  ),
+                  SizedBox(
+                    height: 60,
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Push Notifications",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color:
+                                Theme.of(context).textTheme.titleLarge!.color,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Text(
+                          "Manage your notifications",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color:
+                                Theme.of(context).textTheme.titleLarge!.color,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  AdvancedSwitch(
+                    activeChild: const Icon(
+                      Icons.doorbell_outlined,
+                      color: Color(0xFF4CAF50),
+                    ),
+                    inactiveChild: const Icon(
+                      Icons.doorbell_rounded,
+                      color: Color(0xFFF44336),
+                    ),
+                    activeColor: Color(0xFFECECEC),
+                    inactiveColor: const Color(0xFF2F2F2F),
+                    width: 60,
+                    controller: _controller1,
+                  ),
+                ],
+              ),
+            ),
+            //#3
+            SizedBox(
+              height: 60,
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const Icon(
+                    Icons.ac_unit,
+                    color: Colors.white,
+                    size: 34,
+                  ),
+                  SizedBox(
+                    height: 60,
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Theme",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color:
+                                Theme.of(context).textTheme.titleLarge!.color,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Text(
+                          "Manage Light and Dark Theme",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                            color:
+                                Theme.of(context).textTheme.titleLarge!.color,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  AdvancedSwitch(
+                    activeChild: const Icon(
+                      Icons.light_mode_outlined,
+                      color: Color(0xFF2F2F2F),
+                    ),
+                    inactiveChild: const Icon(
+                      Icons.dark_mode_outlined,
+                      color: Color(0xFFECECEC),
+                    ),
+                    activeColor: Color(0xFFECECEC),
+                    inactiveColor: const Color(0xFF2F2F2F),
+                    width: 60,
+                    controller: _controller,
+                  ),
+                ],
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, '/general_setting');
+              },
+              child: SizedBox(
+                height: 60,
+                width: MediaQuery.of(context).size.width,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 28,
-                      child: Text("N"),
+                    Icon(
+                      Icons.settings_outlined,
+                      size: 34,
+                      color: Theme.of(context).iconTheme!.color,
                     ),
                     SizedBox(
                       height: 60,
-                      width: 240,
+                      width: MediaQuery.of(context).size.width * 0.7,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Naman Jain",
+                            "General Settings",
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -66,10 +247,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             ),
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 4,
                           ),
                           Text(
-                            "namanviber@gmail.com",
+                            "Manage your General Settings",
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -80,336 +261,166 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ],
                       ),
                     ),
+                    const Icon(Icons.arrow_forward_ios_rounded)
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              //#1
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, '/profile_edit');
-                },
-                child: SizedBox(
-                  height: 70,
-                  width: double.maxFinite,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Icon(
-                        Icons.account_circle_outlined,
-                        size: 34,
-                        color: Color(0xFF2196F3),
+            ),
+            InkWell(
+              onTap: () {
+                FirebaseAuth.instance.signOut();
+
+              },
+              child: SizedBox(
+                height: 60,
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(
+                      Icons.logout,
+                      size: 34,
+                      color: Theme.of(context).iconTheme!.color,
+                    ),
+                    SizedBox(
+                      height: 60,
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Sign Out",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            "Sign Out from your account",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
+                          ),
+                        ],
                       ),
-                      // const SizedBox(
-                      //   width: 20,
-                      // ),
-                      SizedBox(
-                        height: 60,
-                        width: 220,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "My Account",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .color,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 4,
-                            ),
-                            Text(
-                              "Make changes to your account",
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .color,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Icon(Icons.arrow_forward_ios_rounded)
-                    ],
-                  ),
+                    ),
+                    const Icon(Icons.arrow_forward_ios_rounded)
+                  ],
                 ),
               ),
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, '/general_setting');
-                },
-                child: SizedBox(
-                  height: 70,
-                  width: double.maxFinite,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Icon(
-                        Icons.settings_outlined,
-                        size: 34,
-                        color: Color(0xFF2196F3),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, '/about_us');
+              },
+              child: SizedBox(
+                height: 60,
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(
+                      Icons.info_outline_rounded,
+                      size: 34,
+                      color: Theme.of(context).iconTheme!.color,
+                    ),
+                    SizedBox(
+                      height: 60,
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "About Us",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            "About the Developers of App",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
+                          ),
+                        ],
                       ),
-                      // const SizedBox(
-                      //   width: 20,
-                      // ),
-                      SizedBox(
-                        height: 60,
-                        width: 220,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "General Settings",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .color,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 4,
-                            ),
-                            Text(
-                              "Maknage your General Settings",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .color,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Icon(Icons.arrow_forward_ios_rounded)
-                    ],
-                  ),
+                    ),
+                    const Icon(Icons.arrow_forward_ios_rounded)
+                  ],
                 ),
               ),
-              InkWell(
-                onTap: () {
-                  // Navigator.pushNamed(context, '/Set Your Preferences');
-                },
-                child: SizedBox(
-                  height: 70,
-                  width: double.maxFinite,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Icon(
-                        Icons.room_preferences,
-                        size: 34,
-                        color: Color(0xFF2196F3),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, '/privacy_policy');
+              },
+              child: SizedBox(
+                height: 60,
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(
+                      Icons.shield_outlined,
+                      size: 34,
+                      color: Theme.of(context).iconTheme!.color,
+                    ),
+                    SizedBox(
+                      height: 60,
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Privacy Policy",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            "Privacy Policies of our app",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
+                          ),
+                        ],
                       ),
-                      // const SizedBox(
-                      //   width: 20,
-                      // ),
-                      SizedBox(
-                        height: 60,
-                        width: 220,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Set Your Preferences",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .color,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 4,
-                            ),
-                            Text(
-                              "Setup your preferences again",
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .color,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Icon(Icons.arrow_forward_ios_rounded)
-                    ],
-                  ),
+                    ),
+                    const Icon(Icons.arrow_forward_ios_rounded)
+                  ],
                 ),
               ),
-              InkWell(
-                onTap: () {
-                  FirebaseAuth.instance.signOut();
-                  Navigator.pushNamed(context, '/check');
-                },
-                child: SizedBox(
-                  height: 70,
-                  width: double.maxFinite,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Icon(
-                        Icons.exit_to_app_outlined,
-                        size: 34,
-                        color: Color(0xFF2196F3),
-                      ),
-                      // const SizedBox(
-                      //   width: 20,
-                      // ),
-                      SizedBox(
-                        height: 60,
-                        width: 220,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Sign Out",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .color,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 4,
-                            ),
-                            Text(
-                              "Sign Out from your account",
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .color,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Icon(Icons.arrow_forward_ios_rounded)
-                    ],
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, '/about_us');
-                },
-                child: SizedBox(
-                  height: 70,
-                  width: double.maxFinite,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Icon(
-                        Icons.help_outline_outlined,
-                        size: 34,
-                        color: Color(0xFF2196F3),
-                      ),
-                      // const SizedBox(
-                      //   width: 20,
-                      // ),
-                      SizedBox(
-                        height: 60,
-                        width: 220,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "About Us",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .color,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Icon(Icons.arrow_forward_ios_rounded)
-                    ],
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, '/privacy_policy');
-                },
-                child: SizedBox(
-                  height: 70,
-                  width: double.maxFinite,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Icon(
-                        Icons.shield_outlined,
-                        size: 34,
-                        color: Color(0xFF2196F3),
-                      ),
-                      // const SizedBox(
-                      //   width: 20,
-                      // ),
-                      SizedBox(
-                        height: 60,
-                        width: 220,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Privacy Policy",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .color,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Icon(Icons.arrow_forward_ios_rounded)
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigation(

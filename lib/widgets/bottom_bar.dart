@@ -14,7 +14,7 @@ class BottomNavigation extends StatelessWidget {
         if (screen_index == 0) {
           Navigator.pushReplacementNamed(context, '/home_screen');
         } else if (screen_index == 1) {
-          Navigator.pushReplacementNamed(context, '/recommender_screen');
+          Navigator.pushReplacementNamed(context, '/search_screen');
         } else if (screen_index == 2) {
           Navigator.pushReplacementNamed(context, '/watch_list');
         } else if (screen_index == 3) {
@@ -29,8 +29,8 @@ class BottomNavigation extends StatelessWidget {
             icon: const Icon(Icons.home_filled,size: 25,)),
         SalomonBottomBarItem(
             selectedColor: Colors.blueAccent,
-            title: const Text('Find Movie'),
-            icon: const Icon(Icons.play_circle)),
+            title: const Text('Search'),
+            icon: const Icon(Icons.search_rounded)),
         SalomonBottomBarItem(
             selectedColor: Colors.blueAccent,
             title: const Text('Watchlist'),

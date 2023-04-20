@@ -1,67 +1,61 @@
 import 'package:flutter/material.dart';
-class ThemeClass{
 
+class ThemeClass {
   static ThemeData lightTheme = ThemeData(
-
+    cardColor: Colors.blueAccent,
     scaffoldBackgroundColor: Colors.white,
-
+    highlightColor: Colors.grey,
     canvasColor: Colors.black,
-
-
     primarySwatch: Colors.pink,
-
+    filledButtonTheme: FilledButtonThemeData(
+        style: ButtonStyle(
+      backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue),
+      foregroundColor: MaterialStatePropertyAll<Color>(Colors.blue),
+    )),
     textTheme: TextTheme(
-      titleMedium: TextStyle(color: Color(0xff969696)),
+      titleMedium: TextStyle(color: Colors.black),
       titleLarge: TextStyle(color: Colors.black),
-      titleSmall: TextStyle(color: Color(0xffDE6077)),
+      titleSmall: TextStyle(color: Colors.black),
     ),
-
-    iconTheme: IconThemeData(color: Colors.black12),
-
+    iconTheme: IconThemeData(color: Colors.black),
     appBarTheme: AppBarTheme(
-      backgroundColor: Colors.white,),
-
-    iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(foregroundColor: Colors.black)),
-
-    drawerTheme: DrawerThemeData(backgroundColor: Colors.white,),
-
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: Colors.white,),
+      backgroundColor: Colors.white,
+    ),
+    iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(foregroundColor: Colors.black)),
+    drawerTheme: DrawerThemeData(
+      backgroundColor: Colors.white,
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: Colors.white,
+    ),
   );
 
   static ThemeData darkTheme = ThemeData(
-
-    scaffoldBackgroundColor: Color(0xFF000000),
-
-    highlightColor: Colors.grey,
-
-    canvasColor: Colors.white,
-
-    filledButtonTheme: FilledButtonThemeData(
-      style: ButtonStyle(
+      cardColor: Color(0xFF043E4F),
+      scaffoldBackgroundColor: Color(0xFF000000),
+      highlightColor: Colors.grey,
+      canvasColor: Colors.white,
+      filledButtonTheme: FilledButtonThemeData(
+          style: ButtonStyle(
         backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue),
         foregroundColor: MaterialStatePropertyAll<Color>(Colors.blue),
-      )
-    ),
-
-    primarySwatch: Colors.deepPurple,
-
-    textTheme: TextTheme(
-      titleMedium: TextStyle(color: Color(0xFFF0F2FF)),
-      titleLarge: TextStyle(color: Colors.white),
-      titleSmall: TextStyle(color: Color(0xFFF0F2FF)),
-    ),
-
-    appBarTheme: AppBarTheme(
-      backgroundColor: Color(0xFF16171C),
-    ),
-
-    iconTheme: IconThemeData(color: Colors.blueAccent),
-
-    iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(foregroundColor: Colors.blueAccent, backgroundColor: Colors.white)),
-
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: Colors.blueAccent),
-
-    inputDecorationTheme: InputDecorationTheme(
-    )
-  );
+      )),
+      primarySwatch: Colors.deepPurple,
+      textTheme: TextTheme(
+          titleMedium: TextStyle(color: Color(0xFFF0F2FF)),
+          titleLarge: TextStyle(color: Colors.white),
+          titleSmall: TextStyle(color: Color(0xFFF0F2FF)),
+          bodySmall: TextStyle(color: Colors.black)),
+      appBarTheme: AppBarTheme(
+        backgroundColor: Color(0xFF16171C),
+      ),
+      iconTheme: IconThemeData(color: Colors.white),
+      iconButtonTheme: IconButtonThemeData(
+          style: IconButton.styleFrom(
+              foregroundColor: Colors.blueAccent,
+              backgroundColor: Colors.white)),
+      bottomNavigationBarTheme:
+          BottomNavigationBarThemeData(backgroundColor: Colors.blueAccent),
+      inputDecorationTheme: InputDecorationTheme());
 }

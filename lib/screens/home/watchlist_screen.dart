@@ -34,8 +34,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
     11443,
   ];
 
-
-  List<String > genrelist=['Action','Comedy'];
+  List<String> genrelist = ['Action', 'Comedy'];
 
   @override
   void initState() {
@@ -47,15 +46,16 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
   Future<void> fetchMovieDetails(int movieid) async {
     print(movieid);
     final response3 = await movieDetails(movieid);
+    late MovieDetailModel movieDetail;
     setState(() {
-      MovieDetailModel movieDetail = response3;
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => MovieInfo(
-                    movieModel: movieDetail,
-                  )));
+      movieDetail = response3;
     });
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => MovieInfo(
+                  movieModel: movieDetail,
+                )));
   }
 
   @override
@@ -73,7 +73,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                 children: [
                   Text(
                     'Watchlist',
-                    style: TextStyle(fontSize: 27),
+                    style: TextStyle(fontSize: 27, color: Theme.of(context).textTheme.titleLarge!.color),
                   ),
                   Spacer(),
                   IconButton(
@@ -81,6 +81,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                       _viewType == Viewtype.list
                           ? Icons.table_rows
                           : Icons.grid_view_rounded,
+                      color: Theme.of(context).iconTheme.color,
                     ),
                     onPressed: () {
                       if (_viewType == Viewtype.list) {
@@ -116,21 +117,18 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                   child: Column(
                     children: <Widget>[
                       ConstrainedBox(
-                        constraints: const BoxConstraints(
-                            maxHeight: 550, minHeight: 50.0),
+                        constraints: BoxConstraints(
+                            maxHeight:
+                                MediaQuery.of(context).size.height * 0.75,
+                            minHeight: 50.0),
                         child: FutureBuilder(
                           future: watchlistmovie,
                           builder: (context, AsyncSnapshot snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return SizedBox(
-                                height: 190,
-                                width: 125,
-                                child: const Center(
-                                    child: CircularProgressIndicator()),
-                              );
-                            }
-                            else {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            } else {
                               if (snapshot.hasData) {
                                 return (_viewType == Viewtype.grid)
                                     ? ListView.builder(
@@ -138,7 +136,6 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                         itemBuilder: (context, index) {
                                           final content = getMoviesModel
                                               .fromJson(snapshot.data[index]);
-                                          // double popularity = 9;
                                           return InkWell(
                                             onTap: () {
                                               setState(() {
@@ -147,7 +144,8 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                               });
                                             },
                                             child: Card(
-                                              color: Color(0xbb1f1f1f),
+                                              color:
+                                                  Theme.of(context).cardColor,
                                               child: Column(
                                                 children: [
                                                   Padding(
@@ -209,6 +207,11 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                           .genres
                                                                           .join(
                                                                               " "),
+                                                                      maxLines:
+                                                                          2,
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
                                                                       style:
                                                                           TextStyle(
                                                                         fontSize:
@@ -267,8 +270,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                           },
                                         ),
                                       );
-                              }
-                              else {
+                              } else {
                                 return SizedBox(
                                   height: 190,
                                   width: 125,
@@ -294,8 +296,10 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                   child: Column(
                     children: <Widget>[
                       ConstrainedBox(
-                        constraints: const BoxConstraints(
-                            maxHeight: 550, minHeight: 50.0),
+                        constraints: BoxConstraints(
+                            maxHeight:
+                                MediaQuery.of(context).size.height * 0.75,
+                            minHeight: 50.0),
                         child: FutureBuilder(
                           future: savedmovie,
                           builder: (context, AsyncSnapshot snapshot) {
@@ -324,7 +328,8 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                               });
                                             },
                                             child: Card(
-                                              color: Color(0xbb1f1f1f),
+                                              color:
+                                                  Theme.of(context).cardColor,
                                               child: Column(
                                                 children: [
                                                   Padding(
@@ -428,7 +433,6 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                     : Padding(
                                         padding: const EdgeInsets.all(10.0),
                                         child: GridView.builder(
-                                          // shrinkWrap: true,
                                           itemCount: snapshot.data.length,
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(

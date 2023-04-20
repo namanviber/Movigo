@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../service/mongoDbCall.dart';
-import '../../widgets/filter_result.dart';
-
+import 'package:project2/widgets/bottom_bar.dart';
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
 
@@ -393,6 +392,10 @@ double height_for_colorbox=92;
         _buildSearchedMovies(),
           ),
         ],
+      ),
+
+      bottomNavigationBar: BottomNavigation(
+        screen_index: 1,
       ),
     );
   }
