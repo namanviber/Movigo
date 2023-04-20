@@ -19,6 +19,7 @@ class _ItemGridState extends State<ItemGrid> {
   bool state = true;
 
   var watchlistmovie;
+  var temp;
   List<int> specific_user_watched = [
     8844,
     9691,
@@ -33,6 +34,7 @@ class _ItemGridState extends State<ItemGrid> {
   @override
   void initState() {
     watchlistmovie = MongoDatabase.userWatchedMovies(specific_user_watched);
+    // temp
     super.initState();
   }
 

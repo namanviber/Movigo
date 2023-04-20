@@ -14,11 +14,14 @@ class _SearchScreenState extends State<SearchScreen> {
   String _searchQuery = '';
   bool _isSearching = false;
   bool _isScrollingUp = false;
-  List<String > genrelist=[
-    'Popular Now',
-    'Spotlight',
-    'Top Action',
-    'Scary'
+  List<String > genrelist=['Action','Comedy',"Adventure",
+    "Children",
+    "Fantasy","Crime",
+    "Thriller",
+    'Action','Comedy',"Adventure",
+    "Children",
+    "Fantasy","Crime",
+    "Thriller"
 
   ];
 
@@ -261,7 +264,7 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
 
-double height_for_colorbox=92;
+  double height_for_colorbox=92;
   List<Color> a=[
     Color(0xffE13300),
     Color(0xff7358FF),
@@ -287,7 +290,8 @@ double height_for_colorbox=92;
 
 
   Widget ColorBox(int index) {
-    // print(
+    print('helloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo');
+    print(MediaQuery.of(context).size.width);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 6.0),
       child: InkWell(
@@ -343,56 +347,161 @@ double height_for_colorbox=92;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //
+      //   backgroundColor: Colors.black,
+      //
+      //   title: Padding(
+      //     padding: EdgeInsets.only(top: 16.0),
+      //     child: Text(
+      //       'Search',
+      //       style: TextStyle(fontSize: 30),
+      //     ),
+      //   ),
+      // ),
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              automaticallyImplyLeading: false,
+              elevation: 0,
+              expandedHeight: 100,
+              // collapsedHeight: 150.0,toolbarHeight: 100,
+              pinned: true,
+              // centerTitle: true,/
+              // flexibleSpace: const FlexibleSpaceBar(
+              // centerTitle:true,
+              title: Text('sex',style: TextStyle(color: Colors.white),
+              ),
+              // ),
+            ),
+            SliverAppBar(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              elevation: 0,
+              pinned: true,
+              bottom: const PreferredSize(
+                  preferredSize: Size.fromHeight(-10.0), child: SizedBox()),
+              flexibleSpace: const SearchBar(),
+            ),
 
-        backgroundColor: Colors.black,
+            SliverList(
 
-        title: Padding(
-          padding: EdgeInsets.only(top: 16.0),
-          child: Text(
-            'Search',
-            style: TextStyle(fontSize: 30),
-          ),
-        ),
-      ),
+              delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                  return  Column(
+                    children: <Widget>[
+                      Searchbar(),
 
-      body:Column(
-        children: <Widget>[
-          Searchbar(),
+                      _isSearching == false
+                          ?
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                            height: 600,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width,
+                            child: ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              itemCount: genrelist.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return ColorBox(index);
+                              },
+                            ),
+                          ),
+                        ],
+                      )
+                          : Container(),
+                      // Conditionally delete Row widget when _isSearching is true
+                      Expanded(
+                        child:
+                        (_isSearching == false)
+                            ?
+                        Container()
+                            :
+                        _buildSearchedMovies(),
+                      ),
+                    ],
+                  );
+                },
+                childCount: 20,
+              ),
+            ),
 
-          _isSearching == false
-              ?
-        Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                height: 600,
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width,
-                child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: genrelist.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ColorBox(index);
-                  },
+          ],
+        )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    );
+  }
+}
+
+class SearchBar extends StatelessWidget {
+  const SearchBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Container(
+          color: Color(0xffc0bfbf),
+          child: TextField(
+            style: TextStyle(color: Colors.black),
+            decoration: InputDecoration(
+
+              hintStyle: TextStyle(
+                color: Color(0xff000000),
+              ),
+              hintText: 'Search movie...',
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.zero,
+                borderSide: BorderSide(
+                  color: Colors.black,
+                  width: 1.0,
                 ),
               ),
-            ],
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.zero,
+                borderSide: BorderSide(
+                  color: Colors.blue,
+                  width: 1.0,
+                ),
+              ),
+              suffixIcon: Icon(
+                Icons.search,
+                color: Colors.black,
+              ),
+              fillColor: Colors.white,
+              filled: true,
+            ),
+            // onChanged: (value) {
+            //   setState(() {
+            //     _searchQuery = value;
+            //     _isSearching = true;
+            //   });
+            // },
+            // onSubmitted: (value) {
+            //   setState(() {
+            //     _searchQuery = value;
+            //   });
+            // },
           )
-              : Container(),
-          // Conditionally delete Row widget when _isSearching is true
-          Expanded(
-            child:
-            (_isSearching == false)
-                ?
-              Container()
-                :
-        _buildSearchedMovies(),
-          ),
-        ],
+
       ),
     );
   }
