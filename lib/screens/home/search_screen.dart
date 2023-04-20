@@ -13,12 +13,19 @@ class _SearchScreenState extends State<SearchScreen> {
   String _searchQuery = '';
   bool _isSearching = false;
   bool _isScrollingUp = false;
-  List<String > genrelist=[
+  List genrelist= [ 'assets/images/1.png',
+    "assets/images/2.png",
+    "assets/images/3.png",
+    "assets/images/4.png",
+    "assets/images/5.png",
+  ];
+
+  List genrelist_onlytext= [
     'Popular Now',
     'Spotlight',
-    'Top Action',
-    'Scary'
-
+    'Trending',
+    'Comedy',
+    'Scary',
   ];
 
   Future<List<Map<String, dynamic>>> _performSearch(String query) async {
@@ -131,7 +138,7 @@ class _SearchScreenState extends State<SearchScreen> {
               itemCount: searchResults.length,
               itemBuilder: (context, index) {
                 final movie = searchResults[index];
-                final List<dynamic> genreList = movie['genres'];
+                final List<dynamic> genreListText = movie['genres'];
                 return Card(
                   elevation: 4,
                   margin: EdgeInsets.symmetric(
@@ -180,7 +187,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               Row(
                                 children: [
                                   Text(
-                                    genreList.join("  "),
+                                    genreListText.join("  "),
                                     style: TextStyle(
                                       fontSize: 14,
                                       color: Colors.grey,
@@ -260,7 +267,7 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
 
-double height_for_colorbox=92;
+double height_for_colorbox=130;
   List<Color> a=[
     Color(0xffE13300),
     Color(0xff7358FF),
@@ -285,13 +292,17 @@ double height_for_colorbox=92;
   ];
 
 
+
+
   Widget ColorBox(int index) {
-    // print(
+    final genreListImage=genrelist[index];
+    print(genreListImage);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 6.0),
       child: InkWell(
         onTap: (){
-          Navigator.pushNamed(context, '/filter_results', arguments: genrelist[index]);
+          Navigator.pushNamed(context, '/filter_results', arguments: 'genrelist[i');
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -302,10 +313,9 @@ double height_for_colorbox=92;
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width-24,
+                    width: MediaQuery.of(context).size.width - 24,
                     height: height_for_colorbox,
                     decoration: BoxDecoration(
-                      color: a[index],
                       borderRadius: BorderRadius.circular(11.0),
                       boxShadow: [
                         BoxShadow(
@@ -314,19 +324,27 @@ double height_for_colorbox=92;
                           offset: Offset(0, 2),
                         ),
                       ],
+
+                      image: DecorationImage(
+                        image: AssetImage(genreListImage),
+                        fit: BoxFit.cover,
+                        // adjust the image fit as needed
+                      ),
                     ),
-                  ),
+                  )
                 ],
               ),
               Positioned.fill(
                 left: 10,
                 // bottom: 0,
-                top: height_for_colorbox-25,
+                top: 80,
+                // top:10,
+                // top: height_for_colorbox-25,
                 child: Text(
-                  genrelist[index],
+                  genrelist_onlytext[index],
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18.0,
+                    fontSize: 28.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -339,14 +357,11 @@ double height_for_colorbox=92;
   }
 
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-
         backgroundColor: Colors.black,
-
         title: Padding(
           padding: EdgeInsets.only(top: 16.0),
           child: Text(
@@ -355,41 +370,27 @@ double height_for_colorbox=92;
           ),
         ),
       ),
-
-      body:Column(
+      body: Column(
         children: <Widget>[
           Searchbar(),
+          // Replace Searchbar() with your own implementation of the search bar
 
-          _isSearching == false
-              ?
-        Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                height: 600,
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width,
-                child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: genrelist.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ColorBox(index);
-                  },
-                ),
+          // Conditionally show/hide the ListView based on _isSearching flag
+          if (_isSearching == false)
+            Expanded(flex: 15,
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                children: List.generate(genrelist.length, (index) {
+                  return ColorBox(index);
+                }),
               ),
-            ],
-          )
-              : Container(),
-          // Conditionally delete Row widget when _isSearching is true
+            )
+          else
+            Container(),
+
+          // Conditionally show/hide the search results based on _isSearching flag
           Expanded(
-            child:
-            (_isSearching == false)
-                ?
-              Container()
-                :
-        _buildSearchedMovies(),
+            child: _isSearching == false ? Container() : _buildSearchedMovies(),
           ),
         ],
       ),
@@ -399,5 +400,7 @@ double height_for_colorbox=92;
       ),
     );
   }
-}
 
+
+
+}
