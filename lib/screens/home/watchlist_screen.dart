@@ -34,6 +34,9 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
     11443,
   ];
 
+
+  List<String > genrelist=['Action','Comedy'];
+
   @override
   void initState() {
     watchlistmovie = MongoDatabase.userWatchedMovies(specific_user_watched);
@@ -74,9 +77,11 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                   ),
                   Spacer(),
                   IconButton(
-                    icon: Icon(_viewType == Viewtype.list
-                        ? Icons.table_rows
-                        : Icons.grid_view_rounded,),
+                    icon: Icon(
+                      _viewType == Viewtype.list
+                          ? Icons.table_rows
+                          : Icons.grid_view_rounded,
+                    ),
                     onPressed: () {
                       if (_viewType == Viewtype.list) {
                         _viewType = Viewtype.grid;
@@ -124,7 +129,8 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                 child: const Center(
                                     child: CircularProgressIndicator()),
                               );
-                            } else {
+                            }
+                            else {
                               if (snapshot.hasData) {
                                 return (_viewType == Viewtype.grid)
                                     ? ListView.builder(
@@ -261,7 +267,8 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                           },
                                         ),
                                       );
-                              } else {
+                              }
+                              else {
                                 return SizedBox(
                                   height: 190,
                                   width: 125,
@@ -277,6 +284,8 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                   ),
                 ),
               ),
+
+              //second tab
               SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Padding(

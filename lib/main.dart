@@ -17,6 +17,7 @@ import 'package:project2/screens/home/watchlist_screen.dart';
 import 'package:project2/screens/findMovie/movieSelection.dart';
 import 'package:project2/utilities/themedata.dart';
 import 'package:flutter_smartlook/flutter_smartlook.dart';
+import 'package:project2/widgets/filter_result.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -69,6 +70,8 @@ class _MovigoState extends State<Movigo> {
           '/search_screen': (_) => SearchScreen(),
           '/recommended_movies': (context) => RecommendedMovies(),
           '/Home': (_) => Home(),
+
+          '/filter_results': (context) => FilterResults(argument: ModalRoute.of(context)!.settings.arguments as String)
         },
       ),
     );

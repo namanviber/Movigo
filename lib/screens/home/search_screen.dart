@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../service/mongoDbCall.dart';
+import '../../widgets/filter_result.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -13,6 +14,10 @@ class _SearchScreenState extends State<SearchScreen> {
   String _searchQuery = '';
   bool _isSearching = false;
   bool _isScrollingUp = false;
+  List<String > genrelist=['Action','Comedy',"Adventure",
+    "Children",
+    "Fantasy","Crime",
+    "Thriller"];
 
   Future<List<Map<String, dynamic>>> _performSearch(String query) async {
     try {
@@ -271,6 +276,9 @@ class _SearchScreenState extends State<SearchScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: InkWell(
+        onTap: (){
+          Navigator.pushNamed(context, '/filter_results', arguments:genrelist[index]);
+        },
         child: Stack(
           children: [
             Container(
@@ -302,7 +310,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                     SizedBox(height: 8.0),
                     Text(
-                      'Action',
+                      genrelist[index],
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 12.0,
@@ -351,7 +359,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     .width,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: a.length,
+                  itemCount: genrelist.length,
                   itemBuilder: (BuildContext context, int index) {
                     return ColorBox(index);
                   },
