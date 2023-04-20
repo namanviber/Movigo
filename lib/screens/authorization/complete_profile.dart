@@ -1,5 +1,6 @@
 import 'package:project2/screens/authorization/sign_up_screen.dart';
 import 'package:project2/screens/home/home_screen.dart';
+import 'package:project2/models/Profile_data_to_DB.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,7 +16,7 @@ class _completeProfileState extends State<completeProfile> {
   final _name = TextEditingController();
   final _age = TextEditingController();
   final _gender = TextEditingController();
-  final _mobile = TextEditingController();
+  final _phone = TextEditingController();
   final user = FirebaseAuth.instance.currentUser!;
 
   @override
@@ -121,7 +122,7 @@ class _completeProfileState extends State<completeProfile> {
                     height: 20,
                   ),
                   TextFormField(
-                    controller: _mobile,
+                    controller: _phone,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.symmetric(
                           vertical: 12.0, horizontal: 10.0),
@@ -139,9 +140,9 @@ class _completeProfileState extends State<completeProfile> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          // insertDB(user.uid.toString(), _name.text.trim(),
-                          //     user.email.toString(), int.parse(_age.text.trim()),
-                          //     _gender.text.trim());
+                          insertintoDB(user.uid.toString(), _name.text.trim(),
+                              user.email.toString(), int.parse(_age.text.trim()),
+                              _gender.text.trim(), int.parse(_phone.text.trim()));
                           setState(() {
                             sign=false;
                           });

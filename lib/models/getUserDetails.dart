@@ -1,6 +1,16 @@
+import 'dart:convert';
+import 'package:mongo_dart/mongo_dart.dart';
+import 'package:bson/src/classes/object_id.dart';
+
+
+getUserDetails mongoInsertFromJson(String str) => getUserDetails.fromJson(json.decode(str));
+
+String mongoInsertToJson(getUserDetails data) => json.encode(data.toJson());
+
 class getUserDetails {
   getUserDetails({
-    this.firebaseId,
+    required this.uid,
+    required this.firebaseId,
     this.name,
     this.age,
     this.gender,
@@ -12,7 +22,8 @@ class getUserDetails {
     this.watched,
   });
 
-  String? firebaseId;
+  ObjectId uid;
+  String firebaseId;
   String? name;
   int? age;
   String? gender;
@@ -25,6 +36,7 @@ class getUserDetails {
 
   factory getUserDetails.fromJson(Map<String, dynamic> json) => getUserDetails(
     firebaseId: json["firebase_id"],
+    uid: json['_id'],
     name: json["name"],
     age: json["age"],
     gender: json["gender"],
@@ -69,3 +81,5 @@ class Rating {
     "rating": rating,
   };
 }
+
+
