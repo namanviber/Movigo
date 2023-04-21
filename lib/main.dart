@@ -43,7 +43,7 @@ class _MovigoState extends State<Movigo> {
       darkTheme: ThemeClass.darkTheme,
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
-      home: Profilepage(),
+      home: HomeScreen(),
       // home:ProfileEditPage(),
       initialRoute: '/',
       routes: {
@@ -59,7 +59,7 @@ class _MovigoState extends State<Movigo> {
         '/setting_screen': (context) => SettingsScreen(),
         '/splash_screen': (context) => LandingScreen(),
         '/check': (context) => Check(),
-        '/profile_edit': (context) => ProfileEditPage(),
+        '/profile_edit': (context) => Profilepage(),
         '/search_screen': (_) => SearchScreen(),
         '/recommended_movies': (context) => RecommendedMovies(),
         '/Home': (_) => Home(),
