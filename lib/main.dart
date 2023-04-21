@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project2/screens/authorization/login_screen.dart';
 import 'package:project2/screens/authorization/sign_up_screen.dart';
+import 'package:project2/screens/settings/profilepage.dart';
 import 'package:project2/utilities/Check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project2/screens/authorization/landing_screen.dart';
@@ -42,7 +43,8 @@ class _MovigoState extends State<Movigo> {
       darkTheme: ThemeClass.darkTheme,
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
-      home: Check(),
+      home: Profilepage(),
+      // home:ProfileEditPage(),
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
@@ -61,7 +63,7 @@ class _MovigoState extends State<Movigo> {
         '/search_screen': (_) => SearchScreen(),
         '/recommended_movies': (context) => RecommendedMovies(),
         '/Home': (_) => Home(),
-
+'/Profilepage':(_)=>Profilepage(),
         '/filter_results': (context) => FilterResults(argument: ModalRoute.of(context)!.settings.arguments as String)
       },
     );
