@@ -45,9 +45,10 @@ class ThemeClass {
       primarySwatch: Colors.deepPurple,
       textTheme: TextTheme(
           titleMedium: TextStyle(color: Color(0xFFF0F2FF)),
-          titleLarge: TextStyle(color: Colors.white),
+          titleLarge: TextStyle(color: Colors.amber.shade50),
           titleSmall: TextStyle(color: Color(0xFFF0F2FF)),
-          bodySmall: TextStyle(color: Colors.black)),
+          bodySmall: TextStyle(color: Colors.black),
+          bodyLarge: TextStyle(color: Colors.blue)),
       appBarTheme: AppBarTheme(
         backgroundColor: Color(0xFF16171C),
       ),

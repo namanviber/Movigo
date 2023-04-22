@@ -9,9 +9,11 @@ import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/widgets/movie_cast_row.dart';
 import 'package:project2/widgets/movie_crew_row.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:project2/utilities/ratings_auth.dart';
 
 class MovieInfo extends StatefulWidget {
   final MovieDetailModel movieModel;
+
   const MovieInfo({required this.movieModel, Key? key}) : super(key: key);
 
   @override
@@ -44,9 +46,11 @@ class _MovieInfoState extends State<MovieInfo> {
         'https://image.tmdb.org/t/p/original/${widget.movieModel.backdropPath}';
 
     final originalTitle = "${widget.movieModel.originalTitle}";
+    TextEditingController date =
+    TextEditingController(text: "${widget.movieModel.releaseDate}");
 
     TextEditingController length =
-        TextEditingController(text: "${widget.movieModel.runtime} minutes");
+        TextEditingController(text: "${widget.movieModel.runtime} min");
 
     TextEditingController language =
         TextEditingController(text: "${widget.movieModel.originalLanguage}");
@@ -92,19 +96,57 @@ class _MovieInfoState extends State<MovieInfo> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        originalTitle,
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).textTheme.titleLarge!.color,
+                    Row(
+                      // mainAxisAlignment: MainAxisAlignment.space,
+                      children: [
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            originalTitle,
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
+                          ),
                         ),
-                      ),
+                        Spacer(),
+                        IconButton(
+                          onPressed: () {
+                            MongoDatabase.addWatchlist(widget.movieModel.id);
+                          },
+                          icon: FaIcon(
+                            FontAwesomeIcons.bookmark,
+                            color: Colors.blue,
+                          ),
+                          selectedIcon: FaIcon(
+                            FontAwesomeIcons.solidBookmark,
+                          ),
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              MongoDatabase.addWatchlist(widget.movieModel.id);
+                            },
+                            icon: Icon(
+                              Icons.tv,
+                              color: Colors.blue,
+                            )),
+                        IconButton(
+                          onPressed: () =>
+                            showRatingDialog(context),
+                          icon: FaIcon(
+                            FontAwesomeIcons.star,
+                            color: Colors.blue,
+                          ),
+                          selectedIcon: FaIcon(
+                            FontAwesomeIcons.solidBookmark,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 15,
                     ),
                     Align(
                       alignment: Alignment.topLeft,
@@ -117,24 +159,24 @@ class _MovieInfoState extends State<MovieInfo> {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                          width: 100,
+                          width: 75,
                           child: TextField(
                             controller: length,
                             readOnly: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               label: Text(
-                                "Length",
+                                "Duration",
                                 style: TextStyle(
                                   color: Theme.of(context)
                                       .textTheme
-                                      .titleSmall!
+                                      .bodyLarge!
                                       .color,
                                 ),
                               ),
@@ -142,10 +184,8 @@ class _MovieInfoState extends State<MovieInfo> {
                           ),
                         ),
                         SizedBox(
-                          width: 100,
+                          width: 75,
                           child: TextField(
-                            controller: language,
-                            readOnly: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               label: Text(
@@ -153,15 +193,18 @@ class _MovieInfoState extends State<MovieInfo> {
                                 style: TextStyle(
                                   color: Theme.of(context)
                                       .textTheme
-                                      .titleSmall!
+                                      .bodyLarge!
                                       .color,
                                 ),
                               ),
                             ),
+                            controller: language,
+                            readOnly: true,
+
                           ),
                         ),
                         SizedBox(
-                          width: 50,
+                          width: 75,
                           child: TextField(
                             controller: rating,
                             readOnly: true,
@@ -172,7 +215,26 @@ class _MovieInfoState extends State<MovieInfo> {
                                 style: TextStyle(
                                   color: Theme.of(context)
                                       .textTheme
-                                      .titleSmall!
+                                      .bodyLarge!
+                                      .color,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 75,
+                          child: TextField(
+                            controller: date,
+                            readOnly: true,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              label: Text(
+                                "Release",
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
                                       .color,
                                 ),
                               ),
@@ -181,97 +243,132 @@ class _MovieInfoState extends State<MovieInfo> {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    TextButton(
-                      style: Theme.of(context).filledButtonTheme.style,
-                      onPressed: () {
-                        setState(() {
-                          MongoDatabase.addWatched(widget.movieModel.id);
 
-                          watched = !watched;
-                        });
-                      },
-                      child: Container(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10)),
-                        child: (watched)
-                            ? Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Text(
-                                    "Watched",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge!
-                                          .color,
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.check,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge!
-                                        .color,
-                                  )
-                                ],
-                              )
-                            : Center(
-                                child: Text(
-                                  "Not Watched Yet",
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge!
-                                        .color,
-                                  ),
-                                ),
-                              ),
-                      ),
+                    // Divider(
+                    //   color: Colors.amber.shade50,
+                    //   thickness: 1.0,
+                    //   indent: 0.0,
+                    //   endIndent: 0.0,
+                    // ),
+                    // TextButton(
+                    //   style: Theme.of(context).filledButtonTheme.style,
+                    //   onPressed: () {
+                    //     setState(() {
+                    //       MongoDatabase.addWatched(widget.movieModel.id);
+                    //
+                    //       watched = !watched;
+                    //     });
+                    //   },
+                    //   child: Container(
+                    //     height: 50,
+                    //     width: MediaQuery.of(context).size.width,
+                    //     decoration: BoxDecoration(
+                    //         borderRadius: BorderRadius.circular(10)),
+                    //     child: (watched)
+                    //         ? Row(
+                    //             mainAxisAlignment:
+                    //                 MainAxisAlignment.spaceEvenly,
+                    //             children: [
+                    //               Text(
+                    //                 "Watched",
+                    //                 style: TextStyle(
+                    //                   fontSize: 10,
+                    //                   fontWeight: FontWeight.bold,
+                    //                   color: Theme.of(context)
+                    //                       .textTheme
+                    //                       .titleLarge!
+                    //                       .color,
+                    //                 ),
+                    //               ),
+                    //               Icon(
+                    //                 Icons.check,
+                    //                 color: Theme.of(context)
+                    //                     .textTheme
+                    //                     .titleLarge!
+                    //                     .color,
+                    //               )
+                    //             ],
+                    //           )
+                    //         : Center(
+                    //             child: Text(
+                    //               "Not Watched Yet",
+                    //               style: TextStyle(
+                    //                 fontSize: 10,
+                    //                 fontWeight: FontWeight.bold,
+                    //                 color: Theme.of(context)
+                    //                     .textTheme
+                    //                     .titleLarge!
+                    //                     .color,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //   ),
+                    // ),
+
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //   children: [
+                    //     IconButton(
+                    //       onPressed: () {
+                    //         MongoDatabase.addWatchlist(widget.movieModel.id);
+                    //       },
+                    //       icon: FaIcon(
+                    //         FontAwesomeIcons.bookmark,
+                    //         color: Colors.blue,
+                    //       ),
+                    //       selectedIcon: FaIcon(
+                    //         FontAwesomeIcons.solidBookmark,
+                    //       ),
+                    //     ),
+                    //     IconButton(
+                    //         onPressed: () {
+                    //           MongoDatabase.addRating(widget.movieModel.id, 4.5);
+                    //         },
+                    //         icon: FaIcon(
+                    //           FontAwesomeIcons.star,
+                    //           color: Colors.blue,
+                    //         )),
+                    //     IconButton(
+                    //         onPressed: () {
+                    //         },
+                    //         icon: FaIcon(
+                    //           FontAwesomeIcons.share,
+                    //           color: Colors.blue,
+                    //         )),
+                    //     IconButton(
+                    //         onPressed: () {
+                    //         },
+                    //         icon: FaIcon(
+                    //           FontAwesomeIcons.tv,
+                    //           color: Colors.blue,
+                    //         )),
+                    //   ],
+                    // ),
+                    // Divider(
+                    //   color: Colors.amber.shade50,
+                    //   thickness: 1.0,
+                    //   indent: 0.0,
+                    //   endIndent: 0.0,
+                    // ),
+                    Divider(
+                      color: Colors.amber.shade50,
+                      thickness: 1.0,
+                      indent: 0.0,
+                      endIndent: 0.0,
                     ),
+
+
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            MongoDatabase.addWatchlist(widget.movieModel.id);
-                          },
-                          icon: FaIcon(
-                            FontAwesomeIcons.bookmark,
-                            color: Colors.white,
-                          ),
-                          selectedIcon: FaIcon(
-                            FontAwesomeIcons.solidBookmark,
-                          ),
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              MongoDatabase.addRating(widget.movieModel.id, 4.5);
-                            },
-                            icon: FaIcon(
-                              FontAwesomeIcons.star,
-                              color: Colors.white,
-                            )),
-                        IconButton(
-                            onPressed: () {
-                            },
-                            icon: FaIcon(
-                              FontAwesomeIcons.share,
-                              color: Colors.white,
-                            )),
-                      ],
+                    Text(
+                      "Synopsis",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).textTheme.titleLarge!.color,
+                      ),
+                      textAlign: TextAlign.left,
                     ),
                     const SizedBox(
                       height: 20,
@@ -283,6 +380,15 @@ class _MovieInfoState extends State<MovieInfo> {
                         color: Theme.of(context).textTheme.titleLarge!.color,
                       ),
                       textAlign: TextAlign.left,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Divider(
+                      color: Colors.amber.shade50,
+                      thickness: 1.0,
+                      indent: 0.0,
+                      endIndent: 0.0,
                     ),
                     const SizedBox(
                       height: 20,
@@ -322,6 +428,15 @@ class _MovieInfoState extends State<MovieInfo> {
                         const SizedBox(
                           height: 10,
                         ),
+                        Divider(
+                          color: Colors.amber.shade50,
+                          thickness: 1.0,
+                          indent: 0.0,
+                          endIndent: 0.0,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         Text(
                           "Crew",
                           style: TextStyle(
@@ -355,7 +470,13 @@ class _MovieInfoState extends State<MovieInfo> {
                       ],
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
+                    ),
+                    Divider(
+                      color: Colors.amber.shade50,
+                      thickness: 1.0,
+                      indent: 0.0,
+                      endIndent: 0.0,
                     ),
                   ],
                 ),
