@@ -267,7 +267,7 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
 
-double height_for_colorbox=130;
+
   List<Color> a=[
     Color(0xffE13300),
     Color(0xff7358FF),
@@ -293,7 +293,7 @@ double height_for_colorbox=130;
 
 
 
-
+  double height_for_colorbox=130;
   Widget ColorBox(int index) {
     final genreListImage=genrelist[index];
     print(genreListImage);

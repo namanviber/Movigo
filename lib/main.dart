@@ -18,6 +18,7 @@ import 'package:project2/screens/home/watchlist_screen.dart';
 import 'package:project2/screens/findMovie/movieSelection.dart';
 import 'package:project2/utilities/themedata.dart';
 import 'package:project2/widgets/filter_result.dart';
+import 'package:project2/widgets/grid_of_genre.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +44,7 @@ class _MovigoState extends State<Movigo> {
       darkTheme: ThemeClass.darkTheme,
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: GridOfGenre(),
       // home:ProfileEditPage(),
       initialRoute: '/',
       routes: {
@@ -64,6 +65,7 @@ class _MovigoState extends State<Movigo> {
         '/recommended_movies': (context) => RecommendedMovies(),
         '/Home': (_) => Home(),
 '/Profilepage':(_)=>Profilepage(),
+        '/GridOfGenre':(_)=>GridOfGenre(),
         '/filter_results': (context) => FilterResults(argument: ModalRoute.of(context)!.settings.arguments as String)
       },
     );
