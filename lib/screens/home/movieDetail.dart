@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:project2/models/MovieDetailModel.dart';
 import 'package:project2/models/MovieCastDetailsModel.dart';
 import 'package:project2/models/MovieCrewDetailsModel.dart';
+import 'package:project2/models/getWatchlistModel.dart';
 import 'package:project2/service/apiCall.dart';
 import 'package:project2/widgets/heading_text.dart';
+import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/widgets/movie_cast_row.dart';
 import 'package:project2/widgets/movie_crew_row.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -146,13 +148,15 @@ class _MovieInfoState extends State<MovieInfo> {
                             readOnly: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              label: Text("Language",
+                              label: Text(
+                                "Language",
                                 style: TextStyle(
                                   color: Theme.of(context)
                                       .textTheme
                                       .titleSmall!
                                       .color,
-                                ),),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -163,13 +167,15 @@ class _MovieInfoState extends State<MovieInfo> {
                             readOnly: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              label: Text("Rating",
+                              label: Text(
+                                "Rating",
                                 style: TextStyle(
                                   color: Theme.of(context)
                                       .textTheme
                                       .titleSmall!
                                       .color,
-                                ),),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -182,6 +188,8 @@ class _MovieInfoState extends State<MovieInfo> {
                       style: Theme.of(context).filledButtonTheme.style,
                       onPressed: () {
                         setState(() {
+                          MongoDatabase.addWatched(widget.movieModel.id);
+
                           watched = !watched;
                         });
                       },
@@ -237,7 +245,9 @@ class _MovieInfoState extends State<MovieInfo> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            MongoDatabase.addWatchlist(widget.movieModel.id);
+                          },
                           icon: FaIcon(
                             FontAwesomeIcons.bookmark,
                             color: Colors.white,
@@ -247,13 +257,18 @@ class _MovieInfoState extends State<MovieInfo> {
                           ),
                         ),
                         IconButton(
-                            onPressed: () {},
-                            icon: FaIcon(FontAwesomeIcons.star,
+                            onPressed: () {
+                              MongoDatabase.addRating(widget.movieModel.id, 4.5);
+                            },
+                            icon: FaIcon(
+                              FontAwesomeIcons.star,
                               color: Colors.white,
                             )),
                         IconButton(
-                            onPressed: () {},
-                            icon: FaIcon(FontAwesomeIcons.share,
+                            onPressed: () {
+                            },
+                            icon: FaIcon(
+                              FontAwesomeIcons.share,
                               color: Colors.white,
                             )),
                       ],

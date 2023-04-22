@@ -1,14 +1,12 @@
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:project2/models/getMoviesModel.dart';
 import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:project2/widgets/filter_row.dart';
-import 'package:project2/widgets/heading_text.dart';
-import 'package:project2/widgets/movieList.dart';
 import 'package:project2/models/DiscoverMovieModel.dart';
 import 'package:project2/service/apiCall.dart';
 import 'package:project2/widgets/futureMovieList.dart';
+import 'package:project2/widgets/grid_of_genre.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -232,13 +230,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       heading: "Top SciFi Movies", movies: fetchscifimovie),
                   Align(
                     alignment: Alignment.topLeft,
-                    child: Text(
-                      "Top Genres",
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).textTheme.titleLarge!.color,
-                      ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "Top Genres",
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).textTheme.titleLarge!.color,
+                          ),
+                        ),
+                        IconButton(onPressed: (){
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => GridOfGenre()));                        }, icon: Icon(Icons.arrow_back_ios))
+                      ],
                     ),
                   ),
                   const SizedBox(

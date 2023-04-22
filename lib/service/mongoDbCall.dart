@@ -22,9 +22,93 @@ class MongoDatabase {
 
   // User Specific Functions
   static Future<getUserDetails> getUserData() async {
-    final result =
+    final response =
         await userCollection.findOne(where.eq("firebase_id", userInfo.uid));
-    return getUserDetails.fromJson(result);
+    final result = getUserDetails.fromJson(response);
+    return result;
+  }
+
+  static Future<getUserDetails> updateUserData(
+      String name, int age, String gender, String region) async {
+    var response = await userCollection.updateOne(
+        where.eq('firebase_id', userInfo.uid),
+        ModifierBuilder()
+            .set('name', name)
+            .set('age', age)
+            .set('gender', gender)
+            .set('region', region));
+    return response;
+  }
+
+  static Future<getUserDetails> addWatchlist(int movieid) async {
+    var response = await userCollection.updateOne(
+        where.eq('firebase_id', userInfo.uid),
+        modify.push("watchlist", movieid));
+    return response;
+  }
+
+  static Future<getUserDetails> removeWatchlist(int movieid) async {
+    var response = await userCollection.updateOne(
+        where.eq('firebase_id', userInfo.uid), modify.popFirst("watchlist"));
+    return response;
+  }
+
+  static Future<List<Map<String, dynamic>>> showWatchlist() async {
+    final pipeline = AggregationPipelineBuilder()
+        .addStage(Match({"firebase_id": userInfo.uid}))
+        .addStage(Unwind(Field("watchlist")))
+        .addStage(Lookup(
+            from: "movieData",
+            localField: "watchlist",
+            foreignField: "tmdbId",
+            as: "result"))
+        .build();
+
+    final results =
+        await DbCollection(db, "userData").aggregateToStream(pipeline).toList();
+    return results;
+  }
+
+  static Future<List<Map<String, dynamic>>> showWatched() async {
+    final pipeline = AggregationPipelineBuilder()
+        .addStage(Match({"firebase_id": userInfo.uid}))
+        .addStage(Unwind(Field("watched")))
+        .addStage(Lookup(
+            from: "movieData",
+            localField: "watched",
+            foreignField: "tmdbId",
+            as: "result"))
+        .build();
+
+    final results =
+        await DbCollection(db, "userData").aggregateToStream(pipeline).toList();
+    return results;
+  }
+
+  static Future<getUserDetails> addWatched(int movieid) async {
+    var response = await userCollection.updateOne(
+        where.eq('firebase_id', userInfo.uid), modify.push("watched", movieid));
+    return response;
+  }
+
+  static Future<getUserDetails> removeWatched(int movieid) async {
+    var response = await userCollection.updateOne(
+        where.eq('firebase_id', userInfo.uid), modify.popFirst("watched"));
+    return response;
+  }
+
+  static Future<getUserDetails> addRating(int movieid, double rating) async {
+    var data = {"tmdbid": movieid, "rating": rating};
+    var response = await userCollection.updateOne(
+        where.eq('firebase_id', userInfo.uid),
+        modify.addToSet("ratings", data));
+    return response;
+  }
+
+  static Future<getUserDetails> removeRating(int movieid, double rating) async {
+    var response = await userCollection.updateOne(
+        where.eq('firebase_id', userInfo.uid), modify.popFirst("rating"));
+    return response;
   }
 
   // Movie Specific Functions
@@ -76,23 +160,26 @@ class MongoDatabase {
     return movieData;
   }
 
+  static Future<List<Map<String, dynamic>>> getComedy() async {
+    final movieData = await movieCollection
+        .find(where.eq("genres", "Comedy").limit(30))
+        .toList();
+    return movieData;
+  }
+
+  static Future<List<Map<String, dynamic>>> getHorror() async {
+    final movieData = await movieCollection
+        .find(where.eq("genres", "Horror").limit(30))
+        .toList();
+    return movieData;
+  }
+
   //Searching Movies Function
   static Future<List<Map<String, dynamic>>> searchMovies(String query) async {
     final movieData = await movieCollection
         .find(where.match('title', query, caseInsensitive: true))
         .toList();
     return movieData;
-  }
-
-  static Future<List<Map<String, dynamic>>> userWatchedMovies(
-      List<int> query) async {
-    List<Map<String, dynamic>> movieDataList = [];
-    for (int i = 0; i < query.length; i++) {
-      final movieData =
-          await movieCollection.find(where.eq('tmdbId', query[i])).toList();
-      movieDataList.addAll(movieData);
-    }
-    return movieDataList;
   }
 
   static Future<List<Map<String, dynamic>>> searchGenre(String query) async {

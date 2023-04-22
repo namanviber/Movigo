@@ -7,8 +7,7 @@ Future<void> insertintoDB(String firebaseid, String name , String email, int age
   var _id = M.ObjectId();
   final data = getUserDetails(
     firebaseId: firebaseid,
-    uid: _id,
-    phone: phone,
+    id: _id,
     name: name,
     emailId: email,
     age: age,

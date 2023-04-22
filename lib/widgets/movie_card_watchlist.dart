@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:project2/models/getMoviesModel.dart';
 import 'package:project2/models/MovieDetailModel.dart';
+import 'package:project2/models/getWatchlistModel.dart';
 import 'package:project2/screens/home/movieDetail.dart';
 import 'package:project2/service/apiCall.dart';
 
 
-class MovieCard extends StatefulWidget {
-  final getMoviesModel movie;
-  // final getMoviesModel movie;
-  const MovieCard({
+class MovieCardWatch extends StatefulWidget {
+  final getWatchlistModel movie;
+  const MovieCardWatch({
     Key? key,
     required this.movie,
   }) : super(key: key);
 
   @override
-  State<MovieCard> createState() => _MovieCardState();
+  State<MovieCardWatch> createState() => _MovieCardWatchState();
 }
 
-class _MovieCardState extends State<MovieCard> {
+class _MovieCardWatchState extends State<MovieCardWatch> {
   @override
   Widget build(BuildContext context) {
     final posterUrl =
-        'https://image.tmdb.org/t/p/w600_and_h900_bestv2${widget.movie.posterPath}';
+        'https://image.tmdb.org/t/p/w600_and_h900_bestv2${widget.movie.result.first.posterPath}';
 
     Future<void> fetchMovieDetails(int movieid) async {
       print(movieid);
@@ -40,7 +39,7 @@ class _MovieCardState extends State<MovieCard> {
     return InkWell(
       onTap: (){
         setState(() {
-          fetchMovieDetails(widget.movie.tmdbId);
+          fetchMovieDetails(widget.movie.result.first.tmdbId);
         });
       },
       child: Card(
@@ -54,6 +53,18 @@ class _MovieCardState extends State<MovieCard> {
                 fit: BoxFit.cover,
                 height: double.infinity,
                 width: MediaQuery.of(context).size.width,
+              ),
+            ),
+            Positioned(
+              top: 0,
+              right: 0,
+              child: IconButton(
+                icon: Icon(
+                  Icons.bookmark,
+                  size: 28,
+                  color: Color(0xFF6280CC),
+                ),
+                onPressed: () {},
               ),
             ),
             Positioned(
@@ -77,7 +88,7 @@ class _MovieCardState extends State<MovieCard> {
                 ),
                 padding: EdgeInsets.all(10.0),
                 child: Text(
-                  widget.movie.title,
+                  widget.movie.result.first.title,
                   style: TextStyle(
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold,

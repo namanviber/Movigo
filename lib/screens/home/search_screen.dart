@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../service/mongoDbCall.dart';
 import 'package:project2/widgets/bottom_bar.dart';
+
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
 
@@ -12,15 +13,15 @@ class _SearchScreenState extends State<SearchScreen> {
   //Local Variables
   String _searchQuery = '';
   bool _isSearching = false;
-  bool _isScrollingUp = false;
-  List genrelist= [ 'assets/images/1.png',
+  List genrelist = [
+    'assets/images/1.png',
     "assets/images/2.png",
     "assets/images/3.png",
     "assets/images/4.png",
     "assets/images/5.png",
   ];
 
-  List genrelist_onlytext= [
+  List genrelist_onlytext = [
     'Popular Now',
     'Spotlight',
     'Trending',
@@ -120,7 +121,6 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-
   Widget _buildSearchedMovies() {
     return FutureBuilder<List<Map<String, dynamic>>>(
       future: _performSearch(_searchQuery),
@@ -141,8 +141,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 final List<dynamic> genreListText = movie['genres'];
                 return Card(
                   elevation: 4,
-                  margin: EdgeInsets.symmetric(
-                      horizontal: 16, vertical: 8),
+                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   color: Color(0xFF09090F),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
@@ -150,16 +149,14 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: Padding(
                     padding: EdgeInsets.all(16),
                     child: Row(
-                      crossAxisAlignment:
-                      CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Movie photo
                         Container(
                           height: 80,
                           width: 80,
                           decoration: BoxDecoration(
-                            borderRadius:
-                            BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(8),
                             image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
@@ -170,8 +167,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         SizedBox(width: 16),
                         Expanded(
                           child: Column(
-                            crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               // Movie title
                               Text(
@@ -193,8 +189,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                       color: Colors.grey,
                                     ),
                                     maxLines: 2,
-                                    overflow:
-                                    TextOverflow.ellipsis,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ],
                               ),
@@ -213,62 +208,55 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-
   // Search bar
   Widget Searchbar() {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Container(
-          color: Color(0xffc0bfbf),
           child: TextField(
-            style: TextStyle(color: Colors.black),
-            decoration: InputDecoration(
-
-              hintStyle: TextStyle(
-                color: Color(0xff000000),
-              ),
-              hintText: 'Search movie...',
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.zero,
-                borderSide: BorderSide(
-                  color: Colors.black,
-                  width: 1.0,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.zero,
-                borderSide: BorderSide(
-                  color: Colors.blue,
-                  width: 1.0,
-                ),
-              ),
-              suffixIcon: Icon(
-                Icons.search,
-                color: Colors.black,
-              ),
-              fillColor: Colors.white,
-              filled: true,
+        style: TextStyle(color: Theme.of(context).textTheme.bodySmall!.color),
+        decoration: InputDecoration(
+          hintStyle: TextStyle(
+            color: Color(0xff000000),
+          ),
+          hintText: 'Search movie...',
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(
+              color: Theme.of(context).textTheme.bodySmall!.color!,
+              width: 1.0,
             ),
-            onChanged: (value) {
-              setState(() {
-                _searchQuery = value;
-                _isSearching = true;
-              });
-            },
-            onSubmitted: (value) {
-              setState(() {
-                _searchQuery = value;
-              });
-            },
-          )
-
-      ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(
+              color: Theme.of(context).highlightColor,
+              width: 1.0,
+            ),
+          ),
+          suffixIcon: Icon(
+            Icons.search,
+            color: Colors.black,
+          ),
+          fillColor: Theme.of(context).primaryColor,
+          filled: true,
+        ),
+        onChanged: (value) {
+          setState(() {
+            _searchQuery = value;
+            _isSearching = true;
+          });
+        },
+        onSubmitted: (value) {
+          setState(() {
+            _searchQuery = value;
+          });
+        },
+      )),
     );
   }
 
-
-
-  List<Color> a=[
+  List<Color> a = [
     Color(0xffE13300),
     Color(0xff7358FF),
     Color(0xff1E3264),
@@ -288,21 +276,19 @@ class _SearchScreenState extends State<SearchScreen> {
     Color(0xFF158A08),
     Color(0xFF8C67AC),
     Color(0xFFffffff),
-
   ];
 
-
-
-  double height_for_colorbox=130;
+  double height_for_colorbox = 130;
   Widget ColorBox(int index) {
-    final genreListImage=genrelist[index];
+    final genreListImage = genrelist[index];
     print(genreListImage);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 6.0),
+      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
       child: InkWell(
-        onTap: (){
-          Navigator.pushNamed(context, '/filter_results', arguments: 'genrelist[i');
+        onTap: () {
+          Navigator.pushNamed(context, '/filter_results',
+              arguments: 'genrelist[i');
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -324,7 +310,6 @@ class _SearchScreenState extends State<SearchScreen> {
                           offset: Offset(0, 2),
                         ),
                       ],
-
                       image: DecorationImage(
                         image: AssetImage(genreListImage),
                         fit: BoxFit.cover,
@@ -356,7 +341,6 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -377,7 +361,8 @@ class _SearchScreenState extends State<SearchScreen> {
 
           // Conditionally show/hide the ListView based on _isSearching flag
           if (_isSearching == false)
-            Expanded(flex: 15,
+            Expanded(
+              flex: 15,
               child: ListView(
                 scrollDirection: Axis.vertical,
                 children: List.generate(genrelist.length, (index) {
@@ -394,13 +379,9 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ],
       ),
-
       bottomNavigationBar: BottomNavigation(
         screen_index: 1,
       ),
     );
   }
-
-
-
 }

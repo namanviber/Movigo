@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project2/screens/authorization/login_screen.dart';
 import 'package:project2/screens/authorization/sign_up_screen.dart';
-import 'package:project2/screens/settings/profilepage.dart';
+import 'package:project2/screens/settings/profilePage.dart';
 import 'package:project2/utilities/Check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project2/screens/authorization/landing_screen.dart';
@@ -11,7 +11,6 @@ import 'package:project2/screens/settings/about_us_screen.dart';
 import 'package:project2/screens/settings/general_settings_screen.dart';
 import 'package:project2/screens/home/home_screen.dart';
 import 'package:project2/screens/settings/privacy_policy_screen.dart';
-import 'package:project2/screens/settings/profile_edit_screen.dart';
 import 'package:project2/screens/home/search_screen.dart';
 import 'package:project2/screens/settings/settings_screen.dart';
 import 'package:project2/screens/home/watchlist_screen.dart';
@@ -44,7 +43,7 @@ class _MovigoState extends State<Movigo> {
       darkTheme: ThemeClass.darkTheme,
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
-      home: GridOfGenre(),
+      home: Check(),
       // home:ProfileEditPage(),
       initialRoute: '/',
       routes: {

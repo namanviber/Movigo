@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
 import 'package:project2/widgets/bottom_bar.dart';
-import '../../widgets/movie_card.dart';
-import 'package:project2/models/getMoviesModel.dart';
+import 'package:project2/widgets/movie_card_watchlist.dart';
 import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/models/MovieDetailModel.dart';
+import 'package:project2/models/getWatchlistModel.dart';
 import 'movieDetail.dart';
 import 'package:project2/service/apiCall.dart';
 
@@ -16,35 +16,17 @@ class WatchlistScreen extends StatefulWidget {
 
 class _WatchlistScreenState extends State<WatchlistScreen> {
   Viewtype _viewType = Viewtype.grid;
-  var watchlistmovie;
-  var savedmovie;
-  List<int> specific_user_watched = [
-    8844,
-    9691,
-    11443,
-    117164,
-    9089,
-    11525,
-    46785,
-    12158
-  ];
-  List<int> specific_user_saved = [
-    8844,
-    9691,
-    11443,
-  ];
-
-  List<String> genrelist = ['Action', 'Comedy'];
+  var watchlist;
+  var watched;
 
   @override
   void initState() {
-    watchlistmovie = MongoDatabase.userWatchedMovies(specific_user_watched);
-    savedmovie = MongoDatabase.userWatchedMovies(specific_user_saved);
+    watchlist = MongoDatabase.showWatchlist();
+    watched = MongoDatabase.showWatched();
     super.initState();
   }
 
   Future<void> fetchMovieDetails(int movieid) async {
-    print(movieid);
     final response3 = await movieDetails(movieid);
     late MovieDetailModel movieDetail;
     setState(() {
@@ -73,13 +55,15 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                 children: [
                   Text(
                     'Watchlist',
-                    style: TextStyle(fontSize: 27, color: Theme.of(context).textTheme.titleLarge!.color),
+                    style: TextStyle(
+                        fontSize: 27,
+                        color: Theme.of(context).textTheme.titleLarge!.color),
                   ),
                   Spacer(),
                   IconButton(
                     icon: Icon(
                       _viewType == Viewtype.list
-                          ? Icons.table_rows
+                          ? Icons.view_agenda
                           : Icons.grid_view_rounded,
                       color: Theme.of(context).iconTheme.color,
                     ),
@@ -98,10 +82,20 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
             bottom: TabBar(
               tabs: [
                 Tab(
-                  text: "Watched",
+                  child: Text(
+                    "Watched Movies",
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.titleMedium!.color,
+                    ),
+                  ),
                 ),
                 Tab(
-                  text: "Saved",
+                  child: Text(
+                    "Saved Movies",
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.titleMedium!.color,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -122,7 +116,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                 MediaQuery.of(context).size.height * 0.75,
                             minHeight: 50.0),
                         child: FutureBuilder(
-                          future: watchlistmovie,
+                          future: watchlist,
                           builder: (context, AsyncSnapshot snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
@@ -134,13 +128,13 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                     ? ListView.builder(
                                         itemCount: snapshot.data.length,
                                         itemBuilder: (context, index) {
-                                          final content = getMoviesModel
+                                          final content = getWatchlistModel
                                               .fromJson(snapshot.data[index]);
                                           return InkWell(
                                             onTap: () {
                                               setState(() {
-                                                fetchMovieDetails(
-                                                    content.tmdbId);
+                                                fetchMovieDetails(content
+                                                    .result.first.tmdbId);
                                               });
                                             },
                                             child: Card(
@@ -155,20 +149,20 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                             horizontal: 15),
                                                     child: Row(
                                                       children: [
-                                                        Container(
+                                                        SizedBox(
                                                           height: 120,
                                                           width: 100,
                                                           child: Stack(
                                                             children: [
                                                               Image.network(
-                                                                'https://image.tmdb.org/t/p/w600_and_h900_bestv2${content.posterPath}',
+                                                                'https://image.tmdb.org/t/p/w600_and_h900_bestv2${content.result.first.posterPath}',
                                                                 fit: BoxFit
                                                                     .cover,
                                                               ),
                                                             ],
                                                           ),
                                                         ),
-                                                        Container(
+                                                        SizedBox(
                                                           height: 120,
                                                           width: MediaQuery.of(
                                                                       context)
@@ -188,6 +182,8 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                             .topLeft,
                                                                     child: Text(
                                                                         content
+                                                                            .result
+                                                                            .first
                                                                             .title,
                                                                         style:
                                                                             TextStyle(
@@ -204,6 +200,8 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                   ),
                                                                   Text(
                                                                       content
+                                                                          .result
+                                                                          .first
                                                                           .genres
                                                                           .join(
                                                                               " "),
@@ -263,20 +261,21 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                             mainAxisSpacing: 10.0,
                                           ),
                                           itemBuilder: (context, index) {
-                                            final content = getMoviesModel
+                                            final content = getWatchlistModel
                                                 .fromJson(snapshot.data[index]);
                                             // return Center();
-                                            return MovieCard(movie: content);
+                                            return MovieCardWatch(
+                                                movie: content);
                                           },
                                         ),
                                       );
                               } else {
-                                return SizedBox(
-                                  height: 190,
-                                  width: 125,
-                                  child: const Center(
-                                      child: Text("Some Error Occured")),
-                                );
+                                print(snapshot.error);
+                                return Center(
+                                    child: Text(
+                                  snapshot.error.toString(),
+                                  style: TextStyle(color: Colors.white),
+                                ));
                               }
                             }
                           },
@@ -286,8 +285,6 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                   ),
                 ),
               ),
-
-              //second tab
               SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Padding(
@@ -301,30 +298,25 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                 MediaQuery.of(context).size.height * 0.75,
                             minHeight: 50.0),
                         child: FutureBuilder(
-                          future: savedmovie,
+                          future: watchlist,
                           builder: (context, AsyncSnapshot snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return SizedBox(
-                                height: 190,
-                                width: 125,
-                                child: const Center(
-                                    child: CircularProgressIndicator()),
-                              );
+                              return const Center(
+                                  child: CircularProgressIndicator());
                             } else {
                               if (snapshot.hasData) {
                                 return (_viewType == Viewtype.grid)
                                     ? ListView.builder(
                                         itemCount: snapshot.data.length,
                                         itemBuilder: (context, index) {
-                                          final content = getMoviesModel
+                                          final content = getWatchlistModel
                                               .fromJson(snapshot.data[index]);
-                                          // double popularity = 9;
                                           return InkWell(
                                             onTap: () {
                                               setState(() {
-                                                fetchMovieDetails(
-                                                    content.tmdbId);
+                                                fetchMovieDetails(content
+                                                    .result.first.tmdbId);
                                               });
                                             },
                                             child: Card(
@@ -339,20 +331,20 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                             horizontal: 15),
                                                     child: Row(
                                                       children: [
-                                                        Container(
+                                                        SizedBox(
                                                           height: 120,
                                                           width: 100,
                                                           child: Stack(
                                                             children: [
                                                               Image.network(
-                                                                'https://image.tmdb.org/t/p/w600_and_h900_bestv2${content.posterPath}',
+                                                                'https://image.tmdb.org/t/p/w600_and_h900_bestv2${content.result.first.posterPath}',
                                                                 fit: BoxFit
                                                                     .cover,
                                                               ),
                                                             ],
                                                           ),
                                                         ),
-                                                        Container(
+                                                        SizedBox(
                                                           height: 120,
                                                           width: MediaQuery.of(
                                                                       context)
@@ -372,6 +364,8 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                             .topLeft,
                                                                     child: Text(
                                                                         content
+                                                                            .result
+                                                                            .first
                                                                             .title,
                                                                         style:
                                                                             TextStyle(
@@ -388,9 +382,16 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                   ),
                                                                   Text(
                                                                       content
+                                                                          .result
+                                                                          .first
                                                                           .genres
                                                                           .join(
                                                                               " "),
+                                                                      maxLines:
+                                                                          2,
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
                                                                       style:
                                                                           TextStyle(
                                                                         fontSize:
@@ -433,6 +434,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                     : Padding(
                                         padding: const EdgeInsets.all(10.0),
                                         child: GridView.builder(
+                                          // shrinkWrap: true,
                                           itemCount: snapshot.data.length,
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
@@ -441,20 +443,21 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                             mainAxisSpacing: 10.0,
                                           ),
                                           itemBuilder: (context, index) {
-                                            final content = getMoviesModel
+                                            final content = getWatchlistModel
                                                 .fromJson(snapshot.data[index]);
                                             // return Center();
-                                            return MovieCard(movie: content);
+                                            return MovieCardWatch(
+                                                movie: content);
                                           },
                                         ),
                                       );
                               } else {
-                                return SizedBox(
-                                  height: 190,
-                                  width: 125,
-                                  child: const Center(
-                                      child: Text("Some Error Occured")),
-                                );
+                                print(snapshot.error);
+                                return Center(
+                                    child: Text(
+                                  snapshot.error.toString(),
+                                  style: TextStyle(color: Colors.white),
+                                ));
                               }
                             }
                           },

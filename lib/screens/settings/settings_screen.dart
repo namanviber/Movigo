@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
@@ -47,7 +48,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   CircleAvatar(
                     backgroundColor: Theme.of(context).iconTheme.color,
                     radius: 28,
-                    child: Text("N"),
+                    child: Text(
+                      "N",
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
                   SizedBox(
                     height: 60,
@@ -93,9 +97,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 20),
             SizedBox(
               height: 60,
               width: MediaQuery.of(context).size.width,
@@ -155,6 +157,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ],
               ),
             ),
+            SizedBox(height: 20),
+
             //#3
             SizedBox(
               height: 60,
@@ -215,6 +219,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ],
               ),
             ),
+            SizedBox(height: 20),
+
             InkWell(
               onTap: () {
                 Navigator.pushNamed(context, '/general_setting');
@@ -266,10 +272,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
             ),
+            SizedBox(height: 20),
+
             InkWell(
               onTap: () {
                 FirebaseAuth.instance.signOut();
-
               },
               child: SizedBox(
                 height: 60,
@@ -318,6 +325,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
             ),
+            SizedBox(height: 20),
+
             InkWell(
               onTap: () {
                 Navigator.pushNamed(context, '/about_us');
@@ -369,6 +378,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
             ),
+            SizedBox(height: 20),
+
             InkWell(
               onTap: () {
                 Navigator.pushNamed(context, '/privacy_policy');
