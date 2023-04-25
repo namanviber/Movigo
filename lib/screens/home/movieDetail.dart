@@ -52,7 +52,7 @@ class _MovieInfoState extends State<MovieInfo> {
         TextEditingController(text: "$formattedDate");
 
     TextEditingController length =
-        TextEditingController(text: "${widget.movieModel.runtime} hr");
+        TextEditingController(text: "${widget.movieModel.runtime} mins");
 
     TextEditingController language =
         TextEditingController(text: "${widget.movieModel.originalLanguage}");
