@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project2/screens/authorization/login_screen.dart';
-import 'package:project2/screens/authorization/sign_up_screen.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:project2/screens/settings/profilePage.dart';
 import 'package:project2/utilities/Check.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -35,38 +35,42 @@ class Movigo extends StatefulWidget {
 
 class _MovigoState extends State<Movigo> {
 
+
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Moviego",
-      theme: ThemeClass.lightTheme,
-      darkTheme: ThemeClass.darkTheme,
-      themeMode: ThemeMode.dark,
-      debugShowCheckedModeBanner: false,
-      home: Check(),
-      // home:ProfileEditPage(),
-      initialRoute: '/',
-      routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        // '/': (context) => const Home(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        '/general_setting': (context) => GeneralSettingsScreen(),
-        '/about_us': (context) => AboutUsScreen(),
-        '/privacy_policy': (context) => PrivacyPolicyScreen(),
-        '/watch_list': (context) => WatchlistScreen(),
-        '/home_screen': (context) => HomeScreen(),
-        '/recommender_screen': (context) => RecommenderScreen(),
-        '/setting_screen': (context) => SettingsScreen(),
-        '/splash_screen': (context) => LandingScreen(),
-        '/check': (context) => Check(),
-        '/profile_edit': (context) => Profilepage(),
-        '/search_screen': (_) => SearchScreen(),
-        '/recommended_movies': (context) => RecommendedMovies(),
-        '/Home': (_) => Home(),
-'/Profilepage':(_)=>Profilepage(),
-        '/GridOfGenre':(_)=>GridOfGenre(),
-        '/filter_results': (context) => FilterResults(argument: ModalRoute.of(context)!.settings.arguments as String)
-      },
-    );
+    return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {
+      return MaterialApp(
+        title: "Moviego",
+        theme: ThemeClass.lightTheme,
+        darkTheme: ThemeClass.darkTheme,
+        themeMode: ThemeMode.light,
+        debugShowCheckedModeBanner: false,
+        home: Check(),
+        initialRoute: '/',
+        routes: {
+          // When navigating to the "/" route, build the FirstScreen widget.
+          // '/': (context) => const Home(),
+          // When navigating to the "/second" route, build the SecondScreen widget.
+          '/general_setting': (context) => GeneralSettingsScreen(),
+          '/about_us': (context) => AboutUsScreen(),
+          '/privacy_policy': (context) => PrivacyPolicyScreen(),
+          '/watch_list': (context) => WatchlistScreen(),
+          '/home_screen': (context) => HomeScreen(),
+          '/recommender_screen': (context) => RecommenderScreen(),
+          '/setting_screen': (context) => SettingsScreen(),
+          '/splash_screen': (context) => LandingScreen(),
+          '/check': (context) => Check(),
+          '/profile_edit': (context) => Profilepage(),
+          '/search_screen': (_) => SearchScreen(),
+          '/recommended_movies': (context) => RecommendedMovies(),
+          '/Home': (_) => Home(),
+          '/Profilepage': (_) => Profilepage(),
+          '/GridOfGenre': (_) => GridOfGenre(),
+          '/filter_results': (context) => FilterResults(
+              argument: ModalRoute.of(context)!.settings.arguments as String)
+        },
+      );
+    });
   }
 }

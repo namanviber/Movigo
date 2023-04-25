@@ -15,13 +15,10 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          toolbarHeight: 60,
-          backgroundColor: const Color(0xFF09090F),
-          title: const Text("About Us",
-              style: TextStyle(
-                  fontFamily: "Inter",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24)),
+          centerTitle: true,
+          title: Text(
+            "About Us",
+          ),
         ),
         body: SingleChildScrollView(
           child: Container(

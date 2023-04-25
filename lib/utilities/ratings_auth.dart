@@ -1,42 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:rating_dialog/rating_dialog.dart';
+import '../service/mongoDbCall.dart';
 
-void showRatingDialog(BuildContext context) {
+void showRatingDialog(BuildContext context, int movieid, String title, String moviepath ) {
+  final posterurl =
+      'https://image.tmdb.org/t/p/original/$moviepath';
   final _dialog = RatingDialog(
-    initialRating: 1.0,
-    // your app's name?
+    initialRating: 0,
     title: Text(
-      'Ratings',
+      title,
       textAlign: TextAlign.center,
-      style: const TextStyle(
-        fontSize: 18,
+      style: TextStyle(
+        fontSize: 17,
         fontWeight: FontWeight.bold,
         color: Colors.black
       ),
     ),
-    // encourage your user to leave a high rating?
     message: Text(
-      'Rate the likeability of this Movie ( 1-5 ):',
+      'Rate this Movie',
       textAlign: TextAlign.center,
-      style: const TextStyle(fontSize: 15,
+      style: TextStyle(fontSize: 15,
       color: Colors.black),
     ),
-    // your app's logo?
-    image: const FlutterLogo(size: 100),
+    image: Image(
+      image: posterurl != ''
+          ? NetworkImage(
+        posterurl,
+      )
+          : const AssetImage('assets/images/noimage.png')
+      as ImageProvider,
+      height: 100,
+      fit: BoxFit.fitHeight,
+    ),
     submitButtonText: 'Submit',
-    commentHint: 'Set your custom comment hint',
-    onCancelled: () => print('cancelled'),
+    starColor: Theme.of(context).highlightColor,
+    submitButtonTextStyle: TextStyle(
+      color: Theme.of(context).highlightColor
+    ),
+    commentHint: 'Review this Movie',
     onSubmitted: (response) {
-      print('rating: ${response.rating}, comment: ${response.comment}');
-
-      // // TODO: add your own logic
-      // if (response.rating < 3.0) {
-      //   // send their comments to your email or anywhere you wish
-      //   // ask the user to contact you instead of leaving a bad review
-      // } else {
-      //   _rateAndReviewApp();
-      // }
+      MongoDatabase.addRating(movieid, response.rating);
     },
+
   );
 
 

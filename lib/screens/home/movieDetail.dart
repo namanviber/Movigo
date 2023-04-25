@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project2/models/MovieDetailModel.dart';
 import 'package:project2/models/MovieCastDetailsModel.dart';
 import 'package:project2/models/MovieCrewDetailsModel.dart';
-import 'package:project2/models/getWatchlistModel.dart';
 import 'package:project2/service/apiCall.dart';
-import 'package:project2/widgets/heading_text.dart';
 import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/widgets/movie_cast_row.dart';
 import 'package:project2/widgets/movie_crew_row.dart';
@@ -46,11 +44,15 @@ class _MovieInfoState extends State<MovieInfo> {
         'https://image.tmdb.org/t/p/original/${widget.movieModel.backdropPath}';
 
     final originalTitle = "${widget.movieModel.originalTitle}";
+
+    var dateinit = DateTime.parse("${widget.movieModel.releaseDate}");
+    var formattedDate = "${dateinit.day}-${dateinit.month}-${dateinit.year}";
+
     TextEditingController date =
-    TextEditingController(text: "${widget.movieModel.releaseDate}");
+        TextEditingController(text: "$formattedDate");
 
     TextEditingController length =
-        TextEditingController(text: "${widget.movieModel.runtime} min");
+        TextEditingController(text: "${widget.movieModel.runtime} mins");
 
     TextEditingController language =
         TextEditingController(text: "${widget.movieModel.originalLanguage}");
@@ -69,25 +71,24 @@ class _MovieInfoState extends State<MovieInfo> {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            // mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Stack(
                 children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 20,
-                    child: Text("7.6"),
-                  ),
-                  Image(
-                    image: backdropposterUrl != ''
-                        ? NetworkImage(
-                            backdropposterUrl,
-                          )
-                        : const AssetImage('assets/images/noimage.png')
-                            as ImageProvider,
+                  Container(
                     height: MediaQuery.of(context).size.height * 0.5,
                     width: MediaQuery.of(context).size.width,
-                    fit: BoxFit.cover,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                    child: Image(
+                      image: backdropposterUrl != ''
+                          ? NetworkImage(
+                              backdropposterUrl,
+                            )
+                          : const AssetImage('assets/images/noimage.png')
+                              as ImageProvider,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ],
               ),
@@ -120,9 +121,6 @@ class _MovieInfoState extends State<MovieInfo> {
                             FontAwesomeIcons.bookmark,
                             color: Colors.blue,
                           ),
-                          selectedIcon: FaIcon(
-                            FontAwesomeIcons.solidBookmark,
-                          ),
                         ),
                         IconButton(
                             onPressed: () {
@@ -133,14 +131,10 @@ class _MovieInfoState extends State<MovieInfo> {
                               color: Colors.blue,
                             )),
                         IconButton(
-                          onPressed: () =>
-                            showRatingDialog(context),
+                          onPressed: () => showRatingDialog(context, widget.movieModel.id, widget.movieModel.title!, widget.movieModel.posterPath!),
                           icon: FaIcon(
                             FontAwesomeIcons.star,
                             color: Colors.blue,
-                          ),
-                          selectedIcon: FaIcon(
-                            FontAwesomeIcons.solidBookmark,
                           ),
                         ),
                       ],
@@ -162,7 +156,7 @@ class _MovieInfoState extends State<MovieInfo> {
                       height: 15,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         SizedBox(
                           width: 75,
@@ -200,7 +194,6 @@ class _MovieInfoState extends State<MovieInfo> {
                             ),
                             controller: language,
                             readOnly: true,
-
                           ),
                         ),
                         SizedBox(
@@ -243,132 +236,20 @@ class _MovieInfoState extends State<MovieInfo> {
                         ),
                       ],
                     ),
-
-                    // Divider(
-                    //   color: Colors.amber.shade50,
-                    //   thickness: 1.0,
-                    //   indent: 0.0,
-                    //   endIndent: 0.0,
-                    // ),
-                    // TextButton(
-                    //   style: Theme.of(context).filledButtonTheme.style,
-                    //   onPressed: () {
-                    //     setState(() {
-                    //       MongoDatabase.addWatched(widget.movieModel.id);
-                    //
-                    //       watched = !watched;
-                    //     });
-                    //   },
-                    //   child: Container(
-                    //     height: 50,
-                    //     width: MediaQuery.of(context).size.width,
-                    //     decoration: BoxDecoration(
-                    //         borderRadius: BorderRadius.circular(10)),
-                    //     child: (watched)
-                    //         ? Row(
-                    //             mainAxisAlignment:
-                    //                 MainAxisAlignment.spaceEvenly,
-                    //             children: [
-                    //               Text(
-                    //                 "Watched",
-                    //                 style: TextStyle(
-                    //                   fontSize: 10,
-                    //                   fontWeight: FontWeight.bold,
-                    //                   color: Theme.of(context)
-                    //                       .textTheme
-                    //                       .titleLarge!
-                    //                       .color,
-                    //                 ),
-                    //               ),
-                    //               Icon(
-                    //                 Icons.check,
-                    //                 color: Theme.of(context)
-                    //                     .textTheme
-                    //                     .titleLarge!
-                    //                     .color,
-                    //               )
-                    //             ],
-                    //           )
-                    //         : Center(
-                    //             child: Text(
-                    //               "Not Watched Yet",
-                    //               style: TextStyle(
-                    //                 fontSize: 10,
-                    //                 fontWeight: FontWeight.bold,
-                    //                 color: Theme.of(context)
-                    //                     .textTheme
-                    //                     .titleLarge!
-                    //                     .color,
-                    //               ),
-                    //             ),
-                    //           ),
-                    //   ),
-                    // ),
-
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //   children: [
-                    //     IconButton(
-                    //       onPressed: () {
-                    //         MongoDatabase.addWatchlist(widget.movieModel.id);
-                    //       },
-                    //       icon: FaIcon(
-                    //         FontAwesomeIcons.bookmark,
-                    //         color: Colors.blue,
-                    //       ),
-                    //       selectedIcon: FaIcon(
-                    //         FontAwesomeIcons.solidBookmark,
-                    //       ),
-                    //     ),
-                    //     IconButton(
-                    //         onPressed: () {
-                    //           MongoDatabase.addRating(widget.movieModel.id, 4.5);
-                    //         },
-                    //         icon: FaIcon(
-                    //           FontAwesomeIcons.star,
-                    //           color: Colors.blue,
-                    //         )),
-                    //     IconButton(
-                    //         onPressed: () {
-                    //         },
-                    //         icon: FaIcon(
-                    //           FontAwesomeIcons.share,
-                    //           color: Colors.blue,
-                    //         )),
-                    //     IconButton(
-                    //         onPressed: () {
-                    //         },
-                    //         icon: FaIcon(
-                    //           FontAwesomeIcons.tv,
-                    //           color: Colors.blue,
-                    //         )),
-                    //   ],
-                    // ),
-                    // Divider(
-                    //   color: Colors.amber.shade50,
-                    //   thickness: 1.0,
-                    //   indent: 0.0,
-                    //   endIndent: 0.0,
-                    // ),
-                    Divider(
-                      color: Colors.amber.shade50,
-                      thickness: 1.0,
-                      indent: 0.0,
-                      endIndent: 0.0,
-                    ),
-
-
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(
-                      "Synopsis",
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).textTheme.titleLarge!.color,
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "Synopsis",
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).textTheme.titleLarge!.color,
+                        ),
+                        textAlign: TextAlign.left,
                       ),
-                      textAlign: TextAlign.left,
                     ),
                     const SizedBox(
                       height: 20,
@@ -384,24 +265,18 @@ class _MovieInfoState extends State<MovieInfo> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Divider(
-                      color: Colors.amber.shade50,
-                      thickness: 1.0,
-                      indent: 0.0,
-                      endIndent: 0.0,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
                     Column(
                       children: [
-                        Text(
-                          "Cast",
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color:
-                                Theme.of(context).textTheme.titleLarge!.color,
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "Cast",
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -426,24 +301,18 @@ class _MovieInfoState extends State<MovieInfo> {
                           ),
                         ),
                         const SizedBox(
-                          height: 10,
-                        ),
-                        Divider(
-                          color: Colors.amber.shade50,
-                          thickness: 1.0,
-                          indent: 0.0,
-                          endIndent: 0.0,
-                        ),
-                        const SizedBox(
                           height: 20,
                         ),
-                        Text(
-                          "Crew",
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color:
-                                Theme.of(context).textTheme.titleLarge!.color,
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "Crew",
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -471,12 +340,6 @@ class _MovieInfoState extends State<MovieInfo> {
                     ),
                     const SizedBox(
                       height: 10,
-                    ),
-                    Divider(
-                      color: Colors.amber.shade50,
-                      thickness: 1.0,
-                      indent: 0.0,
-                      endIndent: 0.0,
                     ),
                   ],
                 ),

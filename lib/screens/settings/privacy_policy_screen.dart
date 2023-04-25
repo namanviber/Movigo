@@ -15,18 +15,9 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
-          toolbarHeight: 60,
-          backgroundColor: const Color(0xFF09090F),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text("Privacy Policy",
-                  style: TextStyle(
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24)),
-            ],
+          centerTitle: true,
+          title: Text(
+            "Privacy Policy",
           ),
         ),
         body: SingleChildScrollView(

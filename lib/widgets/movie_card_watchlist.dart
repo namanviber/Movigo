@@ -60,9 +60,10 @@ class _MovieCardWatchState extends State<MovieCardWatch> {
               right: 0,
               child: IconButton(
                 icon: Icon(
-                  Icons.bookmark,
-                  size: 28,
-                  color: Color(0xFF6280CC),
+                  Icons
+                      .delete,
+                  color: Theme.of(context).iconTheme.color,
+                  size: 24,
                 ),
                 onPressed: () {},
               ),

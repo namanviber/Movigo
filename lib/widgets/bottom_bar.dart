@@ -24,19 +24,19 @@ class BottomNavigation extends StatelessWidget {
       currentIndex: screen_index,
       items: [
         SalomonBottomBarItem(
-            selectedColor: Colors.blueAccent,
+            selectedColor: Theme.of(context).bottomAppBarTheme.color,
             title: const Text('Home'),
             icon: const Icon(Icons.home_filled,size: 25,)),
         SalomonBottomBarItem(
-            selectedColor: Colors.blueAccent,
+            selectedColor: Theme.of(context).bottomAppBarTheme.color,
             title: const Text('Search'),
             icon: const Icon(Icons.search_rounded)),
         SalomonBottomBarItem(
-            selectedColor: Colors.blueAccent,
+            selectedColor: Theme.of(context).bottomAppBarTheme.color,
             title: const Text('Watchlist'),
             icon: const Icon(Icons.bookmark)),
         SalomonBottomBarItem(
-            selectedColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+            selectedColor: Theme.of(context).bottomAppBarTheme.color,
             title: const Text('Settings'),
             icon: const Icon(Icons.person)),
       ],

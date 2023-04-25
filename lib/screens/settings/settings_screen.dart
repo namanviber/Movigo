@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
@@ -21,16 +20,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 60,
-        backgroundColor: const Color(0xFF09090F),
-        title: Text(
-          "Settings",
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).textTheme.titleLarge!.color,
-          ),
-        ),
+        title: Text("Settings"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -50,7 +40,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     radius: 28,
                     child: Text(
                       "N",
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 20, color: Theme.of(context).indicatorColor),
                     ),
                   ),
                   SizedBox(
@@ -104,9 +94,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.access_alarm,
-                    color: Colors.white,
+                    color: Theme.of(context).iconTheme.color,
                     size: 34,
                   ),
                   SizedBox(
@@ -149,7 +139,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       Icons.doorbell_rounded,
                       color: Color(0xFFF44336),
                     ),
-                    activeColor: Color(0xFFECECEC),
+                    activeColor: Theme.of(context).iconTheme.color!,
                     inactiveColor: const Color(0xFF2F2F2F),
                     width: 60,
                     controller: _controller1,
@@ -166,9 +156,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.ac_unit,
-                    color: Colors.white,
+                    color: Theme.of(context).iconTheme.color,
                     size: 34,
                   ),
                   SizedBox(
@@ -202,19 +192,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ],
                     ),
                   ),
+                  // Switch(value: _themeManager, onChanged: (){})
                   AdvancedSwitch(
                     activeChild: const Icon(
                       Icons.light_mode_outlined,
-                      color: Color(0xFF2F2F2F),
+                      color: Colors.white,
                     ),
                     inactiveChild: const Icon(
                       Icons.dark_mode_outlined,
                       color: Color(0xFFECECEC),
                     ),
-                    activeColor: Color(0xFFECECEC),
+                    activeColor: Theme.of(context).iconTheme.color!,
                     inactiveColor: const Color(0xFF2F2F2F),
                     width: 60,
                     controller: _controller,
+
                   ),
                 ],
               ),
