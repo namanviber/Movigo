@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import '../../models/MovieDetailModel.dart';
+import '../../service/apiCall.dart';
 import '../../service/mongoDbCall.dart';
 import 'package:project2/widgets/bottom_bar.dart';
+
+import 'movieDetail.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -10,7 +14,6 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  //Local Variables
   String _searchQuery = '';
   bool _isSearching = false;
   List genrelist = [
@@ -121,6 +124,20 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
+  Future<void> fetchMovieDetails(int movieid) async {
+    final response3 = await movieDetails(movieid);
+    late MovieDetailModel movieDetail;
+    setState(() {
+      movieDetail = response3;
+    });
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => MovieInfo(
+                  movieModel: movieDetail,
+                )));
+  }
+
   Widget _buildSearchedMovies() {
     return FutureBuilder<List<Map<String, dynamic>>>(
       future: _performSearch(_searchQuery),
@@ -132,71 +149,90 @@ class _SearchScreenState extends State<SearchScreen> {
         } else {
           final searchResults = snapshot.data;
           if (searchResults == null || searchResults.isEmpty) {
-            return Center(child: Text('No s found'));
+            return Center(
+                child: Text(
+              'No Search Results Found',
+              style: TextStyle(
+                  fontSize: 17,
+                  color: Theme.of(context).textTheme.titleMedium!.color),
+            ));
           } else {
             return ListView.builder(
               itemCount: searchResults.length,
               itemBuilder: (context, index) {
                 final movie = searchResults[index];
                 final List<dynamic> genreListText = movie['genres'];
-                return Card(
-                  elevation: 4,
-                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  color: Color(0xFF09090F),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Movie photo
-                        Container(
-                          height: 80,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  'https://image.tmdb.org/t/p/original${movie['poster_path']}'),
+                return InkWell(
+                  onTap: () {
+                    setState(() {
+                      fetchMovieDetails(movie['tmdbId']);
+                    });
+                  },
+                  child: Card(
+                    elevation: 4,
+                    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    color: Theme.of(context).cardColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Movie photo
+                          Container(
+                            height: 80,
+                            width: 80,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                    'https://image.tmdb.org/t/p/original${movie['poster_path']}'),
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Movie title
-                              Text(
-                                movie['title'],
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              SizedBox(height: 8),
-                              // Movie overview
-                              Row(
-                                children: [
-                                  Text(
-                                    genreListText.join("  "),
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.grey,
-                                    ),
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
+                          SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Movie title
+                                Text(
+                                  movie['title'],
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .color,
                                   ),
-                                ],
-                              ),
-                            ],
+                                ),
+                                SizedBox(height: 8),
+                                // Movie overview
+                                Row(
+                                  children: [
+                                    Text(
+                                      genreListText.join("  "),
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall!
+                                            .color,
+                                      ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -211,7 +247,7 @@ class _SearchScreenState extends State<SearchScreen> {
   // Search bar
   Widget Searchbar() {
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(16.0),
       child: Container(
           child: TextField(
         style: TextStyle(color: Theme.of(context).textTheme.bodySmall!.color),
@@ -238,7 +274,7 @@ class _SearchScreenState extends State<SearchScreen> {
             Icons.search,
             color: Colors.black,
           ),
-          fillColor: Theme.of(context).primaryColor,
+          fillColor: Theme.of(context).cardColor,
           filled: true,
         ),
         onChanged: (value) {
@@ -345,13 +381,8 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.black,
-        title: Padding(
-          padding: EdgeInsets.only(top: 16.0),
-          child: Text(
-            'Search',
-            style: TextStyle(fontSize: 30),
-          ),
+        title: Text(
+          'Search',
         ),
       ),
       body: Column(
@@ -362,7 +393,7 @@ class _SearchScreenState extends State<SearchScreen> {
           // Conditionally show/hide the ListView based on _isSearching flag
           if (_isSearching == false)
             Expanded(
-              flex: 15,
+              flex: 100,
               child: ListView(
                 scrollDirection: Axis.vertical,
                 children: List.generate(genrelist.length, (index) {

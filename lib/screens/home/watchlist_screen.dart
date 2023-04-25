@@ -48,16 +48,12 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
         child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             title: Padding(
               padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
                   Text(
                     'Watchlist',
-                    style: TextStyle(
-                        fontSize: 27,
-                        color: Theme.of(context).textTheme.titleLarge!.color),
                   ),
                   Spacer(),
                   IconButton(
@@ -92,9 +88,6 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                 Tab(
                   child: Text(
                     "Saved Movies",
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.titleMedium!.color,
-                    ),
                   ),
                 ),
               ],
@@ -138,15 +131,18 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                               });
                                             },
                                             child: Card(
-                                              color:
-                                                  Theme.of(context).cardColor,
+                                              elevation: 4,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
                                               child: Column(
                                                 children: [
                                                   Padding(
                                                     padding:
                                                         EdgeInsets.symmetric(
                                                             vertical: 8,
-                                                            horizontal: 15),
+                                                            horizontal: 16),
                                                     child: Row(
                                                       children: [
                                                         SizedBox(
@@ -228,9 +224,11 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                     IconButton(
                                                                   icon: Icon(
                                                                     Icons
-                                                                        .bookmark,
-                                                                    color: Color(
-                                                                        0xFF6280CC),
+                                                                        .delete,
+                                                                    color: Theme.of(
+                                                                            context)
+                                                                        .iconTheme
+                                                                        .color,
                                                                     size: 24,
                                                                   ),
                                                                   onPressed:
@@ -320,8 +318,11 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                               });
                                             },
                                             child: Card(
-                                              color:
-                                                  Theme.of(context).cardColor,
+                                              elevation: 4,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
                                               child: Column(
                                                 children: [
                                                   Padding(
@@ -410,9 +411,11 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                     IconButton(
                                                                   icon: Icon(
                                                                     Icons
-                                                                        .bookmark,
-                                                                    color: Color(
-                                                                        0xFF6280CC),
+                                                                        .delete,
+                                                                    color: Theme.of(
+                                                                            context)
+                                                                        .iconTheme
+                                                                        .color,
                                                                     size: 24,
                                                                   ),
                                                                   onPressed:

@@ -27,15 +27,11 @@ class _ProfilepageState extends State<Profilepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black,
         centerTitle: true,
-        title: Text("Account",
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Theme.of(context).textTheme.titleLarge!.color)),
+        title: Text(
+          "Account",
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -46,29 +42,32 @@ class _ProfilepageState extends State<Profilepage> {
               height: 20,
             ),
             CircleAvatar(
-              backgroundColor: Theme.of(context).primaryColor,
+              backgroundColor: Theme.of(context).cardColor,
               radius: 70,
               child: Text(
                 "N",
-                style: TextStyle(fontSize: 40),
+                style: TextStyle(
+                    fontSize: 40,
+                    color: Theme.of(context).textTheme.titleSmall!.color),
               ),
             ),
             SizedBox(height: 10),
             Text(
               "namanviber@gmail.com",
-              style: GoogleFonts.montserrat(
-                  fontSize: 12,
+              style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.grey),
+                  color: Theme.of(context).textTheme.titleSmall!.color),
             ),
             SizedBox(height: 20),
             TextFormField(
-              style: TextStyle(color: Theme.of(context).textTheme.titleSmall!.color),
+              style: TextStyle(
+                  color: Theme.of(context).textTheme.titleSmall!.color),
               cursorColor: Colors.white,
               controller: _name,
               decoration: InputDecoration(
                 labelText: 'Name',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(
+                    color: Theme.of(context).textTheme.titleSmall!.color),
                 hintText: 'Enter your username',
                 prefixIcon: Icon(
                   Icons.person,
@@ -76,22 +75,26 @@ class _ProfilepageState extends State<Profilepage> {
                 ),
                 enabledBorder: UnderlineInputBorder(
                   borderRadius: BorderRadius.circular(14),
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).iconTheme.color!),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(14),
-                  borderSide: BorderSide(color: Colors.white, width: 1.1),
+                  borderSide: BorderSide(
+                      color: Theme.of(context).iconTheme.color!, width: 2),
                 ),
               ),
             ),
             SizedBox(height: 20),
             TextFormField(
-              style: TextStyle(color: Theme.of(context).textTheme.titleSmall!.color),
+              style: TextStyle(
+                  color: Theme.of(context).textTheme.titleSmall!.color),
               cursorColor: Colors.white,
               controller: _age,
               decoration: InputDecoration(
                 labelText: 'Age',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(
+                    color: Theme.of(context).textTheme.titleSmall!.color),
                 hintText: 'Enter your Age',
                 prefixIcon: Icon(
                   Icons.person_pin_sharp,
@@ -99,25 +102,33 @@ class _ProfilepageState extends State<Profilepage> {
                 ), // Set the desired background color
                 enabledBorder: UnderlineInputBorder(
                   borderRadius: BorderRadius.circular(14),
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).iconTheme.color!),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(14),
-                  borderSide: BorderSide(color: Colors.white, width: 1.1),
+                  borderSide: BorderSide(
+                      color: Theme.of(context).iconTheme.color!, width: 2),
                 ),
               ),
             ),
             SizedBox(height: 20),
             DropdownButtonFormField<String>(
-              style: TextStyle(color: Theme.of(context).textTheme.titleSmall!.color),
+              style: TextStyle(
+                  color: Theme.of(context).textTheme.titleSmall!.color),
               decoration: InputDecoration(
-                labelStyle: TextStyle(color: Theme.of(context).textTheme.titleSmall!.color),
+                labelStyle: TextStyle(
+                    color: Theme.of(context).textTheme.titleSmall!.color),
                 enabledBorder: UnderlineInputBorder(
-                    borderRadius: BorderRadius.circular(14),
-                    borderSide: BorderSide(color: Colors.white)),
-                focusedBorder: UnderlineInputBorder(
-                    borderRadius: BorderRadius.circular(14),
-                    borderSide: BorderSide(color: Colors.white, width: 1.1)),
+                  borderRadius: BorderRadius.circular(14),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).iconTheme.color!),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(14),
+                  borderSide: BorderSide(
+                      color: Theme.of(context).iconTheme.color!, width: 2),
+                ),
                 labelText: 'Gender',
                 prefixIcon: Icon(
                   Icons.person,
@@ -129,8 +140,8 @@ class _ProfilepageState extends State<Profilepage> {
                   value: value,
                   child: Text(
                     value,
-                    style: TextStyle(color: Theme.of(context).textTheme.titleSmall!.color),
-
+                    style: TextStyle(
+                        color: Theme.of(context).indicatorColor),
                   ),
                 );
               }).toList(),
@@ -142,12 +153,14 @@ class _ProfilepageState extends State<Profilepage> {
             ),
             SizedBox(height: 20),
             TextFormField(
-              style: TextStyle(color: Theme.of(context).textTheme.titleSmall!.color),
+              style: TextStyle(
+                  color: Theme.of(context).textTheme.titleSmall!.color),
               cursorColor: Theme.of(context).textTheme.titleSmall!.color,
               controller: _region,
               decoration: InputDecoration(
                 labelText: 'Region',
-                labelStyle: TextStyle(color: Theme.of(context).textTheme.titleSmall!.color),
+                labelStyle: TextStyle(
+                    color: Theme.of(context).textTheme.titleSmall!.color),
                 hintText: 'Enter your Country',
                 prefixIcon: Icon(
                   Icons.location_city,
@@ -155,21 +168,25 @@ class _ProfilepageState extends State<Profilepage> {
                 ), // Set the desired background color
                 enabledBorder: UnderlineInputBorder(
                   borderRadius: BorderRadius.circular(14),
-                  borderSide: BorderSide(color: Theme.of(context).textTheme.titleSmall!.color!),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).iconTheme.color!),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(14),
-                  borderSide: BorderSide(color: Theme.of(context).textTheme.titleSmall!.color!, width: 1.1),
+                  borderSide: BorderSide(
+                      color: Theme.of(context).iconTheme.color!, width: 2),
                 ),
               ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                MongoDatabase.updateUserData(_name.text.trim(), int.parse(_age.text.trim()), _gender, _region.text.trim());
+                MongoDatabase.updateUserData(_name.text.trim(),
+                    int.parse(_age.text.trim()), _gender, _region.text.trim());
               },
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF075D7A), fixedSize: Size(150, 50)),
+                  backgroundColor: Theme.of(context).iconTheme.color,
+                  fixedSize: Size(150, 50)),
               child: Text(
                 'Save Changes',
               ),

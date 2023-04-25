@@ -132,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ))
                   .toList(),
               options: CarouselOptions(
-                height: 350,
+                height: 360,
                 viewportFraction: 0.6,
                 enableInfiniteScroll: true,
                 autoPlay: true,
