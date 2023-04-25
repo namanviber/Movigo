@@ -71,13 +71,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Spacer(),
-              IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/search_screen');
-                },
-                icon: Icon(
-                  Icons.search_rounded,
-                  size: 30,
+              Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: const Color(0xff7c94b6),
+                  image: DecorationImage(
+                    image: NetworkImage('https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.all( Radius.circular(50.0)),
+                  border: Border.all(
+                    color: Colors.blue,
+                    width: 1,
+                  ),
                 ),
               ),
             ],
@@ -87,12 +94,15 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(
+              height: 30,
+            ),
             CarouselSlider(
               items: _discoverMovie
                   .map((item) => InkWell(
                         onTap: () {},
                         child: SizedBox(
-                          height: 280,
+                          height: 400,
                           child: Column(
                             children: [
                               ClipRRect(
@@ -100,8 +110,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Image.network(
                                     "https://image.tmdb.org/t/p/original${item.posterPath}",
                                     fit: BoxFit.cover,
-                                    height: 245,
-                                    width: 180,
+                                    height: 400,
+                                    width: 300,
                                     errorBuilder: (context, error, stackTrace) {
                                       return Image.asset(
                                         "assets/images/noimage.png",
@@ -115,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Text(
                                 item.originalTitle,
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 17,
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context)
                                       .textTheme
@@ -132,15 +142,27 @@ class _HomeScreenState extends State<HomeScreen> {
                       ))
                   .toList(),
               options: CarouselOptions(
-                height: 350,
-                viewportFraction: 0.6,
+                height: 430,
+                viewportFraction: 0.9,
                 enableInfiniteScroll: true,
                 autoPlay: true,
                 autoPlayInterval: Duration(seconds: 4),
                 scrollDirection: Axis.horizontal,
-                enlargeCenterPage: true,
+                enlargeCenterPage: false,
               ),
             ),
+            // Container(
+            //   width: 350,
+            //   height: 400,
+            //   decoration: BoxDecoration(
+            //     color: const Color(0xff7c94b6),
+            //     image: DecorationImage(
+            //       image: NetworkImage('https://assets-prd.ignimgs.com/2023/02/03/foevbcsayamvqpf-1675462826997.jpg'),
+            //       fit: BoxFit.cover,
+            //     ),
+            //     borderRadius: BorderRadius.all( Radius.circular(10)),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
