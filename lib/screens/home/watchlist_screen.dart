@@ -185,14 +185,13 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                             TextStyle(
                                                                           fontSize:
                                                                               16,
-                                                                          color: Theme.of(context)
-                                                                              .textTheme
-                                                                              .titleMedium!
-                                                                              .color,
+                                                                          color:
+                                                                              Theme.of(context).textTheme.titleMedium!.color,
                                                                         )),
                                                                   ),
                                                                   const SizedBox(
-                                                                    height: 10,
+                                                                    height:
+                                                                        10,
                                                                   ),
                                                                   Text(
                                                                       content
@@ -232,7 +231,9 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                     size: 24,
                                                                   ),
                                                                   onPressed:
-                                                                      () {},
+                                                                      () {
+                                                                        MongoDatabase.removeWatchlist(content.result[0].tmdbId);
+                                                                      },
                                                                 ),
                                                               ),
                                                             ],
@@ -259,8 +260,9 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                             mainAxisSpacing: 10.0,
                                           ),
                                           itemBuilder: (context, index) {
-                                            final content = getWatchlistModel
-                                                .fromJson(snapshot.data[index]);
+                                            final content =
+                                                getWatchlistModel.fromJson(
+                                                    snapshot.data[index]);
                                             // return Center();
                                             return MovieCardWatch(
                                                 movie: content);
@@ -419,7 +421,11 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                     size: 24,
                                                                   ),
                                                                   onPressed:
-                                                                      () {},
+                                                                      () {
+                                                                    MongoDatabase
+                                                                        .removeWishlist(
+                                                                            862);
+                                                                  },
                                                                 ),
                                                               ),
                                                             ],

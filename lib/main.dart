@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project2/screens/authorization/login_screen.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:project2/screens/settings/profilePage.dart';
 import 'package:project2/utilities/Check.dart';
@@ -18,6 +17,7 @@ import 'package:project2/screens/findMovie/movieSelection.dart';
 import 'package:project2/utilities/themedata.dart';
 import 'package:project2/widgets/filter_result.dart';
 import 'package:project2/widgets/grid_of_genre.dart';
+import 'package:project2/utilities/globalVariable.dart' as globalVar;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,8 +43,8 @@ class _MovigoState extends State<Movigo> {
       return MaterialApp(
         title: "Moviego",
         theme: ThemeClass.lightTheme,
-        darkTheme: ThemeClass.darkTheme,
-        themeMode: ThemeMode.light,
+        darkTheme: ThemeData.dark(),
+        themeMode: (globalVar.theme) ? ThemeMode.light : ThemeMode.dark,
         debugShowCheckedModeBanner: false,
         home: Check(),
         initialRoute: '/',

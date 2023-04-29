@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:like_button/like_button.dart';
 import 'package:project2/models/MovieDetailModel.dart';
 import 'package:project2/models/MovieCastDetailsModel.dart';
 import 'package:project2/models/MovieCrewDetailsModel.dart';
@@ -48,8 +49,7 @@ class _MovieInfoState extends State<MovieInfo> {
     var dateinit = DateTime.parse("${widget.movieModel.releaseDate}");
     var formattedDate = "${dateinit.day}-${dateinit.month}-${dateinit.year}";
 
-    TextEditingController date =
-        TextEditingController(text: "$formattedDate");
+    TextEditingController date = TextEditingController(text: "$formattedDate");
 
     TextEditingController length =
         TextEditingController(text: "${widget.movieModel.runtime} mins");
@@ -102,39 +102,74 @@ class _MovieInfoState extends State<MovieInfo> {
                       children: [
                         Align(
                           alignment: Alignment.topLeft,
-                          child: Text(
-                            originalTitle,
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color:
-                                  Theme.of(context).textTheme.titleLarge!.color,
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.6,
+                            child: Text(
+                              originalTitle,
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .color,
+                              ),
                             ),
                           ),
                         ),
-                        Spacer(),
-                        IconButton(
-                          onPressed: () {
-                            MongoDatabase.addWatchlist(widget.movieModel.id);
-                          },
-                          icon: FaIcon(
-                            FontAwesomeIcons.bookmark,
-                            color: Colors.blue,
-                          ),
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              MongoDatabase.addWatchlist(widget.movieModel.id);
-                            },
-                            icon: Icon(
-                              Icons.tv,
-                              color: Colors.blue,
-                            )),
-                        IconButton(
-                          onPressed: () => showRatingDialog(context, widget.movieModel.id, widget.movieModel.title!, widget.movieModel.posterPath!),
-                          icon: FaIcon(
-                            FontAwesomeIcons.star,
-                            color: Colors.blue,
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              LikeButton(
+                                likeBuilder: (isliked) {
+                                  return Icon(
+                                    Icons.bookmark_add,
+                                    color: isliked
+                                        ? Theme.of(context).iconTheme.color!
+                                        : Theme.of(context).canvasColor,
+                                  );
+                                },
+                                onTap: (isLiked) async {
+                                  MongoDatabase.addWatchlist(
+                                      widget.movieModel.id);
+                                  return !isLiked;
+                                },
+                              ),
+                              LikeButton(
+                                likeBuilder: (isliked) {
+                                  return Icon(
+                                    Icons.screen_share,
+                                    color: isliked
+                                        ? Theme.of(context).iconTheme.color!
+                                        : Theme.of(context).canvasColor,
+                                  );
+                                },
+                                onTap: (isLiked) async {
+                                  MongoDatabase.addWatched(widget.movieModel.id);
+                                  return !isLiked;
+                                },
+                              ),
+                              LikeButton(
+                                likeBuilder: (isliked) {
+                                  return Icon(
+                                    Icons.star,
+                                    color: isliked
+                                        ? Theme.of(context).iconTheme.color!
+                                        : Theme.of(context).canvasColor,
+                                  );
+                                },
+                                onTap: (isLiked) async {
+                                  showRatingDialog(
+                                      context,
+                                      widget.movieModel.id,
+                                      widget.movieModel.title!,
+                                      widget.movieModel.posterPath!);
+                                  return !isLiked;
+                                },
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -142,24 +177,22 @@ class _MovieInfoState extends State<MovieInfo> {
                     const SizedBox(
                       height: 15,
                     ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "genres",
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: Theme.of(context).textTheme.titleLarge!.color,
-                        ),
-                      ),
-                    ),
+                    // Align(
+                    //   alignment: Alignment.topLeft,
+                    //   child: Text(
+                    //     "genres",
+                    //     style: TextStyle(
+                    //       fontSize: 11,
+                    //       color: Theme.of(context).textTheme.titleLarge!.color,
+                    //     ),
+                    //   ),
+                    // ),
                     const SizedBox(
                       height: 15,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        SizedBox(
-                          width: 75,
+                        Expanded(
                           child: TextField(
                             controller: length,
                             readOnly: true,
@@ -177,8 +210,7 @@ class _MovieInfoState extends State<MovieInfo> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: 75,
+                        Expanded(
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -196,8 +228,7 @@ class _MovieInfoState extends State<MovieInfo> {
                             readOnly: true,
                           ),
                         ),
-                        SizedBox(
-                          width: 75,
+                        Expanded(
                           child: TextField(
                             controller: rating,
                             readOnly: true,
@@ -215,8 +246,7 @@ class _MovieInfoState extends State<MovieInfo> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: 75,
+                        Expanded(
                           child: TextField(
                             controller: date,
                             readOnly: true,

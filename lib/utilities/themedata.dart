@@ -19,7 +19,7 @@ class ThemeClass {
       titleLarge: TextStyle(color: Color(0xff1b1c18)),
       titleSmall: TextStyle(color: Colors.black),
     ),
-    iconTheme: IconThemeData(color: Color(0xff496727)),
+    iconTheme: IconThemeData(color: Color(0xff496727),),
     tabBarTheme: TabBarTheme(labelColor: Color(0xff1f1f1f)),
     appBarTheme: AppBarTheme(
       surfaceTintColor: Color(0xff616200),

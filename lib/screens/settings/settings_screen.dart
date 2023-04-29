@@ -269,6 +269,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             InkWell(
               onTap: () {
                 FirebaseAuth.instance.signOut();
+                Navigator.pushReplacementNamed(context, "check");
               },
               child: SizedBox(
                 height: 60,

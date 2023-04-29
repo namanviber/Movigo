@@ -111,6 +111,10 @@ class MongoDatabase {
     return response;
   }
 
+  static Future<void> removeWishlist(int movieid) async{
+    await userCollection.updateOne(where.eq("uid", userInfo.uid), modify.pull('wishlist',movieid));
+  }
+
   // Movie Specific Functions
   static Future<List<Map<String, dynamic>>> getMovies() async {
     final movieData = await movieCollection

@@ -142,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ))
                   .toList(),
               options: CarouselOptions(
-                height: 430,
+                height: 440,
                 viewportFraction: 0.9,
                 enableInfiniteScroll: true,
                 autoPlay: true,
@@ -151,18 +151,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 enlargeCenterPage: false,
               ),
             ),
-            // Container(
-            //   width: 350,
-            //   height: 400,
-            //   decoration: BoxDecoration(
-            //     color: const Color(0xff7c94b6),
-            //     image: DecorationImage(
-            //       image: NetworkImage('https://assets-prd.ignimgs.com/2023/02/03/foevbcsayamvqpf-1675462826997.jpg'),
-            //       fit: BoxFit.cover,
-            //     ),
-            //     borderRadius: BorderRadius.all( Radius.circular(10)),
-            //   ),
-            // ),
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
