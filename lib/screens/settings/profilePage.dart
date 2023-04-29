@@ -13,12 +13,23 @@ class Profilepage extends StatefulWidget {
 
 class _ProfilepageState extends State<Profilepage> {
   @override
+  getUserDetails? content;
+
+  @override
   void initState() {
-    var content = MongoDatabase.getUserData();
     super.initState();
+    _fetchUserData();
   }
 
-  final TextEditingController _name = TextEditingController();
+  void _fetchUserData() async {
+    content = await MongoDatabase.getUserData();
+    print(content); // You can use the content variable here
+    // setState(() {}); // Call setState to update the state of the widget
+  }
+
+
+
+  final TextEditingController _name = TextEditingController(text:'gh');
   final TextEditingController _age = TextEditingController();
   var _gender;
   final TextEditingController _region = TextEditingController();
@@ -59,15 +70,21 @@ class _ProfilepageState extends State<Profilepage> {
                   color: Theme.of(context).textTheme.titleSmall!.color),
             ),
             SizedBox(height: 20),
+            // TextEditingController _name = TextEditingController(text: 'John Doe'); // replace with value fetched from database
+
             TextFormField(
               style: TextStyle(
-                  color: Theme.of(context).textTheme.titleSmall!.color),
+                color: Theme.of(context).textTheme.titleSmall!.color,
+              ),
               cursorColor: Colors.white,
               controller: _name,
               decoration: InputDecoration(
                 labelText: 'Name',
+                floatingLabelBehavior:
+                    FloatingLabelBehavior.always, // make label stay at top
                 labelStyle: TextStyle(
-                    color: Theme.of(context).textTheme.titleSmall!.color),
+                  color: Theme.of(context).textTheme.titleSmall!.color,
+                ),
                 hintText: 'Enter your username',
                 prefixIcon: Icon(
                   Icons.person,
@@ -75,13 +92,16 @@ class _ProfilepageState extends State<Profilepage> {
                 ),
                 enabledBorder: UnderlineInputBorder(
                   borderRadius: BorderRadius.circular(14),
-                  borderSide:
-                      BorderSide(color: Theme.of(context).iconTheme.color!),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).iconTheme.color!,
+                  ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(14),
                   borderSide: BorderSide(
-                      color: Theme.of(context).iconTheme.color!, width: 2),
+                    color: Theme.of(context).iconTheme.color!,
+                    width: 2,
+                  ),
                 ),
               ),
             ),
@@ -140,8 +160,10 @@ class _ProfilepageState extends State<Profilepage> {
                   value: value,
                   child: Text(
                     value,
-                    style: TextStyle(
-                        color: Theme.of(context).indicatorColor),
+                    style: TextStyle(color:
+                    // Theme.of(context).indicatorColor
+                    Theme.of(context).cardColor
+                    ),
                   ),
                 );
               }).toList(),
@@ -185,7 +207,7 @@ class _ProfilepageState extends State<Profilepage> {
                     int.parse(_age.text.trim()), _gender, _region.text.trim());
               },
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).iconTheme.color,
+                  backgroundColor: Theme.of(context).cardColor,
                   fixedSize: Size(150, 50)),
               child: Text(
                 'Save Changes',

@@ -243,10 +243,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       heading: "Popular Movies", movies: fetchpopularmovie),
                   futureMovieList(
                       heading: "Top SciFi Movies", movies: fetchscifimovie),
+
                   Align(
                     alignment: Alignment.topLeft,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
                           "Top Genres",
@@ -256,9 +257,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Theme.of(context).textTheme.titleLarge!.color,
                           ),
                         ),
+                        Spacer(),
                         IconButton(onPressed: (){
                           Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => GridOfGenre()));                        }, icon: Icon(Icons.arrow_back_ios))
+                              MaterialPageRoute(builder: (context) => GridOfGenre()));
+                          }, icon: Icon(Icons.arrow_forward_ios,),
+                        )
+
                       ],
                     ),
                   ),

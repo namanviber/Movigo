@@ -4,6 +4,7 @@ import '../../service/apiCall.dart';
 import '../../service/mongoDbCall.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 
+import '../../widgets/item_grid.dart';
 import 'movieDetail.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -31,6 +32,9 @@ class _SearchScreenState extends State<SearchScreen> {
     'Comedy',
     'Scary',
   ];
+
+ List genreFunction=[MongoDatabase.getPopularMovies(),MongoDatabase.getScifiMovies(),MongoDatabase.getTrendingMovies(),
+   MongoDatabase.getComedyMovies(),MongoDatabase.getHorrorMovies()];
 
   Future<List<Map<String, dynamic>>> _performSearch(String query) async {
     try {
@@ -162,6 +166,8 @@ class _SearchScreenState extends State<SearchScreen> {
               itemBuilder: (context, index) {
                 final movie = searchResults[index];
                 final List<dynamic> genreListText = movie['genres'];
+                final genretextlength=genreListText.length<3?genreListText.length:3;
+
                 return InkWell(
                   onTap: () {
                     setState(() {
@@ -215,7 +221,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 Row(
                                   children: [
                                     Text(
-                                      genreListText.join("  "),
+                                      genreListText.sublist(0,genretextlength).join("  "),
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Theme.of(context)
@@ -322,9 +328,14 @@ class _SearchScreenState extends State<SearchScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
       child: InkWell(
+        // onTap: () {
+        //   // Navigator.pushNamed(context, '/filter_results',
+        //   //     arguments: 'genrelist[i');
+        //
+        // },
         onTap: () {
-          Navigator.pushNamed(context, '/filter_results',
-              arguments: 'genrelist[i');
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ItemGrid(heading: genrelist_onlytext[index], movies: genreFunction[index])));
         },
         child: Container(
           width: MediaQuery.of(context).size.width,

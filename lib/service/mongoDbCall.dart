@@ -144,7 +144,86 @@ class MongoDatabase {
 
   static Future<List<Map<String, dynamic>>> getScifiMovies() async {
     final movieData = await movieCollection
-        .find(where.eq("genres", "Sci-Fi").gt('vote_average', 8).limit(30))
+        .find(where.eq("genres", "Sci-Fi").gt('vote_average', 6).limit(30))
+        .toList();
+    return movieData;
+  }
+
+  static Future<List<Map<String, dynamic>>> getTrendingMovies() async {
+    final movieData = await movieCollection
+        .find(where.eq("genres", "Children").gt('vote_average', 6).limit(30))
+        .toList();
+    return movieData;
+  }
+
+
+
+  static Future<List<Map<String, dynamic>>> getComedyMovies() async {
+    final movieData = await movieCollection
+        .find(where.eq("genres", "Comedy").gt('vote_average', 6).limit(30))
+        .toList();
+    return movieData;
+  }
+
+  static Future<List<Map<String, dynamic>>> getHorrorMovies() async {
+    final movieData = await movieCollection
+        .find(where.eq("genres", "Horror").gt('vote_average', 6).limit(30))
+        .toList();
+    return movieData;
+  }
+
+  static Future<List<Map<String, dynamic>>> getActionMovies() async {
+    final movieData = await movieCollection
+        .find(where.eq("genres", "Action").gt('vote_average', 6).limit(30))
+        .toList();
+    return movieData;
+  }
+
+  static Future<List<Map<String, dynamic>>> getFantasyMovies() async {
+    final movieData = await movieCollection
+        .find(where.eq("genres", "Fantasy").gt('vote_average', 6).limit(30))
+        .toList();
+    return movieData;
+  }
+
+  static Future<List<Map<String, dynamic>>> getRomanceMovies() async {
+    final movieData = await movieCollection
+        .find(where.eq("genres", "Romance").gt('vote_average', 6).limit(30))
+        .toList();
+    return movieData;
+  }
+
+  static Future<List<Map<String, dynamic>>> getAnimationMovies() async {
+    final movieData = await movieCollection
+        .find(where.eq("genres", "Animation").gt('vote_average', 6).limit(30))
+        .toList();
+    return movieData;
+  }
+
+  static Future<List<Map<String, dynamic>>> getCrimeMovies() async {
+    final movieData = await movieCollection
+        .find(where.eq("genres", "Crime").gt('vote_average', 6).limit(30))
+        .toList();
+    return movieData;
+  }
+
+  static Future<List<Map<String, dynamic>>> getDramaMovies() async {
+    final movieData = await movieCollection
+        .find(where.eq("genres", "Drama").gt('vote_average', 6).limit(30))
+        .toList();
+    return movieData;
+  }
+
+  static Future<List<Map<String, dynamic>>> getMusicalMovies() async {
+    final movieData = await movieCollection
+        .find(where.eq("genres", "Musical").gt('vote_average', 6).limit(30))
+        .toList();
+    return movieData;
+  }
+
+  static Future<List<Map<String, dynamic>>> getThrillerMovies() async {
+    final movieData = await movieCollection
+        .find(where.eq("genres", "Thriller").gt('vote_average', 6).limit(30))
         .toList();
     return movieData;
   }
