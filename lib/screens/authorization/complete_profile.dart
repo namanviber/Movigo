@@ -1,10 +1,10 @@
+import 'package:project2/screens/authorization/preferences.dart';
 import 'package:project2/screens/authorization/sign_up_screen.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project2/service/mongoDbCall.dart';
-
 import '../../models/getUserDetails.dart';
 
 class completeProfile extends StatefulWidget {
@@ -121,8 +121,7 @@ class _completeProfileState extends State<completeProfile> {
                         SizedBox(
                           width: 120,
                           child: DropdownButtonFormField<String>(
-                            style: TextStyle(
-                                color: Colors.white),
+                            style: TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.symmetric(
                                   vertical: 12.0, horizontal: 10.0),
@@ -194,13 +193,9 @@ class _completeProfileState extends State<completeProfile> {
                                 emailId: user.email.toString(),
                                 age: int.parse(_age.text.trim()),
                                 gender: _gender,
-                                region: _region.text.trim()
-                            );
+                                region: _region.text.trim());
                             MongoDatabase.addUserData(data);
-                            setState(() {
-                              sign = false;
-                            });
-                            FirebaseAuth.instance.currentUser?.reload();
+                            Navigator.pushNamed(context, '/preference_screen');
                           },
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(

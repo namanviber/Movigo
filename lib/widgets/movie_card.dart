@@ -7,7 +7,7 @@ import 'package:project2/service/apiCall.dart';
 
 class MovieCard extends StatefulWidget {
   final getMoviesModel movie;
-  // final getMoviesModel movie;
+
   const MovieCard({
     Key? key,
     required this.movie,

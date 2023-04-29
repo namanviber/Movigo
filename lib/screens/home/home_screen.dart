@@ -71,19 +71,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Spacer(),
-              Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: const Color(0xff7c94b6),
-                  image: DecorationImage(
-                    image: NetworkImage('https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg'),
-                    fit: BoxFit.cover,
-                  ),
-                  borderRadius: BorderRadius.all( Radius.circular(50.0)),
-                  border: Border.all(
-                    color: Colors.blue,
-                    width: 1,
+              InkWell(
+                onTap: (){
+                  Navigator.pushNamed(context, '/Profilepage');
+                },
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff7c94b6),
+                    image: DecorationImage(
+                      image: NetworkImage('https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg'),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.all( Radius.circular(50.0)),
+                    border: Border.all(
+                      color: Colors.blue,
+                      width: 1,
+                    ),
                   ),
                 ),
               ),

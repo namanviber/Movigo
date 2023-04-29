@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dynamic_color/dynamic_color.dart';
+import 'package:project2/screens/authorization/preferences.dart';
 import 'package:project2/screens/settings/profilePage.dart';
 import 'package:project2/utilities/Check.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -65,6 +66,7 @@ class _MovigoState extends State<Movigo> {
           '/recommender_screen': (context) => RecommenderScreen(),
           '/setting_screen': (context) => SettingsScreen(),
           '/splash_screen': (context) => LandingScreen(),
+          '/preference_screen': (context) => PreferenceScreen(),
           '/check': (context) => Check(),
           '/profile_edit': (context) => Profilepage(),
           '/search_screen': (_) => SearchScreen(),

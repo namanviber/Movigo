@@ -10,13 +10,14 @@ const userDatabase = "userData";
 final userInfo = FirebaseAuth.instance.currentUser!;
 
 class MongoDatabase {
-  static var db, movieCollection, userCollection;
+  static var db, movieCollection, userCollection, preferredCollection;
 
   static connect() async {
     db = await Db.create(Mongo_URL);
     await db.open();
     inspect(db);
     movieCollection = db.collection(movieDatabase);
+    preferredCollection = db.collection(movieDatabase);
     userCollection = db.collection(userDatabase);
   }
 
@@ -38,6 +39,17 @@ class MongoDatabase {
             .set('gender', gender)
             .set('region', region));
     return response;
+  }
+
+  static Future<List<Map<String, dynamic>>> preferredMovies(List<int> query) async {
+    List<Map<String, dynamic>> movieDataList = [];
+    for (int i = 0; i < query.length; i++) {
+      final movieData = await preferredCollection
+          .find(where.eq('tmdbId', query[i]))
+          .toList();
+      movieDataList.addAll(movieData);
+    }
+    return movieDataList;
   }
 
   static Future<getUserDetails> addWatchlist(int movieid) async {
