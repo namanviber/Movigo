@@ -14,16 +14,21 @@ import 'package:project2/screens/home/search_screen.dart';
 import 'package:project2/screens/settings/settings_screen.dart';
 import 'package:project2/screens/home/watchlist_screen.dart';
 import 'package:project2/screens/findMovie/movieSelection.dart';
+import 'package:project2/utilities/themechanger.dart';
 import 'package:project2/utilities/themedata.dart';
 import 'package:project2/widgets/filter_result.dart';
 import 'package:project2/widgets/grid_of_genre.dart';
-import 'package:project2/utilities/globalVariable.dart' as globalVar;
+
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MongoDatabase.connect();
   await Firebase.initializeApp();
-  runApp(Movigo());
+  runApp(ChangeNotifierProvider<ThemeChanger>(
+    create: (context) => ThemeChanger(),
+    child: Movigo(),
+  ));
 }
 
 class Movigo extends StatefulWidget {
@@ -34,17 +39,17 @@ class Movigo extends StatefulWidget {
 }
 
 class _MovigoState extends State<Movigo> {
-
-
-
   @override
   Widget build(BuildContext context) {
-    return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {
+    // return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme)
+    return Consumer<ThemeChanger>(
+        builder: (context, appState, child)
+    {
       return MaterialApp(
         title: "Moviego",
         theme: ThemeClass.lightTheme,
-        darkTheme: ThemeData.dark(),
-        themeMode: (globalVar.theme) ? ThemeMode.light : ThemeMode.dark,
+        darkTheme: ThemeClass.darkTheme,
+        themeMode: appState.isDarkModeon ? ThemeMode.light : ThemeMode.dark,
         debugShowCheckedModeBanner: false,
         home: Check(),
         initialRoute: '/',
