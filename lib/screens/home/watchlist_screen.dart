@@ -422,10 +422,9 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                   ),
                                                                   onPressed:
                                                                       () {
-                                                                    MongoDatabase
-                                                                        .removeWishlist(
-                                                                            862);
-                                                                  },
+                                                                        MongoDatabase.removeWatchlist(content.result[0].tmdbId);
+
+                                                                      },
                                                                 ),
                                                               ),
                                                             ],

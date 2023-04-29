@@ -40,10 +40,6 @@ class _SignUpState extends State<SignUp> {
       sign = true;
     });
   }
-  // Future<void> _insertData() async {
-  //   final data = MongoDbModel(email: "namanviber@gmail.com", password: "Naman@123", name: "Naman Jain", phoneNumber: 8307607758, username: "namanviber", gender: "Male", age: 20);
-  //   var result = await MongoDatabase.insert(data);
-  // }
 
   @override
   void dispose() {
@@ -55,8 +51,11 @@ class _SignUpState extends State<SignUp> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       extendBodyBehindAppBar: true,
       body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/background_login.png'),
@@ -106,14 +105,22 @@ class _SignUpState extends State<SignUp> {
                     child: Column(children: [
                       TextFormField(
                         controller: _email,
+                        style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
+                          errorStyle: TextStyle(color: Colors.white),
                           contentPadding: const EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 10.0),
                           hintText: "Enter Email address",
                           hintStyle: const TextStyle(
                               fontSize: 14, color: Colors.white),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15)),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                         ),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) {
@@ -129,14 +136,22 @@ class _SignUpState extends State<SignUp> {
                       ),
                       TextFormField(
                         controller: _password,
+                        style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
+                            errorStyle: TextStyle(color: Colors.white),
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 12.0, horizontal: 10.0),
                             hintText: "Enter Password",
                             hintStyle: const TextStyle(
                                 fontSize: 14, color: Colors.white),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15)),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
                             suffixIcon: InkWell(
                                 onTap: () {
                                   setState(() {
@@ -165,14 +180,22 @@ class _SignUpState extends State<SignUp> {
                         scrollPadding: EdgeInsets.only(
                             bottom: MediaQuery.of(context).viewInsets.bottom),
                         controller: _confirmpassword,
+                        style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
+                            errorStyle: TextStyle(color: Colors.white),
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 12.0, horizontal: 10.0),
                             hintText: "Confirm Password",
                             hintStyle: const TextStyle(
                                 fontSize: 14, color: Colors.white),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15)),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
                             suffixIcon: InkWell(
                                 onTap: () {
                                   setState(() {
@@ -181,9 +204,8 @@ class _SignUpState extends State<SignUp> {
                                 },
                                 child: Icon(
                                   Icons.remove_red_eye_outlined,
-                                  color: (showtextconfirm)
-                                      ? Colors.grey
-                                      : Colors.white,
+                                  color:
+                                      (showtextconfirm) ? Colors.grey : Colors.white,
                                 ))),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         obscureText: showtextconfirm,
@@ -207,7 +229,7 @@ class _SignUpState extends State<SignUp> {
                                   horizontal: 30.0, vertical: 15.0),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15.0)),
-                              primary: Colors.white,
+                              backgroundColor: Colors.white,
                             ),
                             child: Center(
                               child: Text("Sign Up",
@@ -234,7 +256,7 @@ class _SignUpState extends State<SignUp> {
                             TextSpan(
                               text: "Sign In",
                               style: GoogleFonts.montserrat(
-                                  fontSize: 12,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             ),

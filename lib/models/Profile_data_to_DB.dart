@@ -2,7 +2,7 @@ import 'package:mongo_dart/mongo_dart.dart' as M;
 import 'package:project2/models/getUserDetails.dart';
 import 'package:project2/service/mongoDbCall.dart';
 
-Future<void> insertintoDB(String firebaseid, String name , String email, int age, String gender, int phone) async
+Future<void> insertintoDB(String firebaseid, String name , String email, int age, String gender, String region) async
 {
   var _id = M.ObjectId();
   final data = getUserDetails(
@@ -12,6 +12,7 @@ Future<void> insertintoDB(String firebaseid, String name , String email, int age
     emailId: email,
     age: age,
     gender: gender,
+    region: region
   );
   var results = await MongoDatabase.addUserData(data);
 }

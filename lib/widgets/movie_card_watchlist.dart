@@ -4,6 +4,8 @@ import 'package:project2/models/getWatchlistModel.dart';
 import 'package:project2/screens/home/movieDetail.dart';
 import 'package:project2/service/apiCall.dart';
 
+import '../service/mongoDbCall.dart';
+
 
 class MovieCardWatch extends StatefulWidget {
   final getWatchlistModel movie;
@@ -65,7 +67,10 @@ class _MovieCardWatchState extends State<MovieCardWatch> {
                   color: Theme.of(context).iconTheme.color,
                   size: 24,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  MongoDatabase.removeWatchlist(widget.movie.result[0].tmdbId);
+
+                },
               ),
             ),
             Positioned(

@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
       FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _email.text.trim(), password: _password.text.trim());
     } on FirebaseAuthException catch (e) {
-      print(e);
+      return Text("Credientials donot match", style: TextStyle(color: Colors.white),);
     }
   }
 
@@ -39,6 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       extendBodyBehindAppBar: true,
       body: Container(
         decoration: const BoxDecoration(
@@ -62,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       "Let's get you signed in. ",
                       style: TextStyle(
                           fontSize: 28,
-                          color: Theme.of(context).textTheme.titleLarge!.color,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -76,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(
                           height: 1.2,
                           fontSize: 26,
-                          color: Theme.of(context).textTheme.titleLarge!.color,
+                          color: Colors.white,
                           fontWeight: FontWeight.normal),
                     ),
                   ),
@@ -92,11 +93,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: _email,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
+                          errorStyle: TextStyle(color: Colors.white),
                           contentPadding: const EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 10.0),
                           hintText: "Enter Email address",
-                          hintStyle: const TextStyle(fontSize: 14, color: Colors.white),
-                          border: OutlineInputBorder(
+                          hintStyle: const TextStyle(
+                              fontSize: 14, color: Colors.white),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
                             borderRadius: BorderRadius.circular(15),
                           ),
                         ),
@@ -114,14 +122,22 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextFormField(
                         controller: _password,
+                        style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
+                            errorStyle: TextStyle(color: Colors.white),
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 12.0, horizontal: 10.0),
                             hintText: "Enter Password",
-                            hintStyle: const TextStyle(fontSize: 14, color: Colors.white),
-
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15)),
+                            hintStyle: const TextStyle(
+                                fontSize: 14, color: Colors.white),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
                             suffixIcon: InkWell(
                                 onTap: () {
                                   setState(() {
@@ -167,7 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       const SizedBox(
-                        height: 120,
+                        height: 100,
                       ),
                       Column(
                         children: [
@@ -178,7 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   horizontal: 30.0, vertical: 15.0),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15.0)),
-                              primary: Colors.white,
+                              backgroundColor: Colors.white,
                             ),
                             child: Center(
                               child: Text("Sign in",
@@ -229,7 +245,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             TextSpan(
                               text: "Sign Up",
                               style: GoogleFonts.montserrat(
-                                  fontSize: 12,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             ),
