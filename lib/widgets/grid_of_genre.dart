@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project2/service/mongoDbCall.dart';
 
 import 'bottom_bar.dart';
+import 'item_grid.dart';
 
 class GridOfGenre extends StatefulWidget {
   const GridOfGenre({Key? key}) : super(key: key);
@@ -39,9 +41,25 @@ class _GridOfGenreState extends State<GridOfGenre> {
     'Drama',
     'Documentry',
     'Sci-fi',
-    'Sex',
+    'Fresh',
     'Comedy',
-    'Action',
+    'Thriller',
+
+  ];
+
+  List genreFunction=[
+    MongoDatabase.getActionMovies(),
+    MongoDatabase.getFantasyMovies(),
+    MongoDatabase.getHorrorMovies(),
+    MongoDatabase.getRomanceMovies(),
+    MongoDatabase.getAnimationMovies(),
+    MongoDatabase.getCrimeMovies(),
+    MongoDatabase.getDramaMovies(),
+    MongoDatabase.getMusicalMovies(),
+    MongoDatabase.getScifiMovies(),
+    MongoDatabase.getKidsMovies(),
+    MongoDatabase.getComedyMovies(),
+    MongoDatabase.getThrillerMovies(),
 
   ];
 
@@ -110,20 +128,26 @@ class _GridOfGenreState extends State<GridOfGenre> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(centerTitle: true,
+        title: Text('Genres Galore'),
+        toolbarHeight: 60,
+      ),
       body: GridView.builder(scrollDirection: Axis.vertical,
         padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, // Two color boxes per row
           crossAxisSpacing: 6.0, // Gap of 6 between each row
-          mainAxisSpacing: 6.0, // Gap of 6 between each color box
+          mainAxisSpacing: 10.0, // Gap of 6 between each color box
           childAspectRatio: 1.5, // Set the aspect ratio to 1 to make each box square
         ),
         itemCount: genrelist.length,
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
             onTap: () {
-              Navigator.pushNamed(context, '/filter_results', arguments: genrelist[index]);
-            },
+    Navigator.push(context,
+    MaterialPageRoute(builder: (context) => ItemGrid(heading: genrelist[index], movies: genreFunction[index])));
+    },
+
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(11.0),

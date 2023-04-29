@@ -92,71 +92,71 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
-              SizedBox(
-                height: 60,
-                width: MediaQuery.of(context).size.width,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Icon(
-                      Icons.access_alarm,
-                      color: Theme.of(context).iconTheme.color,
-                      size: 34,
-                    ),
-                    SizedBox(
-                      height: 60,
-                      width: MediaQuery.of(context).size.width * 0.6,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Push Notifications",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color:
-                                  Theme.of(context).textTheme.titleLarge!.color,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Text(
-                            "Manage your notifications",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color:
-                                  Theme.of(context).textTheme.titleLarge!.color,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Transform.scale(
-                      scale: 1.5,
-                      child: Switch(
-                        activeThumbImage: NetworkImage(
-                            'https://pixlok.com/wp-content/uploads/2021/12/Notification-Icon-SVG-03cde.png'),
-                        activeTrackColor: Colors.green,
-                        activeColor: Colors.white,
-                        inactiveThumbImage: NetworkImage(
-                            'https://static.thenounproject.com/png/357659-200.png'),
-                        inactiveTrackColor: Colors.red,
-                        inactiveThumbColor: Colors.white,
-                        value: Provider.of<ThemeChanger>(context, listen: false)
-                            .isDarkModeon,
-                        onChanged: (boolVal) {
-                          Provider.of<ThemeChanger>(context, listen: false)
-                              .updateTheme(boolVal);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // SizedBox(height: 20),
+              // SizedBox(
+              //   height: 60,
+              //   width: MediaQuery.of(context).size.width,
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //     children: [
+              //       Icon(
+              //         Icons.access_alarm,
+              //         color: Theme.of(context).iconTheme.color,
+              //         size: 34,
+              //       ),
+              //       SizedBox(
+              //         height: 60,
+              //         width: MediaQuery.of(context).size.width * 0.6,
+              //         child: Column(
+              //           crossAxisAlignment: CrossAxisAlignment.start,
+              //           mainAxisAlignment: MainAxisAlignment.center,
+              //           children: [
+              //             Text(
+              //               "Push Notifications",
+              //               style: TextStyle(
+              //                 fontSize: 14,
+              //                 fontWeight: FontWeight.bold,
+              //                 color:
+              //                     Theme.of(context).textTheme.titleLarge!.color,
+              //               ),
+              //             ),
+              //             SizedBox(
+              //               height: 4,
+              //             ),
+              //             Text(
+              //               "Manage your notifications",
+              //               style: TextStyle(
+              //                 fontSize: 14,
+              //                 fontWeight: FontWeight.bold,
+              //                 color:
+              //                     Theme.of(context).textTheme.titleLarge!.color,
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //       Transform.scale(
+              //         scale: 1.5,
+              //         child: Switch(
+              //           activeThumbImage: NetworkImage(
+              //               'https://pixlok.com/wp-content/uploads/2021/12/Notification-Icon-SVG-03cde.png'),
+              //           activeTrackColor: Colors.green,
+              //           activeColor: Colors.white,
+              //           inactiveThumbImage: NetworkImage(
+              //               'https://static.thenounproject.com/png/357659-200.png'),
+              //           inactiveTrackColor: Colors.red,
+              //           inactiveThumbColor: Colors.white,
+              //           value: Provider.of<ThemeChanger>(context, listen: false)
+              //               .isDarkModeon,
+              //           onChanged: (boolVal) {
+              //             Provider.of<ThemeChanger>(context, listen: false)
+              //                 .updateTheme(boolVal);
+              //           },
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               SizedBox(height: 20),
 
               //#3
