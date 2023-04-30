@@ -1,9 +1,9 @@
 import 'dart:ui';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project2/screens/authorization/preferences.dart';
 import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:project2/widgets/filter_row.dart';
@@ -214,6 +214,35 @@ class _HomeScreenState extends State<HomeScreen> {
                       heading: "Top SciFi", movies: scifimovie),
                   futureMovieList(
                       heading: "Top Action", movies: actionmovie),
+              Align(
+                    alignment: Alignment.topLeft,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          "Top Genres",
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color:
+                                Theme.of(context).textTheme.titleLarge!.color,
+                          ),
+                        ),
+                        Spacer(),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => GridOfGenre()));
+                          },
+                          icon: Icon(
+                            Icons.arrow_forward_ios,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
 
                   const SizedBox(
                     height: 20,

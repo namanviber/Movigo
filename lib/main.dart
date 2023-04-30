@@ -42,7 +42,6 @@ class Movigo extends StatefulWidget {
 class _MovigoState extends State<Movigo> {
   @override
   Widget build(BuildContext context) {
-    // return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme)
     return Consumer<ThemeChanger>(
         builder: (context, appState, child)
     {

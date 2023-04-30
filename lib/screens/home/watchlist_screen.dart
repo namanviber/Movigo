@@ -4,6 +4,7 @@ import 'package:project2/widgets/movie_card_watchlist.dart';
 import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/models/MovieDetailModel.dart';
 import 'package:project2/models/getWatchlistModel.dart';
+import 'package:project2/models/getWatchedModel.dart';
 import 'movieDetail.dart';
 import 'package:project2/service/apiCall.dart';
 
@@ -298,7 +299,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                 MediaQuery.of(context).size.height * 0.75,
                             minHeight: 50.0),
                         child: FutureBuilder(
-                          future: watchlist,
+                          future: watched,
                           builder: (context, AsyncSnapshot snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
@@ -310,7 +311,8 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                     ? ListView.builder(
                                         itemCount: snapshot.data.length,
                                         itemBuilder: (context, index) {
-                                          final content = getWatchlistModel
+                                          // print(snapshot.data[index]);
+                                          final content = getWatchedModel
                                               .fromJson(snapshot.data[index]);
                                           return InkWell(
                                             onTap: () {
