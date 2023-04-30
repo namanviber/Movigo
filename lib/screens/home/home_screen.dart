@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:project2/screens/authorization/preferences.dart';
 import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:project2/widgets/filter_row.dart';
@@ -80,8 +81,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Spacer(),
               InkWell(
-                onTap: (){
-                  Navigator.pushNamed(context, '/Profilepage');
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PreferenceScreen()),
+                  );
                 },
                 child: Container(
                   width: 50,
@@ -89,10 +94,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                     color: const Color(0xff7c94b6),
                     image: DecorationImage(
-                      image: NetworkImage('https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg'),
+                      image: NetworkImage(
+                          'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg'),
                       fit: BoxFit.cover,
                     ),
-                    borderRadius: BorderRadius.all( Radius.circular(50.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(50.0)),
                     border: Border.all(
                       color: Colors.blue,
                       width: 1,
@@ -235,7 +241,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 290,
                           child: TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/recommender_screen');
+                              Navigator.pushNamed(
+                                  context, '/recommender_screen');
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
@@ -262,16 +269,22 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
-                            color: Theme.of(context).textTheme.titleLarge!.color,
+                            color:
+                                Theme.of(context).textTheme.titleLarge!.color,
                           ),
                         ),
                         Spacer(),
-                        IconButton(onPressed: (){
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => GridOfGenre()));
-                          }, icon: Icon(Icons.arrow_forward_ios,),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => GridOfGenre()));
+                          },
+                          icon: Icon(
+                            Icons.arrow_forward_ios,
+                          ),
                         )
-
                       ],
                     ),
                   ),

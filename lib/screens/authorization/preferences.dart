@@ -1,10 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:project2/models/getMoviesModel.dart';
 import 'package:project2/screens/authorization/sign_up_screen.dart';
-import 'package:project2/utilities/authPage.dart';
-
 import '../../service/mongoDbCall.dart';
 
 class PreferenceScreen extends StatefulWidget {
@@ -37,120 +34,137 @@ class PreferenceScreenState extends State<PreferenceScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
-        extendBodyBehindAppBar: true,
-        body: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/background_login.png'),
-                fit: BoxFit.cover,
-              ),
+      backgroundColor: Colors.black,
+      extendBodyBehindAppBar: true,
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background_login.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 50,
             ),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 70,
+            Container(
+              padding: const EdgeInsets.all(24),
+              child: Column(children: const [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Select 3 or more which you would like to rate 5",
+                    style: TextStyle(
+                        fontSize: 28,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(children: const [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Select 3 or more of your favourites to continue",
-                        style: TextStyle(
-                            fontSize: 28,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
+              ]),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.7,
+              padding: const EdgeInsets.all(30),
+              child: FutureBuilder(
+                future: prefmovie,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return SizedBox(
+                      height: 190,
+                      width: 125,
+                      child: const Center(child: CircularProgressIndicator()),
+                    );
+                  } else {
+                    return GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 25,
+                        childAspectRatio: 0.67,
                       ),
-                    ),
-                  ]),
-                ),
-                Container(
-                  height: 500,
-                  padding: const EdgeInsets.all(30),
-                  child: FutureBuilder(
-                    future: prefmovie,
-                    builder: (context, AsyncSnapshot snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return SizedBox(
-                          height: 190,
-                          width: 125,
-                          child:
-                              const Center(child: CircularProgressIndicator()),
-                        );
-                      } else {
-                        return GridView.builder(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 20,
-                            mainAxisSpacing: 25,
-                            childAspectRatio: 0.67,
-                          ),
-                          shrinkWrap: true,
-                          itemCount: snapshot.data.length,
-                          itemBuilder: (context, index) {
-                            final content = getMoviesModel.fromJson(snapshot.data[index]);
-                            return InkWell(
-                              onTap: () {
-                                prefresults.add(content.tmdbId);
-                                MongoDatabase.addRating(content.tmdbId, 5);
-                              },
-                              child: Container(
-                                height: 120,
-                                width: 100,
-                                decoration:  BoxDecoration(
-                                  border: Border.all(width: 2, color: Colors.white),
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
+                      shrinkWrap: true,
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (context, index) {
+                        final content =
+                            getMoviesModel.fromJson(snapshot.data[index]);
+                        return GestureDetector(
+                          onTap: () {
+                            prefresults.add(content.tmdbId);
+                            print(prefresults);
+                          },
+                          child: Container(
+                            height: 120,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              border: Border.all(width: 2, color: Colors.white),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                            ),
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10.0),
                                   child: Image.network(
                                     'https://image.tmdb.org/t/p/w600_and_h900_bestv2${content.posterPath}',
                                     fit: BoxFit.cover,
+                                    height: double.infinity,
+                                    width: MediaQuery.of(context).size.width,
                                   ),
                                 ),
-                              ),
-                            );
-                          },
+                                Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: IconButton(
+                                    icon: Icon(
+                                      Icons.check_box,
+                                      color: Colors.white,
+                                      size: 24,
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         );
-                      }
-                    },
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Column(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          if (prefresults.length > 3){
-                            sign = false;
-                          }
-                        });
-                        FirebaseAuth.instance.currentUser?.reload();
-                        Navigator.pushNamed(context, '/home_screen');
                       },
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30.0, vertical: 15.0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0)),
-                        backgroundColor: Colors.white,
-                      ),
-                      child: Center(
-                        child: Text("Continue",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.montserrat(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black)),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            )));
+                    );
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: ElevatedButton(
+        onPressed: () {
+          setState(() {
+            if (prefresults.length > 2) {
+              sign = false;
+              for (int i = 0; i < prefresults.length; i++){
+                MongoDatabase.addRating(prefresults[i], 5);
+              }
+              Navigator.pushNamed(context, '/home_screen');
+            }
+            FirebaseAuth.instance.currentUser?.reload();
+          });
+        },
+        style: ElevatedButton.styleFrom(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 30.0, vertical: 15.0),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0)),
+            backgroundColor: Colors.white,
+            fixedSize: Size(MediaQuery.of(context).size.width * 0.6, 50)),
+        child: Text("Continue",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.black)),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
   }
 }
