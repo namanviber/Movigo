@@ -50,7 +50,7 @@ class _MovigoState extends State<Movigo> {
         title: "Moviego",
         theme: ThemeClass.lightTheme,
         darkTheme: ThemeClass.darkTheme,
-        themeMode: appState.isDarkModeon ? ThemeMode.light : ThemeMode.dark,
+        themeMode: appState.isDarkModeon ? ThemeMode.dark : ThemeMode.light,
         debugShowCheckedModeBanner: false,
         home: Check(),
         initialRoute: '/',

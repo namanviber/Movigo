@@ -94,6 +94,7 @@ class PreferenceScreenState extends State<PreferenceScreen> {
                             return InkWell(
                               onTap: () {
                                 prefresults.add(content.tmdbId);
+                                MongoDatabase.addRating(content.tmdbId, 5);
                               },
                               child: Container(
                                 height: 120,

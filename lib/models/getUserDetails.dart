@@ -65,19 +65,19 @@ class getUserDetails {
 class Rating {
   Rating({
     this.rating,
-    this.tmdbid,
+    this.tmdbId,
   });
 
   double? rating;
-  int? tmdbid;
+  int? tmdbId;
 
   factory Rating.fromJson(Map<String, dynamic> json) => Rating(
         rating: json["rating"]?.toDouble(),
-        tmdbid: json["tmdbid"],
+        tmdbId: json["tmdbId"],
       );
 
   Map<String, dynamic> toJson() => {
         "rating": rating,
-        "tmdbid": tmdbid,
+        "tmdbId": tmdbId,
       };
 }

@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 
-class PrivacyPolicyScreen extends StatefulWidget {
-  const PrivacyPolicyScreen({Key? key}) : super(key: key);
+class PrivacyPolicyScreen extends StatelessWidget {
 
-  @override
-  State<PrivacyPolicyScreen> createState() => _PrivacyPolicyScreenState();
-}
-
-class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
   int screen_index = 5;
 
   @override

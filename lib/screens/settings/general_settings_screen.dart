@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 
-class GeneralSettingsScreen extends StatefulWidget {
-  const GeneralSettingsScreen({Key? key}) : super(key: key);
+class GeneralSettingsScreen extends StatelessWidget {
 
-  @override
-  State<GeneralSettingsScreen> createState() => _GeneralSettingsScreenState();
-}
-
-class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
-  final _controller = ValueNotifier<bool>(false);
-  final _controller1 = ValueNotifier<bool>(false);
   int screen_index = 4;
+
   String dropdownvalue = 'Always';
 
   // List of items in our dropdown menu
@@ -22,16 +14,9 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        toolbarHeight: 60,
-        backgroundColor: const Color(0xFF09090F),
+        centerTitle: true,
         title: Text(
-          "General",
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).textTheme.titleLarge!.color,
-          ),
+          "General Settings",
         ),
       ),
       body: SingleChildScrollView(
@@ -52,9 +37,9 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     const SizedBox(
                       width: 10,
                     ),
-                    const Icon(
+                    Icon(
                       Icons.language_outlined,
-                      color: Colors.white,
+                      color: Theme.of(context).iconTheme.color,
                       size: 34,
                     ),
                     const SizedBox(
@@ -91,29 +76,6 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                         ],
                       ),
                     ),
-                    // DropdownButton(
-                    //
-                    //   // Initial Value
-                    //   value: dropdownvalue,
-                    //
-                    //   // Down Arrow Icon
-                    //   icon: const Icon(Icons.keyboard_arrow_down),
-                    //
-                    //   // Array list of items
-                    //   items: items.map((String items) {
-                    //     return DropdownMenuItem(
-                    //       value: items,
-                    //       child: Text(items),
-                    //     );
-                    //   }).toList(),
-                    //   // After selecting the desired option,it will
-                    //   // change button value to selected value
-                    //   onChanged: (String? newValue) {
-                    //     setState(() {
-                    //       dropdownvalue = newValue!;
-                    //     });
-                    //   },
-                    // ),
                   ],
                 ),
               ),
@@ -128,9 +90,9 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     const SizedBox(
                       width: 10,
                     ),
-                    const Icon(
+                    Icon(
                       Icons.clear_all,
-                      color: Colors.white,
+                      color: Theme.of(context).iconTheme.color,
                       size: 34,
                     ),
                     const SizedBox(
@@ -145,6 +107,49 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                         children: [
                           Text(
                             "Clear Cache Memory",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.titleLarge!.color,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                height: 60,
+                width: double.maxFinite,
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Icon(
+                      Icons.password,
+                      color: Theme.of(context).iconTheme.color,
+                      size: 34,
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SizedBox(
+                      height: 60,
+                      width: 240,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Forget Password",
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,

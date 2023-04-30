@@ -81,12 +81,12 @@ class Rating {
 
   factory Rating.fromJson(Map<String, dynamic> json) => Rating(
     rating: json["rating"]?.toDouble(),
-    tmdbid: json["tmdbid"],
+    tmdbid: json["tmdbId"],
   );
 
   Map<String, dynamic> toJson() => {
     "rating": rating,
-    "tmdbid": tmdbid,
+    "tmdbId": tmdbid,
   };
 }
 

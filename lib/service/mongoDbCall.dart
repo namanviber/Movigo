@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:project2/models/getUserDetails.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'apiCall.dart';
 
 const Mongo_URL =
     "mongodb+srv://namanviber:Naman%40123@movigo.xbc31aq.mongodb.net/Movies?retryWrites=true&w=majority";
@@ -24,8 +25,27 @@ class MongoDatabase {
   // User Specific Functions
   static Future<getUserDetails> getUserData() async {
     final response =
-        await userCollection.findOne(where.eq("firebase_id", userInfo.uid));
+    await userCollection.findOne(where.eq("firebase_id", userInfo.uid));
     final result = getUserDetails.fromJson(response);
+    return result;
+  }
+
+  static Future<List<dynamic>> getRecommendations() async {
+    final response = await userCollection.findOne(
+      where.eq("firebase_id", userInfo.uid).excludeFields([
+        "_id",
+        "firebase_id",
+        "name",
+        "age",
+        "gender",
+        "region",
+        "email_id",
+        "watchlist",
+        "watched"
+      ]),
+    );
+    final result = await recommendMovies(response);
+    print(result);
     return result;
   }
 
@@ -41,7 +61,7 @@ class MongoDatabase {
     return response;
   }
 
-  static Future<List<Map<String, dynamic>>> preferredMovies(List<int> query) async {
+  static Future<List<Map<String, dynamic>>> preferredMovies(List<dynamic> query) async {
     List<Map<String, dynamic>> movieDataList = [];
     for (int i = 0; i < query.length; i++) {
       final movieData = await preferredCollection
@@ -59,9 +79,9 @@ class MongoDatabase {
     return response;
   }
 
-  static Future<getUserDetails> removeWatchlist(int movieid) async {
+  static Future removeWatchlist(int movieid) async {
     var response = await userCollection.updateOne(
-        where.eq('firebase_id', userInfo.uid), modify.popFirst("watchlist"));
+        where.eq('firebase_id', userInfo.uid), modify.pull("watchlist",movieid));
     return response;
   }
 
@@ -70,14 +90,14 @@ class MongoDatabase {
         .addStage(Match({"firebase_id": userInfo.uid}))
         .addStage(Unwind(Field("watchlist")))
         .addStage(Lookup(
-            from: "movieData",
-            localField: "watchlist",
-            foreignField: "tmdbId",
-            as: "result"))
+        from: "movieData",
+        localField: "watchlist",
+        foreignField: "tmdbId",
+        as: "result"))
         .build();
 
     final results =
-        await DbCollection(db, "userData").aggregateToStream(pipeline).toList();
+    await DbCollection(db, "userData").aggregateToStream(pipeline).toList();
     return results;
   }
 
@@ -86,45 +106,35 @@ class MongoDatabase {
         .addStage(Match({"firebase_id": userInfo.uid}))
         .addStage(Unwind(Field("watched")))
         .addStage(Lookup(
-            from: "movieData",
-            localField: "watched",
-            foreignField: "tmdbId",
-            as: "result"))
+        from: "movieData",
+        localField: "watched",
+        foreignField: "tmdbId",
+        as: "result"))
         .build();
 
     final results =
-        await DbCollection(db, "userData").aggregateToStream(pipeline).toList();
+    await DbCollection(db, "userData").aggregateToStream(pipeline).toList();
     return results;
   }
 
-  static Future<getUserDetails> addWatched(int movieid) async {
+  static Future addWatched(int movieid) async {
     var response = await userCollection.updateOne(
         where.eq('firebase_id', userInfo.uid), modify.push("watched", movieid));
     return response;
   }
 
-  static Future<getUserDetails> removeWatched(int movieid) async {
+  static Future removeWatched(int movieid) async {
     var response = await userCollection.updateOne(
-        where.eq('firebase_id', userInfo.uid), modify.popFirst("watched"));
+        where.eq('firebase_id', userInfo.uid), modify.pull("watched",movieid));
     return response;
   }
 
-  static Future<getUserDetails> addRating(int movieid, double rating) async {
-    var data = {"tmdbid": movieid, "rating": rating};
+  static Future addRating(int movieid, double rating) async {
+    var data = {"tmdbId": movieid, "rating": rating};
     var response = await userCollection.updateOne(
         where.eq('firebase_id', userInfo.uid),
         modify.addToSet("ratings", data));
     return response;
-  }
-
-  static Future<getUserDetails> removeRating(int movieid, double rating) async {
-    var response = await userCollection.updateOne(
-        where.eq('firebase_id', userInfo.uid), modify.popFirst("rating"));
-    return response;
-  }
-
-  static Future<void> removeWishlist(int movieid) async{
-    await userCollection.updateOne(where.eq("uid", userInfo.uid), modify.pull('wishlist',movieid));
   }
 
   // Movie Specific Functions
@@ -144,7 +154,7 @@ class MongoDatabase {
 
   static Future<List<Map<String, dynamic>>> getScifiMovies() async {
     final movieData = await movieCollection
-        .find(where.eq("genres", "Sci-Fi").gt('vote_average', 6).limit(30))
+        .find(where.eq("genres", "Sci-Fi").gt('vote_average', 8).limit(30))
         .toList();
     return movieData;
   }
@@ -231,9 +241,9 @@ class MongoDatabase {
   static Future<List<Map<String, dynamic>>> getKidsMovies() async {
     final movieData = await movieCollection
         .find(where
-            .eq("genres", "Children")
-            .sortBy('popularity', descending: true)
-            .limit(30))
+        .eq("genres", "Children")
+        .sortBy('popularity', descending: true)
+        .limit(30))
         .toList();
     return movieData;
   }
@@ -241,9 +251,9 @@ class MongoDatabase {
   static Future<List<Map<String, dynamic>>> getTopRated() async {
     final movieData = await movieCollection
         .find(where
-            .sortBy('vote_average', descending: true)
-            .gt('vote_count', 50)
-            .limit(30))
+        .sortBy('vote_average', descending: true)
+        .gt('vote_count', 50)
+        .limit(30))
         .toList();
     return movieData;
   }

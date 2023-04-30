@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 
-class AboutUsScreen extends StatefulWidget {
-  const AboutUsScreen({Key? key}) : super(key: key);
+class AboutUsScreen extends StatelessWidget {
 
-  @override
-  State<AboutUsScreen> createState() => _AboutUsScreenState();
-}
-
-class _AboutUsScreenState extends State<AboutUsScreen> {
   int screen_index = 5;
 
   @override
@@ -52,9 +46,8 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                 Row(
                   children: <Widget>[
                     const CircleAvatar(
-                      backgroundImage:
-                          NetworkImage('https://example.com/team-member-1.jpg'),
                       radius: 40.0,
+                      child: Text("N"),
                     ),
                     const SizedBox(width: 10.0),
                     Column(

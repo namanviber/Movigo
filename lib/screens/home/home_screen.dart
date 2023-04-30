@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:project2/service/mongoDbCall.dart';
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   var topRatedmovie;
   var horrorComedymovie;
   // var itemrecommendation;
-  // var userrecommendation;
+  var userrecommendation;
 
   @override
   void initState() {
@@ -36,7 +37,14 @@ class _HomeScreenState extends State<HomeScreen> {
     fetchkidsmovie = MongoDatabase.getKidsMovies();
     topRatedmovie = MongoDatabase.getTopRated();
     horrorComedymovie = MongoDatabase.getHorrorComedy();
+    userrecommendation = fetchRecommendations();
     super.initState();
+  }
+
+  Future<List<Map<String, dynamic>>> fetchRecommendations() async {
+    final response1 = await MongoDatabase.getRecommendations();
+    final result = await MongoDatabase.preferredMovies(response1);
+    return result;
   }
 
   Future<void> fetchMovies() async {
@@ -164,8 +172,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       heading: "Discover Movies", movies: fetchmoviedb),
                   // futureMovieList(
                   //     heading: "You May also Like", movies: itemrecommendation),
-                  // futureMovieList(
-                  //     heading: "For You", movies: userrecommendation),
+                  futureMovieList(
+                      heading: "Movies For You", movies: userrecommendation),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: 190,
