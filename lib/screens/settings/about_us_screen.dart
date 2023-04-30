@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 
 class AboutUsScreen extends StatelessWidget {
-
   int screen_index = 5;
+
+  AboutUsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,27 +21,27 @@ class AboutUsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const Text(
+                Text(
                   'Our Story',
                   style: TextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).textTheme.titleSmall!.color),
                 ),
                 const SizedBox(height: 10.0),
-                const Text(
+                Text(
                   "This application is our course project for the PROJECT 2 course",
                   style: TextStyle(
-                    fontSize: 16.0,
-                  ),
+                      fontSize: 16.0,
+                      color: Theme.of(context).textTheme.titleSmall!.color),
                 ),
                 const SizedBox(height: 20.0),
-                const Text(
+                Text(
                   'Our Team',
                   style: TextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).textTheme.titleSmall!.color),
                 ),
                 const SizedBox(height: 10.0),
                 Row(
@@ -52,19 +53,25 @@ class AboutUsScreen extends StatelessWidget {
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
+                      children: <Widget>[
                         Text(
                           'Naman Jain',
                           style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .color),
                         ),
                         Text(
                           'Team Lead',
                           style: TextStyle(
-                            fontSize: 16.0,
-                          ),
+                              fontSize: 16.0,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .color),
                         ),
                       ],
                     ),
@@ -74,26 +81,31 @@ class AboutUsScreen extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     const CircleAvatar(
-                      backgroundImage:
-                          NetworkImage('https://example.com/team-member-2.jpg'),
                       radius: 40.0,
+                      child: Text("A"),
                     ),
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
+                      children: <Widget>[
                         Text(
                           'Aryaman Sital',
                           style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .color),
                         ),
                         Text(
                           'Front End Lead',
                           style: TextStyle(
-                            fontSize: 16.0,
-                          ),
+                              fontSize: 16.0,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .color),
                         ),
                       ],
                     ),
@@ -103,26 +115,31 @@ class AboutUsScreen extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     const CircleAvatar(
-                      backgroundImage:
-                          NetworkImage('https://example.com/team-member-2.jpg'),
                       radius: 40.0,
+                      child: Text("D"),
                     ),
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
+                      children: <Widget>[
                         Text(
                           'Dhaval Pathak',
                           style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .color),
                         ),
                         Text(
                           'Front End Lead',
                           style: TextStyle(
-                            fontSize: 16.0,
-                          ),
+                              fontSize: 16.0,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .color),
                         ),
                       ],
                     ),
@@ -132,26 +149,31 @@ class AboutUsScreen extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     const CircleAvatar(
-                      backgroundImage:
-                          NetworkImage('https://example.com/team-member-2.jpg'),
                       radius: 40.0,
+                      child: Text("S"),
                     ),
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
+                      children: <Widget>[
                         Text(
                           'Sidharth Aggarwal',
                           style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .color),
                         ),
                         Text(
                           'Front End Lead',
                           style: TextStyle(
-                            fontSize: 16.0,
-                          ),
+                              fontSize: 16.0,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .color),
                         ),
                       ],
                     ),
@@ -161,26 +183,31 @@ class AboutUsScreen extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     const CircleAvatar(
-                      backgroundImage:
-                          NetworkImage('https://example.com/team-member-2.jpg'),
                       radius: 40.0,
+                      child: Text("P"),
                     ),
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
+                      children: <Widget>[
                         Text(
                           'Priyansh Tyagi',
                           style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .color),
                         ),
                         Text(
                           'Front End Lead',
                           style: TextStyle(
-                            fontSize: 16.0,
-                          ),
+                              fontSize: 16.0,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .color),
                         ),
                       ],
                     ),
@@ -190,26 +217,31 @@ class AboutUsScreen extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     const CircleAvatar(
-                      backgroundImage:
-                          NetworkImage('https://example.com/team-member-2.jpg'),
                       radius: 40.0,
+                      child: Text("N"),
                     ),
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
+                      children: <Widget>[
                         Text(
                           'Naman Khandelwal',
                           style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .color),
                         ),
                         Text(
                           'Front End Lead',
                           style: TextStyle(
-                            fontSize: 16.0,
-                          ),
+                              fontSize: 16.0,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .color),
                         ),
                       ],
                     ),
@@ -219,26 +251,31 @@ class AboutUsScreen extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     const CircleAvatar(
-                      backgroundImage:
-                          NetworkImage('https://example.com/team-member-2.jpg'),
                       radius: 40.0,
+                      child: Text("S"),
                     ),
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
+                      children: <Widget>[
                         Text(
                           'Soum Nag',
                           style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .color),
                         ),
                         Text(
                           'Front End Lead',
                           style: TextStyle(
-                            fontSize: 16.0,
-                          ),
+                              fontSize: 16.0,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .color),
                         ),
                       ],
                     ),

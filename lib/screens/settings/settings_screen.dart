@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/widgets/bottom_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project2/utilities/themechanger.dart';
 import 'package:provider/provider.dart';
+import 'package:project2/models/getUserDetails.dart';
 
 class SettingsScreen extends StatelessWidget {
-
   int screen_index = 4;
-
   bool isSwitched = true;
 
   @override
@@ -22,68 +22,77 @@ class SettingsScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor,
-                    borderRadius: BorderRadius.circular(10)),
-                height: 100,
-                width: MediaQuery.of(context).size.width,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: Theme.of(context).iconTheme.color,
-                      radius: 28,
-                      child: Text(
-                        "N",
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Theme.of(context).indicatorColor),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 60,
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
+              FutureBuilder(
+                future: MongoDatabase.getUserData(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    var content = getUserDetails.fromJson(snapshot.data);
+                    return Container(
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).iconTheme.color,
+                          borderRadius: BorderRadius.circular(10)),
+                      height: 100,
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text(
-                            "Naman Jain",
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .color),
+                          CircleAvatar(
+                            backgroundColor: Theme.of(context).cardColor,
+                            radius: 28,
+                            child: Text(
+                              content.emailId[0].toUpperCase(),
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Theme.of(context).textTheme.titleSmall!.color),
+                            ),
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 60,
+                            width: MediaQuery.of(context).size.width * 0.5,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  content.name ?? "User",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .color),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  content.emailId,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .color),
+                                ),
+                              ],
+                            ),
                           ),
-                          Text(
-                            "namanviber@gmail.com",
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .color),
-                          ),
+                          IconButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/profile_edit');
+                              },
+                              icon: Icon(
+                                Icons.edit,
+                                color: Theme.of(context).cardColor,
+                              ))
                         ],
                       ),
-                    ),
-                    IconButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/profile_edit');
-                        },
-                        icon: Icon(
-                          Icons.edit,
-                          color: Theme.of(context).iconTheme.color,
-                        ))
-                  ],
-                ),
+                    );
+                  }
+                  return CircularProgressIndicator();
+                },
               ),
               SizedBox(height: 20),
               SizedBox(
@@ -151,7 +160,6 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-
               InkWell(
                 onTap: () {
                   Navigator.pushNamed(context, '/general_setting');
@@ -208,7 +216,6 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-
               InkWell(
                 onTap: () {
                   FirebaseAuth.instance.signOut();
@@ -266,7 +273,6 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-
               InkWell(
                 onTap: () {
                   Navigator.pushNamed(context, '/about_us');
@@ -323,7 +329,6 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-
               InkWell(
                 onTap: () {
                   Navigator.pushNamed(context, '/privacy_policy');

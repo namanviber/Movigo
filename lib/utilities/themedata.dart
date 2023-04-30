@@ -18,6 +18,7 @@ class ThemeClass {
       titleMedium: TextStyle(color: Color(0xff4f4330)),
       titleLarge: TextStyle(color: Color(0xff1b1c18)),
       titleSmall: TextStyle(color: Colors.black),
+      bodySmall: TextStyle(color: Colors.white),
     ),
     iconTheme: IconThemeData(
       color: Color(0xff496727),

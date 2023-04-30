@@ -23,11 +23,10 @@ class MongoDatabase {
   }
 
   // User Specific Functions
-  static Future<getUserDetails> getUserData() async {
+  static Future getUserData() async {
     final response =
-    await userCollection.findOne(where.eq("firebase_id", userInfo.uid));
-    final result = getUserDetails.fromJson(response);
-    return result;
+        await userCollection.findOne(where.eq("firebase_id", userInfo.uid));
+    return response;
   }
 
   static Future<List<dynamic>> getRecommendations() async {
@@ -45,7 +44,6 @@ class MongoDatabase {
       ]),
     );
     final result = await recommendMovies(response);
-    print(result);
     return result;
   }
 
@@ -61,12 +59,12 @@ class MongoDatabase {
     return response;
   }
 
-  static Future<List<Map<String, dynamic>>> preferredMovies(List<dynamic> query) async {
+  static Future<List<Map<String, dynamic>>> preferredMovies(
+      List<dynamic> query) async {
     List<Map<String, dynamic>> movieDataList = [];
     for (int i = 0; i < query.length; i++) {
-      final movieData = await preferredCollection
-          .find(where.eq('tmdbId', query[i]))
-          .toList();
+      final movieData =
+          await preferredCollection.find(where.eq('tmdbId', query[i])).toList();
       movieDataList.addAll(movieData);
     }
     return movieDataList;
@@ -81,7 +79,8 @@ class MongoDatabase {
 
   static Future removeWatchlist(int movieid) async {
     var response = await userCollection.updateOne(
-        where.eq('firebase_id', userInfo.uid), modify.pull("watchlist",movieid));
+        where.eq('firebase_id', userInfo.uid),
+        modify.pull("watchlist", movieid));
     return response;
   }
 
@@ -90,14 +89,14 @@ class MongoDatabase {
         .addStage(Match({"firebase_id": userInfo.uid}))
         .addStage(Unwind(Field("watchlist")))
         .addStage(Lookup(
-        from: "movieData",
-        localField: "watchlist",
-        foreignField: "tmdbId",
-        as: "result"))
+            from: "movieData",
+            localField: "watchlist",
+            foreignField: "tmdbId",
+            as: "result"))
         .build();
 
     final results =
-    await DbCollection(db, "userData").aggregateToStream(pipeline).toList();
+        await DbCollection(db, "userData").aggregateToStream(pipeline).toList();
     return results;
   }
 
@@ -106,14 +105,14 @@ class MongoDatabase {
         .addStage(Match({"firebase_id": userInfo.uid}))
         .addStage(Unwind(Field("watched")))
         .addStage(Lookup(
-        from: "movieData",
-        localField: "watched",
-        foreignField: "tmdbId",
-        as: "result"))
+            from: "movieData",
+            localField: "watched",
+            foreignField: "tmdbId",
+            as: "result"))
         .build();
 
     final results =
-    await DbCollection(db, "userData").aggregateToStream(pipeline).toList();
+        await DbCollection(db, "userData").aggregateToStream(pipeline).toList();
     return results;
   }
 
@@ -125,7 +124,7 @@ class MongoDatabase {
 
   static Future removeWatched(int movieid) async {
     var response = await userCollection.updateOne(
-        where.eq('firebase_id', userInfo.uid), modify.pull("watched",movieid));
+        where.eq('firebase_id', userInfo.uid), modify.pull("watched", movieid));
     return response;
   }
 
@@ -165,8 +164,6 @@ class MongoDatabase {
         .toList();
     return movieData;
   }
-
-
 
   static Future<List<Map<String, dynamic>>> getComedyMovies() async {
     final movieData = await movieCollection
@@ -241,9 +238,9 @@ class MongoDatabase {
   static Future<List<Map<String, dynamic>>> getKidsMovies() async {
     final movieData = await movieCollection
         .find(where
-        .eq("genres", "Children")
-        .sortBy('popularity', descending: true)
-        .limit(30))
+            .eq("genres", "Children")
+            .sortBy('popularity', descending: true)
+            .limit(30))
         .toList();
     return movieData;
   }
@@ -251,9 +248,9 @@ class MongoDatabase {
   static Future<List<Map<String, dynamic>>> getTopRated() async {
     final movieData = await movieCollection
         .find(where
-        .sortBy('vote_average', descending: true)
-        .gt('vote_count', 50)
-        .limit(30))
+            .sortBy('vote_average', descending: true)
+            .gt('vote_count', 50)
+            .limit(30))
         .toList();
     return movieData;
   }
@@ -307,5 +304,4 @@ class MongoDatabase {
       return e.toString();
     }
   }
-
 }
