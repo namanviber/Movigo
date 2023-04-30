@@ -323,16 +323,10 @@ class _SearchScreenState extends State<SearchScreen> {
   double height_for_colorbox = 130;
   Widget ColorBox(int index) {
     final genreListImage = genrelist[index];
-    print(genreListImage);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
       child: InkWell(
-        // onTap: () {
-        //   // Navigator.pushNamed(context, '/filter_results',
-        //   //     arguments: 'genrelist[i');
-        //
-        // },
         onTap: () {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => ItemGrid(heading: genrelist_onlytext[index], movies: genreFunction[index])));

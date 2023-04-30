@@ -1,16 +1,14 @@
-import 'dart:ui';
-import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:project2/screens/authorization/preferences.dart';
 import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/widgets/bottom_bar.dart';
-import 'package:project2/widgets/filter_row.dart';
 import 'package:project2/models/DiscoverMovieModel.dart';
 import 'package:project2/service/apiCall.dart';
 import 'package:project2/widgets/futureMovieList.dart';
 import 'package:project2/widgets/grid_of_genre.dart';
+
+import '../../models/MovieDetailModel.dart';
+import 'movieDetail.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -22,39 +20,48 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // Movie models
   List<DiscoverMovieModel> _discoverMovie = [];
-  var fetchmoviedb;
-  var fetchpopularmovie;
-  var scifimovie;
-  var animationmovie;
-  var topRatedmovie;
-  var horrorComedymovie;
-  var actionmovie;
-  var fantasymovie;
-  var romancemovie;
-  var crimemovie;
-
-  // var itemrecommendation;
+  var fetchmoviedb = MongoDatabase.getMovies();
+  var fetchpopularmovie = MongoDatabase.getPopularMovies();
+  var scifimovie = MongoDatabase.getScifiMovies();
+  var animationmovie = MongoDatabase.getAnimationMovies();
+  var topRatedmovie = MongoDatabase.getTopRated();
+  var horrorComedymovie = MongoDatabase.getHorrorComedy();
+  var actionmovie = MongoDatabase.getActionMovies();
+  var fantasymovie = MongoDatabase.getFantasyMovies();
+  var romancemovie = MongoDatabase.getRomanceMovies();
+  var crimemovie = MongoDatabase.getCrimeMovies();
   var userrecommendation;
+  var itemrecommendation;
 
   @override
   void initState() {
     fetchMovies();
-    fetchmoviedb = MongoDatabase.getMovies();
-    fetchpopularmovie = MongoDatabase.getPopularMovies();
-    scifimovie = MongoDatabase.getScifiMovies();
-    animationmovie = MongoDatabase.getAnimationMovies();
-    topRatedmovie = MongoDatabase.getTopRated();
-    horrorComedymovie = MongoDatabase.getHorrorComedy();
-    actionmovie = MongoDatabase.getActionMovies();
-    fantasymovie = MongoDatabase.getFantasyMovies();
-    romancemovie = MongoDatabase.getRomanceMovies();
-    crimemovie = MongoDatabase.getCrimeMovies();
-    userrecommendation = fetchRecommendations();
+    userrecommendation = fetchuserRecommendations();
+    itemrecommendation = fetchitemRecommendations();
     super.initState();
   }
 
-  Future<List<Map<String, dynamic>>> fetchRecommendations() async {
-    final response1 = await MongoDatabase.getRecommendations();
+  Future<void> fetchMovieDetails(int movieid) async {
+    final response3 = await movieDetails(movieid);
+    setState(() {
+      MovieDetailModel movieDetail = response3;
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MovieInfo(
+                movieModel: movieDetail, data: false,
+              )));
+    });
+  }
+
+  Future<List<Map<String, dynamic>>> fetchuserRecommendations() async {
+    final response1 = await MongoDatabase.userRecommendations();
+    final result = await MongoDatabase.preferredMovies(response1);
+    return result;
+  }
+
+  Future<List<Map<String, dynamic>>> fetchitemRecommendations() async {
+    final response1 = await MongoDatabase.itemRecommendations();
     final result = await MongoDatabase.preferredMovies(response1);
     return result;
   }
@@ -83,7 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
             CarouselSlider(
               items: _discoverMovie
                   .map((item) => InkWell(
-                onTap: () {},
+                onTap: () {
+                  fetchMovieDetails(item.id);
+                },
                 child: SizedBox(
                   height: 300,
                   child: Column(
@@ -124,11 +133,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   futureMovieList(
                       heading: "Movies For You", movies: userrecommendation),
                   futureMovieList(
+                      heading: "Continue Watching...", movies: itemrecommendation),
+                  futureMovieList(
                       heading: "Popular Movies", movies: fetchpopularmovie),
                   futureMovieList(
                       heading: "Top Rated Movies", movies: topRatedmovie),
-                  // futureMovieList(
-                  //     heading: "You May also Like", movies: itemrecommendation),
 
                   const SizedBox(
                     height: 20,
@@ -140,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.white,width: 2),
                       gradient: LinearGradient(
-                        colors: const [Colors.black12, Colors.blueAccent],
+                        colors: const [Color(0x21074DFF), Colors.purpleAccent],
                         begin: Alignment.bottomLeft,
                         end: Alignment.topRight,
                       ),
@@ -157,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Find More What You Like",
+                                      "Check out your favourite lists",
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
@@ -168,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Text(
-                                      "Find movies based on your current mood",
+                                      "Get a look at your saved movies",
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Theme.of(context)
@@ -184,7 +193,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 80,
                                   width: 120,
                                   child: Image.asset(
-                                    'assets/images/cardimg1.png',
+                                    'assets/images/cardimg2.png',
                                     fit: BoxFit.cover,
                                   ))
                             ],
@@ -195,8 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 290,
                           child: TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(
-                                  context, '/recommender_screen');
+                              Navigator.pushNamed(context, '/watch_list');
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
@@ -344,7 +352,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.white,width: 2),
                       gradient: LinearGradient(
-                        colors: const [Color(0x21074DFF), Colors.purpleAccent],
+                        colors: const [Colors.black12, Colors.blueAccent],
                         begin: Alignment.bottomLeft,
                         end: Alignment.topRight,
                       ),
@@ -361,7 +369,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Check out your favourite lists",
+                                      "Want to Update your profile",
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
@@ -372,7 +380,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Text(
-                                      "Get a look at your saved movies",
+                                      "Change Your Profile Data Here!",
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Theme.of(context)
@@ -388,7 +396,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 80,
                                   width: 120,
                                   child: Image.asset(
-                                    'assets/images/cardimg2.png',
+                                    'assets/images/cardimage3.png',
                                     fit: BoxFit.cover,
                                   ))
                             ],
@@ -399,7 +407,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 290,
                           child: TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/watch_list');
+                              Navigator.pushNamed(
+                                  context, '/Profilepage');
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(

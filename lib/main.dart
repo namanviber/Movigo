@@ -51,7 +51,7 @@ class _MovigoState extends State<Movigo> {
         darkTheme: ThemeClass.darkTheme,
         themeMode: appState.isDarkModeon ? ThemeMode.dark : ThemeMode.light,
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+        home: Check(),
         initialRoute: '/',
         routes: {
           // When navigating to the "/" route, build the FirstScreen widget.

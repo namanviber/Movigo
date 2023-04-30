@@ -17,15 +17,8 @@ class WatchlistScreen extends StatefulWidget {
 
 class _WatchlistScreenState extends State<WatchlistScreen> {
   Viewtype _viewType = Viewtype.grid;
-  var watchlist;
-  var watched;
-
-  @override
-  void initState() {
-    watchlist = MongoDatabase.showWatchlist();
-    watched = MongoDatabase.showWatched();
-    super.initState();
-  }
+  var watchlist = MongoDatabase.showWatchlist();
+  var watched = MongoDatabase.showWatched();
 
   Future<void> fetchMovieDetails(int movieid) async {
     final response3 = await movieDetails(movieid);

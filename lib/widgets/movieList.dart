@@ -16,7 +16,6 @@ class _MovieListState extends State<MovieList> {
 
   //Fetch Movie Details from API
   Future<void> fetchMovieDetails(int movieid) async {
-    print(movieid);
     final response3 = await movieDetails(movieid);
     setState(() {
       MovieDetailModel movieDetail = response3;
