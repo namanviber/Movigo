@@ -23,8 +23,9 @@ class PreferenceScreenState extends State<PreferenceScreen> {
     11525,
     46785,
     12158,
-    12158
+    19995
   ];
+  bool isSelected = false;
 
   @override
   void initState() {
@@ -86,12 +87,19 @@ class PreferenceScreenState extends State<PreferenceScreen> {
                       shrinkWrap: true,
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
-                        final content =
-                            getMoviesModel.fromJson(snapshot.data[index]);
+                        final content = getMoviesModel.fromJson(snapshot.data[index]);
+                        isSelected = prefresults.contains(content.tmdbId);
                         return GestureDetector(
                           onTap: () {
-                            prefresults.add(content.tmdbId);
-                            print(prefresults);
+                            setState(() {
+                              if (prefresults.contains(content.tmdbId)) {
+                                prefresults.remove(content.tmdbId);
+                                print(prefresults);
+                              } else {
+                                prefresults.add(content.tmdbId);
+                                print(prefresults);
+                              }
+                            });
                           },
                           child: Container(
                             height: 120,
@@ -118,7 +126,7 @@ class PreferenceScreenState extends State<PreferenceScreen> {
                                   child: IconButton(
                                     icon: Icon(
                                       Icons.check_box,
-                                      color: Colors.white,
+                                      color: isSelected ? Colors.blue : Colors.white,
                                       size: 24,
                                     ),
                                     onPressed: () {},
@@ -137,32 +145,43 @@ class PreferenceScreenState extends State<PreferenceScreen> {
           ],
         ),
       ),
-      floatingActionButton: ElevatedButton(
-        onPressed: () {
-          setState(() {
-            if (prefresults.length > 2) {
-              sign = false;
-              for (int i = 0; i < prefresults.length; i++){
-                MongoDatabase.addRating(prefresults[i], 5);
+      floatingActionButton: Padding(
+        padding: EdgeInsets.symmetric(vertical: 3),
+        child: ElevatedButton(
+          onPressed: () {
+            setState(() {
+              if (prefresults.length > 2) {
+                sign = false;
+                for (int i = 0; i < prefresults.length; i++){
+                  MongoDatabase.addRating(prefresults[i], 5);
+                }
+                Navigator.pushNamed(context, '/home_screen');
               }
-              Navigator.pushNamed(context, '/home_screen');
-            }
-            FirebaseAuth.instance.currentUser?.reload();
-          });
-        },
-        style: ElevatedButton.styleFrom(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 30.0, vertical: 15.0),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0)),
-            backgroundColor: Colors.white,
-            fixedSize: Size(MediaQuery.of(context).size.width * 0.6, 50)),
-        child: Text("Continue",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.black)),
+              else{
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Please select at least 3 items'),
+                    duration: const Duration(seconds: 2),
+                  ),
+                );
+              }
+              FirebaseAuth.instance.currentUser?.reload();
+            });
+          },
+          style: ElevatedButton.styleFrom(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 15.0),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0)),
+              backgroundColor: Colors.white,
+              fixedSize: Size(MediaQuery.of(context).size.width * 0.6, 50)),
+          child: Text("Continue",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black)),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );

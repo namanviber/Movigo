@@ -81,6 +81,30 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:AppBar(
+        automaticallyImplyLeading:false,
+
+        backgroundColor: Colors.transparent,
+
+        elevation: 0,
+        title: Text(
+          'Movigo',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).textTheme.titleSmall!.color,
+          ),
+        ),
+
+        centerTitle: true,
+
+        // actions: [
+        //   CircleAvatar(
+        //     backgroundImage: AssetImage('assets/images/profile_image.png'),
+        //     radius: 20,
+        //   ),
+        // ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -378,7 +402,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.white),
+                                  Colors.white
+                              ),
                             ),
                             child: Text("Try it Now"),
                           ),
