@@ -259,7 +259,7 @@ class _SearchScreenState extends State<SearchScreen> {
         style: TextStyle(color: Theme.of(context).textTheme.bodySmall!.color),
         decoration: InputDecoration(
           hintStyle: TextStyle(
-            color: Color(0xff000000),
+            color: Theme.of(context).textTheme.titleMedium!.color,
           ),
           hintText: 'Search movie...',
           enabledBorder: OutlineInputBorder(

@@ -255,7 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.white,width: 2),
                       gradient: LinearGradient(
-                        colors: const [Color(0xFF7A0000), Colors.deepPurple],
+                        colors: const [Color(0xFFEF6363), Color(0xFF008023)],
                         begin: Alignment.bottomLeft,
                         end: Alignment.topRight,
                       ),

@@ -5,9 +5,9 @@ class ThemeClass {
     cardColor: Color(0xffc5eae7),
     scaffoldBackgroundColor: Color(0xfffefcf6),
     highlightColor: Color(0xffaead8a),
-    bottomAppBarTheme: BottomAppBarTheme(color: Color(0xff616200)),
+    bottomAppBarTheme: BottomAppBarTheme(color: Color(0xff29048d)),
     canvasColor: Colors.black,
-    primarySwatch: Colors.green,
+    primarySwatch: Colors.deepPurple,
     indicatorColor: Colors.white,
     filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
@@ -15,21 +15,21 @@ class ThemeClass {
       foregroundColor: MaterialStatePropertyAll<Color>(Colors.blue),
     )),
     textTheme: TextTheme(
-      titleMedium: TextStyle(color: Color(0xff4f4330)),
-      titleLarge: TextStyle(color: Color(0xff1b1c18)),
-      titleSmall: TextStyle(color: Colors.black),
+      titleMedium: TextStyle(color: Color(0xff1f1f1f)),
+      titleLarge: TextStyle(color: Color(0xff1f1f1f)),
+      titleSmall: TextStyle(color: Color(0xff1f1f1f)),
       bodySmall: TextStyle(color: Colors.white),
     ),
     iconTheme: IconThemeData(
-      color: Color(0xff496727),
+      color: Color(0xff29048d),
     ),
     tabBarTheme: TabBarTheme(labelColor: Color(0xff1f1f1f)),
     appBarTheme: AppBarTheme(
-      surfaceTintColor: Color(0xff616200),
-      shadowColor: Color(0xff616200),
-      foregroundColor: Color(0xff616200),
+      surfaceTintColor: Color(0xff29048d),
+      shadowColor: Color(0xff29048d),
+      foregroundColor: Color(0xff29048d),
       elevation: 0,
-      toolbarHeight: 80,
+      toolbarHeight: 60,
       titleTextStyle: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.bold,
@@ -48,7 +48,7 @@ class ThemeClass {
   );
 
   static ThemeData darkTheme = ThemeData(
-    cardColor: Color(0xFF043E4F),
+    cardColor: Color(0xFF2D2D05),
     scaffoldBackgroundColor: Color(0xFF1c1c16),
     primaryColor: Colors.white,
     highlightColor: Colors.blue,
@@ -63,28 +63,28 @@ class ThemeClass {
         titleMedium: TextStyle(color: Color(0xFFe5e2d9)),
         titleLarge: TextStyle(color: Color(0xFFe5e2d9)),
         titleSmall: TextStyle(color: Color(0xFFe5e2d9)),
-        bodySmall: TextStyle(color: Colors.black),
+        bodySmall: TextStyle(color: Colors.white),
         bodyLarge: TextStyle(color: Colors.blue)),
-    iconTheme: IconThemeData(color: Colors.white),
+    iconTheme: IconThemeData(color: Color(0xff8b48ff)),
     iconButtonTheme: IconButtonThemeData(
         style: IconButton.styleFrom(
             foregroundColor: Colors.blueAccent, backgroundColor: Colors.white)),
     bottomNavigationBarTheme:
-        BottomNavigationBarThemeData(backgroundColor: Color(0xff494a00)),
+        BottomNavigationBarThemeData(backgroundColor: Color(0xff8b48ff)),
     inputDecorationTheme: InputDecorationTheme(),
-    bottomAppBarTheme: BottomAppBarTheme(color: Color(0xff616200)),
+    bottomAppBarTheme: BottomAppBarTheme(color: Color(0xff8b48ff)),
     indicatorColor: Colors.white,
-    tabBarTheme: TabBarTheme(labelColor: Color(0xff1f1f1f)),
+    tabBarTheme: TabBarTheme(labelColor: Color(0xff8b48ff)),
     appBarTheme: AppBarTheme(
-      foregroundColor: Color(0xff616200),
+      foregroundColor: Color(0xff1f1f1f),
       elevation: 0,
-      toolbarHeight: 80,
+      toolbarHeight: 60,
       titleTextStyle: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.bold,
         color: Color(0xffe5e2d9),
       ),
-      backgroundColor: Color(0xff48482d),
+      backgroundColor: Color(0xff1f1f1f),
     ),
   );
 }

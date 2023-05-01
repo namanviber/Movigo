@@ -89,6 +89,9 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                 Tab(
                   child: Text(
                     "Saved Movies",
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.titleMedium!.color,
+                    ),
                   ),
                 ),
               ],
