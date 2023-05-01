@@ -30,6 +30,13 @@ class _SignUpState extends State<SignUp> {
             email: _email.text.trim(), password: _password.text.trim());
       } on FirebaseAuthException catch (e) {
         print(e);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("vcftyiujk"),
+            backgroundColor: Colors.red,
+            duration: Duration(seconds: 3),
+          ),
+        );
       }
     }
   }
@@ -124,7 +131,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) {
-                          if (value!.isEmpty &&
+                          if (value!.isEmpty ||
                               !EmailValidator.validate(value)) {
                             return "Enter valid email";
                           }
@@ -166,7 +173,7 @@ class _SignUpState extends State<SignUp> {
                         obscureText: showtext,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) {
-                          if (value!.isEmpty && value.length < 8) {
+                          if (value!.isEmpty ||value.length < 8) {
                             return "Minimum 8 Characters Required";
                           }
                           return null;

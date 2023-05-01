@@ -233,7 +233,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                       () {
                                                                         MongoDatabase.removeWatchlist(content.result[0].tmdbId);
                                                                         Navigator.pushReplacementNamed(context, '/watch_list');
-                                                                        
+
                                                                       },
                                                                 ),
                                                               ),
