@@ -19,11 +19,21 @@ class _LoginScreenState extends State<LoginScreen> {
   bool showtext = true;
 
   Future log_in() async {
-    try {
-      FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _email.text.trim(), password: _password.text.trim());
-    } on FirebaseAuthException catch (e) {
-      return Text("Credientials donot match", style: TextStyle(color: Colors.white),);
+    final isvalid = formKey.currentState!.validate();
+    if (isvalid) {
+      try {
+        FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: _email.text.trim(), password: _password.text.trim());
+      } on FirebaseAuthException catch (e) {
+        print(e);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("vcftyiujk"),
+            backgroundColor: Colors.red,
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
     }
   }
 
@@ -107,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) {
-                          if (value!.isEmpty &&
+                          if (value!.isEmpty ||
                               !EmailValidator.validate(value)) {
                             return "Enter valid email";
                           }
@@ -149,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         obscureText: showtext,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) {
-                          if (value!.isEmpty && value.length < 8) {
+                          if (value!.isEmpty || value.length < 8) {
                             return "Minimum 8 Characters Required";
                           }
                           return null;
