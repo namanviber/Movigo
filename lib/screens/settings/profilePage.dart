@@ -13,6 +13,8 @@ class _ProfilepageState extends State<Profilepage> {
 
   final TextEditingController _age = TextEditingController();
 
+  TextEditingController _genderController = TextEditingController();
+
   var _gender;
 
   final TextEditingController _region = TextEditingController();
@@ -66,7 +68,7 @@ class _ProfilepageState extends State<Profilepage> {
                       color: Theme.of(context).textTheme.titleSmall!.color,
                     ),
                     cursorColor: Theme.of(context).iconTheme.color,
-                    controller: _name,
+                    controller: TextEditingController(text: content.name),
                     decoration: InputDecoration(
                       labelText: 'Name',
                       floatingLabelBehavior: FloatingLabelBehavior
@@ -74,7 +76,7 @@ class _ProfilepageState extends State<Profilepage> {
                       labelStyle: TextStyle(
                         color: Theme.of(context).textTheme.titleSmall!.color,
                       ),
-                      hintText: content.name ?? "Enter Your Name",
+                      // hintText: content.name ?? "Enter Your Name",
                       hintStyle: TextStyle(
                         color: Theme.of(context).textTheme.titleSmall!.color,
                       ),
@@ -102,14 +104,14 @@ class _ProfilepageState extends State<Profilepage> {
                     style: TextStyle(
                         color: Theme.of(context).textTheme.titleSmall!.color),
                     cursorColor: Theme.of(context).iconTheme.color,
-                    controller: _age,
+                    controller:
+                        TextEditingController(text: content.age.toString()),
                     decoration: InputDecoration(
-                      floatingLabelBehavior: FloatingLabelBehavior
-                          .always,
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
                       labelText: 'Age',
                       labelStyle: TextStyle(
                           color: Theme.of(context).textTheme.titleSmall!.color),
-                      hintText: (content.age ?? "Enter Your Age").toString(),
+                      // hintText: (content.age ?? "Enter Your Age").toString(),
                       hintStyle: TextStyle(
                         color: Theme.of(context).textTheme.titleSmall!.color,
                       ),
@@ -132,12 +134,13 @@ class _ProfilepageState extends State<Profilepage> {
                     ),
                   ),
                   SizedBox(height: 20),
+
                   DropdownButtonFormField<String>(
+                    // controller: _genderController,
                     style: TextStyle(
                         color: Theme.of(context).textTheme.titleSmall!.color),
                     decoration: InputDecoration(
-                      floatingLabelBehavior: FloatingLabelBehavior
-                          .always,
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
                       labelStyle: TextStyle(
                           color: Theme.of(context).textTheme.titleSmall!.color),
                       enabledBorder: UnderlineInputBorder(
@@ -152,7 +155,8 @@ class _ProfilepageState extends State<Profilepage> {
                             width: 2),
                       ),
                       labelText: 'Gender',
-                      hintText: content.gender ?? "Select your gender",
+                      // controller: _genderController,
+                      // hintText: content.gender ?? "Select your gender",
                       hintStyle: TextStyle(
                         color: Theme.of(context).textTheme.titleSmall!.color,
                       ),
@@ -161,8 +165,10 @@ class _ProfilepageState extends State<Profilepage> {
                         color: Theme.of(context).iconTheme.color,
                       ),
                     ),
+                    value: _gender,
                     items: _genderOptions.map((String value) {
                       return DropdownMenuItem<String>(
+
                         value: value,
                         child: Text(
                           value,
@@ -176,25 +182,29 @@ class _ProfilepageState extends State<Profilepage> {
                     onChanged: (value) {
                       setState(() {
                         _gender = value;
+          
                       });
                     },
+                    // controller: _genderController,
                   ),
+
                   SizedBox(height: 20),
                   TextFormField(
+
                     style: TextStyle(
                         color: Theme.of(context).textTheme.titleSmall!.color),
                     cursorColor: Theme.of(context).iconTheme.color,
-                    controller: _region,
+                    controller: TextEditingController(text: content.region),
                     decoration: InputDecoration(
-                      floatingLabelBehavior: FloatingLabelBehavior
-                          .always,
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
                       labelText: 'Region',
                       hintStyle: TextStyle(
                         color: Theme.of(context).textTheme.titleSmall!.color,
                       ),
                       labelStyle: TextStyle(
                           color: Theme.of(context).textTheme.titleSmall!.color),
-                      hintText: content.region ?? 'Enter your Country',
+                      // hintText: content.region ?? 'Enter your Country',
+
                       prefixIcon: Icon(
                         Icons.location_city,
                         color: Theme.of(context).iconTheme.color,
@@ -225,9 +235,9 @@ class _ProfilepageState extends State<Profilepage> {
                         backgroundColor: Theme.of(context).iconTheme.color,
                         fixedSize: Size(150, 50)),
                     child: Text(
-                      'Save Changes',style: TextStyle(
-                      color: Theme.of(context).textTheme.bodySmall!.color
-                    ),
+                      'Save Changes',
+                      style: TextStyle(
+                          color: Theme.of(context).textTheme.bodySmall!.color),
                     ),
                   ),
                 ],

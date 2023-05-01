@@ -41,6 +41,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
+
             automaticallyImplyLeading: false,
             title: Padding(
               padding: const EdgeInsets.all(16),
@@ -75,7 +76,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                   child: Text(
                     "Watched Movies",
                     style: TextStyle(
-                      color: Theme.of(context).textTheme.titleMedium!.color,
+                       color: Theme.of(context).textTheme.titleMedium!.color,
                     ),
                   ),
                 ),
@@ -111,7 +112,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
                               return const Center(
-                                  child: CircularProgressIndicator());
+                                  child: Center(child: CircularProgressIndicator()));
                             } else {
                               if (snapshot.hasData) {
                                 return (_viewType == Viewtype.grid)
@@ -227,9 +228,12 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                         .color,
                                                                     size: 24,
                                                                   ),
+
                                                                   onPressed:
                                                                       () {
                                                                         MongoDatabase.removeWatchlist(content.result[0].tmdbId);
+                                                                        Navigator.pushReplacementNamed(context, '/watch_list');
+                                                                        
                                                                       },
                                                                 ),
                                                               ),
