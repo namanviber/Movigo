@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project2/screens/authorization/complete_profile.dart';
 import 'package:project2/screens/home/home_screen.dart';
-import 'package:project2/screens/authorization/landing_screen.dart';
-import 'package:project2/screens/authorization/login_screen.dart';
 import '../screens/authorization/sign_up_screen.dart';
 import 'authPage.dart';
 

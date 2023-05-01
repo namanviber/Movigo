@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:project2/service/mongoDbCall.dart';
@@ -87,29 +89,32 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.transparent,
 
         elevation: 0,
-        title: Text(
-          'Movigo',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).textTheme.titleSmall!.color,
-          ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(height: 40,
+                child: Image.asset("assets/images/Movigo.png", fit: BoxFit.fitHeight,)),
+            GestureDetector(
+              onTap: (){Navigator.pushNamed(context, "/Profilepage");},
+              child: CircleAvatar(
+                backgroundColor: Theme.of(context).cardColor,
+                radius: 20,
+                child: Text(
+                  FirebaseAuth.instance.currentUser!.email![0].toUpperCase(),
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Theme.of(context).textTheme.titleSmall!.color),
+                ),
+              ),
+            )
+          ],
         ),
-
-        centerTitle: true,
-
-        // actions: [
-        //   CircleAvatar(
-        //     backgroundImage: AssetImage('assets/images/profile_image.png'),
-        //     radius: 20,
-        //   ),
-        // ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(
-              height: 60,
+              height: 20,
             ),
             CarouselSlider(
               items: _discoverMovie

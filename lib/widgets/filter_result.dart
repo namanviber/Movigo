@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project2/models/getMoviesModel.dart';
 import '../models/MovieDetailModel.dart';
@@ -31,18 +30,15 @@ class _FilterResultsState extends State<FilterResults> {
       } else {
         final searchResult = await MongoDatabase.searchGenre(q);
 
-        print(searchResult);
         return searchResult;
       }
     } catch (e) {
-      print('Error: $e');
       return [];
     }
   }
 
 
   Future<void> fetchMovieDetails(int movieid) async {
-    print(movieid);
     final response3 = await movieDetails(movieid);
     setState(() {
       MovieDetailModel movieDetail = response3;
@@ -139,7 +135,7 @@ class _FilterResultsState extends State<FilterResults> {
                                           horizontal: 15),
                                       child: Row(
                                         children: [
-                                          Container(
+                                          SizedBox(
                                             height: 120,
                                             width: 100,
                                             child: Stack(
@@ -152,7 +148,7 @@ class _FilterResultsState extends State<FilterResults> {
                                               ],
                                             ),
                                           ),
-                                          Container(
+                                          SizedBox(
                                             height: 120,
                                             width: MediaQuery.of(
                                                 context)

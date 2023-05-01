@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:project2/widgets/bottom_bar.dart';
+import 'package:project2/widgets/movie_card_watched.dart';
 import 'package:project2/widgets/movie_card_watchlist.dart';
 import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/models/MovieDetailModel.dart';
@@ -232,8 +233,6 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                   onPressed:
                                                                       () {
                                                                         MongoDatabase.removeWatchlist(content.result[0].tmdbId);
-                                                                        Navigator.pushReplacementNamed(context, '/watch_list');
-                                                                        
                                                                       },
                                                                 ),
                                                               ),
@@ -311,7 +310,6 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                     ? ListView.builder(
                                         itemCount: snapshot.data.length,
                                         itemBuilder: (context, index) {
-                                          // print(snapshot.data[index]);
                                           final content = getWatchedModel
                                               .fromJson(snapshot.data[index]);
                                           return InkWell(
@@ -414,8 +412,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                 child:
                                                                     IconButton(
                                                                   icon: Icon(
-                                                                    Icons
-                                                                        .delete,
+                                                                    Icons.delete,
                                                                     color: Theme.of(
                                                                             context)
                                                                         .iconTheme
@@ -424,7 +421,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                                                   ),
                                                                   onPressed:
                                                                       () {
-                                                                        MongoDatabase.removeWatchlist(content.result[0].tmdbId);
+                                                                        MongoDatabase.removeWatched(content.result[0].tmdbId);
 
                                                                       },
                                                                 ),
@@ -453,10 +450,9 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                                             mainAxisSpacing: 10.0,
                                           ),
                                           itemBuilder: (context, index) {
-                                            final content = getWatchlistModel
+                                            final content = getWatchedModel
                                                 .fromJson(snapshot.data[index]);
-                                            // return Center();
-                                            return MovieCardWatch(
+                                            return MovieCardWatched(
                                                 movie: content);
                                           },
                                         ),

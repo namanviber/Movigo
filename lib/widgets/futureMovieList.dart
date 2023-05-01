@@ -3,11 +3,16 @@ import 'package:project2/widgets/heading_text.dart';
 import 'package:project2/widgets/movieList.dart';
 import 'package:project2/models/getMoviesModel.dart';
 
-class futureMovieList extends StatelessWidget {
+class futureMovieList extends StatefulWidget {
   String heading;
   var movies;
   futureMovieList({required this.heading, required this.movies,Key? key}) : super(key: key);
 
+  @override
+  State<futureMovieList> createState() => _futureMovieListState();
+}
+
+class _futureMovieListState extends State<futureMovieList> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -15,12 +20,12 @@ class futureMovieList extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        TextHeading(heading: heading, movies: movies,),
+        TextHeading(heading: widget.heading, movies: widget.movies,),
         const SizedBox(
           height: 20,
         ),
         FutureBuilder(
-          future: movies,
+          future: widget.movies,
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return SizedBox(

@@ -173,7 +173,7 @@ class SettingsScreen extends StatelessWidget {
                       Icon(
                         Icons.settings_outlined,
                         size: 34,
-                        color: Theme.of(context).iconTheme!.color,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                       SizedBox(
                         height: 60,
@@ -217,8 +217,8 @@ class SettingsScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               InkWell(
-                onTap: () {
-                  FirebaseAuth.instance.signOut();
+                onTap: () async {
+                  await FirebaseAuth.instance.signOut();
                   // Navigator.pushReplacementNamed(context, '/check');
                 },
                 child: SizedBox(
@@ -230,7 +230,7 @@ class SettingsScreen extends StatelessWidget {
                       Icon(
                         Icons.logout,
                         size: 34,
-                        color: Theme.of(context).iconTheme!.color,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                       SizedBox(
                         height: 60,
@@ -286,7 +286,7 @@ class SettingsScreen extends StatelessWidget {
                       Icon(
                         Icons.info_outline_rounded,
                         size: 34,
-                        color: Theme.of(context).iconTheme!.color,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                       SizedBox(
                         height: 60,
@@ -342,7 +342,7 @@ class SettingsScreen extends StatelessWidget {
                       Icon(
                         Icons.shield_outlined,
                         size: 34,
-                        color: Theme.of(context).iconTheme!.color,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                       SizedBox(
                         height: 60,

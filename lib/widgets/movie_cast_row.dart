@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:project2/models/MovieCastDetailsModel.dart';
 
-class MovieCastRow extends StatefulWidget {
-  MovieCastRow({required this.model, Key? key}) : super(key: key);
+class MovieCastRow extends StatelessWidget {
+  const MovieCastRow({required this.model, Key? key}) : super(key: key);
   final MovieCastDetailsModel model;
 
   @override
-  State<MovieCastRow> createState() => _MovieCastRowState();
-}
-
-class _MovieCastRowState extends State<MovieCastRow> {
-  @override
   Widget build(BuildContext context) {
     final posterUrl =
-        'https://image.tmdb.org/t/p/original${widget.model.profilePath}';
+        'https://image.tmdb.org/t/p/original${model.profilePath}';
     return SizedBox(
       width: 125,
       child: Column(
@@ -38,7 +33,7 @@ class _MovieCastRowState extends State<MovieCastRow> {
           Align(
             alignment: Alignment.topLeft,
             child: Text(
-              widget.model.name.toString(),
+              model.name.toString(),
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
@@ -52,7 +47,7 @@ class _MovieCastRowState extends State<MovieCastRow> {
           Align(
             alignment: Alignment.topLeft,
             child: Text(
-              widget.model.character.toString(),
+              model.character.toString(),
               style: TextStyle(
                 fontSize: 10,
                 color: Theme.of(context).textTheme.titleSmall!.color,

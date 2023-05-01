@@ -1,5 +1,3 @@
-import 'package:project2/screens/authorization/preferences.dart';
-import 'package:project2/screens/authorization/sign_up_screen.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -181,39 +179,35 @@ class _completeProfileState extends State<completeProfile> {
                     const SizedBox(
                       height: 120,
                     ),
-                    Column(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            var _id = M.ObjectId();
-                            final data = getUserDetails(
-                                firebaseId: user.uid.toString(),
-                                id: _id,
-                                name: _name.text.trim(),
-                                emailId: user.email.toString(),
-                                age: int.parse(_age.text.trim()),
-                                gender: _gender,
-                                region: _region.text.trim());
-                            MongoDatabase.addUserData(data);
-                            Navigator.pushNamed(context, '/preference_screen');
-                          },
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 30.0, vertical: 15.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.0)),
-                            backgroundColor: Colors.white,
-                          ),
-                          child: Center(
-                            child: Text("Continue",
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black)),
-                          ),
-                        ),
-                      ],
+                    ElevatedButton(
+                      onPressed: () {
+                        var _id = M.ObjectId();
+                        final data = getUserDetails(
+                            firebaseId: user.uid.toString(),
+                            id: _id,
+                            name: _name.text.trim(),
+                            emailId: user.email.toString(),
+                            age: int.parse(_age.text.trim()),
+                            gender: _gender,
+                            region: _region.text.trim());
+                        MongoDatabase.addUserData(data);
+                        Navigator.pushNamed(context, '/preference_screen');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30.0, vertical: 15.0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0)),
+                        backgroundColor: Colors.white,
+                      ),
+                      child: Center(
+                        child: Text("Continue",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.montserrat(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black)),
+                      ),
                     ),
                     const SizedBox(
                       height: 20,

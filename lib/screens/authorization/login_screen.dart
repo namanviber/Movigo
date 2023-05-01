@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project2/utilities/auth_google.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:project2/screens/authorization/forget_password_screen.dart';
-import 'package:project2/screens/authorization/sign_up_screen.dart';
 import 'package:project2/screens/settings/general_settings_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -199,7 +196,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Center(
                               child: Text("Sign in",
                                   textAlign: TextAlign.center,
-                                  style: GoogleFonts.montserrat(
+                                  style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black)),
@@ -224,7 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Center(
                               child: Text("Continue with Google",
                                   textAlign: TextAlign.center,
-                                  style: GoogleFonts.montserrat(
+                                  style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold)),
                             ),
@@ -237,14 +234,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       InkWell(
                         onTap: widget.showSignup,
                         child: RichText(
-                          text: TextSpan(children: [
+                          text: TextSpan(children: const [
                             TextSpan(
                               text: "Don’t have an account? ",
-                              style: GoogleFonts.montserrat(fontSize: 12),
+                              style: TextStyle(fontSize: 12),
                             ),
                             TextSpan(
                               text: "Sign Up",
-                              style: GoogleFonts.montserrat(
+                              style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),

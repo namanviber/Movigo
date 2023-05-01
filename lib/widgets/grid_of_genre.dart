@@ -1,19 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project2/service/mongoDbCall.dart';
 
 import 'bottom_bar.dart';
 import 'item_grid.dart';
 
-class GridOfGenre extends StatefulWidget {
-  const GridOfGenre({Key? key}) : super(key: key);
+class GridOfGenre extends StatelessWidget {
+  GridOfGenre({Key? key}) : super(key: key);
 
-  @override
-  State<GridOfGenre> createState() => _GridOfGenreState();
-}
-
-class _GridOfGenreState extends State<GridOfGenre> {
-  @override
   List genrelistofimage=[
     'assets/images/square (1).png',
     'assets/images/square (2).png',
@@ -64,68 +57,8 @@ class _GridOfGenreState extends State<GridOfGenre> {
   ];
 
   double height_for_colorbox=130;
-  // Widget ColorBox(int index) {
-  //   final genreListImage=genrelistofimage[index];
-  //   print(genreListImage);
-  //
-  //   return Padding(
-  //     padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 6.0),
-  //     child: InkWell(
-  //       onTap: (){
-  //         Navigator.pushNamed(context, '/filter_results', arguments: 'genrelist[i');
-  //       },
-  //       child: Container(
-  //         width: MediaQuery.of(context).size.width-30,
-  //         height: height_for_colorbox,
-  //         child: Stack(
-  //           children: [
-  //             Row(
-  //               mainAxisAlignment: MainAxisAlignment.start,
-  //               children: [
-  //                 Container(
-  //                   width: MediaQuery.of(context).size.width - 30,
-  //                   height: height_for_colorbox,
-  //                   decoration: BoxDecoration(
-  //                     borderRadius: BorderRadius.circular(11.0),
-  //                     boxShadow: [
-  //                       BoxShadow(
-  //                         color: Colors.black.withOpacity(0.1),
-  //                         blurRadius: 4.0,
-  //                         offset: Offset(0, 2),
-  //                       ),
-  //                     ],
-  //
-  //                     image: DecorationImage(
-  //                       image: AssetImage(genreListImage),
-  //                       fit: BoxFit.cover,
-  //                       // adjust the image fit as needed
-  //                     ),
-  //                   ),
-  //                 )
-  //               ],
-  //             ),
-  //             Positioned.fill(
-  //               left: 10,
-  //               // bottom: 0,
-  //               top: 80,
-  //               // top:10,
-  //               // top: height_for_colorbox-25,
-  //               child: Text(
-  //                 genrelist[index],
-  //                 style: TextStyle(
-  //                   color: Colors.white,
-  //                   fontSize: 28.0,
-  //                   fontWeight: FontWeight.bold,
-  //                 ),
-  //               ),
-  //             ),
-  //           ],
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(centerTitle: true,
@@ -189,5 +122,4 @@ class _GridOfGenreState extends State<GridOfGenre> {
       ),
     );
   }
-
 }

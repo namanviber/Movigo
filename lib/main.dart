@@ -4,7 +4,6 @@ import 'package:project2/screens/home/splash_screen.dart';
 import 'package:project2/screens/settings/profilePage.dart';
 import 'package:project2/utilities/Check.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:project2/screens/authorization/landing_screen.dart';
 import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/screens/settings/about_us_screen.dart';
 import 'package:project2/screens/settings/general_settings_screen.dart';
@@ -31,7 +30,7 @@ void main() async {
 }
 
 class Movigo extends StatefulWidget {
-  Movigo({Key? key}) : super(key: key);
+  const Movigo({Key? key}) : super(key: key);
 
   @override
   State<Movigo> createState() => _MovigoState();
@@ -61,7 +60,7 @@ class _MovigoState extends State<Movigo> {
           '/watch_list': (context) => WatchlistScreen(),
           '/home_screen': (context) => HomeScreen(),
           '/setting_screen': (context) => SettingsScreen(),
-          '/splash_screen': (context) => LandingScreen(),
+          '/splash_screen': (context) => SplashScreen(),
           '/preference_screen': (context) => PreferenceScreen(),
           '/check': (context) => Check(),
           '/profile_edit': (context) => Profilepage(),

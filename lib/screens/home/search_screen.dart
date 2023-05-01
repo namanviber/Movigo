@@ -3,7 +3,6 @@ import '../../models/MovieDetailModel.dart';
 import '../../service/apiCall.dart';
 import '../../service/mongoDbCall.dart';
 import 'package:project2/widgets/bottom_bar.dart';
-
 import '../../widgets/item_grid.dart';
 import 'movieDetail.dart';
 

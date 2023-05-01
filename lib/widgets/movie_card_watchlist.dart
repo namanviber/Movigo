@@ -25,7 +25,6 @@ class _MovieCardWatchState extends State<MovieCardWatch> {
         'https://image.tmdb.org/t/p/w600_and_h900_bestv2${widget.movie.result.first.posterPath}';
 
     Future<void> fetchMovieDetails(int movieid) async {
-      print(movieid);
       final response3 = await movieDetails(movieid);
       setState(() {
         MovieDetailModel movieDetail = response3;
@@ -64,7 +63,7 @@ class _MovieCardWatchState extends State<MovieCardWatch> {
                 icon: Icon(
                   Icons
                       .delete,
-                  color: Theme.of(context).iconTheme.color,
+                  color: Colors.white,
                   size: 24,
                 ),
                 onPressed: () {

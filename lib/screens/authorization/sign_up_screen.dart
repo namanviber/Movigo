@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:project2/screens/home/home_screen.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 
 bool sign = false;
@@ -234,7 +232,7 @@ class _SignUpState extends State<SignUp> {
                             child: Center(
                               child: Text("Sign Up",
                                   textAlign: TextAlign.center,
-                                  style: GoogleFonts.montserrat(
+                                  style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black)),
@@ -248,14 +246,14 @@ class _SignUpState extends State<SignUp> {
                       InkWell(
                         onTap: widget.showLogin,
                         child: RichText(
-                          text: TextSpan(children: [
+                          text: TextSpan(children: const [
                             TextSpan(
                               text: "Already have an account? ",
-                              style: GoogleFonts.montserrat(fontSize: 12),
+                              style: TextStyle(fontSize: 12),
                             ),
                             TextSpan(
                               text: "Sign In",
-                              style: GoogleFonts.montserrat(
+                              style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),

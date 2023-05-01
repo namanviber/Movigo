@@ -6,7 +6,7 @@ import 'package:project2/screens/home/movieDetail.dart';
 
 class MovieList extends StatefulWidget {
   final getMoviesModel moviesModel;
-  MovieList({required this.moviesModel, Key? key}) : super(key: key);
+  const MovieList({required this.moviesModel, Key? key}) : super(key: key);
 
   @override
   State<MovieList> createState() => _MovieListState();
