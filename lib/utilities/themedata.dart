@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ThemeClass {
   static ThemeData lightTheme = ThemeData(
     cardColor: Color(0xffc5eae7),
-    scaffoldBackgroundColor: Color(0xfffefcf6),
+    scaffoldBackgroundColor: Color(0xfffe6e6fa),
     highlightColor: Colors.deepPurple,
     bottomAppBarTheme: BottomAppBarTheme(color: Color(0xff29048d)),
     canvasColor: Colors.black,
@@ -35,7 +35,7 @@ class ThemeClass {
         fontWeight: FontWeight.bold,
         color: Color(0xff1f1f1f),
       ),
-      backgroundColor: Color(0xfff5f0f0),
+      backgroundColor: Color(0xfffBCA7E8),
     ),
     iconButtonTheme: IconButtonThemeData(
         style: IconButton.styleFrom(foregroundColor: Colors.black)),
