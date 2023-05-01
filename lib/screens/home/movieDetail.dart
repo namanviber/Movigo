@@ -7,13 +7,14 @@ import 'package:project2/service/apiCall.dart';
 import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/widgets/movie_cast_row.dart';
 import 'package:project2/widgets/movie_crew_row.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project2/utilities/ratings_auth.dart';
 
 class MovieInfo extends StatefulWidget {
   final MovieDetailModel movieModel;
+  bool data;
 
-  const MovieInfo({required this.movieModel, Key? key}) : super(key: key);
+  MovieInfo({required this.movieModel, this.data = true, Key? key})
+      : super(key: key);
 
   @override
   State<MovieInfo> createState() => _MovieInfoState();
@@ -118,61 +119,73 @@ class _MovieInfoState extends State<MovieInfo> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              LikeButton(
-                                likeBuilder: (isliked) {
-                                  return Icon(
-                                    Icons.bookmark_add,
-                                    color: isliked
-                                        ? Theme.of(context).iconTheme.color!
-                                        : Theme.of(context).canvasColor,
-                                  );
-                                },
-                                onTap: (isLiked) async {
-                                  MongoDatabase.addWatchlist(
-                                      widget.movieModel.id);
-                                  return !isLiked;
-                                },
+                        (widget.data)
+                            ? SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.3,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    LikeButton(
+                                      likeBuilder: (isliked) {
+                                        return Icon(
+                                          Icons.bookmark_add,
+                                          color: isliked
+                                              ? Theme.of(context)
+                                                  .iconTheme
+                                                  .color!
+                                              : Theme.of(context).canvasColor,
+                                        );
+                                      },
+                                      onTap: (isLiked) async {
+                                        MongoDatabase.addWatchlist(
+                                            widget.movieModel.id);
+                                        return !isLiked;
+                                      },
+                                    ),
+                                    LikeButton(
+                                      likeBuilder: (isliked) {
+                                        return Icon(
+                                          Icons.screen_share,
+                                          color: isliked
+                                              ? Theme.of(context)
+                                                  .iconTheme
+                                                  .color!
+                                              : Theme.of(context).canvasColor,
+                                        );
+                                      },
+                                      onTap: (isLiked) async {
+                                        MongoDatabase.addWatched(
+                                            widget.movieModel.id);
+                                        return !isLiked;
+                                      },
+                                    ),
+                                    LikeButton(
+                                      likeBuilder: (isliked) {
+                                        return Icon(
+                                          Icons.star,
+                                          color: isliked
+                                              ? Theme.of(context)
+                                                  .iconTheme
+                                                  .color!
+                                              : Theme.of(context).canvasColor,
+                                        );
+                                      },
+                                      onTap: (isLiked) async {
+                                        showRatingDialog(
+                                            context,
+                                            widget.movieModel.id,
+                                            widget.movieModel.title!,
+                                            widget.movieModel.posterPath!);
+                                        return !isLiked;
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.3,
                               ),
-                              LikeButton(
-                                likeBuilder: (isliked) {
-                                  return Icon(
-                                    Icons.screen_share,
-                                    color: isliked
-                                        ? Theme.of(context).iconTheme.color!
-                                        : Theme.of(context).canvasColor,
-                                  );
-                                },
-                                onTap: (isLiked) async {
-                                  MongoDatabase.addWatched(widget.movieModel.id);
-                                  return !isLiked;
-                                },
-                              ),
-                              LikeButton(
-                                likeBuilder: (isliked) {
-                                  return Icon(
-                                    Icons.star,
-                                    color: isliked
-                                        ? Theme.of(context).iconTheme.color!
-                                        : Theme.of(context).canvasColor,
-                                  );
-                                },
-                                onTap: (isLiked) async {
-                                  showRatingDialog(
-                                      context,
-                                      widget.movieModel.id,
-                                      widget.movieModel.title!,
-                                      widget.movieModel.posterPath!);
-                                  return !isLiked;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
                       ],
                     ),
                     const SizedBox(

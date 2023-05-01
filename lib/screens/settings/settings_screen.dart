@@ -29,7 +29,7 @@ class SettingsScreen extends StatelessWidget {
                     var content = getUserDetails.fromJson(snapshot.data);
                     return Container(
                       decoration: BoxDecoration(
-                          color: Theme.of(context).iconTheme.color,
+                          color: Theme.of(context).highlightColor,
                           borderRadius: BorderRadius.circular(10)),
                       height: 100,
                       width: MediaQuery.of(context).size.width,
@@ -219,7 +219,7 @@ class SettingsScreen extends StatelessWidget {
               InkWell(
                 onTap: () {
                   FirebaseAuth.instance.signOut();
-                  Navigator.pushReplacementNamed(context, '/check');
+                  // Navigator.pushReplacementNamed(context, '/check');
                 },
                 child: SizedBox(
                   height: 60,

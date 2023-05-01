@@ -23,7 +23,7 @@ class PreferenceScreenState extends State<PreferenceScreen> {
     11525,
     46785,
     12158,
-    96357,
+    12158
   ];
 
   @override

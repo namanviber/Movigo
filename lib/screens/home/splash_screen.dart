@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:project2/screens/home/home_screen.dart';
 
+import '../../utilities/Check.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -16,9 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
 
     return AnimatedSplashScreen(
-      splash: Image.asset('assets/images/09090F.png'),
+      splash: Image.asset('assets/images/Movigo.png'),
       splashIconSize: 350,
-      nextScreen: HomeScreen(),
+      nextScreen: Check(),
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.leftToRight,
       backgroundColor: Color(0xff09090F),

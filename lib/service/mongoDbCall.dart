@@ -29,7 +29,7 @@ class MongoDatabase {
     return response;
   }
 
-  static Future<List<dynamic>> getRecommendations() async {
+  static Future<List<dynamic>> userRecommendations() async {
     final response = await userCollection.findOne(
       where.eq("firebase_id", userInfo.uid).excludeFields([
         "_id",
@@ -44,10 +44,30 @@ class MongoDatabase {
       ]),
     );
     final result = await recommendMovies(response);
-    return result;
+    final movie = result["userbased"];
+    return movie;
   }
 
-  static Future<getUserDetails> updateUserData(
+  static Future<List<dynamic>> itemRecommendations() async {
+    final response = await userCollection.findOne(
+      where.eq("firebase_id", userInfo.uid).excludeFields([
+        "_id",
+        "firebase_id",
+        "name",
+        "age",
+        "gender",
+        "region",
+        "email_id",
+        "watchlist",
+        "watched"
+      ]),
+    );
+    final result = await recommendMovies(response);
+    final movie = result["itembased"];
+    return movie;
+  }
+
+  static Future updateUserData(
       String name, int age, String gender, String region) async {
     var response = await userCollection.updateOne(
         where.eq('firebase_id', userInfo.uid),
@@ -70,7 +90,7 @@ class MongoDatabase {
     return movieDataList;
   }
 
-  static Future<getUserDetails> addWatchlist(int movieid) async {
+  static Future addWatchlist(int movieid) async {
     var response = await userCollection.updateOne(
         where.eq('firebase_id', userInfo.uid),
         modify.push("watchlist", movieid));

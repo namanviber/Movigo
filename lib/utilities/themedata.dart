@@ -4,7 +4,7 @@ class ThemeClass {
   static ThemeData lightTheme = ThemeData(
     cardColor: Color(0xffc5eae7),
     scaffoldBackgroundColor: Color(0xfffefcf6),
-    highlightColor: Color(0xffaead8a),
+    highlightColor: Colors.deepPurple,
     bottomAppBarTheme: BottomAppBarTheme(color: Color(0xff29048d)),
     canvasColor: Colors.black,
     primarySwatch: Colors.deepPurple,
@@ -48,17 +48,18 @@ class ThemeClass {
   );
 
   static ThemeData darkTheme = ThemeData(
-    cardColor: Color(0xFF2D2D05),
     scaffoldBackgroundColor: Color(0xFF1c1c16),
     primaryColor: Colors.white,
     highlightColor: Colors.blue,
+    cardColor: Color(0xff1c1c1c),
     canvasColor: Colors.white,
+    primarySwatch: Colors.grey,
+    indicatorColor: Colors.white,
     filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
       backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue),
       foregroundColor: MaterialStatePropertyAll<Color>(Colors.blue),
     )),
-    primarySwatch: Colors.deepPurple,
     textTheme: TextTheme(
         titleMedium: TextStyle(color: Color(0xFFe5e2d9)),
         titleLarge: TextStyle(color: Color(0xFFe5e2d9)),
@@ -73,18 +74,22 @@ class ThemeClass {
         BottomNavigationBarThemeData(backgroundColor: Color(0xff8b48ff)),
     inputDecorationTheme: InputDecorationTheme(),
     bottomAppBarTheme: BottomAppBarTheme(color: Color(0xff8b48ff)),
-    indicatorColor: Colors.white,
     tabBarTheme: TabBarTheme(labelColor: Color(0xff8b48ff)),
     appBarTheme: AppBarTheme(
-      foregroundColor: Color(0xff1f1f1f),
+      surfaceTintColor: Color(0xff616161),
+      shadowColor: Color(0xff616161),
+      foregroundColor: Color(0xfff5f5f5),
       elevation: 0,
       toolbarHeight: 60,
       titleTextStyle: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.bold,
-        color: Color(0xffe5e2d9),
+        color: Color(0xfff5f5f5),
       ),
-      backgroundColor: Color(0xff1f1f1f),
+      backgroundColor: Color(0xFF1c1c16),
+    ),
+    drawerTheme: DrawerThemeData(
+      backgroundColor: Color(0xFF1c1c16),
     ),
   );
 }

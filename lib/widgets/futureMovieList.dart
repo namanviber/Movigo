@@ -55,14 +55,14 @@ class futureMovieList extends StatelessWidget {
                   height: 190,
                   width: 125,
                   child:
-                  const Center(child: Text("Some Error Occured")),
+                  const Center(child: Text("Please Restart Application")),
                 );
               }
             }
           },
         ),
         const SizedBox(
-          height: 20,
+          height: 10,
         ),
       ],
     );

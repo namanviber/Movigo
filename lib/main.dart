@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:dynamic_color/dynamic_color.dart';
 import 'package:project2/screens/authorization/preferences.dart';
+import 'package:project2/screens/home/splash_screen.dart';
 import 'package:project2/screens/settings/profilePage.dart';
 import 'package:project2/utilities/Check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project2/screens/authorization/landing_screen.dart';
-import 'package:project2/screens/findMovie/findMovie.dart';
 import 'package:project2/service/mongoDbCall.dart';
 import 'package:project2/screens/settings/about_us_screen.dart';
 import 'package:project2/screens/settings/general_settings_screen.dart';
@@ -14,7 +13,6 @@ import 'package:project2/screens/settings/privacy_policy_screen.dart';
 import 'package:project2/screens/home/search_screen.dart';
 import 'package:project2/screens/settings/settings_screen.dart';
 import 'package:project2/screens/home/watchlist_screen.dart';
-import 'package:project2/screens/findMovie/movieSelection.dart';
 import 'package:project2/utilities/themechanger.dart';
 import 'package:project2/utilities/themedata.dart';
 import 'package:project2/widgets/filter_result.dart';
@@ -51,7 +49,7 @@ class _MovigoState extends State<Movigo> {
         darkTheme: ThemeClass.darkTheme,
         themeMode: appState.isDarkModeon ? ThemeMode.dark : ThemeMode.light,
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+        home: SplashScreen(),
         initialRoute: '/',
         routes: {
           // When navigating to the "/" route, build the FirstScreen widget.
@@ -62,15 +60,13 @@ class _MovigoState extends State<Movigo> {
           '/privacy_policy': (context) => PrivacyPolicyScreen(),
           '/watch_list': (context) => WatchlistScreen(),
           '/home_screen': (context) => HomeScreen(),
-          '/recommender_screen': (context) => RecommenderScreen(),
           '/setting_screen': (context) => SettingsScreen(),
           '/splash_screen': (context) => LandingScreen(),
           '/preference_screen': (context) => PreferenceScreen(),
           '/check': (context) => Check(),
           '/profile_edit': (context) => Profilepage(),
           '/search_screen': (_) => SearchScreen(),
-          '/recommended_movies': (context) => RecommendedMovies(),
-          '/Home': (_) => Home(),
+          '/Home': (_) => HomeScreen(),
           '/Profilepage': (_) => Profilepage(),
           '/GridOfGenre': (_) => GridOfGenre(),
           '/filter_results': (context) => FilterResults(
