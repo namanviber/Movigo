@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
 
     return AnimatedSplashScreen(
-      splash: Image.asset('assets/images/09090F.png'),
+      splash: Image.asset('assets/images/Movigo.png'),
       splashIconSize: 350,
       nextScreen: Check(),
       splashTransition: SplashTransition.fadeTransition,

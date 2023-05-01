@@ -94,20 +94,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   fetchMovieDetails(item.id);
                 },
                 child: SizedBox(
-                  height: 300,
+                  height: 200,
                   child: Column(
                     children: [
                       ClipRRect(
                           borderRadius: BorderRadius.circular(16.0),
                           child: Image.network(
                             "https://image.tmdb.org/t/p/original${item.posterPath}",
-                            fit: BoxFit.cover,
-                            height: 400,
-                            width: 300,
+                            fit: BoxFit.fitHeight,
+                            height: 300,
                             errorBuilder: (context, error, stackTrace) {
                               return Image.asset(
                                 "assets/images/noimage.png",
-                                fit: BoxFit.cover,
+                                fit: BoxFit.fitHeight,
                               );
                             },
                           )),
@@ -117,13 +116,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ))
                   .toList(),
               options: CarouselOptions(
-                height: 410,
-                viewportFraction: 0.85,
+                height: 320,
+                enlargeCenterPage: true,
+                enlargeFactor: 0.12,
+                viewportFraction: 0.55,
                 enableInfiniteScroll: true,
                 autoPlay: true,
                 autoPlayInterval: Duration(seconds: 4),
                 scrollDirection: Axis.horizontal,
                 aspectRatio: 2.0,
+                clipBehavior: Clip.none
               ),
             ),
             Padding(
@@ -134,6 +136,86 @@ class _HomeScreenState extends State<HomeScreen> {
                       heading: "Movies For You", movies: userrecommendation),
                   futureMovieList(
                       heading: "Continue Watching...", movies: itemrecommendation),
+                  SizedBox(height: 20,),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 190,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.white,width: 2),
+                      gradient: LinearGradient(
+                        colors: const [Color(0xFF7A0000), Colors.deepPurple],
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.topRight,
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(
+                                width: 170,
+                                child: Column(
+                                  // mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Search Movies By Genre",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge!
+                                            .color,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Find your favourite movies by genre",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge!
+                                            .color,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                  height: 80,
+                                  width: 120,
+                                  child: Image.asset(
+                                    'assets/images/cardimg1.png',
+                                    fit: BoxFit.cover,
+                                  ))
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 50,
+                          width: 290,
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => GridOfGenre()));
+
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.white),
+                            ),
+                            child: Text("Try it Now"),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                   futureMovieList(
                       heading: "Popular Movies", movies: fetchpopularmovie),
                   futureMovieList(
@@ -159,6 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               SizedBox(
                                 width: 170,
@@ -222,39 +305,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       heading: "Top SciFi", movies: scifimovie),
                   futureMovieList(
                       heading: "Top Action", movies: actionmovie),
-              Align(
-                    alignment: Alignment.topLeft,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          "Top Genres",
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color:
-                                Theme.of(context).textTheme.titleLarge!.color,
-                          ),
-                        ),
-                        Spacer(),
-                        IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => GridOfGenre()));
-                          },
-                          icon: Icon(
-                            Icons.arrow_forward_ios,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  SizedBox(height: 20,),
 
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -263,7 +314,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.white,width: 2),
                       gradient: LinearGradient(
-                        colors: const [Color(0xFF7A0000), Colors.deepPurple],
+                        colors: const [Colors.cyan, Colors.deepPurple],
                         begin: Alignment.bottomLeft,
                         end: Alignment.topRight,
                       ),
@@ -273,6 +324,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               SizedBox(
                                 width: 170,
@@ -280,7 +332,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   // mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Search Movies By Genre",
+                                      "Search for your favourite Movies",
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
@@ -291,7 +343,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Text(
-                                      "Find your favourite movies by genre",
+                                      "Find your favourite movies by title name",
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Theme.of(context)
@@ -307,7 +359,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 80,
                                   width: 120,
                                   child: Image.asset(
-                                    'assets/images/cardimg1.png',
+                                    'assets/images/cardimg4.png',
                                     fit: BoxFit.cover,
                                   ))
                             ],
@@ -362,6 +414,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               SizedBox(
                                 width: 170,
