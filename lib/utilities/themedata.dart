@@ -35,7 +35,7 @@ class ThemeClass {
         fontWeight: FontWeight.bold,
         color: Color(0xff1f1f1f),
       ),
-      backgroundColor: Color(0xfffBCA7E8),
+      backgroundColor: Color(0xfff663399),
     ),
     iconButtonTheme: IconButtonThemeData(
         style: IconButton.styleFrom(foregroundColor: Colors.black)),
