@@ -33,12 +33,6 @@ class _MovieInfoState extends State<MovieInfo> {
     });
   }
 
-  @override
-  void initState() {
-    fetchCreditDetails(widget.movieModel.id);
-    super.initState();
-  }
-
   bool watched = false;
 
   Widget build(BuildContext context) {
@@ -188,19 +182,6 @@ class _MovieInfoState extends State<MovieInfo> {
                               ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    // Align(
-                    //   alignment: Alignment.topLeft,
-                    //   child: Text(
-                    //     "genres",
-                    //     style: TextStyle(
-                    //       fontSize: 11,
-                    //       color: Theme.of(context).textTheme.titleLarge!.color,
-                    //     ),
-                    //   ),
-                    // ),
                     const SizedBox(
                       height: 15,
                     ),

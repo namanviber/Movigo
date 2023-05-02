@@ -23,7 +23,17 @@ class PreferenceScreenState extends State<PreferenceScreen> {
     11525,
     46785,
     12158,
-    19995
+    19995,
+    2062,
+    22,
+    49026,
+    479718,
+    10020,
+    9552,
+    242582,
+    244,
+    15917,
+    373302,
   ];
   bool isSelected = false;
 
@@ -87,7 +97,8 @@ class PreferenceScreenState extends State<PreferenceScreen> {
                       shrinkWrap: true,
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
-                        final content = getMoviesModel.fromJson(snapshot.data[index]);
+                        final content =
+                            getMoviesModel.fromJson(snapshot.data[index]);
                         isSelected = prefresults.contains(content.tmdbId);
                         return GestureDetector(
                           onTap: () {
@@ -126,7 +137,9 @@ class PreferenceScreenState extends State<PreferenceScreen> {
                                   child: IconButton(
                                     icon: Icon(
                                       Icons.check_box,
-                                      color: isSelected ? Colors.blue : Colors.white,
+                                      color: isSelected
+                                          ? Colors.blue
+                                          : Colors.white,
                                       size: 24,
                                     ),
                                     onPressed: () {},
@@ -152,12 +165,11 @@ class PreferenceScreenState extends State<PreferenceScreen> {
             setState(() {
               if (prefresults.length > 2) {
                 sign = false;
-                for (int i = 0; i < prefresults.length; i++){
+                for (int i = 0; i < prefresults.length; i++) {
                   MongoDatabase.addRating(prefresults[i], 5);
                 }
                 Navigator.pushNamed(context, '/home_screen');
-              }
-              else{
+              } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text('Please select at least 3 items'),

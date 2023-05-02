@@ -8,6 +8,7 @@ import 'package:project2/models/DiscoverMovieModel.dart';
 import 'package:project2/service/apiCall.dart';
 import 'package:project2/widgets/futureMovieList.dart';
 import 'package:project2/widgets/grid_of_genre.dart';
+import 'package:project2/widgets/recommendMovieList.dart';
 
 import '../../models/MovieDetailModel.dart';
 import 'movieDetail.dart';
@@ -161,9 +162,9 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: <Widget>[
-                  futureMovieList(
+                  recommendMovieList(
                       heading: "Movies For You", movies: userrecommendation),
-                  futureMovieList(
+                  recommendMovieList(
                       heading: "Continue Watching...", movies: itemrecommendation),
                   SizedBox(height: 20,),
                   Container(

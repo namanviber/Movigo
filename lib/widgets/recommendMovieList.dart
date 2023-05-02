@@ -3,10 +3,10 @@ import 'package:project2/widgets/heading_text.dart';
 import 'package:project2/widgets/movieList.dart';
 import 'package:project2/models/getMoviesModel.dart';
 
-class futureMovieList extends StatelessWidget {
+class recommendMovieList extends StatelessWidget {
   String heading;
   var movies;
-  futureMovieList({required this.heading, required this.movies,Key? key}) : super(key: key);
+  recommendMovieList({required this.heading, required this.movies,Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +23,13 @@ class futureMovieList extends StatelessWidget {
           future: movies,
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return SizedBox(
-                height: 190,
-                width: 125,
-                child:
-                const Center(child: CircularProgressIndicator()),
-              );
+              return Center(child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text("Loading your recommendations ", style: TextStyle(color: Theme.of(context).textTheme.titleSmall!.color),),
+                  CircularProgressIndicator(),
+                ],
+              ));
             } else {
               if (snapshot.hasData) {
                 return SizedBox(
@@ -51,12 +52,8 @@ class futureMovieList extends StatelessWidget {
                   ),
                 );
               } else {
-                return SizedBox(
-                  height: 190,
-                  width: 125,
-                  child:
-                  const Center(child: Text("Please Restart Application")),
-                );
+                return const Center(child: Text("ML API Not Running \n"
+                    "Please Wait"));
               }
             }
           },
