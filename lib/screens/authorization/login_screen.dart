@@ -25,13 +25,14 @@ class _LoginScreenState extends State<LoginScreen> {
       try {
         FirebaseAuth.instance.signInWithEmailAndPassword(
             email: _email.text.trim(), password: _password.text.trim());
+
       } on FirebaseAuthException catch (e) {
         // print(e.message);
         print("------------------------------------------------");
         print(isvalid);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text("vcftyiujk"),
+            content: Text("Some Error Occured"),
             backgroundColor: Colors.red,
             duration: Duration(seconds: 3),
           ),

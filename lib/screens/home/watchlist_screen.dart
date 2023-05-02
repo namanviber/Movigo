@@ -72,6 +72,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
               ),
             ),
             bottom: TabBar(
+              indicatorColor: Colors.deepPurple,
               tabs: [
                 Tab(
                   child: Text(

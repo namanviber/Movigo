@@ -68,7 +68,7 @@ class _ProfilepageState extends State<Profilepage> {
                       color: Theme.of(context).textTheme.titleSmall!.color,
                     ),
                     cursorColor: Theme.of(context).iconTheme.color,
-                    controller: TextEditingController(text: content.name),
+                    // controller: TextEditingController(text: content.name),
                     decoration: InputDecoration(
                       labelText: 'Name',
                       floatingLabelBehavior: FloatingLabelBehavior
@@ -76,7 +76,7 @@ class _ProfilepageState extends State<Profilepage> {
                       labelStyle: TextStyle(
                         color: Theme.of(context).textTheme.titleSmall!.color,
                       ),
-                      // hintText: content.name ?? "Enter Your Name",
+                      hintText: content.name ?? "Enter Your Name",
                       hintStyle: TextStyle(
                         color: Theme.of(context).textTheme.titleSmall!.color,
                       ),
@@ -105,14 +105,13 @@ class _ProfilepageState extends State<Profilepage> {
                     style: TextStyle(
                         color: Theme.of(context).textTheme.titleSmall!.color),
                     cursorColor: Theme.of(context).iconTheme.color,
-                    controller:
-                        TextEditingController(text: content.age.toString()),
+                    // controller:                        TextEditingController(text: content.age.toString()),
                     decoration: InputDecoration(
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       labelText: 'Age',
                       labelStyle: TextStyle(
                           color: Theme.of(context).textTheme.titleSmall!.color),
-                      // hintText: (content.age ?? "Enter Your Age").toString(),
+                      hintText: (content.age ?? "Enter Your Age").toString(),
                       hintStyle: TextStyle(
                         color: Theme.of(context).textTheme.titleSmall!.color,
                       ),
@@ -157,7 +156,7 @@ class _ProfilepageState extends State<Profilepage> {
                       ),
                       labelText: 'Gender',
                       // controller: _genderController,
-                      // hintText: content.gender ?? "Select your gender",
+                      hintText: content.gender ?? "Select your gender",
                       hintStyle: TextStyle(
                         color: Theme.of(context).textTheme.titleSmall!.color,
                       ),
@@ -194,7 +193,7 @@ class _ProfilepageState extends State<Profilepage> {
                     style: TextStyle(
                         color: Theme.of(context).textTheme.titleSmall!.color),
                     cursorColor: Theme.of(context).iconTheme.color,
-                    controller: TextEditingController(text: content.region),
+                    // controller: TextEditingController(text: content.region),
                     decoration: InputDecoration(
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       labelText: 'Region',
@@ -203,7 +202,7 @@ class _ProfilepageState extends State<Profilepage> {
                       ),
                       labelStyle: TextStyle(
                           color: Theme.of(context).textTheme.titleSmall!.color),
-                      // hintText: content.region ?? 'Enter your Country',
+                      hintText: content.region ?? 'Enter your Country',
 
                       prefixIcon: Icon(
                         Icons.location_city,

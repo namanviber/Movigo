@@ -163,9 +163,9 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 children: <Widget>[
                   recommendMovieList(
-                      heading: "Movies For You", movies: userrecommendation),
+                      heading: "Recommended For You", movies: userrecommendation),
                   recommendMovieList(
-                      heading: "Continue Watching...", movies: itemrecommendation),
+                      heading: "Suggested For You", movies: itemrecommendation),
                   SizedBox(height: 20,),
                   Container(
                     width: MediaQuery.of(context).size.width,
