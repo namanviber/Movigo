@@ -20,12 +20,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future log_in() async {
     final isvalid = formKey.currentState!.validate();
+    print(isvalid);
     if (isvalid) {
       try {
         FirebaseAuth.instance.signInWithEmailAndPassword(
             email: _email.text.trim(), password: _password.text.trim());
       } on FirebaseAuthException catch (e) {
-        print(e);
+        // print(e.message);
+        print("------------------------------------------------");
+        print(isvalid);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text("vcftyiujk"),
@@ -159,8 +162,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         obscureText: showtext,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) {
-                          if (value!.isEmpty || value.length < 8) {
-                            return "Minimum 8 Characters Required";
+                          if (value!.isEmpty || value.length < 6) {
+                            return "Minimum 6 Characters Required";
                           }
                           return null;
                         },

@@ -749,14 +749,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0+1"
-  snack:
-    dependency: "direct main"
-    description:
-      name: snack
-      sha256: "878a2e96f68defb3b1f1a7bff718cb4fb73f947277fdb44c61ae9bfa6bf684f2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   source_span:
     dependency: transitive
     description:

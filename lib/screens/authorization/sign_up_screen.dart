@@ -171,8 +171,8 @@ class _SignUpState extends State<SignUp> {
                         obscureText: showtext,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) {
-                          if (value!.isEmpty ||value.length < 8) {
-                            return "Minimum 8 Characters Required";
+                          if (value!.isEmpty ||value.length < 6) {
+                            return "Minimum 6 Characters Required";
                           }
                           return null;
                         },
@@ -216,7 +216,7 @@ class _SignUpState extends State<SignUp> {
                         obscureText: showtextconfirm,
                         validator: (value) {
                           if (value!.isEmpty && _confirmpassword != _password) {
-                            return "Password donot match";
+                            return "Password do not match";
                           } else {
                             return null;
                           }

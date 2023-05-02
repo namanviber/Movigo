@@ -219,7 +219,7 @@ class SettingsScreen extends StatelessWidget {
               InkWell(
                 onTap: () async {
                   await FirebaseAuth.instance.signOut();
-                  // Navigator.pushReplacementNamed(context, '/check');
+                  Navigator.pushReplacementNamed(context, '/check');
                 },
                 child: SizedBox(
                   height: 60,

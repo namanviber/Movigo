@@ -255,7 +255,7 @@ class _SearchScreenState extends State<SearchScreen> {
       padding: const EdgeInsets.all(16.0),
       child: Container(
           child: TextField(
-        style: TextStyle(color: Theme.of(context).textTheme.bodySmall!.color),
+        style: TextStyle(color: Theme.of(context).textTheme.titleSmall!.color),
         decoration: InputDecoration(
           hintStyle: TextStyle(
             color: Theme.of(context).textTheme.titleMedium!.color,

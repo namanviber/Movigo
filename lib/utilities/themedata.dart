@@ -48,10 +48,10 @@ class ThemeClass {
   );
 
   static ThemeData darkTheme = ThemeData(
-    cardColor: Color(0xFF2D2D05),
+    cardColor: Color(0xFF324042),
     scaffoldBackgroundColor: Color(0xFF1c1c16),
     primaryColor: Colors.white,
-    highlightColor: Colors.blue,
+    highlightColor: Color(0xFF80A7D5),
     canvasColor: Colors.white,
     filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(

@@ -173,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.white,width: 2),
                       gradient: LinearGradient(
-                        colors: const [Color(0xFFEF6363), Color(0xFF008023)],
+                        colors: const [Color(0xFF530593), Color(0xFF00FFD8)],
                         begin: Alignment.bottomLeft,
                         end: Alignment.topRight,
                       ),
@@ -343,7 +343,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.white,width: 2),
                       gradient: LinearGradient(
-                        colors: const [Colors.cyan, Colors.deepPurple],
+                        colors: const [Color(0xffde8041), Color(0xffe84b1b)],
                         begin: Alignment.bottomLeft,
                         end: Alignment.topRight,
                       ),

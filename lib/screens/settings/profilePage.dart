@@ -98,6 +98,7 @@ class _ProfilepageState extends State<Profilepage> {
                         ),
                       ),
                     ),
+
                   ),
                   SizedBox(height: 20),
                   TextFormField(
@@ -182,7 +183,6 @@ class _ProfilepageState extends State<Profilepage> {
                     onChanged: (value) {
                       setState(() {
                         _gender = value;
-          
                       });
                     },
                     // controller: _genderController,
@@ -224,12 +224,14 @@ class _ProfilepageState extends State<Profilepage> {
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
+
                     onPressed: () {
                       MongoDatabase.updateUserData(
                           _name.text.trim(),
                           int.parse(_age.text.trim()),
                           _gender,
-                          _region.text.trim());
+                          _region.text.trim()
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Theme.of(context).iconTheme.color,
