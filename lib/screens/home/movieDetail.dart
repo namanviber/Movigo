@@ -24,6 +24,12 @@ class _MovieInfoState extends State<MovieInfo> {
   List<MovieCastDetailsModel> _movieCast = [];
   List<MovieCrewDetailsModel> _movieCrew = [];
 
+  @override
+  void initState() {
+    fetchCreditDetails(widget.movieModel.id);
+    super.initState();
+  }
+
   Future<void> fetchCreditDetails(int movieid) async {
     final response1 = await movieCastDetails(movieid);
     final response2 = await movieCrewDetails(movieid);
@@ -94,7 +100,6 @@ class _MovieInfoState extends State<MovieInfo> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Row(
-                      // mainAxisAlignment: MainAxisAlignment.space,
                       children: [
                         Align(
                           alignment: Alignment.topLeft,

@@ -33,11 +33,12 @@ void showRatingDialog(BuildContext context, int movieid, String title, String mo
       fit: BoxFit.fitHeight,
     ),
     submitButtonText: 'Submit',
-    starColor: Theme.of(context).highlightColor,
+    starColor: Colors.deepPurple,
     submitButtonTextStyle: TextStyle(
-      color: Theme.of(context).highlightColor
+      color: Theme.of(context).iconTheme.color
     ),
     commentHint: 'Review this Movie',
+    starSize: 30,
     onSubmitted: (response) {
       MongoDatabase.addRating(movieid, response.rating);
     },
