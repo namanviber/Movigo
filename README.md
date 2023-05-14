@@ -1,16 +1,35 @@
-# project2
 
-Movie Recommendation Engine
+# Movigo
 
-## Getting Started
+A highly sophisticated movie recommendation app that offers movie-related information and gives movie recommendations based on user ratings and reviews.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Collaborators
+
+- [Naman Jain](https://www.github.com/namanviber)
+- [Dhaval Pathak](https://github.com/Dhaval-pathak)
+- [Aryaman Sital](https://github.com/Aryamansital)
+- [Sidharth Aggarwal](https://github.com/sidharth-aggarwal)
+- [Naman Khandelwal](https://github.com/Naman3007)
+- [Priyansh Tyagi](https://github.com/tyagipriyansh07)
+
+
+## Demo of Our Application
+
+https://clipchamp.com/watch/QZSYwTCXyMt
+
+
+## Important Note
+
+Since ML Recommendation Model is not hosted on the web, it is incompatible with the application's installed version. 
+
+
+    
+
+
+
+## App Link
+
+https://drive.google.com/file/d/1N8ScqeEPH6FcHi4c1NPoXRJmWJ-DM8QH/view?usp=share_link
