@@ -30,7 +30,7 @@ class _SignUpState extends State<SignUp> {
         print(e);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text("vcftyiujk"),
+            content: Text("Some Error Occured"),
             backgroundColor: Colors.red,
             duration: Duration(seconds: 3),
           ),
