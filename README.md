@@ -18,7 +18,8 @@ A highly sophisticated movie recommendation app that offers movie-related inform
 
 ## Demo of Our Application
 
-https://clipchamp.com/watch/QZSYwTCXyMt
+[Movigo Demo Video](https://bit.ly/43cnVQL)
+
 
 
 ## Important Note
@@ -26,10 +27,7 @@ https://clipchamp.com/watch/QZSYwTCXyMt
 Since ML Recommendation Model is not hosted on the web, it is incompatible with the application's installed version. 
 
 
-    
-
-
 
 ## App Link
 
-https://drive.google.com/file/d/1N8ScqeEPH6FcHi4c1NPoXRJmWJ-DM8QH/view?usp=share_link
+[Movigo Apk](https://bit.ly/43dUUEs)
