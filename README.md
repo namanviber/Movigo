@@ -14,6 +14,7 @@ A highly sophisticated movie recommendation app that offers movie-related inform
 - [Sidharth Aggarwal](https://github.com/sidharth-aggarwal)
 - [Naman Khandelwal](https://github.com/Naman3007)
 - [Priyansh Tyagi](https://github.com/tyagipriyansh07)
+- [Soum Nag](https://github.com/soumvaar)
 
 
 ## Demo of Our Application
