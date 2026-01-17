@@ -93,7 +93,7 @@ lib/
 | Resource | Link |
 | :--- | :--- |
 | **Demo Video** | [Watch Preview](https://bit.ly/43cnVQL) |
-| **Download APK** | [Get Movigo for Android](https://bit.ly/43dUUEs) |
+| **Download APK** | [Get Movigo for Android](https://drive.usercontent.google.com/download?id=1N8ScqeEPH6FcHi4c1NPoXRJmWJ-DM8QH&export=download) |
 
 ---
 
